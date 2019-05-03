@@ -1,22 +1,14 @@
 package de.eneko.nekomobile.listener;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
+import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.beans.ToDo;
+import de.eneko.nekomobile.controllers.FileHandler;
 
-/**
- * Dieser Listener reagiert auf die Klicks
- * in der ListViewActivity. Wenn ein ListViewItem
- * geklickt wird wertet diese Klasse die Informationen
- * aus und koordieniert die weiterfuehrenden Aktionen.
- *
- * Sobald ein Item geklickt wird rufen wir eine
- * neue Activity auf die es uns erlaubt die
- * Notiz zu bearbeiten, zu loeschen, oder auf
- * die SD-Card zu exportieren.
- *
- * Created by rKasper on 04.06.2015.
- */
+
 public class NutzerTodosListViewOnItemClickListener
         implements AdapterView.OnItemClickListener
 {
@@ -27,13 +19,13 @@ public class NutzerTodosListViewOnItemClickListener
     {
 
 
-//        //Aktuelle Notiz zwischenspeichern
-//        FileHandler.getInstance().setNutzerTodo((ToDo) parent.getAdapter().getItem(index));
-//        //Generieren eines Intents fuer die NutzerListActivity zu wrappen
-//        Intent intent = new Intent(view.getContext(), RauchmelderWartungListActivity.class);
-//
-//        //Aufrufen der Activity
-//        view.getContext().startActivity(intent);
+        //Aktuelle Notiz zwischenspeichern
+        FileHandler.getInstance().setNutzerTodo((ToDo) parent.getAdapter().getItem(index));
+        //Generieren eines Intents fuer die NutzerListActivity zu wrappen
+        Intent intent = new Intent(view.getContext(), RauchmelderWartungListActivity.class);
+
+        //Aufrufen der Activity
+        view.getContext().startActivity(intent);
 
     }
 }

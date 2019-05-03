@@ -47,7 +47,8 @@ public class NutzerListActivity extends AppCompatActivity implements SearchView.
 //        mToolbar.setVisibility(View.INVISIBLE);
         //setSupportActionBar(mToolbar);
 
-        setTitle(FileHandler.getInstance().getLiegenschaft().getAdresse());
+
+        ((AppCompatActivity)this).getSupportActionBar().setTitle(FileHandler.getInstance().getLiegenschaft().getAdresse());
 
         // Init adapter
         datasource.addAll(FileHandler.getInstance().getLiegenschaft().getNutzers().stream()
