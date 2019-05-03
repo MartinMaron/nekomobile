@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_alignParentStart="true"
+    android:padding="@dimen/dp_faktor_1"
+    android:background="@drawable/textview_border"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:weightSum="100">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="30"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/txtvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|left"
+            android:layout_weight="30"
+            android:gravity="center|left"
+            android:text="Liegenschaft"
+            android:textColor="@android:color/background_dark"
+            android:textSize="@dimen/dp_faktor_6"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txtvDescription2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:text="Terminangabe"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/dp_faktor_4" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/todos_row"
+        android:id="@+id/todorow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="70" />
+</LinearLayout>

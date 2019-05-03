@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.FileListActivity"/>
+        <activity android:name=".activities.LiegenschaftListActivity"/>
     </application>
 
 </manifest>
