@@ -20,6 +20,9 @@ import android.widget.Toast;
 //import com.notbytes.barcode_reader.BarcodeReaderActivity;
 //import com.notbytes.barcode_reader.BarcodeReaderFragment;
 
+import com.google.android.gms.vision.barcode.Barcode;
+import com.notbytes.barcode_reader.BarcodeReaderActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,8 +131,8 @@ public class RwmActivity extends AppCompatActivity{
         ivBarcode1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
-//                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
+                Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
+                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
             }
         });
 
@@ -145,28 +148,28 @@ public class RwmActivity extends AppCompatActivity{
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (resultCode != Activity.RESULT_OK) {
-//            Toast.makeText(this, "error in  scanning", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_NUMBER && data != null) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != Activity.RESULT_OK) {
+            Toast.makeText(this, "error in  scanning", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST && data != null) {
+            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
+            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
+            etNummer.setText(barcode.rawValue);
+        }
+
+//        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_NEWNUMBER && data != null) {
 //            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
 //            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
-//            etNummer.setText(barcode.rawValue);
+//            etNeueNummer.setText(barcode.rawValue);
 //        }
-//
-////        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_NEWNUMBER && data != null) {
-////            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
-////            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
-////            etNeueNummer.setText(barcode.rawValue);
-////        }
-//
-//    }
+
+    }
 
 
 
