@@ -5,6 +5,7 @@ import android.view.View;
 
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.FileListActivity;
 
 public class MainActivityOnClickListener implements View.OnClickListener
 {
@@ -26,9 +27,9 @@ public class MainActivityOnClickListener implements View.OnClickListener
                 break;
 
             case R.id.btCmdGetRoutes:
-                // Fenster mit Liste der Dateien
-//                Intent intent = new Intent(mainActivity, FileListActivity.class);
-//                mainActivity.startActivity(intent);
+
+                Intent intent = new Intent(mainActivity, FileListActivity.class);
+                mainActivity.startActivity(intent);
                 break;
         }
     }
