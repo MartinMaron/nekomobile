@@ -100,16 +100,16 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
             }
         }
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
-        if (requestCode == REQUEST_CAPTURE_IMAGE &&
-                resultCode == RESULT_OK) {
-//            if (data != null && data.getExtras() != null) {
-//                Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
-//                //mImageView.setImageBitmap(imageBitmap);
-//            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode,
+//                                    Intent data) {
+//        if (requestCode == REQUEST_CAPTURE_IMAGE &&
+//                resultCode == RESULT_OK) {
+////            if (data != null && data.getExtras() != null) {
+////                Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+////                //mImageView.setImageBitmap(imageBitmap);
+////            }
+//        }
+//    }
 
 }

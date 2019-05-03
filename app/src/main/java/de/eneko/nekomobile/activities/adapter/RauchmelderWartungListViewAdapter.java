@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.activities.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.activities.detail.RwmActivity;
 import de.eneko.nekomobile.activities.wrapper.RauchmelderWartungListViewItemWrapper;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmelder>
 {
@@ -89,9 +92,9 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
         wrapper.getIvInfo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FileHandler.getInstance().setRauchwarnmelder(rwm);
-//                Intent intent = new Intent(context, RwmActivity.class);
-//                context.startActivity(intent);
+                FileHandler.getInstance().setRauchwarnmelder(rwm);
+                Intent intent = new Intent(context, RwmActivity.class);
+                context.startActivity(intent);
             }
         });
 
