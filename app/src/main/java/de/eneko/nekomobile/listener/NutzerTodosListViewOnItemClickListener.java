@@ -1,13 +1,7 @@
 package de.eneko.nekomobile.listener;
 
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
-
-import de.eneko.nekomobile.activities.NutzerListActivity;
-import de.eneko.nekomobile.beans.Liegenschaft;
-import de.eneko.nekomobile.controllers.FileHandler;
 
 
 /**
@@ -23,7 +17,7 @@ import de.eneko.nekomobile.controllers.FileHandler;
  *
  * Created by rKasper on 04.06.2015.
  */
-public class LiegenschaftListViewOnItemClickListener
+public class NutzerTodosListViewOnItemClickListener
         implements AdapterView.OnItemClickListener
 {
 
@@ -31,14 +25,15 @@ public class LiegenschaftListViewOnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int index, long id)
     {
-        //Aktuelle Notiz zwischenspeichern
-        FileHandler.getInstance().setLiegenschaft((Liegenschaft) parent.getAdapter().getItem(index));
 
-        //Generieren eines Intents fuer die NutzerListActivity zu wrappen
-        Intent intent = new Intent(view.getContext(), NutzerListActivity.class);
 
-        //Aufrufen der Activity
-        view.getContext().startActivity(intent);
+//        //Aktuelle Notiz zwischenspeichern
+//        FileHandler.getInstance().setNutzerTodo((ToDo) parent.getAdapter().getItem(index));
+//        //Generieren eines Intents fuer die NutzerListActivity zu wrappen
+//        Intent intent = new Intent(view.getContext(), RauchmelderWartungListActivity.class);
+//
+//        //Aufrufen der Activity
+//        view.getContext().startActivity(intent);
 
     }
 }

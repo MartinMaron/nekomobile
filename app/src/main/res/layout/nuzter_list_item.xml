@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:background="@drawable/textview_border"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:weightSum="100">
+
+
+    <TextView
+        android:id="@+id/txtvDescription"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:text="@string/empty"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/dp_faktor_6" />
+
+    <TextView
+        android:id="@+id/txtvNutzerLage"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/txtvDescription"
+        android:textColor="@color/colorBlack"
+        android:text="@string/empty"
+        android:textSize="@dimen/dp_faktor_4" />
+
+    <ImageView
+        android:id="@+id/ivStatus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/empty"
+        android:clickable="true"
+        android:padding="@dimen/dp_faktor_0_5"
+        android:text="@string/empty" />
+
+    <include
+        layout="@layout/todos_row"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/txtvNutzerLage"
+        android:layout_marginTop="6dp" />
+</RelativeLayout>
