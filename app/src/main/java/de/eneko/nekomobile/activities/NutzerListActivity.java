@@ -3,6 +3,7 @@ package de.eneko.nekomobile.activities;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -42,27 +44,19 @@ public class NutzerListActivity extends AppCompatActivity implements SearchView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        // Init toolbar
-//        mToolbar = findViewById(R.id.toolbar);
-//        mToolbar.setVisibility(View.INVISIBLE);
-        //setSupportActionBar(mToolbar);
-
-
-        ((AppCompatActivity)this).getSupportActionBar().setTitle(FileHandler.getInstance().getLiegenschaft().getAdresse());
+        // Liegenschaftsadresse als Title
+        getSupportActionBar().setTitle(FileHandler.getInstance().getLiegenschaft().getAdresse());
 
         // Init adapter
         datasource.addAll(FileHandler.getInstance().getLiegenschaft().getNutzers().stream()
                 .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))
                 .collect(Collectors.toList()));
-
         mAdapter = new NutzerListViewAdapter(this,datasource);
-        mNutzerListViewOnItemClickListener = new NutzerListViewOnItemClickListener();
 
-
+        // init listview
         mListView = findViewById(R.id.listView);
-
-        // verbinden des adapters mit listview
         mListView.setAdapter(mAdapter);
+        mNutzerListViewOnItemClickListener = new NutzerListViewOnItemClickListener();
         mListView.setOnItemClickListener(mNutzerListViewOnItemClickListener);
 
     }
@@ -70,7 +64,6 @@ public class NutzerListActivity extends AppCompatActivity implements SearchView.
     @Override
     protected void onResume() {
         super.onResume();
-        //mListView.invalidateViews();
         mAdapter.notifyDataSetChanged();
     }
 

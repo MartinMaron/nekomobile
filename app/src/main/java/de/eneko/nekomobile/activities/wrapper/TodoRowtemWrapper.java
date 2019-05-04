@@ -53,4 +53,6 @@ public class TodoRowtemWrapper {
     public void setIvFunkCheck(ImageView ivFunkCheck) {
         this.ivFunkCheck = ivFunkCheck;
     }
+
+
 }

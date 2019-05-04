@@ -73,11 +73,11 @@ public class LiegenschaftListViewAdapter extends ArrayAdapter<Liegenschaft>
                 + "-" + new SimpleDateFormat("HH:mm").format(liegenschaft.getEnde()));
 
         // sichtbarkei der Icons
-        wrapper.getTodoRow().getIvAblesung().setVisibility(liegenschaft.hasAblesung() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvMontage().setVisibility(liegenschaft.hasMontage() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvRwmMontage().setVisibility(liegenschaft.hasRwmMontage() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvRwmWartung().setVisibility(liegenschaft.hasRwmWartung() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvFunkCheck().setVisibility(liegenschaft.hasFunkcheck() ? View.VISIBLE: View.INVISIBLE);
+        wrapper.getTodoRow().getIvAblesung().setVisibility(liegenschaft.hasAblesung() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvMontage().setVisibility(liegenschaft.hasMontage() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvRwmMontage().setVisibility(liegenschaft.hasRwmMontage() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvRwmWartung().setVisibility(liegenschaft.hasRwmWartung() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvFunkCheck().setVisibility(liegenschaft.hasFunkcheck() ? View.VISIBLE: View.GONE);
 
 
 

@@ -119,14 +119,12 @@ public class NutzerListViewAdapter extends ArrayAdapter<Nutzer> implements Filte
 
 
         // sichtbarkei der Icons
-        wrapper.getTodoRow().getIvAblesung().setVisibility(nutzer.hasAblesung() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvMontage().setVisibility(nutzer.hasMontage() ? View.VISIBLE: View.INVISIBLE);
-        wrapper.getTodoRow().getIvRwmMontage().setVisibility(nutzer.hasRwmMontage() ? View.VISIBLE: View.INVISIBLE);
-
-        wrapper.getTodoRow().getIvRwmWartung().setVisibility(nutzer.hasRwmWartung() ? View.VISIBLE: View.INVISIBLE);
+        wrapper.getTodoRow().getIvAblesung().setVisibility(nutzer.hasAblesung() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvMontage().setVisibility(nutzer.hasMontage() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvRwmMontage().setVisibility(nutzer.hasRwmMontage() ? View.VISIBLE: View.GONE);
+        wrapper.getTodoRow().getIvRwmWartung().setVisibility(nutzer.hasRwmWartung() ? View.VISIBLE: View.GONE);
         wrapper.getTodoRow().getIvRwmWartung().setImageResource(nutzer.getRwmStatusImageResourceId());
-
-        wrapper.getTodoRow().getIvFunkCheck().setVisibility(nutzer.hasFunkcheck() ? View.VISIBLE: View.INVISIBLE);
+        wrapper.getTodoRow().getIvFunkCheck().setVisibility(nutzer.hasFunkcheck() ? View.VISIBLE: View.GONE);
 
         setStatusImage(wrapper.getIvStatus(),nutzer);
 

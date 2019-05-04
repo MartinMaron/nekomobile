@@ -32,7 +32,8 @@ import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RwmActivity extends AppCompatActivity{
 
-    private static final int BARCODE_READER_ACTIVITY_REQUEST = 1208;
+    private static final int BARCODE_READER_ACTIVITY_REQUEST_BT_1 = 1208;
+    private static final int BARCODE_READER_ACTIVITY_REQUEST_BT_2 = 1208;
 
     Rauchwarnmelder rwm = null;
 
@@ -132,17 +133,17 @@ public class RwmActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
-                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
+                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST_BT_1);
             }
         });
 
-//        ivBarcode2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
-//                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
-//            }
-//        });
+        ivBarcode2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
+                startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST_BT_2);
+            }
+        });
 
 
 
@@ -157,17 +158,17 @@ public class RwmActivity extends AppCompatActivity{
             return;
         }
 
-        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST && data != null) {
+        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_BT_1 && data != null ) {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
             etNummer.setText(barcode.rawValue);
         }
 
-//        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_NEWNUMBER && data != null) {
-//            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
-//            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
-//            etNeueNummer.setText(barcode.rawValue);
-//        }
+        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST_BT_2 && data != null ) {
+            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
+            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show();
+            etNeueNummer.setText(barcode.rawValue);
+        }
 
     }
 
