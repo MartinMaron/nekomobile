@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
 import de.eneko.nekomobile.activities.wrapper.RauchmelderWartungListViewItemWrapper;
