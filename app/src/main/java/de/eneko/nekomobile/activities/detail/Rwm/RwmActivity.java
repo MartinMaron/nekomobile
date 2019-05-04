@@ -1,11 +1,12 @@
-package de.eneko.nekomobile.activities.detail;
-
+package de.eneko.nekomobile.activities.detail.Rwm;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,20 +14,19 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
-
-//import com.google.android.gms.vision.barcode.Barcode;
-//import com.notbytes.barcode_reader.BarcodeReaderActivity;
-//import com.notbytes.barcode_reader.BarcodeReaderFragment;
 
 import com.google.android.gms.vision.barcode.Barcode;
 import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.NutzerListActivity;
+import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
 
@@ -35,20 +35,24 @@ public class RwmActivity extends AppCompatActivity{
     private static final int BARCODE_READER_ACTIVITY_REQUEST_BT_1 = 1208;
     private static final int BARCODE_READER_ACTIVITY_REQUEST_BT_2 = 1208;
 
-    Rauchwarnmelder rwm = null;
+    protected Rauchwarnmelder rwm = null;
+    protected Spinner spModele = null;
+    protected TextView lbModel = null;
+    protected TextView lbNummer = null;
+    protected TextView lbRaum = null;
+    protected TextView lbBemerkung = null;
+    protected TextView lbAustauschgrund = null;
+    protected TextView lbNewNummer = null;
+    protected EditText etNummer = null;
+    protected AutoCompleteTextView tvRaum = null;
+    protected EditText etBemerkungen = null;
+    protected Spinner spAustauschgrunde = null;
+    protected EditText etNeueNummer = null;
+    protected ImageView ivBarcode1 = null;
+    protected ImageView ivBarcode2 = null;
 
-    Spinner spModele = null;
-    EditText etNummer = null;
-    AutoCompleteTextView tvRaum = null;
-    EditText etBemerkungen = null;
-    Spinner spAustauschgrunde = null;
-    EditText etNeueNummer = null;
-    ImageView ivBarcode1 = null;
-    ImageView ivBarcode2 = null;
-    ImageView ivSave = null;
-
-
-
+    protected ArrayAdapter<KeyedValue> spinnerAdapter = null;
+    protected ArrayAdapter<KeyedValue> austauschgrundeAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,7 +68,13 @@ public class RwmActivity extends AppCompatActivity{
         etNeueNummer = findViewById(R.id.tvNewNummer);
         ivBarcode1 = findViewById(R.id.imageViewBarcode1);
         ivBarcode2 = findViewById(R.id.imageViewBarcode2);
-        ivSave = findViewById(R.id.imageViewSave);
+        lbModel = findViewById(R.id.lbModel);
+        lbAustauschgrund = findViewById(R.id.lbAustauschgrund);
+        lbBemerkung = findViewById(R.id.lbBemerkung);
+        lbNewNummer = findViewById(R.id.lbNewNummer);
+        lbNummer = findViewById(R.id.lbNummer);
+        lbRaum = findViewById(R.id.lbRaum);
+
 
         //region AutoCompleteTextView
         ArrayAdapter<String> adapter;
@@ -83,21 +93,21 @@ public class RwmActivity extends AppCompatActivity{
         }
 
         /* Set your ArrayAdapter with the StringWithTag, and when each entry is shown in the Spinner, .toString() is called. */
-        ArrayAdapter<KeyedValue> spinnerAdapter = new ArrayAdapter<KeyedValue>(this, android.R.layout.simple_spinner_item, spinnerList);
+        spinnerAdapter = new ArrayAdapter<KeyedValue>(this, android.R.layout.simple_spinner_item, spinnerList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spModele.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                KeyedValue keyedValue = (KeyedValue) parent.getItemAtPosition(position);
-                rwm.setModel(keyedValue.getValue());
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                rwm.setModel("");
-            }
-        });
+//        spModele.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+//        {
+////            @Override
+////            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                KeyedValue keyedValue = (KeyedValue) parent.getItemAtPosition(position);
+////                rwm.setModel(Integer.parseInt(keyedValue.getKey().toString()));
+////            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                rwm.setModel(0);
+//            }
+//        });
         spModele.setAdapter(spinnerAdapter);
 // endregion ModeleSpinner
 
@@ -111,20 +121,20 @@ public class RwmActivity extends AppCompatActivity{
         }
 
         /* Set your ArrayAdapter with the StringWithTag, and when each entry is shown in the Spinner, .toString() is called. */
-        ArrayAdapter<KeyedValue> austauschgrundeAdapter = new ArrayAdapter<KeyedValue>(this, android.R.layout.simple_spinner_item, austauschgrundeList);
+        austauschgrundeAdapter = new ArrayAdapter<KeyedValue>(this, android.R.layout.simple_spinner_item, austauschgrundeList);
         austauschgrundeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spAustauschgrunde.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                KeyedValue keyedValue = (KeyedValue) parent.getItemAtPosition(position);
-                rwm.setAustauschGrund(keyedValue.getKey().toString());
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+//        spAustauschgrunde.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+//        {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                KeyedValue keyedValue = (KeyedValue) parent.getItemAtPosition(position);
+//                rwm.setAustauschGrund(keyedValue.getKey().toString());
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
         spAustauschgrunde.setAdapter(austauschgrundeAdapter);
 // endregion ModeleSpinner
 
@@ -145,7 +155,7 @@ public class RwmActivity extends AppCompatActivity{
             }
         });
 
-
+        loadData();
 
     }
 
@@ -172,6 +182,70 @@ public class RwmActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rwm_wartung_detail_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_save:
+                save();
+                exit();
+                return true;
+        }
+        return false;
+    }
+
+    protected void save(){
+        if(rwm.getNew().equals(true)){
+            FileHandler.getInstance().getNutzerTodo().getRauchmelder().add(rwm);
+            rwm.setNew(false);
+        }
+
+        rwm.setRaum(tvRaum.getText().toString());
+        rwm.setNummer(etNummer.getText().toString());
+        rwm.setNeueNummer(etNeueNummer.getText().toString());
+        rwm.setBemerkung(etBemerkungen.getText().toString());
+        Integer modelId = Integer.parseInt (((KeyedValue) spModele.getSelectedItem()).getKey().toString());
+        rwm.setModel(modelId);
+
+        String austauschId = ((KeyedValue) spAustauschgrunde.getSelectedItem()).getKey().toString();
+        rwm.setAustauschGrund(austauschId);
+
+        rwm.setWithError(
+                java.util.Arrays.asList(new String[]{"ST", "RE", "NV", "ZE", "DE"})
+                        .contains(rwm.getAustauschGrund()));
+
+
+    }
+
+    protected void exit(){
+        Intent intent = new Intent(this, RauchmelderWartungListActivity.class);
+        startActivity(intent);
+    }
+
+    protected void loadData(){
+        tvRaum.setText(rwm.getRaum());
+        etNummer.setText(rwm.getNummer());
+        etBemerkungen.setText(rwm.getBemerkung());
+        etNeueNummer.setText(rwm.getNeueNummer());
+
+        for(int i=0 ; i<spinnerAdapter.getCount() ; i++){
+            KeyedValue obj = (KeyedValue) spinnerAdapter.getItem(i);
+            if (obj.mKey.equals(rwm.getModel())) {
+                spModele.setSelection(i);
+            }
+        }
+
+        for(int i=0 ; i<austauschgrundeAdapter.getCount() ; i++){
+            KeyedValue obj = (KeyedValue) austauschgrundeAdapter.getItem(i);
+            if (obj.mKey.equals(rwm.getAustauschGrund())) {
+                spAustauschgrunde.setSelection(i);
+            }
+        }
+    }
 
 
     @Override
@@ -179,6 +253,10 @@ public class RwmActivity extends AppCompatActivity{
         super.onResume();
     }
 
+
+    public void onBackPressed(){
+        exit();
+    }
 
     private static class KeyedValue {
         public String mValue;

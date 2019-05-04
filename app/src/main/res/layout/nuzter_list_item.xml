@@ -23,8 +23,8 @@
         android:layout_width="300dp"
         android:layout_height="20dp"
         android:layout_below="@+id/txtvDescription"
-        android:textColor="@color/colorBlack"
         android:text="@string/empty"
+        android:textColor="@color/colorBlack"
         android:textSize="@dimen/dp_faktor_4" />
 
     <ImageView
@@ -32,8 +32,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
-        android:contentDescription="@string/empty"
         android:clickable="true"
+        android:contentDescription="@string/empty"
         android:padding="@dimen/dp_faktor_0_5"
         android:text="@string/empty" />
 

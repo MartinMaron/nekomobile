@@ -7,17 +7,17 @@ import org.w3c.dom.NodeList;
 
 public class Rauchwarnmelder implements InekoId, ItoXmlElement {
     private String nekoId;
-    private String mNummer;
-    private String mRaum;
-    private String mModel;
+    private String mNummer = "";
+    private String mRaum = "";
+    private Integer mModel = 0;
 
     private Boolean mDone = false ;
     private Boolean mWithError = false;
     private Boolean mNew = false;
 
-    private String mBemerkung;
-    private String mNeueNummer;
-    private String mAustauschGrund;
+    private String mBemerkung = "";
+    private String mNeueNummer = "";
+    private String mAustauschGrund = "XX";
 
     private ToDo mTodo;
 
@@ -48,7 +48,7 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
                         mRaum = XmlHelper.getString(propElement);
                         break;
                     case "model":
-                        mModel = XmlHelper.getString(propElement);
+                        mModel = XmlHelper.getInteger(propElement);
                         break;
                     default:
                         System.out.println(propElement.getNodeName() + ": keine bekannte Property");
@@ -89,11 +89,11 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
         mRaum = raum;
     }
 
-    public String getModel() {
+    public Integer getModel() {
         return mModel;
     }
 
-    public void setModel(String model) {
+    public void setModel(Integer model) {
         mModel = model;
     }
 
@@ -122,7 +122,7 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
     }
 
     public Boolean getUnDone() {
-        return !mWithError && !mDone && !mNew;
+        return !mWithError && !mDone && !nekoId.contains("new");
     }
     public ToDo getTodo() {
         return mTodo;

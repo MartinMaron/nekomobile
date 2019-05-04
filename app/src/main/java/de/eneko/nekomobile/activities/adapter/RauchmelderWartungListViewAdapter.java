@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.detail.RwmActivity;
+import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
+import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
+import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
 import de.eneko.nekomobile.activities.wrapper.RauchmelderWartungListViewItemWrapper;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
@@ -63,16 +65,21 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
         Rauchwarnmelder rwm = getItem(index);
         RauchmelderWartungListViewItemWrapper wrapper = new RauchmelderWartungListViewItemWrapper();
 
+        wrapper.setIvAustausch(currentView.findViewById(R.id.ivAustausch));
         wrapper.setIvRwm(currentView.findViewById(R.id.ivRwm));
+        wrapper.setIvPhoto(currentView.findViewById(R.id.ivPhoto));
+        wrapper.setIvInfo(currentView.findViewById(R.id.ivInfo));
+        wrapper.setTxtvDescription(currentView.findViewById(R.id.txtvRaum));
+
         wrapper.getIvRwm().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rwm.setDone(!rwm.getDone());
                 setRwmImage(wrapper.getIvRwm(),rwm);
+                wrapper.getIvAustausch().setVisibility( rwm.getDone() || rwm.getNekoId().contains("new")? View.INVISIBLE:View.VISIBLE);
             }
         });
-
-        wrapper.setIvPhoto(currentView.findViewById(R.id.ivPhoto));
+        setRwmImage(wrapper.getIvRwm(),rwm);
         wrapper.getIvPhoto().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,25 +94,24 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
                 activity.openCameraIntent(relativePath,filename);
             }
         });
-
-        wrapper.setIvInfo(currentView.findViewById(R.id.ivInfo));
         wrapper.getIvInfo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FileHandler.getInstance().setRauchwarnmelder(rwm);
-                Intent intent = new Intent(context, RwmActivity.class);
+                Intent intent = new Intent(context, RwmActivity_Info.class);
                 context.startActivity(intent);
             }
         });
-
-        //Erzeugen der einzelen Widgets
-
-        wrapper.setIvPhoto(currentView.findViewById(R.id.ivPhoto));
-        wrapper.setTxtvDescription(currentView.findViewById(R.id.txtvRaum));
-
-        //Befuellen der einzelen Widgets
-        wrapper.getTxtvDescription().setText(rwm.getNummer()  +  (!rwm.getRaum().equals("") ? " - " + rwm.getRaum():""));
-        setRwmImage(wrapper.getIvRwm(),rwm);
+        wrapper.getIvAustausch().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileHandler.getInstance().setRauchwarnmelder(rwm);
+                Intent intent = new Intent(context, RwmActivity_Austausch.class);
+                context.startActivity(intent);
+            }
+        });
+        wrapper.getIvAustausch().setVisibility( rwm.getDone() || rwm.getNekoId().contains("new")? View.INVISIBLE:View.VISIBLE);
+        wrapper.getTxtvDescription().setText((!rwm.getNeueNummer().equals("") ? rwm.getNummer() + " (" + rwm.getNeueNummer() + ")": rwm.getNummer()) + (!rwm.getRaum().equals("") ? " - " + rwm.getRaum():""));
         currentView.setTag(wrapper);
 
         //Rueckgabe der genierten View
@@ -113,15 +119,20 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
     }
 
     private void setRwmImage(ImageView iv, Rauchwarnmelder pRauchmelder){
-
-
         if (pRauchmelder.getDone()){
             iv.setImageResource(R.drawable.icon_smoke_detector_green_ok);
         }else {
-            iv.setImageResource(R.drawable.icon_smoke_detector_b);
+            if (pRauchmelder.getNekoId().contains("new")) {
+                iv.setImageResource(R.drawable.icon_smoke_detector_new);
+                iv.setClickable(false);
+            }else {
+               if (pRauchmelder.getWithError()) {
+                   iv.setImageResource(R.drawable.icon_smoke_detector_changed);
+               }else{
+                   iv.setImageResource(R.drawable.icon_smoke_detector_b);
+               }
+            }
         }
-
-
     }
 }
 

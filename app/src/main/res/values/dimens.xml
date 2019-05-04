@@ -40,4 +40,6 @@
     <dimen name="dp_faktor_50">200dp</dimen>
     <dimen name="dp_faktor_27">108dp</dimen>
     <dimen name="dp_faktor_40">160dp</dimen>
+    <dimen name="dp_faktor_60">240dp</dimen>
+    <dimen name="dp_faktor_70">280dp</dimen>
 </resources>

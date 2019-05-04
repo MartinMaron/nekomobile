@@ -4,73 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_faktor_3">
+    android:padding="@dimen/dp_faktor_2">
 
     <TextView
         android:id="@+id/lbModel"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:gravity="bottom|left"
         android:text="@string/rwm_detail_lb_model"
         android:textAlignment="gravity"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <Spinner
         android:id="@+id/spModel"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbModel"
         android:gravity="bottom|left"
         android:hint="@string/rwm_detail_txmodel_hint"
         android:text="@string/empty"
         android:textAlignment="gravity"
-        android:textSize="@dimen/sp_faktor_06" />
-
-    <ImageView
-        android:id="@+id/imageViewSave"
-        android:layout_width="@dimen/dp_faktor_14"
-        android:layout_height="@dimen/dp_faktor_14"
-        android:layout_toRightOf="@id/lbModel"
-        android:padding="@dimen/dp_faktor_3"
-        android:paddingBottom="@dimen/dp_faktor_2"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        android:textSize="@dimen/sp_faktor_08" />
 
     <TextView
         android:id="@+id/lbNummer"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/spModel"
         android:text="@string/rwm_detail_lb_nummer"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <EditText
         android:id="@+id/tvNummer"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbNummer"
         android:ems="10"
         android:hint="@string/rwm_detail_txnummer_hint"
         android:inputType="number"
         android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_06" />
+        android:textSize="@dimen/sp_faktor_08" />
 
 
     <TextView
         android:id="@+id/lbRaum"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/tvNummer"
         android:text="@string/rwm_detail_lb_raum"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <AutoCompleteTextView
         android:id="@+id/tvRaum"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbRaum"
         android:completionThreshold="1"
         android:hint="@string/rwm_detail_txRaum_hint"
-        android:textSize="@dimen/sp_faktor_06" />
+        android:textSize="@dimen/sp_faktor_08" />
 
     <ImageView
         android:id="@+id/imageViewBarcode1"
@@ -82,62 +73,62 @@
 
     <TextView
         android:id="@+id/lbBemerkung"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/tvRaum"
         android:text="@string/rwm_detail_lb_Bemerkung"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <EditText
         android:id="@+id/etBemerkung"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_20"
         android:layout_below="@id/lbBemerkung"
         android:gravity="start"
         android:hint="@string/rwm_detail_etBemerkungen"
         android:text="@string/empty"
         android:textAlignment="gravity"
-        android:textSize="@dimen/sp_faktor_06" />
+        android:textSize="@dimen/sp_faktor_08" />
 
     <TextView
         android:id="@+id/lbAustauschgrund"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/etBemerkung"
         android:gravity="bottom|left"
         android:text="@string/rwm_detail_lb_Austauschgrund"
         android:textAlignment="gravity"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <Spinner
         android:id="@+id/spAustauschgrund"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbAustauschgrund"
         android:gravity="bottom|left"
         android:hint="@string/rwm_detail_spAustauschgrund"
         android:text="@string/empty"
         android:textAlignment="gravity"
-        android:textSize="@dimen/sp_faktor_06" />
+        android:textSize="@dimen/sp_faktor_08" />
 
     <TextView
         android:id="@+id/lbNewNummer"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/spAustauschgrund"
         android:text="@string/rwm_detail_lb_NewNummer"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_05" />
 
     <EditText
         android:id="@+id/tvNewNummer"
-        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbNewNummer"
         android:ems="10"
         android:hint="@string/rwm_detail_txnummer_hint"
         android:inputType="number"
         android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_06" />
+        android:textSize="@dimen/sp_faktor_08" />
 
     <ImageView
         android:id="@+id/imageViewBarcode2"

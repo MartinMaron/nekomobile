@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -56,5 +57,15 @@ public class NutzerTodosListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
+    }
+    protected void exit(){
+        Intent intent = new Intent(this, NutzerListActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        exit();
     }
 }

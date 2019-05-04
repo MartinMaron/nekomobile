@@ -70,15 +70,7 @@ public class NutzerTodosListViewAdapter extends ArrayAdapter<ToDo>
             currentView = inflater.inflate(R.layout.nutzertodos_list_item, parent, false);
         }
 
-        /*
-         * Wir nutzen den LvItemWidgetsWrapper um
-         * alle Widgets zu generieren die ein
-         * einzelnes ListViewItem beinhalten soll.
-         * Die Layoutinformationen erhalten wir
-         * ueber die Funktion findViewById die jede
-         * View beinhaltet. Die Layoutinformation
-         * erhalten wir wie immer ueber die R-Datei
-         */
+
         NutzerTodosListViewItemWrapper itemWrapper = new NutzerTodosListViewItemWrapper();
 
         //ERzeugen der einzelen Widgets

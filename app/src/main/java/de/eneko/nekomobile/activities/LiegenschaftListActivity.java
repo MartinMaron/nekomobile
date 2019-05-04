@@ -2,6 +2,7 @@ package de.eneko.nekomobile.activities;
 
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -41,5 +42,15 @@ public class LiegenschaftListActivity extends ListActivity {
         // verbinden des adapters mit Listview
         setListAdapter(mLiegenschaftListViewAdapter);
 
+    }
+    protected void exit(){
+        Intent intent = new Intent(this, FileListActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        exit();
     }
 }

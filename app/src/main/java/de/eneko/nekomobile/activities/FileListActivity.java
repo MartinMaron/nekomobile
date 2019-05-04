@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.activities;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.Date;
 import java.util.Calendar;
 
+import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.activities.adapter.FileListViewAdapter;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.controllers.FileHandler;
@@ -66,5 +68,16 @@ public class FileListActivity extends ListActivity {
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
+    }
+
+    protected void exit(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        exit();
     }
 }

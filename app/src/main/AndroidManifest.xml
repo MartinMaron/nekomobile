@@ -33,7 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.detail.RwmActivity"/>
+        <activity android:name=".activities.detail.Rwm.RwmActivity"/>
+        <activity android:name=".activities.detail.Rwm.RwmActivity_Info"/>
+        <activity android:name=".activities.detail.Rwm.RwmActivity_New"/>
+        <activity android:name=".activities.detail.Rwm.RwmActivity_Austausch"/>
         <activity android:name=".activities.RauchmelderWartungListActivity"/>
         <activity android:name=".activities.FileListActivity"/>
         <activity android:name=".activities.LiegenschaftListActivity"/>

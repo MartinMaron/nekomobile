@@ -270,5 +270,13 @@ public class FileHandler
         return file;
     }
 
+    public Rauchwarnmelder createNewRauchmelder(){
+        Rauchwarnmelder ret_val = new Rauchwarnmelder(getNutzerTodo());
+        ret_val.setNew(true);
+        ret_val.setNekoId(FileHandler.getInstance().getNutzerTodo().getRauchmelder().size() + ";new");
+        return ret_val;
+    }
+
+
 
 }

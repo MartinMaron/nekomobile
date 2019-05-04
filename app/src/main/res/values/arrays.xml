@@ -21,6 +21,7 @@
         <item>1278;Mertens Rauchmelder</item>
     </array>
     <array name="rwm_Austauschgrund">
+        <item>XX;kein Austausch </item>
         <item>ST;standardowa zmiana</item>
         <item>RE;zabrudzony</item>
         <item>NV;nie ma a powinien byc</item>

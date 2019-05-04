@@ -111,7 +111,7 @@ public class ToDo implements ItoXmlElement {
      */
     public Integer getRwmWartungNewCount ()
     {
-        return mRauchmelder.stream().filter(r -> r.getNew())
+        return mRauchmelder.stream().filter(r -> r.getNekoId().contains("new"))
                 .collect(Collectors.toList()).size();
     }
     /*

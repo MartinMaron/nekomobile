@@ -20,4 +20,6 @@
     <string name="rwm_detail_lb_Austauschgrund">Austauschgrund</string>
     <string name="rwm_detail_spAustauschgrund">Bitte auswählen</string>
     <string name="rwm_detail_lb_NewNummer">neue Nummer</string>
+    <string name="speichern">speichern</string>
+    <string name="add_new">dodaj nowy</string>
 </resources>

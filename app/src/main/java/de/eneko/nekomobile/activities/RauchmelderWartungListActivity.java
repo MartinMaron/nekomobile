@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,8 @@ import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.NutzerListViewAdapter;
 import de.eneko.nekomobile.activities.adapter.RauchmelderWartungListViewAdapter;
+import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
+import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_New;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
@@ -75,7 +78,23 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rwm_wartung_list_menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mi_add_new:
+                Rauchwarnmelder new_rwm = FileHandler.getInstance().createNewRauchmelder();
+                FileHandler.getInstance().setRauchwarnmelder(new_rwm);
+                Intent intent = new Intent(this, RwmActivity_New.class);
+                startActivity(intent);
+                return true;
+        }
+        return false;
+    }
 
 
     public void openCameraIntent(String relativeNekoPath, String filename) {
@@ -100,16 +119,15 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
             }
         }
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode,
-//                                    Intent data) {
-//        if (requestCode == REQUEST_CAPTURE_IMAGE &&
-//                resultCode == RESULT_OK) {
-////            if (data != null && data.getExtras() != null) {
-////                Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
-////                //mImageView.setImageBitmap(imageBitmap);
-////            }
-//        }
-//    }
 
+    protected void exit(){
+        Intent intent = new Intent(this, NutzerTodosListActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        exit();
+    }
 }

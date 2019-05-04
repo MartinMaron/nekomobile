@@ -2,6 +2,7 @@ package de.eneko.nekomobile.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +66,18 @@ public class NutzerListActivity extends AppCompatActivity implements SearchView.
     protected void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
+        mListView.setSelection(mAdapter.getPosition(FileHandler.getInstance().getNutzer()));
+    }
+
+    protected void exit(){
+        Intent intent = new Intent(this, LiegenschaftListActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        exit();
     }
 
     @Override
