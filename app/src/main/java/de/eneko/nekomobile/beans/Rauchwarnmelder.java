@@ -53,8 +53,7 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
                     default:
                         System.out.println(propElement.getNodeName() + ": keine bekannte Property");
                 }
-                System.err.print("W");
-            }
+             }
         }
 
     }

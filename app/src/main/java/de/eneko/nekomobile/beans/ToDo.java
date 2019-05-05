@@ -16,14 +16,17 @@ public class ToDo implements ItoXmlElement {
     private String art;
     private final Nutzer mNutzer;
     private List<Rauchwarnmelder> mRauchmelder;
+    private List<Messgeraet> mMessgeraete;
 
     public ToDo(Nutzer nutzer) {
         mNutzer = nutzer;
         mRauchmelder = new ArrayList<Rauchwarnmelder>();
+        mMessgeraete = new ArrayList<Messgeraet>();
     }
 
     public ToDo() {
         mRauchmelder = new ArrayList<Rauchwarnmelder>();
+        mMessgeraete = new ArrayList<Messgeraet>();
         mNutzer = null;
     }
 
@@ -51,6 +54,11 @@ public class ToDo implements ItoXmlElement {
                         Rauchwarnmelder rwm = new Rauchwarnmelder(this);
                         rwm.updateRouteFromXmlElement(propElement);
                         mRauchmelder.add(rwm);
+                        break;
+                    case "zaehler":
+                        Messgeraet zaehler = new Messgeraet(this);
+                        zaehler.updateRouteFromXmlElement(propElement);
+                        mMessgeraete.add(zaehler);
                         break;
                     default: System.out.println(propElement.getNodeName() + ": keine bekannte Property");
                 }

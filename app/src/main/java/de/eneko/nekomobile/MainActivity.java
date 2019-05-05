@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.listener.MainActivityOnClickListener;
 
 
@@ -51,6 +52,16 @@ public class MainActivity extends AppCompatActivity
         btCmdGetRoutes.setOnClickListener(mainActivityOnClickListener);
 
     }
+
+
+
+    private void initializeHlptas(){
+        FileHandler.getInstance().initializeHelpers(this);
+
+
+    }
+
+
 
     @Override
     protected void onResume() {

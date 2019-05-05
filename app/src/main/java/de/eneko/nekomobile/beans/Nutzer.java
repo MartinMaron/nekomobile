@@ -32,7 +32,7 @@ public class Nutzer implements InekoId, ItoXmlElement {
     private String mBemerkung ="";
     private String mNutzerName ="";
     private String telNummer ="";
-private final Liegenschaft mLiegenschaft;
+    private final Liegenschaft mLiegenschaft;
 
     private List<ToDo> mToDos;
 
@@ -180,7 +180,7 @@ private final Liegenschaft mLiegenschaft;
     }
 
     public Integer getRwmStatusImageResourceId() {
-        return getRwmTodo().getRwmStatusImageResourceId();
+        return getRwmTodo() != null ? getRwmTodo().getRwmStatusImageResourceId():0;
     }
 
 

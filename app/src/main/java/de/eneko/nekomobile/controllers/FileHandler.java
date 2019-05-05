@@ -11,17 +11,20 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
+import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
+import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 
 
 /**
@@ -48,6 +51,7 @@ public class FileHandler
 
     //Liste aller Notizen
     private ArrayList<Route> allRoutes = new ArrayList<>();
+    private ArrayList<ZaehlerModel> mZaehlerModels = new ArrayList<>();
 
     private Route mRoute = null;
     private Liegenschaft mLiegenschaft = null;
@@ -55,6 +59,7 @@ public class FileHandler
     private ToDo mNutzerTodo = null;
     private Rauchwarnmelder rauchwarnmelder = null;
     private MainActivity mainActivity = null;
+
 
 
 
@@ -277,6 +282,17 @@ public class FileHandler
         return ret_val;
     }
 
+    public ArrayList<ZaehlerModel> getZaehlerModels() {
+       return mZaehlerModels;
+    }
 
 
+
+    public void initializeHelpers(MainActivity mainActivity) {
+        String[] _zaehlermodele = mainActivity.getResources().getStringArray(R.array.zaehler_modele);
+        for (String strTemp : _zaehlermodele){
+            String[] _line = strTemp.split("@");
+           mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3]));
+        }
+    }
 }

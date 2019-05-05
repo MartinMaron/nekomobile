@@ -81,7 +81,7 @@
 
     <EditText
         android:id="@+id/etBemerkung"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_20"
         android:layout_below="@id/lbBemerkung"
         android:gravity="start"
@@ -89,6 +89,13 @@
         android:text="@string/empty"
         android:textAlignment="gravity"
         android:textSize="@dimen/sp_faktor_08" />
+    <ImageView
+        android:id="@+id/imageSpechToText"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/lbBemerkung"
+        android:layout_toRightOf="@id/etBemerkung"
+        app:srcCompat="@drawable/icon_speaker" />
 
     <TextView
         android:id="@+id/lbAustauschgrund"
