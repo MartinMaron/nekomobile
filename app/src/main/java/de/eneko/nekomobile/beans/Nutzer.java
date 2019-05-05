@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import de.eneko.nekomobile.R;
 
 
-public class Nutzer implements InekoId, ItoXmlElement {
+    public class Nutzer implements InekoId, ItoXmlElement {
     private Date mStart;
     private Date mEnde;
     private String nekoId;

@@ -20,6 +20,7 @@ import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
+import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.beans.Route;
@@ -58,6 +59,7 @@ public class FileHandler
     private Nutzer mNutzer = null;
     private ToDo mNutzerTodo = null;
     private Rauchwarnmelder rauchwarnmelder = null;
+    private Messgeraet messgeraet = null;
     private MainActivity mainActivity = null;
 
 
@@ -136,6 +138,14 @@ public class FileHandler
 
     public void setRauchwarnmelder(Rauchwarnmelder rauchwarnmelder) {
         this.rauchwarnmelder = rauchwarnmelder;
+    }
+
+    public Messgeraet getMessgeraet() {
+        return messgeraet;
+    }
+
+    public void setMessgeraet(Messgeraet messgeraet) {
+        this.messgeraet = messgeraet;
     }
 
     public void setMainActivity(MainActivity mainActivity)

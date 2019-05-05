@@ -30,6 +30,9 @@ public class ToDo implements ItoXmlElement {
         mNutzer = null;
     }
 
+    public List<Messgeraet> getMessgeraete() {
+        return mMessgeraete;
+    }
 
     @Override
     public Element toXmlElement(Document document) {
