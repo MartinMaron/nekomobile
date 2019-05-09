@@ -289,16 +289,12 @@ public class MessgeraetListActivity extends AppCompatActivity
         }
 
         });
-
         AlertDialog dialog = alert.create();
-
         etInput.setText(value);
         etInput.requestFocus();
-
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         dialog.show();
-
         // Get the alert dialog buttons reference
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
