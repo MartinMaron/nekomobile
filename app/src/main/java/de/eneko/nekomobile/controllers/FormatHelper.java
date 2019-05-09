@@ -10,11 +10,7 @@ public class FormatHelper {
         NumberFormat formatter = NumberFormat.getInstance(fmtLocale);
         formatter.setMaximumFractionDigits(2);
         formatter.setMinimumFractionDigits(2);
-        //NumberFormat formatter = new java.text.DecimalFormat("#,###.00");
         String ret_val = formatter.format(d);
-//        ret_val = ret_val.replace(",", "#");
-//        ret_val = ret_val.replace(".", ",");
-//        ret_val = ret_val.replace("#", ".");
         return ret_val;
     }
 }
