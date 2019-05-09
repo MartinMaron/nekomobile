@@ -2,25 +2,33 @@ package de.eneko.nekomobile.activities.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.speech.RecognizerIntent;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.MessgeraetListActivity;
 import de.eneko.nekomobile.activities.wrapper.MessgeraetListViewItemWrapper;
 import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.beans.Nutzer;
+import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.controllers.FormatHelper;
+import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
 
 
 public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implements Filterable
 {
+    public final static Integer REQUEST_BT_STICHTAG = 1001;
+    public final static Integer REQUEST_BT_AKTUELL = 1002;
     private final Context context;
     private final ArrayList<Messgeraet> values;
     private ArrayList<Messgeraet> valuesFiltered;
@@ -31,6 +39,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
     public MessgeraetListViewAdapter(Context context, ArrayList<Messgeraet> values) {
         super(context, -1, values);
         this.context = context;
+        this.activity = (MessgeraetListActivity) context;
         this.values = values;
         this.valuesFiltered = values;
         getFilter();
@@ -60,6 +69,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
         //Extrahieren der NoteBean zum nutzen der Werte
         Messgeraet obj = getItem(index);
+
         MessgeraetListViewItemWrapper wrapper = new MessgeraetListViewItemWrapper();
 
         if(currentView == null) {
@@ -69,7 +79,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
         }
 
-//        wrapper.setIvStatus(currentView.findViewById(R.id.ivStatus));
+        wrapper.setIvStatus(currentView.findViewById(R.id.ivStatus));
 //        wrapper.getIvStatus().setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -82,42 +92,87 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
 
 
-//        wrapper.setTxtvDescription(currentView.findViewById(R.id.txtvDescription));
-//        wrapper.setTxtvNutzerLage(currentView.findViewById(R.id.txtvNutzerLage));
-//
-//        wrapper.getTodoRow().setIvAblesung(currentView.findViewById(R.id.ivAblesung));
-//        wrapper.getTodoRow().setIvFunkCheck(currentView.findViewById(R.id.ivFunkCheck));
-//        wrapper.getTodoRow().setIvMontage(currentView.findViewById(R.id.ivMontage));
-//        wrapper.getTodoRow().setIvRwmMontage(currentView.findViewById(R.id.ivRwmMontage));
-//        wrapper.getTodoRow().setIvRwmWartung(currentView.findViewById(R.id.ivRwmWartung));
-//
-//
-//
-//
-//        //Befuellen der einzelen Widgets
-//        wrapper.getTxtvDescription().setText(nutzer.getNutzerName());
-//        wrapper.getTxtvNutzerLage().setText(nutzer.getWohnungsnummerMitLage());
-//
-//
-//        // sichtbarkei der Icons
-//        wrapper.getTodoRow().getIvAblesung().setVisibility(nutzer.hasAblesung() ? View.VISIBLE: View.GONE);
-//        wrapper.getTodoRow().getIvMontage().setVisibility(nutzer.hasMontage() ? View.VISIBLE: View.GONE);
-//        wrapper.getTodoRow().getIvRwmMontage().setVisibility(nutzer.hasRwmMontage() ? View.VISIBLE: View.GONE);
-//        wrapper.getTodoRow().getIvRwmWartung().setVisibility(nutzer.hasRwmWartung() ? View.VISIBLE: View.GONE);
-//        wrapper.getTodoRow().getIvRwmWartung().setImageResource(nutzer.getRwmStatusImageResourceId());
-//        wrapper.getTodoRow().getIvFunkCheck().setVisibility(nutzer.hasFunkcheck() ? View.VISIBLE: View.GONE);
-//
-//        setStatusImage(wrapper.getIvStatus(),nutzer);
+        wrapper.setTvNummer(currentView.findViewById(R.id.tvNummer));
+        wrapper.setTvRaum(currentView.findViewById(R.id.tvRaum));
+        wrapper.setLbAktuell(currentView.findViewById(R.id.lbAktuell));
+        wrapper.setLbStichtag(currentView.findViewById(R.id.lbStichtag));
+        wrapper.setTvAktuell(currentView.findViewById(R.id.tvAktuell));
+        wrapper.setTvLetzterWert(currentView.findViewById(R.id.tvLetzterWert));
+        wrapper.setTvStichtag(currentView.findViewById(R.id.tvStichtag));
+        wrapper.setIvStatus(currentView.findViewById(R.id.ivStatus));
+
+
+        wrapper.getTvNummer().setText(obj.getNummer());
+        wrapper.getTvRaum().setText(obj.getRaum());
+        wrapper.getLbAktuell().setText("Aktuell");
+        wrapper.getLbStichtag().setText("Stichtag");
+        wrapper.getTvLetzterWert().setText(obj.getLetzterWertText());
+        wrapper.getTvAktuell().setText(obj.getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(obj.getAktuellValue()));
+        wrapper.getTvStichtag().setText(obj.getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(obj.getStichtagValue()));
+        currentView.setBackgroundResource(obj.getArtColor());
+        wrapper.getTvAktuell().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FileHandler.getInstance().setMessgeraet(obj);
+                if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
+                    Intent launchIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.GERMAN);
+                    if (launchIntent.resolveActivity(activity.getPackageManager()) != null) {
+                        activity.startActivityForResult(launchIntent, REQUEST_BT_AKTUELL);
+                    }
+                } else {
+                    activity.showInputDialog("aktuell",null);
+                }
+            }
+        });
+        wrapper.getTvStichtag().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view ) {
+                FileHandler.getInstance().setMessgeraet(obj);
+                if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE) {
+                    Intent launchIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.GERMAN);
+                    if (launchIntent.resolveActivity(activity.getPackageManager()) != null) {
+                        activity.startActivityForResult(launchIntent, REQUEST_BT_STICHTAG);
+                    }
+                }else {
+                    activity.showInputDialog("stichtag", null);
+                }
+            }
+        });
+
+
+        validate(obj,wrapper);
+
 
         currentView.setTag(wrapper);
-
-        //Rueckgabe der genierten View
         return currentView;
     }
 
-    private void setStatusImage( ImageView iv, Nutzer pNutzer){
-        iv.setImageResource(pNutzer.getStatusImageResourceId());
+
+    private void validate(Messgeraet valObj, MessgeraetListViewItemWrapper wrapper)
+    {
+        Boolean hasError = false;
+
+        // falls gerät fortlaufend und aktueller Wert gefüllt muss der aktuelle Wert grösser sein als der letzte Wert.
+        if (valObj.getFortlaufend() && valObj.getAktuellValue() != -1.0 && valObj.getLetzter_wert() > valObj.getAktuellValue()){
+            wrapper.getIvStatus().setImageResource(R.drawable.icon_alert);
+            wrapper.getTvAktuell().setTextColor(ContextCompat.getColor(activity, R.color.red));
+            wrapper.getTvLetzterWert().setTextColor(ContextCompat.getColor(activity, R.color.red));
+            hasError = true;
+        }
+
+
+        if (!hasError){
+            wrapper.getTvAktuell().setTextColor(ContextCompat.getColor(activity, R.color.black));
+            wrapper.getTvLetzterWert().setTextColor(ContextCompat.getColor(activity, R.color.navy));
+            wrapper.getIvStatus().setImageDrawable(null);
+        }
     }
+
+
 
     // region filter
 
@@ -166,6 +221,14 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
     }
 
     // endregion filter
+
+
+
+
+
+
+
+
 }
 
 

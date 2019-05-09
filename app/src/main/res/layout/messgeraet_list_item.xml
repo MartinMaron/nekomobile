@@ -3,47 +3,101 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/textview_border"
-    android:padding="@dimen/dp_faktor_1"
-    android:layout_height="@dimen/dp_faktor_20">
+    android:padding="@dimen/dp_faktor_1">
 
     <ImageView
-        android:id="@+id/ivRwm"
-        android:layout_width="@dimen/dp_faktor_18"
-        android:layout_height="@dimen/dp_faktor_18"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/ivStatus"
+        android:layout_width="@dimen/dp_faktor_15"
+        android:layout_height="@dimen/dp_faktor_10"
         android:layout_alignParentTop="true"
-        android:contentDescription="@string/empty"
+        android:layout_alignParentEnd="true"
         android:clickable="true"
+        android:contentDescription="@string/empty"
         android:src="@drawable/icon_smoke_detector_b"
         app:srcCompat="@drawable/icon_smoke_detector_b" />
+
     <TextView
-        android:id="@+id/txtvRaum"
-        android:textSize="@dimen/sp_faktor_10"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/black"
-        android:contentDescription="@string/empty"
+        android:id="@+id/tvRaum"
         android:layout_width="@dimen/dp_faktor_80"
         android:layout_height="@dimen/dp_faktor_8"
-        android:layout_toEndOf="@id/ivRwm"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/ivRwm"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_10" />
+
+    <TextView
+        android:id="@+id/tvNummer"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/tvRaum"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_10" />
+    <TextView
+        android:id="@+id/tvLetzterWert"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvNummer"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_06" />
+    <TextView
+        android:id="@+id/lbAktuell"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvLetzterWert"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_04" />
+    <TextView
+        android:id="@+id/lbStichtag"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvLetzterWert"
+        android:layout_toRightOf="@id/tvAktuell"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_04" />
+    <TextView
+        android:id="@+id/tvAktuell"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbAktuell"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/dark_slate_gray"
+        android:textSize="@dimen/sp_faktor_10" />
+    <TextView
+        android:id="@+id/tvStichtag"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbStichtag"
+        android:layout_toRightOf="@id/tvAktuell"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_10" />
 
     <ImageView
         android:id="@+id/ivPhoto"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/ivStatus"
+        android:layout_alignParentEnd="true"
         android:contentDescription="@string/empty"
-        android:layout_below="@id/txtvRaum"
-        android:layout_toEndOf="@id/ivInfo"
         android:src="@drawable/icon_camera"
         app:srcCompat="@drawable/icon_camera" />
+
     <ImageView
         android:id="@+id/ivAustausch"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/ivPhoto"
+        android:layout_alignParentEnd="true"
         android:contentDescription="@string/empty"
-        android:layout_below="@id/txtvRaum"
-        android:layout_toEndOf="@id/ivPhoto"
         android:src="@drawable/icon_rwm_montage"
         app:srcCompat="@drawable/icon_rwm_montage" />
+
 </RelativeLayout>

@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -15,7 +13,6 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.wrapper.NutzerTodosListViewItemWrapper;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.controllers.FileHandler;
 
 /**
  * Der  ListViewActivityAdapter greift auf
@@ -67,7 +64,7 @@ public class NutzerTodosListViewAdapter extends ArrayAdapter<ToDo>
         if (currentView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            currentView = inflater.inflate(R.layout.nutzertodos_list_item, parent, false);
+            currentView = inflater.inflate(R.layout.list_item_nutzertodos, parent, false);
         }
 
 

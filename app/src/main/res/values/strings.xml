@@ -22,4 +22,6 @@
     <string name="rwm_detail_lb_NewNummer">neue Nummer</string>
     <string name="speichern">speichern</string>
     <string name="add_new">dodaj nowy</string>
+    <string name="btOk">Ok</string>
+    <string name="btCancel">Abbrechen</string>
 </resources>

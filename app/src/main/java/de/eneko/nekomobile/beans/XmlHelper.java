@@ -73,7 +73,7 @@ public class XmlHelper {
     {
         Boolean retval = false;
         if (propElement.hasChildNodes()) {
-          if (propElement.getFirstChild().getNodeValue() == "True")
+          if (propElement.getFirstChild().getNodeValue().equals("True"))
           {
               retval = true;
           }

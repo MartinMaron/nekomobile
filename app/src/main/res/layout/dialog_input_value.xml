@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_30"
+        android:layout_marginStart="2dp"
+        android:ems="10"
+        android:gravity="center"
+        android:textSize="@dimen/sp_faktor_10"
+        android:textStyle="bold"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.,"
+        android:textAlignment="gravity" />
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboardview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

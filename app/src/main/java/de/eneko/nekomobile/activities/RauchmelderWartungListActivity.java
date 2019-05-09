@@ -1,42 +1,28 @@
 package de.eneko.nekomobile.activities;
 
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Locale;
-import java.util.Date;
 import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.adapter.NutzerListViewAdapter;
 import de.eneko.nekomobile.activities.adapter.RauchmelderWartungListViewAdapter;
-import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_New;
-import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.listener.NutzerListViewOnItemClickListener;
 
 public class RauchmelderWartungListActivity extends AppCompatActivity {
 

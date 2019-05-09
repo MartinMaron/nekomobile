@@ -57,7 +57,7 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
         if (currentView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            currentView = inflater.inflate(R.layout.rwm_wartung_list_item, parent, false);
+            currentView = inflater.inflate(R.layout.list_item_rwm_wartung, parent, false);
         }
 
         //Extrahieren der NoteBean zum nutzen der Werte

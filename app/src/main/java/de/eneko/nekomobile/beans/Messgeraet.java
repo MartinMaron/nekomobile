@@ -5,9 +5,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+
+import de.eneko.nekomobile.GlobalConst;
+import de.eneko.nekomobile.R;
 
 public class Messgeraet implements InekoId, ItoXmlElement {
     private String nekoId;
@@ -30,6 +35,10 @@ public class Messgeraet implements InekoId, ItoXmlElement {
     private Boolean mFunkfehler_ignorieren = false;
     private Integer mZielmodel = 0;
     private ToDo mTodo = null;
+    private Double mAktuellValue = -1.0;
+    private Double mStichtagValue = -1.0;
+    private Boolean mDefekt = false;
+    private String Bemerkung = "";
 
     public Messgeraet(ToDo pTodo) {
         Ablesungen = new ArrayList<Ablesung>();
@@ -97,6 +106,40 @@ public class Messgeraet implements InekoId, ItoXmlElement {
             }
         }
 
+    }
+
+
+    public String getLetzterWertText(){
+        String ret_val = "";
+        if (getLetzter_wert_datum() != null) {
+            ret_val = "Letzer Wert vom " + new SimpleDateFormat(GlobalConst.dateFormat).format(mLetzter_wert_datum);
+            ret_val = ret_val + ": " + getLetzter_wert().toString();
+        }
+        return ret_val;
+    }
+
+    public Integer getArtColor() {
+        Integer ret_val = 0;
+        switch (mArt){
+            case "HKV":
+                ret_val = R.color._light_green;
+                break;
+            case "WMZ":
+                ret_val = R.color.light_goldenrod_yellow;
+                break;
+            case "KWZ":
+                ret_val = R.color.light_blue;
+                break;
+            case "WWZ":
+                ret_val = R.color.light_coral;
+                break;
+            case "STZ":
+                ret_val = R.color.light_slate_gray;
+                break;
+            default:
+                return ret_val ;
+        }
+        return ret_val;
     }
 
 
@@ -252,5 +295,21 @@ public class Messgeraet implements InekoId, ItoXmlElement {
         return mTodo;
     }
 
-    // endregion "Properties"
+    public Double getAktuellValue() {
+        return mAktuellValue;
+    }
+
+    public void setAktuellValue(Double aktuellValue) {
+        mAktuellValue = aktuellValue;
+    }
+
+    public Double getStichtagValue() {
+        return mStichtagValue;
+    }
+
+    public void setStichtagValue(Double stichtagValue) {
+        mStichtagValue = stichtagValue;
+    }
+
+// endregion "Properties"
 }

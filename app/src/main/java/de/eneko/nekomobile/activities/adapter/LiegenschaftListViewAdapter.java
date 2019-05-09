@@ -50,7 +50,7 @@ public class LiegenschaftListViewAdapter extends ArrayAdapter<Liegenschaft>
         if (rowView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowView = inflater.inflate(R.layout.liegenschaft_list_item, parent, false);
+            rowView = inflater.inflate(R.layout.list_item_liegenschaft, parent, false);
         }
 
         Liegenschaft liegenschaft = getItem(index);

@@ -31,7 +31,7 @@
 
     <include
         android:id="@+id/rwm_wartung_content"
-        layout="@layout/nutzertodos_list_item_rwm_wartung_content"
+        layout="@layout/list_item_nutzertodos_rwm_wartung_content"
         android:layout_below="@id/txtvDescription"
         android:layout_toRightOf="@id/ivImage"
         android:layout_width="match_parent"

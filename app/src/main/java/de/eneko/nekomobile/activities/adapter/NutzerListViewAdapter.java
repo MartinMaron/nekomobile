@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -84,7 +83,7 @@ public class NutzerListViewAdapter extends ArrayAdapter<Nutzer> implements Filte
         if(currentView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            currentView = inflater.inflate(R.layout.nuzter_list_item, parent, false);
+            currentView = inflater.inflate(R.layout.list_item_nuzter, parent, false);
 
         }
 

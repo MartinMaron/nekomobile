@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -22,12 +21,10 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.NutzerListActivity;
 import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
@@ -62,7 +59,7 @@ public class RwmActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rwm_wartung_detail);
+        setContentView(R.layout.detail_rwm_wartung);
         rwm = FileHandler.getInstance().getRauchwarnmelder();
         spModele = findViewById(R.id.spModel);
         etNummer = findViewById(R.id.tvNummer);

@@ -15,7 +15,6 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.NutzerTodosListViewAdapter;
 import de.eneko.nekomobile.beans.ToDo;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.listener.NutzerListViewOnItemClickListener;
 import de.eneko.nekomobile.listener.NutzerTodosListViewOnItemClickListener;
 
 public class NutzerTodosListActivity extends AppCompatActivity {

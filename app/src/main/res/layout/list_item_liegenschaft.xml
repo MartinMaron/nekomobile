@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <include
-        layout="@layout/todos_row"
+        layout="@layout/row_todos"
         android:id="@+id/todorow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
