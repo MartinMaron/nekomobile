@@ -62,14 +62,9 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             public void onClick(View view) {
                 FileHandler.getInstance().setMessgeraet(getBean());
                 if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
-                    Intent launchIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.GERMAN);
-                    if (launchIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        getActivity().startActivityForResult(launchIntent, REQUEST_BT_AKTUELL);
-                    }
+                    startSpracheingabe(REQUEST_BT_AKTUELL);
                 } else {
-                    getActivity().showInputDialog("aktuell",null);
+                    inputDialogAktuell(getBean().getAktuellValue() != -1 ? getBean().getAktuellValue().toString(): "");
                 }
             }
         });
@@ -78,19 +73,16 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             public void onClick(View view ) {
                 FileHandler.getInstance().setMessgeraet(getBean());
                 if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE) {
-                    Intent launchIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                    launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.GERMAN);
-                    if (launchIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        getActivity().startActivityForResult(launchIntent, REQUEST_BT_STICHTAG);
-                    }
+                    startSpracheingabe(REQUEST_BT_STICHTAG);
                 }else {
-                    getActivity().showInputDialog("stichtag", null);
+                    inputDialogStichtag(getBean().getStichtagValue() != -1 ? getBean().getStichtagValue().toString(): "");
                 }
             }
         });
         validate();
     }
+
+
 
     private void validate()
     {

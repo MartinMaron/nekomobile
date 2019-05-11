@@ -2,13 +2,19 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
+import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.controllers.FileHandler;
 
 public class MessgeraetBaseViewHolder extends BaseViewHolder {
 
@@ -58,6 +64,30 @@ public class MessgeraetBaseViewHolder extends BaseViewHolder {
     public void updateView() {
 
     }
+
+    public void inputDialogStichtag(String value){
+        new InputDialogClass(getActivity(), "stichtag", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                if (isDouble(pValue)) {
+                    getBean().setStichtagValue(Double.parseDouble(pValue.replace(",",".")));
+                }
+            }
+        }.show();
+    }
+    public void inputDialogAktuell(String value){
+        new InputDialogClass(getActivity(), "aktuell", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                if (isDouble(pValue)) {
+                    getBean().setAktuellValue(Double.parseDouble(pValue.replace(",",".")));
+                }
+            }
+        }.show();
+    }
+
+
+
 
     // region properties
 

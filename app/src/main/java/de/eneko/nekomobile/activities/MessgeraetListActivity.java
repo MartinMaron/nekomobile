@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
@@ -239,84 +240,19 @@ public class MessgeraetListActivity extends AppCompatActivity
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            showInputDialog("aktuell", result.get(0)) ;
+            new MessgeraetBaseViewHolder(null,FileHandler.getInstance().getMessgeraet(),this){}.inputDialogAktuell(result.get(0));
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            showInputDialog("stichtag", result.get(0)) ;
+            new MessgeraetBaseViewHolder(null,FileHandler.getInstance().getMessgeraet(),this){}.inputDialogStichtag(result.get(0));
         }
         mAdapterCurrent.notifyDataSetChanged();
 
     }
 
 
-    public void showInputDialog(String title, String value) {
-
-        LayoutInflater inflater = getLayoutInflater();
-        View alertLayout = inflater.inflate(R.layout.dialog_input_value, null);
-        final EditText etInput = alertLayout.findViewById(R.id.etInput);
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(title);
-        // this is set the view from XML inside AlertDialog
-        alert.setView(alertLayout);
-        // disallow cancel of AlertDialog on click of back button and outside touch
-        alert.setCancelable(false);
-
-        alert.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getBaseContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);
-            }
-        });
-
-        alert.setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(getBaseContext(), "Done", Toast.LENGTH_SHORT).show();
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);
-            if (isDouble(etInput.getText().toString())){
-                if (title.equals("aktuell")) {
-                    FileHandler.getInstance().getMessgeraet().setAktuellValue(Double.parseDouble(etInput.getText().toString().replace(",",".")));
-                }else if (title.equals("stichtag")) {
-                    FileHandler.getInstance().getMessgeraet().setStichtagValue(Double.parseDouble(etInput.getText().toString().replace(",",".")));
-                }
-            }
-        }
-
-        });
-        AlertDialog dialog = alert.create();
-        etInput.setText(value);
-        etInput.requestFocus();
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        dialog.show();
-        // Get the alert dialog buttons reference
-        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-
-        // Change the alert dialog buttons text and background color
-        negativeButton.setTextColor(ContextCompat.getColor(this, R.color.blue));
-        positiveButton.setTextColor(ContextCompat.getColor(this, R.color.blue));
-
-    }
 
 
-    public static boolean isDouble(String s)
-    {
-        try {
-            double d = Double.parseDouble(s.replace(",","."));
-            return true;
-
-        } catch (NumberFormatException e) {
-           return false;
-        }
-    }
 
 
 }
