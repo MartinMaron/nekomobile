@@ -14,9 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:clickable="true"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/icon_smoke_detector_b"
-        app:srcCompat="@drawable/icon_smoke_detector_b" />
+        android:contentDescription="@string/empty"/>
 
     <TextView
         android:id="@+id/tvRaum"
@@ -24,7 +22,7 @@
         android:layout_height="@dimen/dp_faktor_8"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/ivRwm"
+        android:layout_toEndOf="@id/ivStatus"
         android:contentDescription="@string/empty"
         android:textColor="@color/navy"
         android:textSize="@dimen/sp_faktor_10" />
@@ -91,13 +89,13 @@
         app:srcCompat="@drawable/icon_camera" />
 
     <ImageView
-        android:id="@+id/ivAustausch"
+        android:id="@+id/ivDetail"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/ivPhoto"
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/empty"
         android:src="@drawable/icon_rwm_montage"
-        app:srcCompat="@drawable/icon_rwm_montage" />
+        app:srcCompat="@drawable/icon_detail" />
 
 </RelativeLayout>

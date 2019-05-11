@@ -25,6 +25,8 @@ public class MessgeraetListViewItemWrapper {
     private ImageView ivFunkfehler_offen = null;
     private ImageView ivFunkfehler_unerreichbar = null;
     private ImageView ivStatus = null;
+    private ImageView ivPhoto = null;
+    private ImageView ivDetail = null;
 
 
     // region properties
@@ -139,6 +141,22 @@ public class MessgeraetListViewItemWrapper {
 
     public void setIvStatus(ImageView ivStatus) {
         this.ivStatus = ivStatus;
+    }
+
+    public ImageView getIvPhoto() {
+        return ivPhoto;
+    }
+
+    public void setIvPhoto(ImageView ivPhoto) {
+        this.ivPhoto = ivPhoto;
+    }
+
+    public ImageView getIvDetail() {
+        return ivDetail;
+    }
+
+    public void setIvDetail(ImageView ivDetail) {
+        this.ivDetail = ivDetail;
     }
 
     // endregion properties

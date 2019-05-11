@@ -80,6 +80,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
         }
 
         wrapper.setIvStatus(currentView.findViewById(R.id.ivStatus));
+        wrapper.setIvPhoto(currentView.findViewById(R.id.ivPhoto));
 //        wrapper.getIvStatus().setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

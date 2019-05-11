@@ -46,7 +46,7 @@
         android:src="@drawable/icon_camera"
         app:srcCompat="@drawable/icon_camera" />
     <ImageView
-        android:id="@+id/ivAustausch"
+        android:id="@+id/ivDetail"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
         android:contentDescription="@string/empty"

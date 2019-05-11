@@ -64,7 +64,7 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
         Rauchwarnmelder rwm = getItem(index);
         RauchmelderWartungListViewItemWrapper wrapper = new RauchmelderWartungListViewItemWrapper();
 
-        wrapper.setIvAustausch(currentView.findViewById(R.id.ivAustausch));
+        wrapper.setIvAustausch(currentView.findViewById(R.id.ivDetail));
         wrapper.setIvRwm(currentView.findViewById(R.id.ivRwm));
         wrapper.setIvPhoto(currentView.findViewById(R.id.ivPhoto));
         wrapper.setIvInfo(currentView.findViewById(R.id.ivInfo));
