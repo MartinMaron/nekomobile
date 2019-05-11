@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.wrapper.FileListViewItemWrapper;
+import de.eneko.nekomobile.activities.rowViewHolder.FileListViewItemWrapper;
 import de.eneko.nekomobile.beans.Route;
 
 import android.view.LayoutInflater;

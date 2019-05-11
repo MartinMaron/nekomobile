@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.wrapper.LiegenschaftListViewItemWrapper;
+import de.eneko.nekomobile.activities.rowViewHolder.LiegenschaftListViewItemWrapper;
 import de.eneko.nekomobile.beans.Liegenschaft;
 
 public class LiegenschaftListViewAdapter extends ArrayAdapter<Liegenschaft>

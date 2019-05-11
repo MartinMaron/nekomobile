@@ -1,8 +1,6 @@
-package de.eneko.nekomobile.activities.wrapper;
+package de.eneko.nekomobile.activities.rowViewHolder;
 
 import android.widget.TextView;
-
-import de.eneko.nekomobile.beans.InekoId;
 
 public class FileListViewItemWrapper {
     /*

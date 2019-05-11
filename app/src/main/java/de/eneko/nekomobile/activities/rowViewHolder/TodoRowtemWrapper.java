@@ -1,8 +1,7 @@
-package de.eneko.nekomobile.activities.wrapper;
+package de.eneko.nekomobile.activities.rowViewHolder;
 
 
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class TodoRowtemWrapper {
     /*

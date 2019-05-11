@@ -16,8 +16,6 @@ import de.eneko.nekomobile.R;
 
 public class Messgeraet implements InekoId, ItoXmlElement {
     private String nekoId;
-    private List<Ablesung> Ablesungen;
-
     private String mNummer = "";
     private Integer mSortNo = 0;
     private String mRaum = "";
@@ -37,11 +35,13 @@ public class Messgeraet implements InekoId, ItoXmlElement {
     private ToDo mTodo = null;
     private Double mAktuellValue = -1.0;
     private Double mStichtagValue = -1.0;
+    private Date mDatum = null;
     private Boolean mDefekt = false;
-    private String Bemerkung = "";
+    private String mBemerkung = "";
+    private String mNeueNummer = "";
+
 
     public Messgeraet(ToDo pTodo) {
-        Ablesungen = new ArrayList<Ablesung>();
         mTodo = pTodo;
     }
 
@@ -100,6 +100,24 @@ public class Messgeraet implements InekoId, ItoXmlElement {
                         break;
                     case "zielmodel":
                         mZielmodel = XmlHelper.getInteger(propElement);
+                        break;
+                    case "aktuellValue":
+                        mAktuellValue = XmlHelper.getDouble(propElement);
+                        break;
+                    case "stichtagValue":
+                        mStichtagValue = XmlHelper.getDouble(propElement);
+                        break;
+                    case "datum":
+                        mDatum = XmlHelper.getSipleDate(propElement);
+                        break;
+                    case "defekt":
+                        mDefekt = XmlHelper.getBoolean(propElement);
+                        break;
+                    case "bemerkung":
+                        mBemerkung = XmlHelper.getString(propElement);
+                        break;
+                    case "neueNummer":
+                        mNeueNummer = XmlHelper.getString(propElement);
                         break;
                     default:
                 }
@@ -311,5 +329,37 @@ public class Messgeraet implements InekoId, ItoXmlElement {
         mStichtagValue = stichtagValue;
     }
 
-// endregion "Properties"
+    public Date getDatum() {
+        return mDatum;
+    }
+
+    public void setDatum(Date datum) {
+        mDatum = datum;
+    }
+
+    public Boolean getDefekt() {
+        return mDefekt;
+    }
+
+    public void setDefekt(Boolean defekt) {
+        mDefekt = defekt;
+    }
+
+    public String getBemerkung() {
+        return mBemerkung;
+    }
+
+    public void setBemerkung(String bemerkung) {
+        mBemerkung = bemerkung;
+    }
+
+    public String getNeueNummer() {
+        return mNeueNummer;
+    }
+
+    public void setNeueNummer(String neueNummer) {
+        mNeueNummer = neueNummer;
+    }
+
+    // endregion "Properties"
 }

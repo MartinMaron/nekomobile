@@ -12,13 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.MessgeraetListActivity;
-import de.eneko.nekomobile.activities.wrapper.MessgeraetListViewItemWrapper;
+import de.eneko.nekomobile.activities.rowViewHolder.MessgeraetListViewItemWrapper;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.FormatHelper;

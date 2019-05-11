@@ -1,10 +1,8 @@
-package de.eneko.nekomobile.activities.wrapper;
+package de.eneko.nekomobile.activities.rowViewHolder;
 
 
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class MessgeraetListViewItemWrapper {
     /*

@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.wrapper.NutzerTodosListViewItemWrapper;
+import de.eneko.nekomobile.activities.rowViewHolder.NutzerTodosListViewItemWrapper;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
 

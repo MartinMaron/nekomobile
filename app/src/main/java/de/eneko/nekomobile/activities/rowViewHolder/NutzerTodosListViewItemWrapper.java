@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.wrapper;
+package de.eneko.nekomobile.activities.rowViewHolder;
 
 
 import android.view.View;
