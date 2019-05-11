@@ -8,12 +8,12 @@ public class RwmActivity_Austausch extends RwmActivity {
     protected void onResume() {
         super.onResume();
 
-        lbNummer.setVisibility(View.GONE);
-        etNummer.setVisibility(View.GONE);
-        ivBarcode1.setVisibility(View.GONE);
+        viewHolder.getLbNummer().setVisibility(View.GONE);
+        viewHolder.getEtNummer().setVisibility(View.GONE);
+        viewHolder.getIvBarcode1().setVisibility(View.GONE);
 
-        lbRaum.setVisibility(View.GONE);
-        tvRaum.setVisibility(View.GONE);
+        viewHolder.getLbRaum().setVisibility(View.GONE);
+        viewHolder.getTvRaum().setVisibility(View.GONE);
 
     }
 }

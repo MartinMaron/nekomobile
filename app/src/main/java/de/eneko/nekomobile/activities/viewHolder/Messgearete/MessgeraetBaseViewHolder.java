@@ -1,10 +1,20 @@
-package de.eneko.nekomobile.activities.rowViewHolder;
+package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 
+import android.app.Activity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MessgeraetListViewItemWrapper {
+import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
+import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.Rauchwarnmelder;
+
+public class MessgeraetBaseViewHolder extends BaseViewHolder {
+
+    public final static Integer REQUEST_BT_STICHTAG = 1001;
+    public final static Integer REQUEST_BT_AKTUELL = 1002;
+
     /*
      * Objekt Attribute Decl. and init
      */
@@ -26,6 +36,28 @@ public class MessgeraetListViewItemWrapper {
     private ImageView ivPhoto = null;
     private ImageView ivDetail = null;
 
+    public MessgeraetBaseViewHolder(View pView, Messgeraet pBean) {
+        this(pView, pBean,null);
+    }
+
+    public MessgeraetBaseViewHolder(View pView, Messgeraet pBean, Activity pActivity) {
+        super(pView, pBean, pActivity);
+    }
+
+    @Override
+    public Activity getActivity() {
+        return mActivity;
+    }
+
+    @Override
+    public Messgeraet getBean() {
+        return (Messgeraet) super.getBean();
+    }
+
+    @Override
+    public void updateView() {
+
+    }
 
     // region properties
 

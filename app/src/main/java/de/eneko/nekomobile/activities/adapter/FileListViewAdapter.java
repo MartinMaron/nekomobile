@@ -5,14 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.rowViewHolder.FileListViewItemWrapper;
-import de.eneko.nekomobile.beans.Route;
+import de.eneko.nekomobile.activities.viewHolder.RouteViewHolder;
 
 import android.view.LayoutInflater;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -27,12 +24,12 @@ import java.util.ArrayList;
  * <p/>
  * Created by rKasper on 31.05.2015.
  */
-public class FileListViewAdapter extends ArrayAdapter<Route>
+public class FileListViewAdapter extends ArrayAdapter<de.eneko.nekomobile.beans.Route>
 {
     private final Context context;
-    private final ArrayList<Route> values;
+    private final ArrayList<de.eneko.nekomobile.beans.Route> values;
 
-    public FileListViewAdapter(Context context, ArrayList<Route> values) {
+    public FileListViewAdapter(Context context, ArrayList<de.eneko.nekomobile.beans.Route> values) {
         super(context, -1, values);
         this.context = context;
         this.values = values;
@@ -45,7 +42,7 @@ public class FileListViewAdapter extends ArrayAdapter<Route>
     }
 
     @Override
-    public Route getItem(int index)
+    public de.eneko.nekomobile.beans.Route getItem(int index)
     {
         return values.get(index);
     }
@@ -58,7 +55,7 @@ public class FileListViewAdapter extends ArrayAdapter<Route>
 
     @Override
     public View getView(int index, View rowView, ViewGroup parent) {
-        Route route = getItem(index);
+        de.eneko.nekomobile.beans.Route route = getItem(index);
 
         if (rowView == null){
             LayoutInflater inflater = (LayoutInflater) context
@@ -66,18 +63,9 @@ public class FileListViewAdapter extends ArrayAdapter<Route>
             rowView = inflater.inflate(R.layout.list_item_file, parent, false);
         }
 
-        FileListViewItemWrapper lvItemWidgetWrapper = new FileListViewItemWrapper();
-
-        lvItemWidgetWrapper.setTxtvRouteName(rowView.findViewById(R.id.txtvRouteName));
-        lvItemWidgetWrapper.setTxtvDatum(rowView.findViewById(R.id.txtvDatum));
-        lvItemWidgetWrapper.setTxtvErstellDatum(rowView.findViewById(R.id.txtvErstelldatum));
-
-        //Befuellen der einzelen Widgets
-        lvItemWidgetWrapper.getTxtvRouteName().setText(route.getBezeichnung());
-        lvItemWidgetWrapper.getTxtvDatum().setText(new SimpleDateFormat(GlobalConst.dateFormat).format(route.getDatum()));
-        lvItemWidgetWrapper.getTxtvErstellDatum().setText(route.getCreateTimestamp());
-
-        rowView.setTag(lvItemWidgetWrapper);
+        RouteViewHolder viewHolder = new RouteViewHolder(rowView,route);
+        viewHolder.updateView();
+        rowView.setTag(viewHolder);
 
         //Rueckgabe der genierten View
         return rowView;

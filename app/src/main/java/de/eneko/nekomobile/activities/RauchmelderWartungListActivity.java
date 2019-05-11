@@ -26,16 +26,10 @@ import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RauchmelderWartungListActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CAPTURE_IMAGE = 100;
 
-    //ListView Adapter welcher den Inhalt verwaltet
     private RauchmelderWartungListViewAdapter mAdapter = null;
     private ArrayList<Rauchwarnmelder> datasource = new ArrayList<>();
     private ListView mListView = null;
-    private Toolbar mToolbar= null;
-
-    //OnItemClickListener er wird aufgerufen wenn ein einzelnes Item geklickt wird
-    //private NutzerListViewOnItemClickListener mNutzerListViewOnItemClickListener = null;
 
 
     @Override
@@ -43,24 +37,15 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-
         ((AppCompatActivity)this).getSupportActionBar().setTitle("RWM: " + FileHandler.getInstance().getNutzer().getDisplay());
 
-
-        // Init adapter
         datasource.addAll(FileHandler.getInstance().getNutzerTodo().getRauchmelder().stream()
                 .sorted(Comparator.comparing(Rauchwarnmelder::getNekoId))
                 .collect(Collectors.toList()));
 
         mAdapter = new RauchmelderWartungListViewAdapter(this,datasource);
-        //mNutzerListViewOnItemClickListener = new NutzerListViewOnItemClickListener();
-
-
         mListView = findViewById(R.id.listView);
-
-        // verbinden des adapters mit listview
         mListView.setAdapter(mAdapter);
-        //mListView.setOnItemClickListener(mNutzerListViewOnItemClickListener);
 
     }
 
@@ -83,28 +68,6 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
     }
 
 
-    public void openCameraIntent(String relativeNekoPath, String filename) {
-        Intent pictureIntent = new Intent(
-                MediaStore.ACTION_IMAGE_CAPTURE);
-        if(pictureIntent.resolveActivity(getPackageManager()) != null){
-            //Create a file to store the image
-            File photoFile = null;
-            try {
-                photoFile = FileHandler.getInstance().createJpgFile(relativeNekoPath,filename);
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                System.err.print(ex.getMessage());
-                return;
-            }
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,"de.eneko.nekomobile.provider", photoFile);
-                pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        photoURI);
-                startActivityForResult(pictureIntent,
-                        REQUEST_CAPTURE_IMAGE);
-            }
-        }
-    }
 
     protected void exit(){
         Intent intent = new Intent(this, NutzerTodosListActivity.class);

@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.rowViewHolder;
+package de.eneko.nekomobile.activities.viewHolder.Rauchmelder;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,19 +12,18 @@ import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.controllers.PhotoHandler;
 
-public class RauchmelderWartung extends BaseViewHolder{
-    /*
-     * Objekt Attribute Decl. and init
-     */
-    private ImageView ivRwm = null;
-    private ImageView ivPhoto = null;
-    private ImageView ivInfo = null;
-    private ImageView ivAustausch = null;
+public class WartungRowViewHolder extends RwmBaseViewHolder {
 
 
-    public RauchmelderWartung(View pView, Rauchwarnmelder pRauchmelder, Activity pActivity){
+    public WartungRowViewHolder(View pView, Rauchwarnmelder pRauchmelder, Activity pActivity){
         super(pView, pRauchmelder, pActivity );
+    }
+
+    @Override
+    public RauchmelderWartungListActivity getActivity() {
+        return (RauchmelderWartungListActivity) mActivity;
     }
 
     @Override
@@ -58,12 +57,10 @@ public class RauchmelderWartung extends BaseViewHolder{
                 String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
                 relativePath = relativePath + "/" + getBean().getTodo().getNutzer().getWohnungsnummerMitLage();
                 String filename = "RWM@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
-
                 if (!getBean().getNekoId().equals("")){
                     filename = filename  + getBean().getNekoId()+ "@";
                 }
-
-                getActivity().openCameraIntent(relativePath,filename);
+                PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
         });
 
@@ -104,10 +101,7 @@ public class RauchmelderWartung extends BaseViewHolder{
         }
     }
 
-    @Override
-    public RauchmelderWartungListActivity getActivity() {
-        return (RauchmelderWartungListActivity) super.getActivity();
-    }
+
 
     // region Controls
 
@@ -119,7 +113,6 @@ public class RauchmelderWartung extends BaseViewHolder{
         this.txtvDescription = txtvDescription;
     }
 
-    private TextView txtvDescription = null;
 
     public ImageView getIvRwm() {
         return ivRwm;

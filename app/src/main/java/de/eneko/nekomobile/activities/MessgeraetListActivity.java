@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
+import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
@@ -236,11 +237,11 @@ public class MessgeraetListActivity extends AppCompatActivity
             Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (requestCode == MessgeraetListViewAdapter.REQUEST_BT_AKTUELL && data != null ) {
+        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             showInputDialog("aktuell", result.get(0)) ;
         }
-        if (requestCode == MessgeraetListViewAdapter.REQUEST_BT_STICHTAG && data != null ) {
+        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             showInputDialog("stichtag", result.get(0)) ;
         }

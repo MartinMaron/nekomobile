@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.rowViewHolder.RauchmelderWartung;
+import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.WartungRowViewHolder;
 import de.eneko.nekomobile.beans.Rauchwarnmelder;
 
 public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmelder>
@@ -55,7 +55,7 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
 
         //Extrahieren der NoteBean zum nutzen der Werte
         Rauchwarnmelder rwm = getItem(index);
-        RauchmelderWartung wrapper = new RauchmelderWartung(currentView, rwm, activity) {};
+        WartungRowViewHolder wrapper = new WartungRowViewHolder(currentView, rwm, activity) {};
         wrapper.updateView();
         currentView.setTag(wrapper);
 

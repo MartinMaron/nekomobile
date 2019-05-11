@@ -7,10 +7,10 @@ public class RwmActivity_New extends RwmActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        this.lbAustauschgrund.setVisibility(View.GONE);
-        this.spAustauschgrunde.setVisibility(View.GONE);
-        this.ivBarcode2.setVisibility(View.GONE);
-        this.lbNewNummer.setVisibility(View.GONE);
-        this.etNeueNummer.setVisibility(View.GONE);
+        viewHolder.getLbAustauschgrund().setVisibility(View.GONE);
+        viewHolder.getSpAustauschgrunde().setVisibility(View.GONE);
+        viewHolder.getIvBarcode2().setVisibility(View.GONE);
+        viewHolder.getLbNewNummer().setVisibility(View.GONE);
+        viewHolder.getEtNeueNummer().setVisibility(View.GONE);
     }
 }

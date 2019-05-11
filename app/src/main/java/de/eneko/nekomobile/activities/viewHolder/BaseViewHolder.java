@@ -1,12 +1,12 @@
-package de.eneko.nekomobile.activities.rowViewHolder;
+package de.eneko.nekomobile.activities.viewHolder;
 
 import android.app.Activity;
 import android.view.View;
 
 public abstract class BaseViewHolder {
     protected final View mView;
-    private final Object mBean;
-    private final Activity mActivity;
+    protected final Object mBean;
+    protected final Activity mActivity;
 
 
     public BaseViewHolder(View pView, Object pBean ){
@@ -29,7 +29,6 @@ public abstract class BaseViewHolder {
     }
 
     public abstract void updateView();
-
 
     public Activity getActivity() {
         return mActivity;

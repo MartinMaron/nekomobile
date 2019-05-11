@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.NutzerListActivity;
-import de.eneko.nekomobile.activities.rowViewHolder.NutzerListViewItemWrapper;
+import de.eneko.nekomobile.activities.viewHolder.NutzerListViewItemWrapper;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Route;
 
