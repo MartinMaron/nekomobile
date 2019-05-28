@@ -7,31 +7,54 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.LiegenschaftModel;
+import de.eneko.nekomobile.activities.models.NutzerModel;
+import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 
-public class ToDo implements ItoXmlElement {
+public class ToDo extends BaseObject implements ItoXmlElement {
     private String bezeichnung;
     private String art;
     private final Nutzer mNutzer;
-    private List<Rauchwarnmelder> mRauchmelder;
+    private final Liegenschaft mLiegenschaft;
+    private List<Rauchmelder> mRauchmelder;
     private List<Messgeraet> mMessgeraete;
 
     public ToDo(Nutzer nutzer) {
+        super();
         mNutzer = nutzer;
-        mRauchmelder = new ArrayList<Rauchwarnmelder>();
+        mLiegenschaft = null;
+        mRauchmelder = new ArrayList<Rauchmelder>();
         mMessgeraete = new ArrayList<Messgeraet>();
     }
 
-    public ToDo() {
-        mRauchmelder = new ArrayList<Rauchwarnmelder>();
-        mMessgeraete = new ArrayList<Messgeraet>();
+    public ToDo(Liegenschaft liegenschaft) {
+        super();
+        mLiegenschaft = liegenschaft;
         mNutzer = null;
+        mRauchmelder = new ArrayList<Rauchmelder>();
+        mMessgeraete = new ArrayList<Messgeraet>();
     }
+
+    @Override
+    protected Basemodel createBaseObject() {
+        return new NutzerTodoModel(this);
+    }
+
+    @Override
+    public NutzerTodoModel getBaseModel() {
+        return (NutzerTodoModel) super.getBaseModel();
+    }
+
+    //
 
     public List<Messgeraet> getMessgeraete() {
         return mMessgeraete;
+    }
+
+    public List<Rauchmelder> getRauchmelder() {
+        return mRauchmelder;
     }
 
     @Override
@@ -54,7 +77,7 @@ public class ToDo implements ItoXmlElement {
                         art = XmlHelper.getString(propElement);
                         break;
                     case "RWM_Device":
-                        Rauchwarnmelder rwm = new Rauchwarnmelder(this);
+                        Rauchmelder rwm = new Rauchmelder(this);
                         rwm.updateRouteFromXmlElement(propElement);
                         mRauchmelder.add(rwm);
                         break;
@@ -92,62 +115,7 @@ public class ToDo implements ItoXmlElement {
         return mNutzer;
     }
 
-    //region Rauchmelder
-    /*
-    noch zu prüfende Rauchmelder
-     */
-    public Integer getRwmWartungUndoneCount ()
-    {
-        return mRauchmelder.stream().filter(r -> r.getUnDone())
-                .collect(Collectors.toList()).size();
+    public Liegenschaft getLiegenschaft() {
+        return mLiegenschaft;
     }
-    /*
-    bereits geprüfte Rauchmelder
-     */
-    public Integer getRwmWartungDoneCount ()
-    {
-        return mRauchmelder.stream().filter(r -> r.getDone())
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    fehlende oder zu ersetztende rwm
-     */
-    public Integer getRwmWartungWithErrorCount ()
-    {
-        return mRauchmelder.stream().filter(r -> r.getWithError())
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    neu instalierte rwm
-     */
-    public Integer getRwmWartungNewCount ()
-    {
-        return mRauchmelder.stream().filter(r -> r.getNekoId().contains("new"))
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    Anzahl der Racuhmelder, welche zu prüfen waren
-     */
-    public Integer getRwmToDoCount ()
-    {
-        return getRwmWartungDoneCount() + getRwmWartungUndoneCount() + getRwmWartungWithErrorCount();
-    }
-
-    public Boolean isRwmCompleted(){
-        if(getRwmToDoCount()== 0) {return false;}
-        return getRwmToDoCount() == (getRwmWartungWithErrorCount()+ getRwmWartungDoneCount());
-    }
-    public Integer getRwmStatusImageResourceId(){
-         if (isRwmCompleted()) {
-             return R.drawable.icon_smoke_detector_green_ok;
-         }else {
-             return R.drawable.icon_smoke_detector_b;
-         }
-    }
-
-    public List<Rauchwarnmelder> getRauchmelder() {
-        return mRauchmelder;
-    }
-
-    // endregion Rauchmelder
 }

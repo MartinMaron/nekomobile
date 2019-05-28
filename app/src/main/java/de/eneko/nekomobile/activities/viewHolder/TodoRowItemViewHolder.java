@@ -1,18 +1,32 @@
 package de.eneko.nekomobile.activities.viewHolder;
 
 
+import android.view.View;
 import android.widget.ImageView;
 
-public class TodoRowtemWrapper {
-    /*
-     * Objekt Attribute Decl. and init
-     */
+import de.eneko.nekomobile.activities.models.Basemodel;
+
+public class TodoRowItemViewHolder extends BaseViewHolder{
     private ImageView ivAblesung = null;
     private ImageView ivRwmWartung = null;
     private ImageView ivMontage = null;
     private ImageView ivRwmMontage = null;
     private ImageView ivFunkCheck = null;
 
+    public TodoRowItemViewHolder(View pView, Basemodel pModel) {
+        super(pView, pModel);
+    }
+
+    @Override
+    public void updateView() {
+
+    }
+
+
+
+
+
+    // region properties
     public ImageView getIvAblesung() {
         return ivAblesung;
     }
@@ -53,5 +67,5 @@ public class TodoRowtemWrapper {
         this.ivFunkCheck = ivFunkCheck;
     }
 
-
+// endregion properties
 }

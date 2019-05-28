@@ -1,5 +1,6 @@
 package de.eneko.nekomobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,9 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
-import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.activities.NekoDropboxActivity;
+import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.listener.MainActivityOnClickListener;
 
 
@@ -51,12 +54,22 @@ public class MainActivity extends AppCompatActivity
         Button btCmdGetRoutes = findViewById(R.id.btCmdGetRoutes);
         btCmdGetRoutes.setOnClickListener(mainActivityOnClickListener);
 
+        Button btCmdDropbox = findViewById(R.id.btCmdDropbox);
+        btCmdDropbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), NekoDropboxActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        initializeHlptas();
     }
 
 
 
     private void initializeHlptas(){
-        FileHandler.getInstance().initializeHelpers(this);
+        Dict.getInstance().initializeHelpers(this);
 
 
     }

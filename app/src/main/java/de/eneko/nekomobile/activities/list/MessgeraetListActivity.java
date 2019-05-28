@@ -1,23 +1,17 @@
-package de.eneko.nekomobile.activities;
+package de.eneko.nekomobile.activities.list;
 
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -27,41 +21,43 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
+import de.eneko.nekomobile.activities.models.NutzerTodoModel;
+import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
-import de.eneko.nekomobile.listener.MessgeraeteListViewOnItemClickListener;
 
-public class MessgeraetListActivity extends AppCompatActivity
-        implements View.OnClickListener, SearchView.OnQueryTextListener
+public abstract class MessgeraetListActivity extends AppCompatActivity
+        implements View.OnClickListener,
+        SearchView.OnQueryTextListener,
+        AdapterView.OnItemClickListener
         {
 
-    //ListView Adapter welcher den Inhalt verwaltet
-    private MessgeraetListViewAdapter mAdapterCurrent = null;
-    private MessgeraetListViewAdapter mAdapter_man = null;
-    private MessgeraetListViewAdapter mAdapter_exm = null;
-    private MessgeraetListViewAdapter mAdapter_son = null;
-    private ArrayList<Messgeraet> datasource = new ArrayList<>();
-    private ArrayList<Messgeraet> datasource_man = new ArrayList<>();
-    private ArrayList<Messgeraet> datasource_exm = new ArrayList<>();
-    private ArrayList<Messgeraet> datasource_son = new ArrayList<>();
+    protected MessgeraetListViewAdapter mAdapterCurrent = null;
+    protected MessgeraetListViewAdapter mAdapter_man = null;
+    protected MessgeraetListViewAdapter mAdapter_exm = null;
+    protected MessgeraetListViewAdapter mAdapter_son = null;
+    protected ArrayList<Messgeraet> datasource = new ArrayList<>();
+    protected ArrayList<Messgeraet> datasource_man = new ArrayList<>();
+    protected ArrayList<Messgeraet> datasource_exm = new ArrayList<>();
+    protected ArrayList<Messgeraet> datasource_son = new ArrayList<>();
 
-    private ImageView ivManuell = null;
-    private ImageView ivSontex = null;
-    private ImageView ivExim = null;
+    protected ImageView ivManuell = null;
+    protected ImageView ivSontex = null;
+    protected ImageView ivExim = null;
 
 
-    private ListView mListView = null;
-    private MenuItem searchMenuItem = null;
-    private MenuItem eingabeMenuItem = null;
-    private SearchView searchView = null;
+    protected ListView mListView = null;
+    protected MenuItem searchMenuItem = null;
+    protected MenuItem eingabeMenuItem = null;
+    protected SearchView searchView = null;
 
-    //OnItemClickListener er wird aufgerufen wenn ein einzelnes Item geklickt wird
-    private MessgeraeteListViewOnItemClickListener mOnItemClickListener = null;
 
 
     @Override
@@ -69,7 +65,9 @@ public class MessgeraetListActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view_ablesung);
-        getSupportActionBar().setTitle(FileHandler.getInstance().getNutzerTodo().getNutzer().getDisplay());
+        NutzerTodoModel nutzerTodoModel = FileHandler.getInstance().getNutzerTodo().getBaseModel();
+        nutzerTodoModel.load();
+        getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
 
         // Init datasource
         datasource.addAll(FileHandler.getInstance().getNutzerTodo().getMessgeraete().stream()
@@ -97,43 +95,35 @@ public class MessgeraetListActivity extends AppCompatActivity
         // init listview
         mListView = findViewById(R.id.listView);
         mListView.setAdapter(mAdapter_man);
-        mOnItemClickListener = new MessgeraeteListViewOnItemClickListener();
-        mListView.setOnItemClickListener(mOnItemClickListener);
-
+        mListView.setOnItemClickListener(this);
         ivManuell = findViewById(R.id.btShowStandard);
         ivManuell.setOnClickListener(this);
         ivSontex = findViewById(R.id.btShowSontexFunk);
         ivSontex.setOnClickListener(this);
         ivExim = findViewById(R.id.btShowEximFunk);
         ivExim.setOnClickListener(this);
-
-
-
     }
 
     @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Messgeraet item = (Messgeraet) mAdapterCurrent.getItem(i);
+        FileHandler.getInstance().setMessgeraet(item);
+        Intent intent = null;
+        switch (item.getTodo().getArt()) {
+            case Dict.TODO_ABLESUNG:
+                intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
+                break;
+            default:
+                intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
+        }
+        view.getContext().startActivity(intent);
+    }
+
+            @Override
     protected void onResume() {
         super.onResume();
-        ivExim.setBackground(null);
-        ivSontex.setBackground(null);
-        ivManuell.setBackground(null);
-
-        if (MessgeraeteListViewActivityConroller.getInstance().getGereteart() == MessgeraeteListViewActivityConroller.GeraeteArt.EXIM){
-            setAdapterCurrent(mAdapter_exm);
-            ivExim.setBackground(getDrawable(R.drawable.textview_border));
-        }
-        if (MessgeraeteListViewActivityConroller.getInstance().getGereteart() == MessgeraeteListViewActivityConroller.GeraeteArt.SONTEX){
-            setAdapterCurrent(mAdapter_son);
-            ivSontex.setBackground(getDrawable(R.drawable.textview_border));
-        }
-        if (MessgeraeteListViewActivityConroller.getInstance().getGereteart() == MessgeraeteListViewActivityConroller.GeraeteArt.MANUELL){
-            setAdapterCurrent(mAdapter_man);
-            ivManuell.setBackground(getDrawable(R.drawable.textview_border));
-        }
-
-       setEingabeMenuItemIcon();
-
-    }
+        setEingabeMenuItemIcon();
+   }
 
     private void setEingabeMenuItemIcon(){
             if (MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
@@ -240,11 +230,11 @@ public class MessgeraetListActivity extends AppCompatActivity
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new MessgeraetBaseViewHolder(null,FileHandler.getInstance().getMessgeraet(),this){}.inputDialogAktuell(result.get(0));
+            new DetailViewHolder(null,FileHandler.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0));
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new MessgeraetBaseViewHolder(null,FileHandler.getInstance().getMessgeraet(),this){}.inputDialogStichtag(result.get(0));
+            new DetailViewHolder(null,FileHandler.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0));
         }
         mAdapterCurrent.notifyDataSetChanged();
 

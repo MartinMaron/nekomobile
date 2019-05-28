@@ -9,17 +9,18 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.WartungRowViewHolder;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.beans.Rauchmelder;
 
-public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmelder>
+public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchmelder>
 {
     private final Context context;
-    private final ArrayList<Rauchwarnmelder> values;
+    private final ArrayList<Rauchmelder> values;
     private RauchmelderWartungListActivity activity;
 
-    public RauchmelderWartungListViewAdapter(Context context, ArrayList<Rauchwarnmelder> values) {
+    public RauchmelderWartungListViewAdapter(Context context, ArrayList<Rauchmelder> values) {
         super(context, -1, values);
         this.context = context;
         this.values = values;
@@ -33,7 +34,7 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
     }
 
     @Override
-    public Rauchwarnmelder getItem(int index)
+    public Rauchmelder getItem(int index)
     {
         return values.get(index);
     }
@@ -54,12 +55,10 @@ public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchwarnmel
         }
 
         //Extrahieren der NoteBean zum nutzen der Werte
-        Rauchwarnmelder rwm = getItem(index);
-        WartungRowViewHolder wrapper = new WartungRowViewHolder(currentView, rwm, activity) {};
-        wrapper.updateView();
-        currentView.setTag(wrapper);
-
-        //Rueckgabe der genierten View
+        Rauchmelder obj = getItem(index);
+        WartungRowViewHolder viewHolder = new WartungRowViewHolder(currentView, obj.getBaseModel(), activity) {};
+        viewHolder.updateView();
+        currentView.setTag(viewHolder);
         return currentView;
     }
 

@@ -11,21 +11,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Nutzer;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 
 
 /**
@@ -52,38 +49,17 @@ public class FileHandler
 
     //Liste aller Notizen
     private ArrayList<Route> allRoutes = new ArrayList<>();
-    private ArrayList<ZaehlerModel> mZaehlerModels = new ArrayList<>();
 
     private Route mRoute = null;
     private Liegenschaft mLiegenschaft = null;
     private Nutzer mNutzer = null;
     private ToDo mNutzerTodo = null;
-    private Rauchwarnmelder rauchwarnmelder = null;
+    private Rauchmelder mRauchmelder = null;
     private Messgeraet messgeraet = null;
     private MainActivity mainActivity = null;
 
+    private FileHandler(){}
 
-
-
-
-    /**
-     * Privater Konstruktor
-     * So kann kein Objekt der
-     * Klasse von anderen Programmteilen
-     * aus generiert werden
-     */
-    private FileHandler()
-    {
-
-    }
-
-    /**
-     * Diese Funktion generiert einmal
-     * die Instanz und gibt Sie bei jedem
-     * weiteren Zugriff zurueck.
-     *
-     * @return instance : FileHandler
-     */
     public static synchronized FileHandler getInstance()
     {
         //Wenn die Instanz null ist wurde Sie noch nicht generiert.
@@ -98,14 +74,12 @@ public class FileHandler
         return instance;
     }
 
-    public Route getRoute()
-    {
-        return this.mRoute;
+    public Route getRoute() {
+        return mRoute;
     }
 
-    public void setRoute(int index)
-    {
-        this.mRoute = this.allRoutes.get(index);
+    public void setRoute(Route route) {
+        mRoute = route;
     }
 
     public Liegenschaft getLiegenschaft() {
@@ -132,12 +106,12 @@ public class FileHandler
         mNutzerTodo = nutzerTodo;
     }
 
-    public Rauchwarnmelder getRauchwarnmelder() {
-        return rauchwarnmelder;
+    public Rauchmelder getRauchmelder() {
+        return mRauchmelder;
     }
 
-    public void setRauchwarnmelder(Rauchwarnmelder rauchwarnmelder) {
-        this.rauchwarnmelder = rauchwarnmelder;
+    public void setRauchmelder(Rauchmelder rauchmelder) {
+        this.mRauchmelder = rauchmelder;
     }
 
     public Messgeraet getMessgeraet() {
@@ -285,24 +259,12 @@ public class FileHandler
         return file;
     }
 
-    public Rauchwarnmelder createNewRauchmelder(){
-        Rauchwarnmelder ret_val = new Rauchwarnmelder(getNutzerTodo());
+    public Rauchmelder createNewRauchmelder(){
+        Rauchmelder ret_val = new Rauchmelder(getNutzerTodo());
         ret_val.setNew(true);
         ret_val.setNekoId(FileHandler.getInstance().getNutzerTodo().getRauchmelder().size() + ";new");
         return ret_val;
     }
 
-    public ArrayList<ZaehlerModel> getZaehlerModels() {
-       return mZaehlerModels;
-    }
 
-
-
-    public void initializeHelpers(MainActivity mainActivity) {
-        String[] _zaehlermodele = mainActivity.getResources().getStringArray(R.array.zaehler_modele);
-        for (String strTemp : _zaehlermodele){
-            String[] _line = strTemp.split("@");
-           mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3]));
-        }
-    }
 }

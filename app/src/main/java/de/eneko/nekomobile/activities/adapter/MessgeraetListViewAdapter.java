@@ -12,7 +12,8 @@ import android.widget.Filterable;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.MessgeraetListActivity;
+import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
+import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetRowViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
@@ -63,11 +64,11 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
         if(currentView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            currentView = inflater.inflate(R.layout.messgeraet_list_item, parent, false);
+            currentView = inflater.inflate(R.layout.list_item_messgeraet, parent, false);
 
         }
 
-        MessgeraetBaseViewHolder viewHolder = new MessgeraetRowViewHolder(currentView, obj, activity);
+        MessgeraetBaseViewHolder viewHolder = new MessgeraetRowViewHolder(currentView, obj.getBaseModel(), activity);
         viewHolder.updateView();
 
         currentView.setTag(viewHolder);

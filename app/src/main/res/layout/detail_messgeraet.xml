@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_faktor_2">
+
+    <TextView
+        android:id="@+id/tvModel"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textSize="@dimen/sp_faktor_08"
+        android:gravity="bottom|left"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:id="@+id/lbNummer"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvModel"
+        android:text="@string/rwm_detail_lb_nummer"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/tvNummer"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbNummer"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbRaum"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvModel"
+        android:layout_toEndOf="@id/lbNummer"
+        android:text="@string/rwm_detail_lb_raum"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <AutoCompleteTextView
+        android:id="@+id/actvRaum"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbRaum"
+        android:layout_toEndOf="@id/tvNummer"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:textSize="@dimen/sp_faktor_08" />
+
+
+    <TextView
+        android:id="@+id/tvLetzterWert"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvNummer"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_06" />
+
+
+    <TextView
+        android:id="@+id/lbAktuell"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvLetzterWert"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_04" />
+    <TextView
+        android:id="@+id/lbStichtag"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvLetzterWert"
+        android:layout_toRightOf="@id/tvAktuell"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_04" />
+    <TextView
+        android:id="@+id/tvAktuell"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbAktuell"
+        android:background="@drawable/textview_border"
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/dark_slate_gray"
+        android:textSize="@dimen/sp_faktor_10" />
+    <TextView
+        android:id="@+id/tvStichtag"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbStichtag"
+        android:layout_toRightOf="@id/tvAktuell"
+        android:background="@drawable/textview_border"
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_10" />
+
+    <TextView
+        android:id="@+id/lbNewModel"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvStichtag"
+        android:text="@string/neuerZaehler"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <Spinner
+        android:id="@+id/spNewModel"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbNewModel"
+        android:gravity="bottom|left"
+        android:text="@string/empty"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_08" />
+    <ImageView
+        android:id="@+id/ivBarcodeNewModel"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/tvAktuell"
+        android:layout_toRightOf="@id/spNewModel"
+        app:srcCompat="@drawable/icon_barcode" />
+
+    <TextView
+        android:id="@+id/lbAustauschgrund"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/spNewModel"
+        android:text="@string/austauschgrund"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <Spinner
+        android:id="@+id/spAustauschgrund"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbAustauschgrund"
+        android:gravity="bottom|left"
+        android:text="@string/empty"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_08" />
+
+
+    <TextView
+        android:id="@+id/lbNewNummer"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/spAustauschgrund"
+        android:text="@string/rwm_detail_lb_NewNummer"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etNewNummer"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbNewNummer"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <ImageView
+        android:id="@+id/ivBarcodeNewNummer"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/spAustauschgrund"
+        android:layout_toRightOf="@id/lbNewNummer"
+        app:srcCompat="@drawable/icon_barcode" />
+
+    <TextView
+        android:id="@+id/lbNewFunkModel"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etNewNummer"
+        android:text="@string/neuer_funk_modul"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <Spinner
+        android:id="@+id/spNewFunkModel"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbNewFunkModel"
+        android:gravity="bottom|left"
+        android:text="@string/empty"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <ImageView
+        android:id="@+id/ivBarcodeNewFunkModel"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@id/etNewNummer"
+        android:layout_toRightOf="@id/spNewFunkModel"
+        app:srcCompat="@drawable/icon_barcode" />
+
+    <TextView
+        android:id="@+id/lbNewFunkNummer"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/spNewFunkModel"
+        android:text="@string/neue_funknummer"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etNewFunkNummer"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbNewFunkNummer"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <ImageView
+        android:id="@+id/ivBarcodeNewFunkNummer"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/spNewFunkModel"
+        android:layout_toRightOf="@id/lbNewFunkNummer"
+        app:srcCompat="@drawable/icon_barcode" />
+
+    <CheckBox
+        android:id="@+id/cbDefekt"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNewFunkNummer"
+        android:button="@drawable/drawable_selector"
+        android:text="@string/defekt"
+        android:paddingLeft="@dimen/dp_faktor_2"/>
+     <TextView
+        android:id="@+id/lbBemerkung"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/cbDefekt"
+        android:text="@string/rwm_detail_lb_Bemerkung"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBemerkung"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lbBemerkung"
+        android:gravity="start"
+        android:hint="@string/rwm_detail_etBemerkungen"
+        android:text="@string/empty"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_08" />
+    <ImageView
+        android:id="@+id/ivSpechToText"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/lbBemerkung"
+        android:layout_toRightOf="@id/etBemerkung"
+        app:srcCompat="@drawable/icon_speaker" />
+
+    <ImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/ivSpechToText"
+        android:layout_toRightOf="@id/etBemerkung"
+        app:srcCompat="@drawable/icon_camera" />
+
+</RelativeLayout>

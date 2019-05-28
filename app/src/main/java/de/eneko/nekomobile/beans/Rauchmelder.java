@@ -5,7 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Rauchwarnmelder implements InekoId, ItoXmlElement {
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.RauchmelderModel;
+
+public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     private String nekoId;
     private String mNummer = "";
     private String mRaum = "";
@@ -21,10 +24,19 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
 
     private ToDo mTodo;
 
-    public Rauchwarnmelder(ToDo todo) {
+    public Rauchmelder(ToDo todo) {
         mTodo = todo;
     }
 
+    @Override
+    protected Basemodel createBaseObject() {
+        return new RauchmelderModel(this);
+    }
+
+    @Override
+    public RauchmelderModel getBaseModel() {
+        return (RauchmelderModel) super.getBaseModel();
+    }
 
     // region Xml
     @Override
@@ -120,9 +132,7 @@ public class Rauchwarnmelder implements InekoId, ItoXmlElement {
         mNew = aNew;
     }
 
-    public Boolean getUnDone() {
-        return !mWithError && !mDone && !nekoId.contains("new");
-    }
+
     public ToDo getTodo() {
         return mTodo;
     }

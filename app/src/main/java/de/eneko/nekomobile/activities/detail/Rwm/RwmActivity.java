@@ -8,9 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
+import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RwmActivity extends AppCompatActivity{
@@ -25,9 +26,9 @@ public class RwmActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_rwm_wartung);
-        Rauchwarnmelder rwm = FileHandler.getInstance().getRauchwarnmelder();
-        viewHolder = new DetailViewHolder( null,rwm, this);
+        setContentView(R.layout.detail_rauchmelder);
+        Rauchmelder rwm = FileHandler.getInstance().getRauchmelder();
+        viewHolder = new DetailViewHolder( null,rwm.getBaseModel(), this);
         viewHolder.updateView();
     }
 
@@ -40,7 +41,7 @@ public class RwmActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.rwm_wartung_detail_menu, menu);
+        getMenuInflater().inflate(R.menu.detail_base_menu, menu);
         return true;
     }
 

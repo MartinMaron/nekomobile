@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.barcode.Barcode;
@@ -17,13 +15,9 @@ import java.util.List;
 import java.util.Locale;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
-import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
-import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.controllers.PhotoHandler;
 import de.eneko.nekomobile.framework.KeyedValue;
 
 public class DetailViewHolder extends RwmBaseViewHolder {
@@ -31,23 +25,23 @@ public class DetailViewHolder extends RwmBaseViewHolder {
     public static final int RWM_ACTIVITY_REQUEST_BT_2 = 1209;
     public static final int RWM_ACTIVITY_REQUEST_BT_3 = 1210;
 
-    public DetailViewHolder(View pView, Rauchwarnmelder pRauchmelder, Activity pActivity){
+    public DetailViewHolder(View pView, RauchmelderModel pRauchmelder, Activity pActivity){
         super(pView, pRauchmelder, pActivity );
     }
     @Override
     public RwmActivity getActivity() {
         return (RwmActivity) mActivity;
     }
-    @Override
-    public Rauchwarnmelder getBean() {
-        return (Rauchwarnmelder) super.getBean();
-    }
+
+//    public Rauchmelder getBean() {
+//        return getBasemodel().getBean();
+//    }
 
     @Override
     public void updateView() {
         spModele = mActivity.findViewById(R.id.spModel);
         etNummer = mActivity.findViewById(R.id.tvNummer);
-        tvRaum = mActivity.findViewById(R.id.tvRaum);
+        tvRaum = mActivity.findViewById(R.id.actvRaum);
         etBemerkungen = mActivity.findViewById(R.id.etBemerkung);
         spAustauschgrunde = mActivity.findViewById(R.id.spAustauschgrund);
         etNeueNummer = mActivity.findViewById(R.id.tvNewNummer);
@@ -134,21 +128,21 @@ public class DetailViewHolder extends RwmBaseViewHolder {
     }
 
     protected void loadData(){
-        tvRaum.setText(getBean().getRaum());
-        etNummer.setText(getBean().getNummer());
-        etBemerkungen.setText(getBean().getBemerkung());
-        etNeueNummer.setText(getBean().getNeueNummer());
+        tvRaum.setText(getBasemodel().getRaum());
+        etNummer.setText(getBasemodel().getNummer());
+        etBemerkungen.setText(getBasemodel().getBemerkung());
+        etNeueNummer.setText(getBasemodel().getNeueNummer());
 
         for(int i=0 ; i<spinnerAdapter.getCount() ; i++){
             KeyedValue obj = (KeyedValue) spinnerAdapter.getItem(i);
-            if (obj.mKey.equals(getBean().getModel())) {
+            if (obj.mKey.equals(getBasemodel().getModel())) {
                 spModele.setSelection(i);
             }
         }
 
         for(int i=0 ; i<austauschgrundeAdapter.getCount() ; i++){
             KeyedValue obj = (KeyedValue) austauschgrundeAdapter.getItem(i);
-            if (obj.mKey.equals(getBean().getAustauschGrund())) {
+            if (obj.mKey.equals(getBasemodel().getAustauschGrund())) {
                 spAustauschgrunde.setSelection(i);
             }
         }
@@ -186,27 +180,27 @@ public class DetailViewHolder extends RwmBaseViewHolder {
 
 
     public void save(){
-        if(getBean().getNew().equals(true)){
-            FileHandler.getInstance().getNutzerTodo().getRauchmelder().add(getBean());
-            getBean().setNew(false);
+        if(getBasemodel().getBean().getNew().equals(true)){
+            FileHandler.getInstance().getNutzerTodo().getRauchmelder().add(getBasemodel().getBean());
+            getBasemodel().setNew(false);
         }
 
-        getBean().setRaum(tvRaum.getText().toString());
-        getBean().setNummer(etNummer.getText().toString());
-        getBean().setNeueNummer(etNeueNummer.getText().toString());
-        getBean().setBemerkung(etBemerkungen.getText().toString());
+        getBasemodel().setRaum(tvRaum.getText().toString());
+        getBasemodel().setNummer(etNummer.getText().toString());
+        getBasemodel().setNeueNummer(etNeueNummer.getText().toString());
+        getBasemodel().setBemerkung(etBemerkungen.getText().toString());
 
         Integer modelId = Integer.parseInt (((KeyedValue) spModele.getSelectedItem()).getKey().toString());
-        getBean().setModel(modelId);
+        getBasemodel().setModel(modelId);
 
         String austauschId = ((KeyedValue) spAustauschgrunde.getSelectedItem()).getKey().toString();
-        getBean().setAustauschGrund(austauschId);
+        getBasemodel().setAustauschGrund(austauschId);
 
-        getBean().setWithError(
+        getBasemodel().setWithError(
                 java.util.Arrays.asList(new String[]{"ST", "RE", "NV", "ZE", "DE"})
-                        .contains(getBean().getAustauschGrund()));
+                        .contains(getBasemodel().getAustauschGrund()));
 
-
+        getBasemodel().save();
     }
 
 

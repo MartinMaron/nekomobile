@@ -7,22 +7,24 @@ import android.view.View;
 
 import java.util.Locale;
 
+import de.eneko.nekomobile.activities.models.Basemodel;
+
 public abstract class BaseViewHolder {
     protected final View mView;
-    protected final Object mBean;
     protected final Activity mActivity;
+    protected final Basemodel mBasemodel;
 
 
-    public BaseViewHolder(View pView, Object pBean ){
-       this(pView,pBean,null);
+    public BaseViewHolder(View pView, Basemodel pModel ){
+       this(pView,pModel,null);
     }
 
-    public BaseViewHolder(View pView, Object pBean, Activity pActivity ){
+    public BaseViewHolder(View pView, Basemodel pModel, Activity pActivity ){
         mView = pView;
-        mBean = pBean;
         mActivity = pActivity;
+        mBasemodel = pModel;
+        mBasemodel.load();
     }
-
 
     public void startSpracheingabe(Integer requestId){
         if (getActivity()!= null) {
@@ -40,8 +42,8 @@ public abstract class BaseViewHolder {
         return mView;
     }
 
-    public Object getBean() {
-        return mBean;
+    public Basemodel getBasemodel() {
+        return mBasemodel;
     }
 
     public abstract void updateView();

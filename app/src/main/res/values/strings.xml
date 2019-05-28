@@ -24,4 +24,10 @@
     <string name="add_new">dodaj nowy</string>
     <string name="btOk">Ok</string>
     <string name="btCancel">Abbrechen</string>
+    <string name="defekt">Defekt</string>
+    <string name="neuerZaehler">neuer Zähler</string>
+    <string name="neuer_funk_modul">neuer Funkmodul</string>
+    <string name="neue_funknummer">neue Funknummer</string>
+    <string name="upload">upload</string>
+    <string name="austauschgrund">Austauschgrund</string>
 </resources>

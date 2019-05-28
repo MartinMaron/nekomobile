@@ -13,7 +13,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Liegenschaft implements ItoXmlElement, InekoId {
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.LiegenschaftModel;
+
+public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private String nekoId;
     private Date mStart;
     private Date mEnde;
@@ -35,33 +38,21 @@ public class Liegenschaft implements ItoXmlElement, InekoId {
     }
 
     public Liegenschaft(Route route) {
+        super();
         mToDos = new ArrayList<ToDo>();
         mNutzers = new ArrayList<Nutzer>();
         this.route = route;
     }
 
-    public Boolean hasAblesung(){
-        return mNutzers.stream().filter(r -> r.hasAblesung())
-                .collect(Collectors.toList()).size() > 0;
+    @Override
+    protected Basemodel createBaseObject() {
+        return new LiegenschaftModel(this) ;
     }
 
-    public Boolean hasMontage(){
-        return mNutzers.stream().filter(r -> r.hasMontage())
-                .collect(Collectors.toList()).size() > 0;
+    @Override
+    public LiegenschaftModel getBaseModel() {
+        return (LiegenschaftModel) super.getBaseModel();
     }
-    public Boolean hasRwmMontage(){
-        return mNutzers.stream().filter(r -> r.hasRwmMontage())
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasRwmWartung(){
-        return mNutzers.stream().filter(r -> r.hasRwmWartung())
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasFunkcheck(){
-        return mNutzers.stream().filter(r -> r.hasFunkcheck())
-                .collect(Collectors.toList()).size() > 0;
-    }
-
 
     @Override
     public Element toXmlElement(Document document) {
@@ -120,7 +111,7 @@ public class Liegenschaft implements ItoXmlElement, InekoId {
                         mLongitude = XmlHelper.getDouble(propElement);
                         break;
                     case "todo":
-                        ToDo todo = new ToDo();
+                        ToDo todo = new ToDo(this);
                         todo.updateRouteFromXmlElement(propElement);
                         mToDos.add(todo);
                         break;
@@ -268,6 +259,8 @@ public class Liegenschaft implements ItoXmlElement, InekoId {
     public void setPlZ(String plZ) {
         mPlZ = plZ;
     }
+
+
 
 // endregion properties
 

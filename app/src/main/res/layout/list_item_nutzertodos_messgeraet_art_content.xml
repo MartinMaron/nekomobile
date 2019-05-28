@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_faktor_6">
+
+    <TextView
+        android:id="@+id/tvArt"
+        android:layout_width="@dimen/dp_faktor_15"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/blue" />
+
+    <TextView
+        android:id="@+id/tvDone"
+        android:layout_width="@dimen/dp_faktor_8"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:layout_toRightOf="@id/tvArt"
+        android:textColor="@color/green" />
+
+    <TextView
+        android:id="@+id/tvWithError"
+        android:layout_width="@dimen/dp_faktor_8"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:layout_toRightOf="@id/tvDone"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/tvUnDone"
+        android:layout_width="@dimen/dp_faktor_8"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:layout_toRightOf="@id/tvWithError"
+        android:textColor="@color/gray" />
+
+</RelativeLayout>

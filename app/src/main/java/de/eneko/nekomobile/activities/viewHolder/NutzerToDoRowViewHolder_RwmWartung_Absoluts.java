@@ -3,7 +3,7 @@ package de.eneko.nekomobile.activities.viewHolder;
 
 import android.widget.TextView;
 
-public class NutzerTodosRwmWartungListViewItemWrapper {
+public class NutzerToDoRowViewHolder_RwmWartung_Absoluts {
     /*
      * Objekt Attribute Decl. and init
      */

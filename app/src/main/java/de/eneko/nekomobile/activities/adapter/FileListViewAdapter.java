@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.models.RouteModel;
 import de.eneko.nekomobile.activities.viewHolder.RouteViewHolder;
+import de.eneko.nekomobile.beans.Route;
 
 import android.view.LayoutInflater;
 
@@ -24,12 +26,12 @@ import java.util.ArrayList;
  * <p/>
  * Created by rKasper on 31.05.2015.
  */
-public class FileListViewAdapter extends ArrayAdapter<de.eneko.nekomobile.beans.Route>
+public class FileListViewAdapter extends ArrayAdapter<Route>
 {
     private final Context context;
-    private final ArrayList<de.eneko.nekomobile.beans.Route> values;
+    private final ArrayList<Route> values;
 
-    public FileListViewAdapter(Context context, ArrayList<de.eneko.nekomobile.beans.Route> values) {
+    public FileListViewAdapter(Context context, ArrayList<Route> values) {
         super(context, -1, values);
         this.context = context;
         this.values = values;
@@ -42,7 +44,7 @@ public class FileListViewAdapter extends ArrayAdapter<de.eneko.nekomobile.beans.
     }
 
     @Override
-    public de.eneko.nekomobile.beans.Route getItem(int index)
+    public Route getItem(int index)
     {
         return values.get(index);
     }
@@ -55,15 +57,14 @@ public class FileListViewAdapter extends ArrayAdapter<de.eneko.nekomobile.beans.
 
     @Override
     public View getView(int index, View rowView, ViewGroup parent) {
-        de.eneko.nekomobile.beans.Route route = getItem(index);
-
+        Route obj = getItem(index);
         if (rowView == null){
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView = inflater.inflate(R.layout.list_item_file, parent, false);
         }
 
-        RouteViewHolder viewHolder = new RouteViewHolder(rowView,route);
+        RouteViewHolder viewHolder = new RouteViewHolder(rowView, obj.getBaseModel());
         viewHolder.updateView();
         rowView.setTag(viewHolder);
 

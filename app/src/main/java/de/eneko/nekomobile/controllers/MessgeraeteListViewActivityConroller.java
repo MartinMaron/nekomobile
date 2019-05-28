@@ -1,32 +1,6 @@
 package de.eneko.nekomobile.controllers;
 
 
-import android.widget.Toast;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.MainActivity;
-import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.beans.Liegenschaft;
-import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.beans.Nutzer;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
-import de.eneko.nekomobile.beans.Route;
-import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
-
-
 /**
  * Diese Klasse ist ein Singleton.
  * Es existiert nur ein einziges Objekt

@@ -10,9 +10,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
-import de.eneko.nekomobile.beans.Rauchwarnmelder;
+import de.eneko.nekomobile.activities.models.RauchmelderModel;
+import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.framework.KeyedValue;
 
 public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder.BaseViewHolder {
@@ -41,9 +40,10 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     protected ImageView ivInfo = null;
     protected ImageView ivAustausch = null;
     protected TextView txtvDescription = null;
+    protected Rauchmelder bean = null;
 
 
-    public RwmBaseViewHolder(View pView, Rauchwarnmelder pRauchmelder, Activity pActivity){
+    public RwmBaseViewHolder(View pView, RauchmelderModel pRauchmelder, Activity pActivity){
         super(pView, pRauchmelder, pActivity );
     }
 
@@ -53,8 +53,8 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     }
 
     @Override
-    public Rauchwarnmelder getBean() {
-        return (Rauchwarnmelder) super.getBean();
+    public RauchmelderModel getBasemodel() {
+        return (RauchmelderModel) super.getBasemodel();
     }
 
     @Override
@@ -63,14 +63,14 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     }
 
     private void setRwmImage(ImageView iv){
-        if (this.getBean().getDone()){
+        if (getBasemodel().getBean().getDone()){
             iv.setImageResource(R.drawable.icon_smoke_detector_green_ok);
         }else {
-            if (getBean().getNekoId().contains("new")) {
+            if (getBasemodel().getBean().getNekoId().contains("new")) {
                 iv.setImageResource(R.drawable.icon_smoke_detector_new);
                 iv.setClickable(false);
             }else {
-                if (getBean().getWithError()) {
+                if (getBasemodel().getBean().getWithError()) {
                     iv.setImageResource(R.drawable.icon_smoke_detector_changed);
                 }else{
                     iv.setImageResource(R.drawable.icon_smoke_detector_b);

@@ -4,17 +4,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
-
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.MessgeraetModel;
 
-public class Messgeraet implements InekoId, ItoXmlElement {
+public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String nekoId;
     private String mNummer = "";
     private Integer mSortNo = 0;
@@ -27,11 +24,11 @@ public class Messgeraet implements InekoId, ItoXmlElement {
     private Boolean mIsEximFunk = false;
     private Boolean mIsFunkSontex = false;
     private String mArt = "";
-    private Integer mModel = 0 ;
+    private Integer mModel = -1;
     private Boolean mFunkfehler_offen = false;
     private Boolean mFunkfehler_unerreichbar = false;
     private Boolean mFunkfehler_ignorieren = false;
-    private Integer mZielmodel = 0;
+    private Integer mZielmodel = -1;
     private ToDo mTodo = null;
     private Double mAktuellValue = -1.0;
     private Double mStichtagValue = -1.0;
@@ -39,10 +36,24 @@ public class Messgeraet implements InekoId, ItoXmlElement {
     private Boolean mDefekt = false;
     private String mBemerkung = "";
     private String mNeueNummer = "";
+    private String mNeueFunkNummer = "";
+    private String mNeuesFunkModel = "X";
+    private String mAustauschGrund = "X";
 
 
     public Messgeraet(ToDo pTodo) {
+        super();
         mTodo = pTodo;
+    }
+
+    @Override
+    protected Basemodel createBaseObject() {
+        return new MessgeraetModel(this);
+    }
+
+    @Override
+    public MessgeraetModel getBaseModel() {
+        return (MessgeraetModel) super.getBaseModel();
     }
 
     public void updateRouteFromXmlElement(Element element) {
@@ -119,6 +130,12 @@ public class Messgeraet implements InekoId, ItoXmlElement {
                     case "neueNummer":
                         mNeueNummer = XmlHelper.getString(propElement);
                         break;
+                    case "neueFunkNummer":
+                        mNeueFunkNummer = XmlHelper.getString(propElement);
+                        break;
+                    case "neuesFunkModel":
+                        mNeuesFunkModel = XmlHelper.getString(propElement);
+                        break;
                     default:
                 }
             }
@@ -127,38 +144,6 @@ public class Messgeraet implements InekoId, ItoXmlElement {
     }
 
 
-    public String getLetzterWertText(){
-        String ret_val = "";
-        if (getLetzter_wert_datum() != null) {
-            ret_val = "Letzer Wert vom " + new SimpleDateFormat(GlobalConst.dateFormat).format(mLetzter_wert_datum);
-            ret_val = ret_val + ": " + getLetzter_wert().toString();
-        }
-        return ret_val;
-    }
-
-    public Integer getArtColor() {
-        Integer ret_val = 0;
-        switch (mArt){
-            case "HKV":
-                ret_val = R.color._light_green;
-                break;
-            case "WMZ":
-                ret_val = R.color.light_goldenrod_yellow;
-                break;
-            case "KWZ":
-                ret_val = R.color.light_blue;
-                break;
-            case "WWZ":
-                ret_val = R.color.light_coral;
-                break;
-            case "STZ":
-                ret_val = R.color.light_slate_gray;
-                break;
-            default:
-                return ret_val ;
-        }
-        return ret_val;
-    }
 
 
 
@@ -167,6 +152,8 @@ public class Messgeraet implements InekoId, ItoXmlElement {
         return  null;
         // TODO: Implement ToXmlString
     }
+
+
 
     @Override
     public String getNekoId() {
@@ -359,6 +346,30 @@ public class Messgeraet implements InekoId, ItoXmlElement {
 
     public void setNeueNummer(String neueNummer) {
         mNeueNummer = neueNummer;
+    }
+
+    public String getNeueFunkNummer() {
+        return mNeueFunkNummer;
+    }
+
+    public void setNeueFunkNummer(String neueFunkNummer) {
+        mNeueFunkNummer = neueFunkNummer;
+    }
+
+    public String getNeuesFunkModel() {
+        return mNeuesFunkModel;
+    }
+
+    public void setNeuesFunkModel(String neuesFunkModel) {
+        mNeuesFunkModel = neuesFunkModel;
+    }
+
+    public String getAustauschGrund() {
+        return mAustauschGrund;
+    }
+
+    public void setAustauschGrund(String austauschGrund) {
+        mAustauschGrund = austauschGrund;
     }
 
     // endregion "Properties"

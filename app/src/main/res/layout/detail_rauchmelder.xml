@@ -55,7 +55,7 @@
         android:textSize="@dimen/sp_faktor_05" />
 
     <AutoCompleteTextView
-        android:id="@+id/tvRaum"
+        android:id="@+id/actvRaum"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbRaum"
@@ -75,7 +75,7 @@
         android:id="@+id/lbBemerkung"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/tvRaum"
+        android:layout_below="@id/actvRaum"
         android:text="@string/rwm_detail_lb_Bemerkung"
         android:textSize="@dimen/sp_faktor_05" />
 

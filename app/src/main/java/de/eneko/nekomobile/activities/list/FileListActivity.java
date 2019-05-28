@@ -1,41 +1,42 @@
-package de.eneko.nekomobile.activities;
+package de.eneko.nekomobile.activities.list;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Date;
 import java.util.Calendar;
 
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.activities.adapter.FileListViewAdapter;
+import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.listener.FileListViewOnItemClickListener;
 
-public class FileListActivity extends ListActivity {
+public class FileListActivity extends ListActivity implements AdapterView.OnItemClickListener {
 
-    //ListView Adapter welcher den Inhalt verwaltet
-    private FileListViewAdapter mfileListViewAdapter = null;
+    private FileListViewAdapter mAdapter = null;
 
-    //OnItemClickListener er wird aufgerufen wenn ein einzelnes Item geklickt wird
-    private FileListViewOnItemClickListener mFileListViewOnItemClickListener = null;
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        FileHandler.getInstance().setRoute(mAdapter.getItem(i));
+        Intent intent = new Intent(view.getContext(), LiegenschaftListActivity.class);
+        view.getContext().startActivity(intent);
+    }
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        // Dateien wurden geladen
         FileHandler.getInstance().preLoadAllRoutes();
-        // Init adapter
         try {
             ArrayList<Route> datasoure = new ArrayList<Route>();
             datasoure.addAll(
@@ -44,10 +45,9 @@ public class FileListActivity extends ListActivity {
                             .sorted(Comparator.comparing(Route::getDatum))
                             .collect(Collectors.toList()));
 
-            mfileListViewAdapter = new FileListViewAdapter(this, datasoure);
-            mFileListViewOnItemClickListener = new FileListViewOnItemClickListener();
-            getListView().setOnItemClickListener(mFileListViewOnItemClickListener);
-            setListAdapter(mfileListViewAdapter);
+            mAdapter = new FileListViewAdapter(this, datasoure);
+            getListView().setOnItemClickListener(this);
+            setListAdapter(mAdapter);
         }
         catch (Exception e)
         {

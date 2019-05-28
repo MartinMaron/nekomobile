@@ -16,9 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.NutzerModel;
 
 
-    public class Nutzer implements InekoId, ItoXmlElement {
+public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
     private Date mStart;
     private Date mEnde;
     private String nekoId;
@@ -33,14 +35,23 @@ import de.eneko.nekomobile.R;
     private String mNutzerName ="";
     private String telNummer ="";
     private final Liegenschaft mLiegenschaft;
-
     private List<ToDo> mToDos;
 
     public Nutzer(Liegenschaft liegenschaft) {
+        super();
         mLiegenschaft = liegenschaft;
         mToDos = new ArrayList<ToDo>();
     }
 
+    @Override
+    protected Basemodel createBaseObject() {
+        return new NutzerModel(this);
+    }
+
+    @Override
+    public NutzerModel getBaseModel() {
+        return (NutzerModel) super.getBaseModel();
+    }
 
     // region Xml
 
@@ -117,71 +128,9 @@ import de.eneko.nekomobile.R;
     // endregion Xml
 
 
-    public Boolean hasAblesung(){
-        return mToDos.stream().filter(r -> r.getArt().equals("ABL_ALL"))
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasMontage(){
-        return mToDos.stream().filter(r -> Arrays.asList(new String[]{"MON_HKV", "MON_WMZ","MON_WWZ","MON_KWZ"}).contains(r.getArt()))
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasRwmMontage(){
-        return mToDos.stream().filter(r -> r.getArt().equals("MON_RWM"))
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasRwmWartung(){
-        return mToDos.stream().filter(r -> r.getArt().equals("WAR_RWM"))
-                .collect(Collectors.toList()).size() > 0;
-    }
-    public Boolean hasFunkcheck(){
-        return mToDos.stream().filter(r -> r.getArt().equals("FUN_CHK"))
-                .collect(Collectors.toList()).size() > 0;
-    }
 
 
 
-    public String getDisplay()
-    {
-        String retval = this.mNutzerName + " " + getWohnungsnummerMitLage();
-        return  retval;
-    }
-
-    public String getWohnungsnummerMitLage() {
-        String retval = String.format("%03d" , mWohnungsnummer) + "-" +
-                String.format("%03d" , mNutzernummer);
-        if(!TextUtils.isEmpty(mLage))
-        {
-            retval = retval + " " +  mLage;
-        }
-        return retval;
-    }
-
-
-    public Boolean isCompleted(){
-        return false;
-    }
-
-    public Integer getStatusImageResourceId() {
-        if (mAbwesend) {
-            return R.drawable.nutzer_abwesend;
-        } else if (isCompleted()) {
-            return R.drawable.icon_ok_48;
-        } else {
-            return R.drawable.set_abwesend;
-        }
-    }
-
-    public ToDo getRwmTodo(){
-        return getToDoByArt("WAR_RWM");
-    }
-
-    public ToDo getToDoByArt(String pArt){
-        return mToDos.stream().filter(el -> el.getArt().equals(pArt)).findFirst().orElse(null);
-    }
-
-    public Integer getRwmStatusImageResourceId() {
-        return getRwmTodo() != null ? getRwmTodo().getRwmStatusImageResourceId():0;
-    }
 
 
         // region properties

@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.RouteModel;
 import de.eneko.nekomobile.beans.Route;
 
 public class RouteViewHolder extends BaseViewHolder{
@@ -14,24 +16,23 @@ public class RouteViewHolder extends BaseViewHolder{
     private TextView txtvDatum = null;
     private TextView txtvErstellDatum = null;
 
-    public RouteViewHolder(View pView, Object pBean) {
-        super(pView, pBean);
+    public RouteViewHolder(View pView, Basemodel pModel) {
+        super(pView, pModel);
     }
 
     @Override
-    public Route getBean() {
-        return (Route) super.getBean();
+    public RouteModel getBasemodel() {
+        return (RouteModel) super.getBasemodel();
     }
 
     @Override
     public void updateView() {
-
         setTxtvRouteName(mView.findViewById(R.id.txtvRouteName));
         setTxtvDatum(mView.findViewById(R.id.txtvDatum));
         setTxtvErstellDatum(mView.findViewById(R.id.txtvErstelldatum));
-        getTxtvRouteName().setText(getBean().getBezeichnung());
-        getTxtvDatum().setText(new SimpleDateFormat(GlobalConst.dateFormat).format(getBean().getDatum()));
-        getTxtvErstellDatum().setText(getBean().getCreateTimestamp());
+        getTxtvRouteName().setText(getBasemodel().getBezeichnung());
+        getTxtvDatum().setText(new SimpleDateFormat(GlobalConst.dateFormat).format(getBasemodel().getDatum()));
+        getTxtvErstellDatum().setText(getBasemodel().getCreateTimestamp());
     }
 
     // region controls

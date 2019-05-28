@@ -6,13 +6,17 @@ public class ZaehlerModel {
     private Integer mId = 0;
     private String mBezeichnung = "";
     private String mArt = "";
-    private Boolean mAustauschmodel = false;
+    private final Boolean mAustauschmodel;
+    private final Boolean mFunkintegriert;
+    private final String mArtikelnummer;
 
-    public  ZaehlerModel(String pId, String pBezeichnung, String pArt, String pAustauschmodel){
+    public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt, String pArtikelnummer){
         mId = Integer.parseInt(pId);
         mBezeichnung = pBezeichnung;
         mAustauschmodel = pAustauschmodel.equals("True");
         mArt = pArt;
+        mFunkintegriert = false;
+        mArtikelnummer = pArtikelnummer;
     }
 
 
@@ -30,6 +34,14 @@ public class ZaehlerModel {
 
     public Boolean getAustauschmodel() {
         return mAustauschmodel;
+    }
+
+    public Boolean getFunkintegriert() {
+       return mFunkintegriert;
+    }
+
+    public String getArtikelnummer() {
+        return mArtikelnummer;
     }
 
     @Override

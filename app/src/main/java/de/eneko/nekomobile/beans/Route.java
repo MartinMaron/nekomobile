@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Route implements InekoId, ItoXmlElement {
+import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.activities.models.RouteModel;
+
+public class Route extends BaseObject implements InekoId, ItoXmlElement {
     private String nekoId;
     private String mBezeichnung;
     private Date mDatum;
@@ -21,6 +25,16 @@ public class Route implements InekoId, ItoXmlElement {
 
     public Route() {
         mLiegenschaften = new ArrayList<Liegenschaft>();
+    }
+
+    @Override
+    protected Basemodel createBaseObject() {
+        return new RouteModel(this);
+    }
+
+    @Override
+    public RouteModel getBaseModel() {
+        return (RouteModel) super.getBaseModel();
     }
 
     public List<Liegenschaft> getLiegenschaften() {
