@@ -6,9 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
-import de.eneko.nekomobile.beans.ToDo;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerToDoRowViewHolder extends BaseViewHolder{
@@ -32,6 +30,8 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
         setSvMessgeraeteAbsoluts(mView.findViewById(R.id.messgeraet_content));
         if (getSvMessgeraeteAbsoluts() != null) getSvMessgeraeteAbsoluts().setVisibility(View.INVISIBLE);
 
+        getIvImage().setImageResource(getBasemodel().getProgressStatusImageResourceId());
+
 
         //Befuellen der einzelen Widgets
         getTxtvDescription().setText(getBasemodel().getBezeichnung());
@@ -43,18 +43,16 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
                 vhRwmAbsoluts.setTxtvDone(svRwmAbsoluts.findViewById(R.id.txtvDone));
                 vhRwmAbsoluts.setTxtvWithError(svRwmAbsoluts.findViewById(R.id.txtvWithError));
                 vhRwmAbsoluts.setTxtvNew(svRwmAbsoluts.findViewById(R.id.txtvNew));
-                getIvImage().setImageResource(getBasemodel().getRwmStatusImageResourceId());
-                vhRwmAbsoluts.getTxtvUndone().setText("nicht geprüft: " + getBasemodel().getRwmWartungUndoneCount());
-                vhRwmAbsoluts.getTxtvDone().setText("geprüft: " + getBasemodel().getRwmWartungDoneCount());
-                vhRwmAbsoluts.getTxtvWithError().setText("mit fehler: " + getBasemodel().getRwmWartungWithErrorCount());
-                vhRwmAbsoluts.getTxtvNew().setText("neu installiert: " + getBasemodel().getRwmWartungNewCount());
+                vhRwmAbsoluts.getTxtvUndone().setText("nicht geprüft: " + getBasemodel().getUndoneCount("RWM"));
+                vhRwmAbsoluts.getTxtvDone().setText("geprüft: " + getBasemodel().getDoneCount("RWM"));
+                vhRwmAbsoluts.getTxtvWithError().setText("mit fehler: " + getBasemodel().getWithErrorCount("RWM"));
+                vhRwmAbsoluts.getTxtvNew().setText("neu installiert: " + getBasemodel().getNewCount("RWM"));
                 getSvRwmAbsoluts().setVisibility(View.VISIBLE);
                 break;
             case Dict.TODO_MONTAGE_HKV: case Dict.TODO_MONTAGE_WMZ: case Dict.TODO_MONTAGE_WWZ: case Dict.TODO_MONTAGE_KWZ:
                 getIvImage().setImageResource(R.drawable.icon_montage);
             break;
             case Dict.TODO_ABLESUNG:
-                getIvImage().setImageResource(getBasemodel().getAblesungImageResourceId());
                 getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
                 vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
                 vhMessgeraeteAbsoluts.updateView();

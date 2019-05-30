@@ -65,6 +65,25 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
                     }
                 }
+
+                if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV))
+                {
+                    if (getBasemodel().getBean().getArt().equals("HKV"))
+                    {
+                        getLbNewModel().setVisibility(View.GONE);
+                        getSpNewModel().setVisibility(View.GONE);
+                        getIvBarcodeNewModel().setVisibility(View.GONE);
+
+                        getLbNewFunkModel().setVisibility(View.GONE);
+                        getSpNewFunkModel().setVisibility(View.GONE);
+                        getIvBarcodeNewFunkModel().setVisibility(View.GONE);
+
+                        getLbNewFunkNummer().setVisibility(View.GONE);
+                        getTvNewFunkNummer().setVisibility(View.GONE);
+                        getIvBarcodeNewFunkNummer().setVisibility(View.GONE);
+                        getCbDefekt().setVisibility(View.GONE);
+                    }
+                }
             }
         };
         viewHolder.updateView();

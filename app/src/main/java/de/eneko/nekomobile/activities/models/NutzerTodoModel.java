@@ -6,6 +6,7 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.ToDo;
+import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerTodoModel extends Basemodel{
 
@@ -36,118 +37,120 @@ public class NutzerTodoModel extends Basemodel{
     }
 
 
-    //region Rauchmelder
+
+
     /*
-    noch zu prüfende Rauchmelder
-     */
-    public Integer getRwmWartungUndoneCount ()
-    {
-        return getBean().getRauchmelder().stream().filter(r -> r.getBaseModel().getUnDone())
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    bereits geprüfte Rauchmelder
-     */
-    public Integer getRwmWartungDoneCount ()
-    {
-        return getBean().getRauchmelder().stream().filter(r -> r.getDone())
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    fehlende oder zu ersetztende rwm
-     */
-    public Integer getRwmWartungWithErrorCount ()
-    {
-        return getBean().getRauchmelder().stream().filter(r -> r.getWithError())
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    neu instalierte rwm
-     */
-    public Integer getRwmWartungNewCount ()
-    {
-        return getBean().getRauchmelder().stream().filter(r -> r.getNekoId().contains("new"))
-                .collect(Collectors.toList()).size();
-    }
+
     /*
     Anzahl der Racuhmelder, welche zu prüfen waren
      */
-    public Integer getRwmToDoCount ()
+    public Integer getToDoCount(String pArt)
     {
-        return getRwmWartungDoneCount() + getRwmWartungUndoneCount() + getRwmWartungWithErrorCount();
+            return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
     }
 
-    public Boolean isRwmCompleted(){
-        if(getRwmToDoCount()== 0) {return false;}
-        return getRwmToDoCount() == (getRwmWartungWithErrorCount()+ getRwmWartungDoneCount());
+    public Boolean isCompleted(String pArt){
+
+       if(pArt.equals("RWM")){
+            if (getToDoCount(pArt)== 0) {return false;}
+            return getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
+       }else{
+           Integer absolutUndoneCount = getBean().getMessgeraete().stream()
+                   .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk())
+                   .collect(Collectors.toList()).size();
+
+           if (absolutUndoneCount == 0) {
+               return true;
+           }else
+           {
+               return false;
+           }
+       }
     }
-    public Integer getRwmStatusImageResourceId(){
-        if (isRwmCompleted()) {
-            return R.drawable.icon_smoke_detector_green_ok;
-        }else {
-            return R.drawable.icon_smoke_detector_b;
-        }
-    }
-
-
-    // endregion Rauchmelder
-
-
-    //region Ablesung
-    /*
-    noch zum Ablesen
-     */
-    public Integer getAblesungUndoneCount (String pArt)
-    {
-        return getBean().getMessgeraete().stream()
-                .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk() && r.getArt().equals(pArt))
-                .collect(Collectors.toList()).size();
-    }
-    /*
-    bereits abgelesene
-     */
-    public Integer getAblesungDoneCount (String pArt)
-    {
-        return getBean().getMessgeraete().stream()
-                .filter(r -> (r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk() && r.getArt().equals(pArt))
-                .collect(Collectors.toList()).size();
-
-    }
-
-    /*
-    defekte
-     */
-    public Integer getAblesungWithErrorCount (String pArt)
-    {
-        return getBean().getMessgeraete().stream()
-                .filter(r -> r.getDefekt() && !r.getFunk() && r.getArt().equals(pArt))
-                .collect(Collectors.toList()).size();
-    }
-
-    public Boolean isAblesungCompleted(){
-//        Integer absolutDoneCount = getBean().getMessgeraete().stream()
-//                .filter(r -> (r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk())
-//                .collect(Collectors.toList()).size();
-
-        Integer absolutUndoneCount = getBean().getMessgeraete().stream()
-                .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk())
-                .collect(Collectors.toList()).size();
-
-        if (absolutUndoneCount == 0) {
-            return true;
-        }else
+    public Integer getProgressStatusImageResourceId(){
+        if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM))
         {
-            return false;
+            if (isCompleted("RWM")) {
+                return R.drawable.icon_smoke_detector_green_ok;
+            }else {
+                return R.drawable.icon_smoke_detector_b;
+            }
+        }
+        if (getBean().getArt().equals(Dict.TODO_ABLESUNG))
+        {
+            if (isCompleted("GER")) {
+                return R.drawable.icon_ablesung_complete;
+            }else {
+                return R.drawable.icon_ablesung;
+            }
+        }
+
+
+        return 0;
+    }
+
+
+
+    public Integer getUndoneCount(String pArt)
+    {
+        if (pArt.equals("RWM"))
+        {
+            return getBean().getRauchmelder().stream().filter(r -> r.getBaseModel().getUnDone())
+                    .collect(Collectors.toList()).size();
+        }else {
+            return getBean().getMessgeraete().stream()
+                    .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk() && r.getArt().equals(pArt))
+                    .collect(Collectors.toList()).size();
         }
     }
 
-    public Integer getAblesungImageResourceId(){
-        if (isAblesungCompleted()) {
-            return R.drawable.icon_ablesung_complete;
+    public Integer getDoneCount(String pArt)
+    {
+        if (pArt.equals("RWM"))
+        {
+            return getBean().getRauchmelder().stream().filter(r -> r.getDone())
+                    .collect(Collectors.toList()).size();
+        }else{
+        return getBean().getMessgeraete().stream()
+                .filter(r -> r.isDone() && r.getArt().equals(pArt))
+                .collect(Collectors.toList()).size();
+        }
+   }
+
+    public Integer getWithErrorCount(String pArt)
+    {
+        if (pArt.equals("RWM"))
+        {
+            return getBean().getRauchmelder().stream().filter(r -> r.getWithError())
+                    .collect(Collectors.toList()).size();
         }else {
-            return R.drawable.icon_ablesung;
+            return getBean().getMessgeraete().stream()
+                    .filter(r -> r.getDefekt() && !r.getFunk() && r.getArt().equals(pArt))
+                    .collect(Collectors.toList()).size();
         }
     }
+
+    public Integer getNewCount(String pArt)
+    {
+        if (pArt.equals("RWM"))
+        {
+            return getBean().getRauchmelder().stream().filter(r -> r.getNekoId().contains("new"))
+                    .collect(Collectors.toList()).size();
+        }else {
+            return 0;
+        }
+     }
+
+
+
+
+//    public Integer getAblesungImageResourceId(){
+//        if (isCompleted("GER")) {
+//            return R.drawable.icon_ablesung_complete;
+//        }else {
+//            return R.drawable.icon_ablesung;
+//        }
+//    }
 
 
 
@@ -161,9 +164,9 @@ public class NutzerTodoModel extends Basemodel{
     // region properties
 
 
-    public Nutzer getNutzer() {
-        return getBean().getNutzer();
-    }
+//    public Nutzer getNutzer() {
+//        return getBean().getNutzer();
+//    }
 
     public Liegenschaft getLiegenschaft() {
         return getBean().getLiegenschaft();

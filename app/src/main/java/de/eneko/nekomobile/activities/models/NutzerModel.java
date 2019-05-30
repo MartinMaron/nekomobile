@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
@@ -116,24 +115,26 @@ public class NutzerModel extends Basemodel {
         }
     }
 
-    public ToDo getRwmTodo(){
-        return getToDoByArt("WAR_RWM");
-    }
+//    public ToDo getRwmTodo(){
+//        return getToDoByArt("WAR_RWM");
+//    }
 
     public ToDo getToDoByArt(String pArt){
         return getBean().getToDos().stream().filter(el -> el.getArt().equals(pArt)).findFirst().orElse(null);
     }
 
-    public Integer getRwmStatusImageResourceId() {
-        return getRwmTodo() != null ? getRwmTodo().getBaseModel().getRwmStatusImageResourceId():0;
-    }
+    public Integer getProgressStatusImageResourceId(String todoArt) {
+        ToDo todo = getToDoByArt(Dict.TODO_WARTUNG_RWM);
+        if (todo == null){return 0;}
+        return todo.getBaseModel().getProgressStatusImageResourceId();
+   }
 
     public ToDo getAblesungTodo(){
         return getToDoByArt(Dict.TODO_ABLESUNG);
     }
 
     public Integer getAblesungImageResourceId(){
-        return getAblesungTodo() != null ? getAblesungTodo().getBaseModel().getAblesungImageResourceId():0;
+        return getAblesungTodo() != null ? getAblesungTodo().getBaseModel().getProgressStatusImageResourceId():0;
 
     }
 

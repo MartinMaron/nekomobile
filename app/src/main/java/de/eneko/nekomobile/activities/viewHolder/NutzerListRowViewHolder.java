@@ -9,6 +9,7 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
 import de.eneko.nekomobile.beans.Nutzer;
+import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerListRowViewHolder extends BaseViewHolder{
     /*
@@ -69,7 +70,7 @@ public class NutzerListRowViewHolder extends BaseViewHolder{
         getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvRwmWartung().setImageResource(getBasemodel().getRwmStatusImageResourceId());
+        getTodoRow().getIvRwmWartung().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_WARTUNG_RWM));
         getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE: View.GONE);
 
         setStatusImage(getIvStatus(),getBasemodel().getBean());

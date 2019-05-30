@@ -10,6 +10,7 @@ import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.controllers.Dict;
 
 public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String nekoId;
@@ -143,17 +144,11 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     }
 
-
-
-
-
     @Override
     public Element toXmlElement(Document document) {
         return  null;
         // TODO: Implement ToXmlString
     }
-
-
 
     @Override
     public String getNekoId() {
@@ -164,6 +159,29 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     public void setNekoId(String nekoId) {
         this.nekoId = nekoId;
     }
+
+    public Boolean isDone(){
+        if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
+        return (getStichtagValue() >= 0 || getAktuellValue() >= 0) && !getFunk() && !getDefekt();}
+        return false;
+    };
+
+    public Boolean isUnDone(){
+        if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
+            return !(getDefekt() || getStichtagValue() >= 0 || getAktuellValue() >= 0) && !getFunk();}
+        return false;
+    };
+
+    public Boolean isWithError(){
+        if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
+            return getDefekt();}
+        return false;
+    };
+    public Boolean isNew(){
+        return getNekoId().contains("new");
+    };
+
+
 
     // region "Properties"
 

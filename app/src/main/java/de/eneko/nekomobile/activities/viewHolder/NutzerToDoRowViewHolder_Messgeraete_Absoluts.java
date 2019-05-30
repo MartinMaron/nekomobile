@@ -5,9 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
-import de.eneko.nekomobile.beans.Nutzer;
 
 public class NutzerToDoRowViewHolder_Messgeraete_Absoluts extends BaseViewHolder{
     protected ArtContentViewHolder vhWMZ = null;
@@ -142,9 +140,34 @@ public class NutzerToDoRowViewHolder_Messgeraete_Absoluts extends BaseViewHolder
 
         public void loadDataByArt(String pArt){
             getTvArt().setText(pArt);
-            getTvDone().setText(getBasemodel().getAblesungDoneCount(pArt).toString());
-            getTvUnDone().setText(getBasemodel().getAblesungUndoneCount(pArt).toString());
-            getTvWithError().setText(getBasemodel().getAblesungWithErrorCount(pArt).toString());
+            getTvDone().setText(getBasemodel().getDoneCount(pArt).toString());
+            getTvUnDone().setText(getBasemodel().getUndoneCount(pArt).toString());
+            getTvWithError().setText(getBasemodel().getWithErrorCount(pArt).toString());
+            if (getTvDone().getText().toString().equals("0") &&
+                    getTvUnDone().getText().toString().equals("0") &&
+                    getTvWithError().getText().toString().equals("0"))
+            {
+                switch (pArt)
+                {
+                    case "HKV":
+                        svHKV.setVisibility(View.INVISIBLE);
+                        break;
+                    case "WWZ":
+                        svWWZ.setVisibility(View.INVISIBLE);
+                        break;
+                    case "WMZ":
+                        svWMZ.setVisibility(View.INVISIBLE);
+                        break;
+                    case "KWZ":
+                        svKWZ.setVisibility(View.INVISIBLE);
+                        break;
+                }
+
+
+            }
+
+
+
         }
 
         public ArtContentViewHolder(View pView, NutzerTodoModel pModel) {
