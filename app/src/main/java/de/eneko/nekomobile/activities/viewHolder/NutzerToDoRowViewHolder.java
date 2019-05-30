@@ -52,16 +52,13 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
             case Dict.TODO_MONTAGE_HKV: case Dict.TODO_MONTAGE_WMZ: case Dict.TODO_MONTAGE_WWZ: case Dict.TODO_MONTAGE_KWZ:
                 getIvImage().setImageResource(R.drawable.icon_montage);
             break;
-            case Dict.TODO_ABLESUNG:
+            case Dict.TODO_ABLESUNG: case Dict.TODO_FUNK_CHECK:
                 getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
                 vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
                 vhMessgeraeteAbsoluts.updateView();
                 break;
             case Dict.TODO_MONTAGE_RWM:
                 getIvImage().setImageResource(R.drawable.icon_rwm_montage);
-                break;
-            case Dict.TODO_FUNK_CHECK:
-                getIvImage().setImageResource(R.drawable.icon_funk_check);
                 break;
             default:
         }
