@@ -115,29 +115,15 @@ public class NutzerModel extends Basemodel {
         }
     }
 
-//    public ToDo getRwmTodo(){
-//        return getToDoByArt("WAR_RWM");
-//    }
-
     public ToDo getToDoByArt(String pArt){
         return getBean().getToDos().stream().filter(el -> el.getArt().equals(pArt)).findFirst().orElse(null);
     }
 
     public Integer getProgressStatusImageResourceId(String todoArt) {
-        ToDo todo = getToDoByArt(Dict.TODO_WARTUNG_RWM);
+        ToDo todo = getToDoByArt(todoArt);
         if (todo == null){return 0;}
         return todo.getBaseModel().getProgressStatusImageResourceId();
    }
-
-    public ToDo getAblesungTodo(){
-        return getToDoByArt(Dict.TODO_ABLESUNG);
-    }
-
-    public Integer getAblesungImageResourceId(){
-        return getAblesungTodo() != null ? getAblesungTodo().getBaseModel().getProgressStatusImageResourceId():0;
-
-    }
-
 
 
     // region properties

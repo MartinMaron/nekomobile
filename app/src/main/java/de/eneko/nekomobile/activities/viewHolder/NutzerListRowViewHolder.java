@@ -65,7 +65,7 @@ public class NutzerListRowViewHolder extends BaseViewHolder{
 
         // sichtbarkei der Icons
         getTodoRow().getIvAblesung().setVisibility(getBasemodel().hasAblesung() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvAblesung().setImageResource(getBasemodel().getAblesungImageResourceId());
+        getTodoRow().getIvAblesung().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_ABLESUNG));
 
         getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);

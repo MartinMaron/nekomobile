@@ -165,9 +165,6 @@ public class NutzerToDoRowViewHolder_Messgeraete_Absoluts extends BaseViewHolder
 
 
             }
-
-
-
         }
 
         public ArtContentViewHolder(View pView, NutzerTodoModel pModel) {

@@ -23,6 +23,7 @@
     <array name="funk_austausch_grund">
         <item>X; ;</item>
         <item>DEF;display defekt</item>
+        <item>HKF;brak kaloryfera</item>
         <item>FFE;kein Funk</item>
         <item>NVO;nie ma a powinien byc</item>
         <item>VER;zniszczony;</item>

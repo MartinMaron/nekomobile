@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
-import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.ToDo;
 import de.eneko.nekomobile.controllers.Dict;
 
@@ -39,11 +38,6 @@ public class NutzerTodoModel extends Basemodel{
 
 
 
-    /*
-
-    /*
-    Anzahl der Racuhmelder, welche zu prüfen waren
-     */
     public Integer getToDoCount(String pArt)
     {
             return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
@@ -56,7 +50,7 @@ public class NutzerTodoModel extends Basemodel{
             return getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
        }else{
            Integer absolutUndoneCount = getBean().getMessgeraete().stream()
-                   .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk())
+                   .filter(r -> r.isUnDone())
                    .collect(Collectors.toList()).size();
 
            if (absolutUndoneCount == 0) {
@@ -98,8 +92,12 @@ public class NutzerTodoModel extends Basemodel{
             return getBean().getRauchmelder().stream().filter(r -> r.getBaseModel().getUnDone())
                     .collect(Collectors.toList()).size();
         }else {
+            Object l = getBean().getMessgeraete().stream()
+                    .filter(r -> r.isUnDone() && r.getArt().equals(pArt))
+                    .collect(Collectors.toList());
+
             return getBean().getMessgeraete().stream()
-                    .filter(r -> !(r.getDefekt() || r.getStichtagValue() >= 0 || r.getAktuellValue() >= 0) && !r.getFunk() && r.getArt().equals(pArt))
+                    .filter(r -> r.isUnDone() && r.getArt().equals(pArt))
                     .collect(Collectors.toList()).size();
         }
     }
@@ -125,7 +123,7 @@ public class NutzerTodoModel extends Basemodel{
                     .collect(Collectors.toList()).size();
         }else {
             return getBean().getMessgeraete().stream()
-                    .filter(r -> r.getDefekt() && !r.getFunk() && r.getArt().equals(pArt))
+                    .filter(r -> r.isWithError() && r.getArt().equals(pArt))
                     .collect(Collectors.toList()).size();
         }
     }
@@ -137,7 +135,8 @@ public class NutzerTodoModel extends Basemodel{
             return getBean().getRauchmelder().stream().filter(r -> r.getNekoId().contains("new"))
                     .collect(Collectors.toList()).size();
         }else {
-            return 0;
+            return getBean().getMessgeraete().stream().filter(r -> r.getNekoId().contains("new"))
+                    .collect(Collectors.toList()).size();
         }
      }
 
