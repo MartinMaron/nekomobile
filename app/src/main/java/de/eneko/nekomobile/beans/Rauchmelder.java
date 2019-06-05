@@ -1,9 +1,12 @@
 package de.eneko.nekomobile.beans;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.util.Date;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
@@ -13,7 +16,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     private String mNummer = "";
     private String mRaum = "";
     private Integer mModel = 0;
-
+    private Date mEingabedatum = null;
     private Boolean mDone = false ;
     private Boolean mWithError = false;
     private Boolean mNew = false;
@@ -41,11 +44,34 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     // region Xml
     @Override
     public Element toXmlElement(Document document) {
-        return  null;
-        // TODO: Implement ToXmlString
+        Element ret_val = document.createElement("RWM_Device");
+        try {
+            if(this instanceof InekoId)
+            {
+                Attr attr = document.createAttribute("nekoId");
+                attr.setValue(this.getNekoId());
+                ret_val.setAttributeNode(attr);
+            }
+
+            CreateTextNode(ret_val,"nummer" ,mNummer);
+            CreateTextNode(ret_val,"raum" ,mRaum);
+            CreateIntegerNode(ret_val,"model",mModel);
+            if (mEingabedatum != null) CreateDateTimeNode(ret_val,"eingabedatum",mEingabedatum);
+            CreateTextNode(ret_val,"done",mDone.toString());
+            CreateTextNode(ret_val,"withError",mWithError.toString());
+            CreateTextNode(ret_val,"new",mNew.toString());
+            if (mBemerkung != null) CreateTextNode(ret_val,"bemerkung",mBemerkung);
+            if (mNeueNummer != null) CreateTextNode(ret_val,"neueNummer",mNeueNummer);
+            if (mAustauschGrund != "X") CreateTextNode(ret_val,"austauschgrund",mAustauschGrund);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ret_val;
     }
 
     public void updateRouteFromXmlElement(Element element) {
+        try{
         this.nekoId = element.getAttributeNode("nekoId").getValue();
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -54,18 +80,41 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "nummer":
-                        mNummer = XmlHelper.getString(propElement);
+                        mNummer = getString(propElement);
                         break;
                     case "raum":
-                        mRaum = XmlHelper.getString(propElement);
+                        mRaum = getString(propElement);
                         break;
                     case "model":
-                        mModel = XmlHelper.getInteger(propElement);
+                        mModel = getInteger(propElement);
                         break;
+                    case "eingabedatum":
+                        mEingabedatum = getSipleLongDate(propElement);
+                        break;
+                    case "done":
+                        mDone = getBoolean(propElement);
+                        break;
+                    case "withError":
+                        mWithError = getBoolean(propElement);
+                        break;
+                    case "new":
+                        mNew = getBoolean(propElement);
+                        break;
+                    case "bemerkung":
+                        mBemerkung = getString(propElement);
+                        break;
+                    case "neueNummer":
+                        mNeueNummer = getString(propElement);
+                        break;
+                    case "austauschgrund":
+                        mAustauschGrund = getString(propElement);
                     default:
                         System.out.println(propElement.getNodeName() + ": keine bekannte Property");
                 }
              }
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -114,6 +163,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setDone(Boolean done) {
         mDone = done;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
     public Boolean getWithError() {

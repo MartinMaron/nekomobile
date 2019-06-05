@@ -56,6 +56,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        FileHandler.getInstance().saveFile();
         exit();
     }
 }

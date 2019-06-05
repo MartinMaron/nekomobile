@@ -1,13 +1,11 @@
 package de.eneko.nekomobile.beans;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.Dict;
@@ -40,11 +38,15 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String mNeueFunkNummer = "";
     private String mNeuesFunkModel = "X";
     private String mAustauschGrund = "X";
-
+    private Liegenschaft mLiegenschaft = null;
 
     public Messgeraet(ToDo pTodo) {
         super();
         mTodo = pTodo;
+    }
+    public Messgeraet(Liegenschaft pLiegenschaft) {
+        super();
+        mLiegenschaft = pLiegenschaft;
     }
 
     @Override
@@ -58,96 +60,139 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     }
 
     public void updateRouteFromXmlElement(Element element) {
-        this.nekoId = element.getAttributeNode("nekoId").getValue();
-        NodeList nodeList = element.getChildNodes();
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        try{
+            this.nekoId = element.getAttributeNode("nekoId").getValue();
+            NodeList nodeList = element.getChildNodes();
+            for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "nummer":
-                        mNummer = XmlHelper.getString(propElement);
-                        break;
-                    case "raum":
-                        mRaum = XmlHelper.getString(propElement);
-                        break;
-                    case "model":
-                        mModel = XmlHelper.getInteger(propElement);
+                        mNummer = getString(propElement);
                         break;
                     case "sortNo":
-                        mSortNo = XmlHelper.getInteger(propElement);
+                        mSortNo = getInteger(propElement);
+                        break;
+                    case "raum":
+                        mRaum = getString(propElement);
                         break;
                     case "isFunk":
-                        mIsFunk = XmlHelper.getBoolean(propElement);
+                        mIsFunk = getBoolean(propElement);
                         break;
                     case "ablesung_andere":
-                        mAblesung_andere = XmlHelper.getString(propElement);
+                        mAblesung_andere = getString(propElement);
                         break;
                     case "letzter_wert":
-                        mLetzter_wert = XmlHelper.getDouble(propElement);
+                        mLetzter_wert = getDouble(propElement);
                         break;
                     case "letzter_wert_datum":
-                        mLetzter_wert_datum = XmlHelper.getSipleDate(propElement);
+                        mLetzter_wert_datum = getSipleDate(propElement);
                         break;
                     case "fortlaufend":
-                        mFortlaufend = XmlHelper.getBoolean(propElement);
+                        mFortlaufend = getBoolean(propElement);
                         break;
                     case "isEximFunk":
-                        mIsEximFunk = XmlHelper.getBoolean(propElement);
+                        mIsEximFunk = getBoolean(propElement);
                         break;
                     case "isFunkSontex":
-                        mIsFunkSontex = XmlHelper.getBoolean(propElement);
+                        mIsFunkSontex = getBoolean(propElement);
                         break;
                     case "art":
-                        mArt = XmlHelper.getString(propElement);
+                        mArt = getString(propElement);
+                        break;
+                    case "model":
+                        mModel = getInteger(propElement);
                         break;
                     case "funkfehler_offen":
-                        mFunkfehler_offen = XmlHelper.getBoolean(propElement);
+                        mFunkfehler_offen = getBoolean(propElement);
                         break;
                     case "funkfehler_unerreichbar":
-                        mFunkfehler_unerreichbar = XmlHelper.getBoolean(propElement);
+                        mFunkfehler_unerreichbar = getBoolean(propElement);
                         break;
                     case "funkfehler_ignorieren":
-                        mFunkfehler_ignorieren = XmlHelper.getBoolean(propElement);
+                        mFunkfehler_ignorieren = getBoolean(propElement);
                         break;
                     case "zielmodel":
-                        mZielmodel = XmlHelper.getInteger(propElement);
+                        mZielmodel = getInteger(propElement);
                         break;
                     case "aktuellValue":
-                        mAktuellValue = XmlHelper.getDouble(propElement);
+                        mAktuellValue = getDouble(propElement);
                         break;
                     case "stichtagValue":
-                        mStichtagValue = XmlHelper.getDouble(propElement);
+                        mStichtagValue = getDouble(propElement);
                         break;
                     case "datum":
-                        mDatum = XmlHelper.getSipleDate(propElement);
+                        mDatum = getSipleDate(propElement);
                         break;
                     case "defekt":
-                        mDefekt = XmlHelper.getBoolean(propElement);
+                        mDefekt = getBoolean(propElement);
                         break;
                     case "bemerkung":
-                        mBemerkung = XmlHelper.getString(propElement);
+                        mBemerkung = getString(propElement);
                         break;
                     case "neueNummer":
-                        mNeueNummer = XmlHelper.getString(propElement);
+                        mNeueNummer = getString(propElement);
                         break;
                     case "neueFunkNummer":
-                        mNeueFunkNummer = XmlHelper.getString(propElement);
+                        mNeueFunkNummer = getString(propElement);
                         break;
                     case "neuesFunkModel":
-                        mNeuesFunkModel = XmlHelper.getString(propElement);
+                        mNeuesFunkModel = getString(propElement);
+                        break;
+                    case "austauschGrund":
+                        mAustauschGrund = getString(propElement);
                         break;
                     default:
                 }
             }
         }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Element toXmlElement(Document document) {
-        return  null;
-        // TODO: Implement ToXmlString
+        Element ret_val = document.createElement("zaehler");
+
+        try {
+
+            if(this instanceof InekoId)
+            {
+                Attr attr = document.createAttribute("nekoId");
+                attr.setValue(this.getNekoId());
+                ret_val.setAttributeNode(attr);
+            }
+            CreateTextNode(ret_val,"nummer" ,mNummer);
+            CreateIntegerNode(ret_val,"sortNo" ,mSortNo);
+            CreateTextNode(ret_val,"raum" ,mRaum);
+            CreateTextNode(ret_val,"isFunk" ,mIsFunk.toString());
+            CreateTextNode(ret_val,"ablesung_andere" ,mAblesung_andere);
+            CreateDoubleNode(ret_val,"letzter_wert" ,mLetzter_wert);
+            CreateDateTextNode(ret_val,"letzter_wert_datum" ,mLetzter_wert_datum);
+            CreateTextNode(ret_val,"fortlaufend" ,mFortlaufend.toString());
+            CreateTextNode(ret_val,"isEximFunk" ,mIsEximFunk.toString());
+            CreateTextNode(ret_val,"isFunkSontex" ,mIsFunkSontex.toString());
+            CreateTextNode(ret_val,"art" ,mArt);
+            CreateIntegerNode(ret_val,"model" ,mModel);
+            CreateTextNode(ret_val,"funkfehler_offen" ,mFunkfehler_offen.toString());
+            CreateTextNode(ret_val,"funkfehler_unerreichbar" ,mFunkfehler_unerreichbar.toString());
+            CreateTextNode(ret_val,"funkfehler_ignorieren" ,mFunkfehler_ignorieren.toString());
+            CreateIntegerNode(ret_val,"zielmodel" ,mZielmodel);
+            CreateDoubleNode(ret_val,"aktuellValue" ,mAktuellValue);
+            CreateDoubleNode(ret_val,"stichtagValue" ,mStichtagValue);
+            if (mDatum != null) CreateDateTimeNode(ret_val,"datum" ,mDatum);
+            CreateTextNode(ret_val,"defekt" ,mDefekt.toString());
+            CreateTextNode(ret_val,"bemerkung" ,mBemerkung);
+            CreateTextNode(ret_val,"neueNummer" ,mNeueNummer);
+            CreateTextNode(ret_val,"neueFunkNummer" ,mNeueFunkNummer);
+            CreateTextNode(ret_val,"neuesFunkModel" ,mNeuesFunkModel);
+            CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ret_val;
     }
 
     @Override

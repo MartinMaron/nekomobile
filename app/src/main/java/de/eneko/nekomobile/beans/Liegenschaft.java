@@ -29,6 +29,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private double mLongitude;
     private List<ToDo> mToDos;
     private List<Nutzer> mNutzers;
+    private List<Messgeraet> mMessgeraets;
     private String mAdresse;
     private String mPlZ;
     private final Route route;
@@ -41,6 +42,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         super();
         mToDos = new ArrayList<ToDo>();
         mNutzers = new ArrayList<Nutzer>();
+        mMessgeraets = new ArrayList<Messgeraet>();
         this.route = route;
     }
 
@@ -57,25 +59,48 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     @Override
     public Element toXmlElement(Document document) {
         Element ret_val = document.createElement("Liegenschaft");
+        try {
+            if(this instanceof InekoId)
+            {
+                Attr attr = document.createAttribute("nekoId");
+                attr.setValue(this.getNekoId());
+                ret_val.setAttributeNode(attr);
+            }
 
-        if(this instanceof InekoId)
-        {
-            Attr attr = document.createAttribute("nekoid");
-            attr.setValue(this.getNekoId());
-            ret_val.setAttributeNode(attr);
+            CreateDateTimeNode(ret_val,"start" ,mStart);
+            CreateDateTimeNode(ret_val,"ende" ,mEnde);
+            CreateIntegerNode(ret_val,"sortNo",mSortNo);
+            CreateIntegerNode(ret_val,"zeitInMin",mZeitInMin);
+            CreateTextNode(ret_val,"art",mArt);
+            CreateTextNode(ret_val,"bemerkung",mBemerkung);
+            CreateTextNode(ret_val,"googleEventId",mGoogleEventId);
+            CreateDoubleNode(ret_val,"latitude",mLatitude);
+            CreateDoubleNode(ret_val,"longitude",mLongitude);
+            CreateTextNode(ret_val,"adresse",mAdresse);
+            CreateTextNode(ret_val,"plZ",mPlZ);
+
+
+            Element element = document.createElement("todos");
+            mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
+            ret_val.appendChild(element);
+
+            Element nutzer_element = document.createElement("Nutzerliste");
+            mNutzers.forEach(item -> nutzer_element.appendChild(item.toXmlElement(document)));
+            ret_val.appendChild(nutzer_element);
+
+            Element zaehler_element = document.createElement("Zaehlerliste");
+            mMessgeraets.forEach(item -> zaehler_element.appendChild(item.toXmlElement(document)));
+            ret_val.appendChild(zaehler_element);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        Element startElement = document.createElement("mStart");
-        startElement.appendChild(document.createTextNode(DateFormat.format("dd.MM.yyyy", getStart()).toString()));
-        ret_val.appendChild(startElement);
-
-
-
 
         return ret_val;
     }
 
     public void updateRouteFromXmlElement(Element element) {
+      try{
         this.nekoId = element.getAttributeNode("nekoId").getValue();
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -84,42 +109,37 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "start":
-                        mStart = XmlHelper.getSipleLongDate(propElement);
+                        mStart = getSipleLongDate(propElement);
                         break;
                     case "ende":
-                        mEnde = XmlHelper.getSipleLongDate(propElement);
+                        mEnde = getSipleLongDate(propElement);
                         break;
                     case "sortNo":
-                        mSortNo = XmlHelper.getInteger(propElement);
+                        mSortNo = getInteger(propElement);
                         break;
                     case "zeitInMin":
-                        mZeitInMin = XmlHelper.getInteger(propElement);
+                        mZeitInMin = getInteger(propElement);
                         break;
                     case "art":
-                        mArt = XmlHelper.getString(propElement);
+                        mArt = getString(propElement);
                         break;
                     case "bemerkung":
-                        mBemerkung = XmlHelper.getString(propElement);
+                        mBemerkung = getString(propElement);
                         break;
                     case "googleEventId":
-                        mGoogleEventId = XmlHelper.getString(propElement);
+                        mGoogleEventId = getString(propElement);
                         break;
                     case "latitude":
-                        mLatitude = XmlHelper.getDouble(propElement);
+                        mLatitude = getDouble(propElement);
                         break;
                     case "longitude":
-                        mLongitude = XmlHelper.getDouble(propElement);
-                        break;
-                    case "todo":
-                        ToDo todo = new ToDo(this);
-                        todo.updateRouteFromXmlElement(propElement);
-                        mToDos.add(todo);
+                        mLongitude = getDouble(propElement);
                         break;
                     case "adresse":
-                        mAdresse = XmlHelper.getString(propElement);
+                        mAdresse = getString(propElement);
                         break;
                     case "plz":
-                        mPlZ = XmlHelper.getString(propElement);
+                        mPlZ = getString(propElement);
                         break;
                     case "Nutzerliste":
                         NodeList nutzernodeList = propElement.getChildNodes();
@@ -135,12 +155,43 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                             }
                         }
                         break;
-                        default:
+                    case "todos":
+                        NodeList todos = propElement.getChildNodes();
+                        for (int j = 0; j < todos.getLength(); j++)
+                        {
+                            Node todoNode = todos.item(j);
+                            if (todoNode.getNodeType() == Node.ELEMENT_NODE)
+                            {
+                                Element todoPropElement = (Element) todoNode;
+                                ToDo todo = new ToDo(this);
+                                todo.updateRouteFromXmlElement(todoPropElement);
+                                mToDos.add(todo);
+                            }
+                        }
+                        break;
+                    case "Zaehlerliste":
+                        NodeList zaehlerList = propElement.getChildNodes();
+                        for (int j = 0; j < zaehlerList.getLength(); j++)
+                        {
+                            Node zaehlerNode = zaehlerList.item(j);
+                            if (zaehlerNode.getNodeType() == Node.ELEMENT_NODE)
+                            {
+                                Element zaehlerPropElement = (Element) zaehlerNode;
+                                Messgeraet messgeraet = new Messgeraet(this);
+                                messgeraet.updateRouteFromXmlElement(zaehlerPropElement);
+                                mMessgeraets.add(messgeraet);
+                            }
+                        }
+                        break;
+
+                    default:
                             break;
                 }
             }
         }
-
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
     }
 
 

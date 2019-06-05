@@ -14,6 +14,12 @@ import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
@@ -132,47 +138,42 @@ public class FileHandler
         return mainActivity;
     }
 
-    /**
-     * Gibt eine Liste aller Notizen zurueck
-     *
-     * @return ArrayList vom Typ NoteBean
-     */
     public ArrayList<Route> getAllRoutes()
     {
         return this.allRoutes;
     }
 
-    /**
-     * Diese Funktion speichert eine Notiz auf dem Geruetespeicher
-     *
-     * @param route : NoteBean : die gespeichert werden
-     * @return success : boolean
-     */
-    public boolean save(Route route)
+    public void saveFile()
     {
+        Route route = getRoute();
 
-        //Decl and Init.
-        boolean success = true;
-//
-//        try
-//        {
-//            if (this.fileService != null)
-//            {
-//                fileService.saveOnDevice(route);
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            success = false;
-//            Toast.makeText(mainActivity, e.getMessage(), Toast.LENGTH_LONG).show();
-//        }
-//        finally
-//        {
-//            //TODO Alles Schliessen
-//        }
+        try {
+            File nFile = createXmlFile(route.getAndroidFileName());
+            File file = new File(GlobalConst.PATH_NEKOMOBILE + "/" + route.getAndroidFileName());
+            nFile.renameTo(file);
 
-        return success;
+            InputStream fileInputStream = new FileInputStream(file);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document document = dBuilder.newDocument();
+            document.appendChild(route.toXmlElement(document));
 
+            // create the xml file
+            //transform the DOM Object to an XML File
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(file);
+
+            // If you use
+            // StreamResult result = new StreamResult(System.out);
+            // the output will be pushed to the standard output ...
+            // You can use that for debugging
+            transformer.transform(domSource, streamResult);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -238,6 +239,7 @@ public class FileHandler
             element.normalize();
             route = new Route();
             route.updateRouteFromXmlElement(element, withSubElements);
+            route.setAndroidFileName(file.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -254,6 +256,18 @@ public class FileHandler
         File file = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        return file;
+    }
+
+    public File createXmlFile(String filename) throws IOException {
+        String imageFileName = filename + "_";
+        File storageDir = new File(GlobalConst.PATH_NEKOMOBILE_PICTURES);
+        storageDir.mkdirs();
+        File file = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".xml",         /* suffix */
                 storageDir      /* directory */
         );
         return file;

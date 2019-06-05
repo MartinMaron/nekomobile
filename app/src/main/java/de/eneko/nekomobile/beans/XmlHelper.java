@@ -1,6 +1,13 @@
 package de.eneko.nekomobile.beans;
 
+import android.util.Xml;
+
 import org.w3c.dom.Element;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,72 +20,9 @@ public class XmlHelper {
 
 
 
-    static Date getSipleLongDate(Element propElement)
-    {
-        Date retval = null;
-        try {
-            if (propElement.hasChildNodes()) {
-                retval =  new SimpleDateFormat(GlobalConst.longDateTimeFormat).parse(propElement.getFirstChild().getNodeValue());
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return  retval;
-    }
-
-    static Date getSipleDate(Element propElement)
-    {
-        Date retval = null;
-        try {
-            if (propElement.hasChildNodes()) {
-                retval =  new SimpleDateFormat(GlobalConst.dateFormat).parse(propElement.getFirstChild().getNodeValue());
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return  retval;
-    }
 
 
 
-    static Integer getInteger(Element propElement)
-    {
-        Integer retval = null;
-        if (propElement.hasChildNodes()) {
-            retval = Integer.parseInt(propElement.getFirstChild().getNodeValue());
-        }
-        return retval;
-    }
-    static Double getDouble(Element propElement)
-    {
-        Double retval = null;
-        if (propElement.hasChildNodes()) {
-            retval = Double.parseDouble(propElement.getFirstChild().getNodeValue().replace(",","."));
-        }
-        return retval;
-    }
 
-    static String getString(Element propElement)
-    {
-        String retval = null;
-        if (propElement.hasChildNodes()) {
-            retval = propElement.getFirstChild().getNodeValue();
-        }
-        return retval;
-    }
-
-    static Boolean getBoolean(Element propElement)
-    {
-        Boolean retval = false;
-        if (propElement.hasChildNodes()) {
-          if (propElement.getFirstChild().getNodeValue().equals("True"))
-          {
-              retval = true;
-          }
-        }
-        return retval;
-    }
 
 }

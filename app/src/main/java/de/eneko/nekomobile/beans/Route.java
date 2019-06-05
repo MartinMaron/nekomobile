@@ -1,5 +1,6 @@
 package de.eneko.nekomobile.beans;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
-import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.models.RouteModel;
 
 public class Route extends BaseObject implements InekoId, ItoXmlElement {
@@ -44,16 +44,26 @@ public class Route extends BaseObject implements InekoId, ItoXmlElement {
     public void setLiegenschaften(List<Liegenschaft> liegenschaften) {
         mLiegenschaften = liegenschaften;
     }
-    // region ItoXmlElement
     @Override
-    public Element toXmlElement(Document document) {
-        return  null;
-        // TODO: Implement ToXmlString
+    public Element toXmlElement(Document xmldoc) {
+            Element retval = xmldoc.createElement("route");
+        try {
+            Attr attr = xmldoc.createAttribute("nekoId");
+            attr.setValue(this.nekoId);
+            retval.setAttributeNode(attr);
+            CreateTextNode(retval, "bezeichnung", mBezeichnung);
+            CreateDateTextNode(retval, "datum", mDatum);
+            CreateTextNode(retval, "bemerkung", mBemerkung);
+            CreateTextNode(retval, "createTimestamp",mCreateTimestamp);
+            this.getLiegenschaften().forEach(item-> retval.appendChild(item.toXmlElement(xmldoc)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  retval;
     }
-    // endregion ItoXmlElement
-
 
     public void updateRouteFromXmlElement(Element element, Boolean withSubElements) {
+       try {
         this.nekoId = element.getAttributeNode("nekoId").getValue();
 
         NodeList nodeList = element.getChildNodes();
@@ -65,16 +75,16 @@ public class Route extends BaseObject implements InekoId, ItoXmlElement {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "bezeichnung":
-                        mBezeichnung = XmlHelper.getString(propElement);
+                        mBezeichnung = getString(propElement);
                         break;
                     case "datum":
-                        mDatum = XmlHelper.getSipleDate(propElement);
+                        mDatum = getSipleDate(propElement);
                         break;
                     case "bemerkung":
-                        mBemerkung = XmlHelper.getString(propElement);
+                        mBemerkung = getString(propElement);
                         break;
                     case "createTimestamp":
-                        mCreateTimestamp = XmlHelper.getString(propElement);
+                        mCreateTimestamp = getString(propElement);
                         break;
                     case "Liegenschaft":
                         if (withSubElements) {
@@ -88,6 +98,9 @@ public class Route extends BaseObject implements InekoId, ItoXmlElement {
                 }
             }
         }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 
     //region properties

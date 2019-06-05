@@ -1,5 +1,6 @@
 package de.eneko.nekomobile.beans;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -59,22 +60,32 @@ public class ToDo extends BaseObject implements ItoXmlElement {
 
     @Override
     public Element toXmlElement(Document document) {
-        return  null;
-        // TODO: Implement ToXmlString
+
+        Element ret_val = document.createElement("todo");
+        try{
+            CreateTextNode(ret_val,"bezeichnung",bezeichnung);
+            CreateTextNode(ret_val,"art",art);
+            mRauchmelder.forEach(item -> ret_val.appendChild(item.toXmlElement(document)));
+            mMessgeraete.forEach(item -> ret_val.appendChild(item.toXmlElement(document)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret_val;
     }
 
     public void updateRouteFromXmlElement(Element element) {
-        NodeList nodeList = element.getChildNodes();
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        try{
+            NodeList nodeList = element.getChildNodes();
+            for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "bezeichnung":
-                        bezeichnung = XmlHelper.getString(propElement);
+                        bezeichnung = getString(propElement);
                         break;
                     case "art":
-                        art = XmlHelper.getString(propElement);
+                        art = getString(propElement);
                         break;
                     case "RWM_Device":
                         Rauchmelder rwm = new Rauchmelder(this);
@@ -90,6 +101,9 @@ public class ToDo extends BaseObject implements ItoXmlElement {
                 }
                 System.err.print("W");
             }
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

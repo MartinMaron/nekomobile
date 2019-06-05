@@ -4,6 +4,7 @@ package de.eneko.nekomobile.beans;
 
 import android.text.TextUtils;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -57,11 +58,39 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
 
     @Override
     public Element toXmlElement(Document document) {
-        return  null;
-        // TODO: Implement ToXmlString
+
+        Element ret_val = document.createElement("Nutzer");
+        try{
+            if(this instanceof InekoId)
+            {
+                Attr attr = document.createAttribute("nekoId");
+                attr.setValue(this.getNekoId());
+                ret_val.setAttributeNode(attr);
+            }
+
+            CreateDateTimeNode(ret_val,"start" ,mStart);
+            CreateDateTimeNode(ret_val,"ende" ,mEnde);
+            CreateTextNode(ret_val,"lage",mLage);
+            CreateIntegerNode(ret_val,"wohnungsNummer",mWohnungsnummer);
+            CreateIntegerNode(ret_val,"nutzerNummer",mNutzernummer);
+            CreateTextNode(ret_val,"abwesend",mAbwesend.toString());
+            CreateTextNode(ret_val,"rwmPflicht",mRwmPflicht.toString());
+            CreateTextNode(ret_val,"rwmSelbst",mRwmSelbst.toString());
+            CreateTextNode(ret_val,"rwmNeuerNutzer",mRwmNeuerNutzer);
+            CreateTextNode(ret_val,"bemerkung",mBemerkung.toString());
+            CreateTextNode(ret_val,"nutzerName",mNutzerName.toString());
+            CreateTextNode(ret_val,"telNummer",telNummer.toString());
+            Element element = document.createElement("todos");
+            mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
+            ret_val.appendChild(element);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ret_val;
     }
 
     public void updateRouteFromXmlElement(Element element) {
+     try{
         this.nekoId = element.getAttributeNode("nekoId").getValue();
         NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -70,37 +99,40 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                 Element propElement = (Element) node;
                 switch (propElement.getNodeName()) {
                     case "start":
-                        mStart = XmlHelper.getSipleLongDate(propElement);
+                        mStart = getSipleLongDate(propElement);
                         break;
                     case "ende":
-                        mEnde = XmlHelper.getSipleLongDate(propElement);
+                        mEnde = getSipleLongDate(propElement);
                         break;
                     case "lage":
-                        mLage = XmlHelper.getString(propElement);
+                        mLage = getString(propElement);
                         break;
                     case "wohnungsNummer":
-                        mWohnungsnummer = XmlHelper.getInteger(propElement);
+                        mWohnungsnummer = getInteger(propElement);
+                        break;
+                    case "abwesend":
+                        mAbwesend = getBoolean(propElement);
                         break;
                     case "nutzerNummer":
-                        mNutzernummer = XmlHelper.getInteger(propElement);
+                        mNutzernummer = getInteger(propElement);
                         break;
                     case "rwmPflicht":
-                        mRwmPflicht = XmlHelper.getBoolean(propElement);
+                        mRwmPflicht = getBoolean(propElement);
                         break;
                     case "rwmSelbst":
-                        mRwmSelbst = XmlHelper.getBoolean(propElement);
+                        mRwmSelbst = getBoolean(propElement);
                         break;
                     case "rwmNeuerNutzer":
-                        mRwmNeuerNutzer = XmlHelper.getString(propElement);
+                        mRwmNeuerNutzer = getString(propElement);
                         break;
                     case "bemerkung":
-                        mBemerkung = XmlHelper.getString(propElement);
+                        mBemerkung = getString(propElement);
                         break;
                     case "nutzerName":
-                        mNutzerName = XmlHelper.getString(propElement);
+                        mNutzerName = getString(propElement);
                         break;
                     case "telNummer":
-                        telNummer = XmlHelper.getString(propElement);
+                        telNummer = getString(propElement);
                         break;
                     case "todos":
                         NodeList todoNodeList = propElement.getChildNodes();
@@ -122,8 +154,11 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                 System.err.print("W");
             }
         }
-
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+
+}
 
     // endregion Xml
 
