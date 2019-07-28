@@ -17,6 +17,7 @@ import java.util.Locale;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.KeyedValue;
 
@@ -180,10 +181,8 @@ public class DetailViewHolder extends RwmBaseViewHolder {
 
 
     public void save(){
-        if(getBasemodel().getBean().getNew().equals(true)){
-            FileHandler.getInstance().getNutzerTodo().getRauchmelder().add(getBasemodel().getBean());
-            getBasemodel().setNew(false);
-        }
+
+
 
         getBasemodel().setRaum(tvRaum.getText().toString());
         getBasemodel().setNummer(etNummer.getText().toString());
@@ -201,6 +200,12 @@ public class DetailViewHolder extends RwmBaseViewHolder {
                         .contains(getBasemodel().getAustauschGrund()));
 
         getBasemodel().save();
+
+        if(getBasemodel().getBean().getNew().equals(true)){
+            if (getBasemodel().getNummer().equals("")){
+                getBasemodel().getBean().getTodo().getRauchmelder().remove(getBasemodel().getBean());
+            };
+        }
     }
 
 

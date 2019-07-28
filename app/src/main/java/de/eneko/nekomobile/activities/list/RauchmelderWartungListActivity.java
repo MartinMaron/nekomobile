@@ -17,7 +17,9 @@ import de.eneko.nekomobile.activities.adapter.RauchmelderWartungListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_New;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.beans.Rauchmelder;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.controllers.ObjectFactory;
 
 public class RauchmelderWartungListActivity extends AppCompatActivity {
 
@@ -32,9 +34,9 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-        getSupportActionBar().setTitle("RWM: " + FileHandler.getInstance().getNutzer().getBaseModel().getDisplay());
+        getSupportActionBar().setTitle("RWM: " + CurrentObjectNavigation.getInstance().getNutzer().getBaseModel().getDisplay());
 
-        datasource.addAll(FileHandler.getInstance().getNutzerTodo().getRauchmelder().stream()
+        datasource.addAll(CurrentObjectNavigation.getInstance().getNutzerTodo().getRauchmelder().stream()
                 .sorted(Comparator.comparing(Rauchmelder::getNekoId))
                 .collect(Collectors.toList()));
 
@@ -53,8 +55,8 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mi_add_new:
-                Rauchmelder new_rwm = FileHandler.getInstance().createNewRauchmelder();
-                FileHandler.getInstance().setRauchmelder(new_rwm);
+                Rauchmelder new_rwm = ObjectFactory.getInstance().createNewRauchmelder(CurrentObjectNavigation.getInstance().getNutzerTodo());
+                CurrentObjectNavigation.getInstance().setRauchmelder(new_rwm);
                 Intent intent = new Intent(this, RwmActivity_New.class);
                 startActivity(intent);
                 return true;

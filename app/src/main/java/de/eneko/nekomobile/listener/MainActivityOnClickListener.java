@@ -5,8 +5,9 @@ import android.view.View;
 
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.NekoDropboxActivity;
+import de.eneko.nekomobile.activities.DropboxFilesActivity;
 import de.eneko.nekomobile.activities.list.FileListActivity;
+import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 
 public class MainActivityOnClickListener implements View.OnClickListener
 {
@@ -26,17 +27,15 @@ public class MainActivityOnClickListener implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.fab:
+                mainActivity.startActivity(DropboxFilesActivity.getIntent(mainActivity, NekoDropBox.APPS_PATH));
                 break;
 
             case R.id.btCmdGetRoutes:
                 intent = new Intent(mainActivity, FileListActivity.class);
                 mainActivity.startActivity(intent);
                 break;
-            case R.id.btCmdDropbox:
-                intent = new Intent(mainActivity, NekoDropboxActivity.class);
-                mainActivity.startActivity(intent);
-                break;
-                default:
+
+            default:
 
 
         }

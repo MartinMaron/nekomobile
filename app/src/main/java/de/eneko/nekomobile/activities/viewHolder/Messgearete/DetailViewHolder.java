@@ -12,23 +12,19 @@ import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgeraetBaseActivity;
-import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.Dict;
-import de.eneko.nekomobile.controllers.FormatHelper;
+import de.eneko.nekomobile.framework.FormatHelper;
 import de.eneko.nekomobile.framework.BarcodeHelper;
-import de.eneko.nekomobile.framework.KeyedValue;
 
 public class DetailViewHolder extends MessgeraetBaseViewHolder {
     protected ArrayAdapter<ZaehlerModel> spNewModelAdapter = null;
@@ -39,10 +35,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     public DetailViewHolder(View pView, MessgeraetModel pMessgeraet, Activity pActivity){
         super(pView, pMessgeraet, pActivity );
     }
-    @Override
-    public MessgeraetBaseActivity getActivity() {
-        return (MessgeraetBaseActivity) mActivity;
-    }
+//    @Override
+//    public MessgeraetBaseActivity getActivity() {
+//        return (MessgeraetBaseActivity) mActivity;
+//    }
     @Override
     public Messgeraet getBean() {
         return (Messgeraet) super.getBean();

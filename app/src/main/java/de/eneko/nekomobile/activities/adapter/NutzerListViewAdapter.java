@@ -12,7 +12,7 @@ import android.widget.Filterable;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.viewHolder.NutzerListRowViewHolder;
+import de.eneko.nekomobile.activities.viewHolder.Nutzer.NutzerListRowViewHolder;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Route;
 

@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.beans;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -15,9 +16,12 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
+import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 
 public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
+    private static final String TAG = Liegenschaft.class.getName();
     private String nekoId;
+    private String bud_guid;
     private Date mStart;
     private Date mEnde;
     private int mSortNo;
@@ -67,6 +71,10 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                 ret_val.setAttributeNode(attr);
             }
 
+            Attr attr = document.createAttribute("BUD_GUID");
+            attr.setValue(this.getBud_guid());
+            ret_val.setAttributeNode(attr);
+
             CreateDateTimeNode(ret_val,"start" ,mStart);
             CreateDateTimeNode(ret_val,"ende" ,mEnde);
             CreateIntegerNode(ret_val,"sortNo",mSortNo);
@@ -78,7 +86,6 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateDoubleNode(ret_val,"longitude",mLongitude);
             CreateTextNode(ret_val,"adresse",mAdresse);
             CreateTextNode(ret_val,"plZ",mPlZ);
-
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -93,7 +100,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             ret_val.appendChild(zaehler_element);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
 
         return ret_val;
@@ -102,7 +109,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     public void updateRouteFromXmlElement(Element element) {
       try{
         this.nekoId = element.getAttributeNode("nekoId").getValue();
-        NodeList nodeList = element.getChildNodes();
+        this.bud_guid = element.getAttributeNode("BUD_GUID").getValue();
+          NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -185,12 +193,13 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
 
                     default:
-                            break;
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
+                        break;
                 }
             }
         }
       } catch (Exception e) {
-          e.printStackTrace();
+          Log.e(TAG, "import error.", e);
       }
     }
 
@@ -311,7 +320,13 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         mPlZ = plZ;
     }
 
+    public String getBud_guid() {
+        return bud_guid;
+    }
 
+    public void setBud_guid(String bud_guid) {
+        this.bud_guid = bud_guid;
+    }
 
 // endregion properties
 

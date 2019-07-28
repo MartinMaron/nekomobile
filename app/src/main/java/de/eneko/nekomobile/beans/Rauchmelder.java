@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.beans;
 
+import android.util.Log;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,6 +14,7 @@ import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
 
 public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
+    private static final String TAG = Rauchmelder.class.getName();
     private String nekoId;
     private String mNummer = "";
     private String mRaum = "";
@@ -22,7 +25,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     private Boolean mNew = false;
 
     private String mBemerkung = "";
-    private String mNeueNummer = "";
+    private String mNeueNummer = null;
     private String mAustauschGrund = "XX";
 
     private ToDo mTodo;
@@ -65,7 +68,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
             if (mAustauschGrund != "X") CreateTextNode(ret_val,"austauschgrund",mAustauschGrund);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
         return  ret_val;
     }
@@ -109,14 +112,14 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
                     case "austauschgrund":
                         mAustauschGrund = getString(propElement);
                     default:
-                        System.out.println(propElement.getNodeName() + ": keine bekannte Property");
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
              }
         }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "import error.", e);
         }
-
+        getBaseModel().load();
     }
 
   // endregion Xml
@@ -147,6 +150,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setRaum(String raum) {
         mRaum = raum;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
     public Integer getModel() {
@@ -172,6 +176,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setWithError(Boolean withError) {
         mWithError = withError;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
     public Boolean getNew() {
@@ -180,6 +185,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setNew(Boolean aNew) {
         mNew = aNew;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
 
@@ -201,6 +207,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setNeueNummer(String neueNummer) {
         mNeueNummer = neueNummer;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
     public String getAustauschGrund() {
@@ -209,6 +216,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setAustauschGrund(String austauschGrund) {
         mAustauschGrund = austauschGrund;
+        if (mEingabedatum == null) mEingabedatum = new Date();
     }
 
     // endregion properties

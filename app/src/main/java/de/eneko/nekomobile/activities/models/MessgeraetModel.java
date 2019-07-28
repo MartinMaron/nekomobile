@@ -21,6 +21,9 @@ public class MessgeraetModel extends Basemodel {
     private String mNeueFunkNummer = "";
     private String mNeuesFunkModel = "X";
     private String mAustauschGrund = "X";
+    private Date mStichtagsdatum = null;
+
+
 
     public MessgeraetModel(Messgeraet bean) {
         super(bean);
@@ -40,6 +43,7 @@ public class MessgeraetModel extends Basemodel {
         getBean().setNeueFunkNummer(mNeueFunkNummer);
         getBean().setNeuesFunkModel(mNeuesFunkModel);
         getBean().setAustauschGrund(mAustauschGrund);
+
     }
 
     @Override
@@ -56,6 +60,7 @@ public class MessgeraetModel extends Basemodel {
         mNeueFunkNummer = getBean().getNeueFunkNummer();
         mNeuesFunkModel = getBean().getNeuesFunkModel();
         mAustauschGrund = getBean().getAustauschGrund();
+        mStichtagsdatum = getBean().getStichtagsdatum();
     }
 
 
@@ -199,5 +204,13 @@ public class MessgeraetModel extends Basemodel {
         mAustauschGrund = austauschGrund;
     }
 
+
+    public Date getStichtagsdatum() {
+        return mStichtagsdatum;
+    }
+
+    public void setStichtagsdatum(Date stichtagsdatum) {
+        this.mStichtagsdatum = stichtagsdatum;
+    }
     //endregion
 }

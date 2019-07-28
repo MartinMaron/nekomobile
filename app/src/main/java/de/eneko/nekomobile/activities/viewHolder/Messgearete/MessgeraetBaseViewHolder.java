@@ -13,15 +13,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
+import de.eneko.nekomobile.controllers.MessgeraeteConroller;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 
 public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
@@ -95,9 +98,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
 
 
-    public <T extends View> T findViewById(int id) {
-        return mView != null ? mView.findViewById(id) : mActivity.findViewById(id);
-    }
+
 
     @Override
     public void updateView() {
@@ -112,21 +113,21 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
             @Override
             public void onClick(View v) {
                 String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
-                relativePath = relativePath + "/" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
-                String filename = getBean().getArt() + (getBean().getZielmodel() > 0 && !getBean().getNummer().equals("") ? "_NEW":"") + "@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
+                relativePath = relativePath + "@" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
+                String filename = "#" + getBean().getArt() + (getBean().getZielmodel() > 0 && !getBean().getNummer().equals("") ? "_NEW":"") + "@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
                 if (!getBean().getNekoId().equals("")){
                     filename = filename  + getBean().getNekoId()+ "@";
                 }
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
         });
-        getLbAktuell().setText("Aktuell");
-        getLbStichtag().setText("Stichtag");
+        getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getDatum()));
+        getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getStichtagsdatum()));
         getTvAktuell().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FileHandler.getInstance().setMessgeraet(getBean());
-                if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
+                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
+                if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
                     startSpracheingabe(REQUEST_BT_AKTUELL);
                 } else {
                     inputDialogAktuell(getBean().getAktuellValue() != -1 ? getBean().getAktuellValue().toString(): "");
@@ -136,8 +137,8 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         getTvStichtag().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view ) {
-                FileHandler.getInstance().setMessgeraet(getBean());
-                if(MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE) {
+                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
+                if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
                     startSpracheingabe(REQUEST_BT_STICHTAG);
                 }else {
                     inputDialogStichtag(getBean().getStichtagValue() != -1 ? getBean().getStichtagValue().toString(): "");
@@ -155,8 +156,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         new InputDialogClass(getActivity(), "stichtag", value){
             @Override
             public void OnDialogSubmit(String pValue) {
-                if (isDouble(pValue)) {
-                    getBean().setStichtagValue(Double.parseDouble(pValue.replace(",",".")));
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBean().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
                     loadData();
                 }
             }
@@ -166,8 +168,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         new InputDialogClass(getActivity(), "aktuell", value){
             @Override
             public void OnDialogSubmit(String pValue) {
-                if (isDouble(pValue)) {
-                    getBean().setAktuellValue(Double.parseDouble(pValue.replace(",",".")));
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBean().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
                     loadData();
                 }
             }
@@ -182,11 +185,11 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         }
         if (requestCode == REQUEST_BT_AKTUELL && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,new MessgeraetModel(FileHandler.getInstance().getMessgeraet()),mActivity){}.inputDialogAktuell(result.get(0));
+            new DetailViewHolder(null,new MessgeraetModel(CurrentObjectNavigation.getInstance().getMessgeraet()),mActivity){}.inputDialogAktuell(result.get(0));
         }
         if (requestCode == REQUEST_BT_STICHTAG && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,new MessgeraetModel(FileHandler.getInstance().getMessgeraet()),mActivity){}.inputDialogStichtag(result.get(0));
+            new DetailViewHolder(null,new MessgeraetModel(CurrentObjectNavigation.getInstance().getMessgeraet()),mActivity){}.inputDialogStichtag(result.get(0));
         }
 
 

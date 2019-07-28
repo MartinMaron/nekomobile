@@ -107,7 +107,7 @@ public abstract class BaseObject {
 
     static String getString(Element propElement)
     {
-        String retval = null;
+        String retval = "";
         if (propElement.hasChildNodes()) {
             retval = propElement.getFirstChild().getNodeValue();
         }

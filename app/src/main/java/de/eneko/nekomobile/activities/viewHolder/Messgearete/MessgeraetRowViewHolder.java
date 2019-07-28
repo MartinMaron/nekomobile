@@ -7,18 +7,12 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
-import de.eneko.nekomobile.activities.detail.Messgeraete.MessgeraetBaseActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
-import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
-import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.controllers.Dict;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.controllers.FormatHelper;
-import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
-import de.eneko.nekomobile.controllers.PhotoHandler;
+import de.eneko.nekomobile.framework.FormatHelper;
 
 public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
 
@@ -61,7 +55,7 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
         getIvDetail().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FileHandler.getInstance().setMessgeraet(getBean());
+                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
                 Intent  intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
                 view.getContext().startActivity(intent);
             }

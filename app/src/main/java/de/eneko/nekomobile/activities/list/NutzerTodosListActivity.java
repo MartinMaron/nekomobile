@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.NutzerTodosListViewAdapter;
 import de.eneko.nekomobile.beans.ToDo;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class NutzerTodosListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -26,7 +27,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         ToDo todo =  mAdapter.getItem(i);
-        FileHandler.getInstance().setNutzerTodo(todo);
+        CurrentObjectNavigation.getInstance().setNutzerTodo(todo);
         Intent intent = null;
         switch (todo.getArt()){
             case "WAR_RWM": case "MON_RWM":
@@ -51,9 +52,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        this.setTitle(FileHandler.getInstance().getNutzer().getBaseModel().getDisplay());
-
-        datasource.addAll(FileHandler.getInstance().getNutzer().getToDos().stream()
+        datasource.addAll(CurrentObjectNavigation.getInstance().getNutzer().getToDos().stream()
                 .sorted(Comparator.comparing(ToDo::getArt))
                 .collect(Collectors.toList()));
         mAdapter = new NutzerTodosListViewAdapter(this,datasource);
@@ -65,6 +64,8 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
     @Override
     protected void onResume() {
         super.onResume();
+        CurrentObjectNavigation.getInstance().getNutzer().getBaseModel().load();
+        this.setTitle(CurrentObjectNavigation.getInstance().getNutzer().getBaseModel().getDisplay());
         mAdapter.notifyDataSetChanged();
     }
     protected void exit(){

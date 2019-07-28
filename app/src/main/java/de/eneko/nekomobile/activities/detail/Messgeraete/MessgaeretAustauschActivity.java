@@ -8,6 +8,7 @@ import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 
@@ -16,7 +17,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
     @Override
     protected void createViewHolder(){
-        Messgeraet obj = FileHandler.getInstance().getMessgeraet();
+        Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
         viewHolder = new DetailViewHolder( null,obj.getBaseModel(), this){
             @Override
             public void save() {

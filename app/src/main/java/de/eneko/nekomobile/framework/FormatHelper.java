@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.controllers;
+package de.eneko.nekomobile.framework;
 
 import java.text.NumberFormat;
 import java.util.Locale;

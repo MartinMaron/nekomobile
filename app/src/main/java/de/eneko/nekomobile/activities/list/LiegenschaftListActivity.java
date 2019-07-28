@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.adapter.LiegenschaftListViewAdapter;
 import de.eneko.nekomobile.beans.Liegenschaft;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class LiegenschaftListActivity extends ListActivity implements AdapterView.OnItemClickListener{
@@ -25,7 +26,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         //Aktuelle Notiz zwischenspeichern
-        FileHandler.getInstance().setLiegenschaft((Liegenschaft) mAdapter.getItem(i));
+        CurrentObjectNavigation.getInstance().setLiegenschaft((Liegenschaft) mAdapter.getItem(i));
 
         //Generieren eines Intents fuer die NutzerListActivity zu wrappen
         Intent intent = new Intent(view.getContext(), NutzerListActivity.class);
@@ -39,7 +40,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
     {
         super.onCreate(savedInstanceState);
 
-        datasource.addAll(FileHandler.getInstance().getRoute().getLiegenschaften().stream()
+        datasource.addAll(CurrentObjectNavigation.getInstance().getRoute().getLiegenschaften().stream()
                 .sorted(Comparator.comparing(Liegenschaft::getSortNo))
                 .collect(Collectors.toList()));
 

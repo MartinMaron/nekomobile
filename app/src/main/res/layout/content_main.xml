@@ -13,10 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Routen öffnen" />
+
     <Button
         android:id="@+id/btCmdDropbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btCmdGetRoutes"
-        android:text="Routen öffnen" />
+        android:text="synchronizacja z dropboxem" />
 </RelativeLayout>

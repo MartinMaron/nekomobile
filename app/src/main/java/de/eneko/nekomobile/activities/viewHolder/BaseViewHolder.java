@@ -37,6 +37,10 @@ public abstract class BaseViewHolder {
         }
     }
 
+    public <T extends View> T findViewById(int id) {
+        return mView != null ? mView.findViewById(id) : mActivity.findViewById(id);
+    }
+
 
     public View getView() {
         return mView;

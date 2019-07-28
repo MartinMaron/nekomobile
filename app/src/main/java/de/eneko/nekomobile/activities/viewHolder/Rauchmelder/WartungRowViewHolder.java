@@ -12,6 +12,7 @@ import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.beans.Rauchmelder;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 
@@ -44,7 +45,8 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
         getIvRwm().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBean().setDone(!getBean().getDone());
+                getBasemodel().setDone(!getBasemodel().getDone());
+                getBasemodel().save();
                 setRwmImage(getIvRwm());
                 getIvAustausch().setVisibility( getBean().getDone() || getBean().getNekoId().contains("new")? View.INVISIBLE:View.VISIBLE);
             }
@@ -56,8 +58,8 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
             @Override
             public void onClick(View v) {
                 String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
-                relativePath = relativePath + "/" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
-                String filename = "RWM@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
+                relativePath = relativePath + "@" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
+                String filename = "#RWM@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
                 if (!getBean().getNekoId().equals("")){
                     filename = filename  + getBean().getNekoId()+ "@";
                 }
@@ -68,7 +70,7 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
         getIvInfo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileHandler.getInstance().setRauchmelder(getBean());
+                CurrentObjectNavigation.getInstance().setRauchmelder(getBean());
                 Intent intent = new Intent(getActivity(), RwmActivity_Info.class);
                 getActivity().startActivity(intent);
             }
@@ -76,13 +78,13 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
         getIvAustausch().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileHandler.getInstance().setRauchmelder(getBean());
+                CurrentObjectNavigation.getInstance().setRauchmelder(getBean());
                 Intent intent = new Intent(getActivity(), RwmActivity_Austausch.class);
                 getActivity().startActivity(intent);
             }
         });
         getIvAustausch().setVisibility( getBean().getDone() || getBean().getNekoId().contains("new")? View.INVISIBLE:View.VISIBLE);
-        getTxtvDescription().setText((!getBean().getNeueNummer().equals("") ? getBean().getNummer() + " (" + getBean().getNeueNummer() + ")": getBean().getNummer()) + (!getBean().getRaum().equals("") ? " - " + getBean().getRaum():""));
+        getTxtvDescription().setText((getBean().getNeueNummer() != null && !getBean().getNeueNummer().equals("") ? getBean().getNummer() + " (" + getBean().getNeueNummer() + ")": getBean().getNummer()) + (!getBean().getRaum().equals("") ? " - " + getBean().getRaum():""));
     }
 
     private void setRwmImage(ImageView iv){

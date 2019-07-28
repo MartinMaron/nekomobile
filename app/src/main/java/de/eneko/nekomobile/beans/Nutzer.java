@@ -3,6 +3,7 @@ package de.eneko.nekomobile.beans;
 
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -22,6 +23,7 @@ import de.eneko.nekomobile.activities.models.NutzerModel;
 
 
 public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
+    private static final String TAG = Nutzer.class.getName();
     private Date mStart;
     private Date mEnde;
     private String nekoId;
@@ -84,7 +86,7 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
             ret_val.appendChild(element);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
         return  ret_val;
     }
@@ -149,13 +151,12 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                         }
                         break;
                     default:
-                        System.out.println(propElement.getNodeName() + ": keine bekannte Property");
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
-                System.err.print("W");
             }
         }
     } catch (Exception e) {
-        e.printStackTrace();
+         Log.e(TAG, "import error.", e);
     }
 
 }

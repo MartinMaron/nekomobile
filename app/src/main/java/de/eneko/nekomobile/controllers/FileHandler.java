@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.controllers;
 
 
+import android.util.Log;
 import android.widget.Toast;
 
 import org.w3c.dom.Document;
@@ -29,6 +30,8 @@ import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
+import de.eneko.nekomobile.framework.dropbox.DropboxClientFactory;
+import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 
 
 /**
@@ -47,22 +50,10 @@ import de.eneko.nekomobile.beans.ToDo;
  */
 public class FileHandler
 {
-    /*
-     * Die einzige Instanz die jemals zur Laufzeit
-     * existieren wird
-     */
+    private static final String TAG = FileHandler.class.getName();
     private static FileHandler instance = null;
-
-    //Liste aller Notizen
     private ArrayList<Route> allRoutes = new ArrayList<>();
-
-    private Route mRoute = null;
-    private Liegenschaft mLiegenschaft = null;
-    private Nutzer mNutzer = null;
-    private ToDo mNutzerTodo = null;
-    private Rauchmelder mRauchmelder = null;
-    private Messgeraet messgeraet = null;
-    private MainActivity mainActivity = null;
+    private NekoDropBox mNekoDropBox = null;
 
     private FileHandler(){}
 
@@ -80,64 +71,6 @@ public class FileHandler
         return instance;
     }
 
-    public Route getRoute() {
-        return mRoute;
-    }
-
-    public void setRoute(Route route) {
-        mRoute = route;
-    }
-
-    public Liegenschaft getLiegenschaft() {
-        return mLiegenschaft;
-    }
-
-    public void setLiegenschaft(Liegenschaft liegenschaft) {
-        mLiegenschaft = liegenschaft;
-    }
-
-    public Nutzer getNutzer() {
-        return mNutzer;
-    }
-
-    public void setNutzer(Nutzer nutzer) {
-        mNutzer = nutzer;
-    }
-
-    public ToDo getNutzerTodo() {
-        return mNutzerTodo;
-    }
-
-    public void setNutzerTodo(ToDo nutzerTodo) {
-        mNutzerTodo = nutzerTodo;
-    }
-
-    public Rauchmelder getRauchmelder() {
-        return mRauchmelder;
-    }
-
-    public void setRauchmelder(Rauchmelder rauchmelder) {
-        this.mRauchmelder = rauchmelder;
-    }
-
-    public Messgeraet getMessgeraet() {
-        return messgeraet;
-    }
-
-    public void setMessgeraet(Messgeraet messgeraet) {
-        this.messgeraet = messgeraet;
-    }
-
-    public void setMainActivity(MainActivity mainActivity)
-    {
-        this.mainActivity = mainActivity;
-    }
-
-    public MainActivity getMainActivity()
-    {
-        return mainActivity;
-    }
-
     public ArrayList<Route> getAllRoutes()
     {
         return this.allRoutes;
@@ -145,10 +78,10 @@ public class FileHandler
 
     public void saveFile()
     {
-        Route route = getRoute();
+        Route route = CurrentObjectNavigation.getInstance().getRoute();
 
         try {
-            File nFile = createXmlFile(route.getAndroidFileName());
+            File nFile = FileFactory.getInstance().createXmlFile(route.getAndroidFileName());
             File file = new File(GlobalConst.PATH_NEKOMOBILE + "/" + route.getAndroidFileName());
             nFile.renameTo(file);
 
@@ -176,25 +109,16 @@ public class FileHandler
         }
     }
 
-    /**
-     * Diese Methode laedt alle Notizen
-     * vom Geraetespeicher und Ueberschreibt die
-     * akutelle Liste all Notes
-     *
-     * @return
-     */
     public void preLoadAllRoutes()
     {
-        //Temopraere Liste zum Arbeiten
         ArrayList<Route> tmpAllRoutes = new ArrayList<>();
         try {
-            // Read all files sorted into the values-array
             File dir = new File(GlobalConst.PATH_NEKOMOBILE);
             if (!dir.exists()) {
-                Toast.makeText(getMainActivity(), dir.getAbsolutePath() + " existiert nicht", Toast.LENGTH_LONG).show();
+                Log.e(TAG, dir.getAbsolutePath() + " existiert nicht");
             }
             if (!dir.canRead()) {
-                Toast.makeText(getMainActivity(), dir.getAbsolutePath() + " kann nicht gelesen werden", Toast.LENGTH_LONG).show();
+                Log.e(TAG, dir.getAbsolutePath() + " kann nicht gelesen werden");
             }
             String[] list = dir.list();
             if (list != null) {
@@ -208,7 +132,7 @@ public class FileHandler
         }
         catch (Exception e)
         {
-            Toast.makeText(mainActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, e.getMessage(),e);
         }
         finally
         {
@@ -217,17 +141,10 @@ public class FileHandler
         }
     }
 
-
     public Route loadFile(String pfileName, Boolean withSubElements)
     {
         Route route = null;
-        //TODO einlesen der XML - Datei
-
-        //Decl and Init Return Objekt
-        File importfile = new File(pfileName);
-
         try {
-
             File file = new File(pfileName);
             InputStream fileInputStream = new FileInputStream(file);
 
@@ -243,42 +160,19 @@ public class FileHandler
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return route;
     }
 
-
-    public File createJpgFile(String relativeNekoPath, String filename) throws IOException {
-        String imageFileName = filename + "_";
-        File storageDir = new File(GlobalConst.PATH_NEKOMOBILE_PICTURES + "/" + relativeNekoPath);
-        storageDir.mkdirs();
-        File file = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        return file;
+    public NekoDropBox getNekoDropBox() {
+        return mNekoDropBox;
     }
 
-    public File createXmlFile(String filename) throws IOException {
-        String imageFileName = filename + "_";
-        File storageDir = new File(GlobalConst.PATH_NEKOMOBILE_PICTURES);
-        storageDir.mkdirs();
-        File file = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".xml",         /* suffix */
-                storageDir      /* directory */
-        );
-        return file;
+    public void setNekoDropBox(NekoDropBox nekoDropBox) {
+        mNekoDropBox = nekoDropBox;
     }
 
-    public Rauchmelder createNewRauchmelder(){
-        Rauchmelder ret_val = new Rauchmelder(getNutzerTodo());
-        ret_val.setNew(true);
-        ret_val.setNekoId(FileHandler.getInstance().getNutzerTodo().getRauchmelder().size() + ";new");
-        return ret_val;
-    }
+
+
 
 
 }

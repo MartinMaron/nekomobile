@@ -7,7 +7,7 @@ package de.eneko.nekomobile.controllers;
  * zur Laufzeit welches die Klasse
  * selbst generiert.
  */
-public class MessgeraeteListViewActivityConroller
+public class MessgeraeteConroller
 {
 
     public enum GeraeteArt { MANUELL, EXIM, SONTEX}
@@ -18,23 +18,15 @@ public class MessgeraeteListViewActivityConroller
     private EingabeArt eingabeArt = EingabeArt.TASTATUR;
 
 
-    private static MessgeraeteListViewActivityConroller instance = null;
-    private MessgeraeteListViewActivityConroller()
+    private static MessgeraeteConroller instance = null;
+    private MessgeraeteConroller()
     {
 
     }
 
-    public static synchronized MessgeraeteListViewActivityConroller getInstance()
+    public static synchronized MessgeraeteConroller getInstance()
     {
-        //Wenn die Instanz null ist wurde Sie noch nicht generiert.
-        if (instance == null)
-        {
-            //Generierung der Instanz bei ersten Aufruf des FileHandlers
-
-            instance = new MessgeraeteListViewActivityConroller();
-        }
-
-        //Rueckgabe der einzigen Instanz.
+        if (instance == null){instance = new MessgeraeteConroller();}
         return instance;
     }
 

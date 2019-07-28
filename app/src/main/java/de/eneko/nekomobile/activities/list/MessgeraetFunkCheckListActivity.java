@@ -2,10 +2,7 @@ package de.eneko.nekomobile.activities.list;
 
 import android.view.View;
 
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
-import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
-import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
 
 public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
 

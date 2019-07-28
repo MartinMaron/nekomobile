@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.beans;
 
+import android.util.Log;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -11,6 +13,7 @@ import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
+    private static final String TAG = Messgeraet.class.getName();
     private String nekoId;
     private String mNummer = "";
     private Integer mSortNo = 0;
@@ -32,6 +35,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private Double mAktuellValue = -1.0;
     private Double mStichtagValue = -1.0;
     private Date mDatum = null;
+    private Date stichtagsdatum = null;
     private Boolean mDefekt = false;
     private String mBemerkung = "";
     private String mNeueNummer = "";
@@ -39,7 +43,6 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String mNeuesFunkModel = "X";
     private String mAustauschGrund = "X";
     private Liegenschaft mLiegenschaft = null;
-
     public Messgeraet(ToDo pTodo) {
         super();
         mTodo = pTodo;
@@ -88,6 +91,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
                         break;
                     case "letzter_wert_datum":
                         mLetzter_wert_datum = getSipleDate(propElement);
+                        break;
+                    case "stichtagsdatum":
+                        stichtagsdatum = getSipleDate(propElement);
                         break;
                     case "fortlaufend":
                         mFortlaufend = getBoolean(propElement);
@@ -144,11 +150,12 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
                         mAustauschGrund = getString(propElement);
                         break;
                     default:
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
             }
         }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "import error.", e);
         }
     }
 
@@ -171,6 +178,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(ret_val,"ablesung_andere" ,mAblesung_andere);
             CreateDoubleNode(ret_val,"letzter_wert" ,mLetzter_wert);
             CreateDateTextNode(ret_val,"letzter_wert_datum" ,mLetzter_wert_datum);
+            CreateDateTextNode(ret_val,"stichtagsdatum" ,stichtagsdatum);
             CreateTextNode(ret_val,"fortlaufend" ,mFortlaufend.toString());
             CreateTextNode(ret_val,"isEximFunk" ,mIsEximFunk.toString());
             CreateTextNode(ret_val,"isFunkSontex" ,mIsFunkSontex.toString());
@@ -190,7 +198,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(ret_val,"neuesFunkModel" ,mNeuesFunkModel);
             CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
         return  ret_val;
     }
@@ -375,6 +383,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setAktuellValue(Double aktuellValue) {
         mAktuellValue = aktuellValue;
+        if (mDatum == null) mDatum = new Date();
     }
 
     public Double getStichtagValue() {
@@ -383,6 +392,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setStichtagValue(Double stichtagValue) {
         mStichtagValue = stichtagValue;
+        if (mDatum == null) mDatum = new Date();
     }
 
     public Date getDatum() {
@@ -399,6 +409,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setDefekt(Boolean defekt) {
         mDefekt = defekt;
+        if (mDatum == null) mDatum = new Date();
     }
 
     public String getBemerkung() {
@@ -439,6 +450,14 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setAustauschGrund(String austauschGrund) {
         mAustauschGrund = austauschGrund;
+    }
+
+    public Date getStichtagsdatum() {
+        return stichtagsdatum;
+    }
+
+    public void setStichtagsdatum(Date stichtagsdatum) {
+        this.stichtagsdatum = stichtagsdatum;
     }
 
     // endregion "Properties"

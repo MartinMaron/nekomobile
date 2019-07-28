@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.activities.models;
 
+import android.util.Log;
+
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
@@ -8,7 +10,7 @@ import de.eneko.nekomobile.beans.ToDo;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerTodoModel extends Basemodel{
-
+    private static final String TAG = NutzerTodoModel.class.getName();
     private String bezeichnung;
     private String art;
 
@@ -40,13 +42,18 @@ public class NutzerTodoModel extends Basemodel{
 
     public Integer getToDoCount(String pArt)
     {
-            return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
+        Log.d(TAG,"Nutzer" + getBean().getNutzer().getNutzerName());
+        Log.d(TAG,"getDoneCount" + getDoneCount(pArt).toString());
+        Log.d(TAG,"getUndoneCount" + getUndoneCount(pArt).toString());
+        Log.d(TAG,"getWithErrorCount" + getWithErrorCount(pArt).toString());
+        return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
     }
 
     public Boolean isCompleted(String pArt){
 
        if(pArt.equals("RWM")){
-            if (getToDoCount(pArt)== 0) {return false;}
+           if (getNewCount("RWM") > 0) {return true;}
+           if (getToDoCount(pArt)== 0) {return false;}
             return getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
        }else{
            Integer absolutUndoneCount = getBean().getMessgeraete().stream()
@@ -139,7 +146,7 @@ public class NutzerTodoModel extends Basemodel{
     {
         if (pArt.equals("RWM"))
         {
-            return getBean().getRauchmelder().stream().filter(r -> r.getNekoId().contains("new"))
+            return getBean().getRauchmelder().stream().filter(r -> r.getNew())
                     .collect(Collectors.toList()).size();
         }else {
             return getBean().getMessgeraete().stream().filter(r -> r.getNekoId().contains("new"))

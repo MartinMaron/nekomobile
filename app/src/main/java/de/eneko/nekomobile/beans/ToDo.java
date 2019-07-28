@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.beans;
 
+import android.util.Log;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,6 +17,7 @@ import de.eneko.nekomobile.activities.models.NutzerModel;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 
 public class ToDo extends BaseObject implements ItoXmlElement {
+    private static final String TAG = Nutzer.class.getName();
     private String bezeichnung;
     private String art;
     private final Nutzer mNutzer;
@@ -68,7 +71,7 @@ public class ToDo extends BaseObject implements ItoXmlElement {
             mRauchmelder.forEach(item -> ret_val.appendChild(item.toXmlElement(document)));
             mMessgeraete.forEach(item -> ret_val.appendChild(item.toXmlElement(document)));
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
         return ret_val;
     }
@@ -97,13 +100,13 @@ public class ToDo extends BaseObject implements ItoXmlElement {
                         zaehler.updateRouteFromXmlElement(propElement);
                         mMessgeraete.add(zaehler);
                         break;
-                    default: System.out.println(propElement.getNodeName() + ": keine bekannte Property");
+                    default:
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
-                System.err.print("W");
             }
         }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "import error.", e);
         }
 
     }

@@ -12,6 +12,7 @@ import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder;
 import de.eneko.nekomobile.beans.Rauchmelder;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RwmActivity extends AppCompatActivity{
@@ -27,7 +28,7 @@ public class RwmActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_rauchmelder);
-        Rauchmelder rwm = FileHandler.getInstance().getRauchmelder();
+        Rauchmelder rwm = CurrentObjectNavigation.getInstance().getRauchmelder();
         viewHolder = new DetailViewHolder( null,rwm.getBaseModel(), this);
         viewHolder.updateView();
     }

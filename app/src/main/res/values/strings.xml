@@ -30,4 +30,6 @@
     <string name="neue_funknummer">neue Funknummer</string>
     <string name="upload">upload</string>
     <string name="austauschgrund">Austauschgrund</string>
+    <string name="telefon">Telefon</string>
+    <string name="neuerNutzer">neuer Nutzer</string>
 </resources>

@@ -19,11 +19,13 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.NutzerListViewAdapter;
+import de.eneko.nekomobile.activities.detail.Nutzer.NutzerActivity;
 import de.eneko.nekomobile.beans.Nutzer;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class NutzerListActivity extends AppCompatActivity implements
-        SearchView.OnQueryTextListener,
+        SearchView.OnQueryTextListener, AdapterView.OnItemLongClickListener,
         AdapterView.OnItemClickListener {
 
     private NutzerListViewAdapter mAdapter = null;
@@ -38,35 +40,52 @@ public class NutzerListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        getSupportActionBar().setTitle(FileHandler.getInstance().getLiegenschaft().getBaseModel().getAdresse());
+        getSupportActionBar().setTitle(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getAdresse());
 
-        datasource.addAll(FileHandler.getInstance().getLiegenschaft().getNutzers().stream()
+        datasource.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getNutzers().stream()
                 .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))
                 .collect(Collectors.toList()));
         mAdapter = new NutzerListViewAdapter(this,datasource);
         mListView = findViewById(R.id.listView);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        FileHandler.getInstance().setNutzer(mAdapter.getItem(i));
-        Intent intent = new Intent(view.getContext(), NutzerTodosListActivity.class);
+        CurrentObjectNavigation.getInstance().setNutzer(mAdapter.getItem(i));
+        Intent intent = null;
+        if (isLongClick) {
+            intent = new Intent(view.getContext(), NutzerActivity.class);
+            isLongClick = false;
+        }else
+        {
+            intent = new Intent(view.getContext(), NutzerTodosListActivity.class);
+        }
         view.getContext().startActivity(intent);
+    }
+
+    private Boolean isLongClick = false;
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        isLongClick = true;
+        return false;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
-        mListView.setSelection(mAdapter.getPosition(FileHandler.getInstance().getNutzer()));
+        mListView.setSelection(mAdapter.getPosition(CurrentObjectNavigation.getInstance().getNutzer()));
     }
 
     protected void exit(){
         Intent intent = new Intent(this, LiegenschaftListActivity.class);
         startActivity(intent);
     }
+
+
 
     @Override
     public void onBackPressed() {

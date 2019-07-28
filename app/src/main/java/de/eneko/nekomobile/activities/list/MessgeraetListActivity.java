@@ -29,9 +29,10 @@ import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
-import de.eneko.nekomobile.controllers.MessgeraeteListViewActivityConroller;
+import de.eneko.nekomobile.controllers.MessgeraeteConroller;
 
 public abstract class MessgeraetListActivity extends AppCompatActivity
         implements View.OnClickListener,
@@ -65,12 +66,12 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view_ablesung);
-        NutzerTodoModel nutzerTodoModel = FileHandler.getInstance().getNutzerTodo().getBaseModel();
+        NutzerTodoModel nutzerTodoModel = CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
         nutzerTodoModel.load();
         getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
 
         // Init datasource
-        datasource.addAll(FileHandler.getInstance().getNutzerTodo().getMessgeraete().stream()
+        datasource.addAll(CurrentObjectNavigation.getInstance().getNutzerTodo().getMessgeraete().stream()
                 .sorted(Comparator.comparing(Messgeraet::getSortNo))
                 .collect(Collectors.toList()));
 
@@ -107,7 +108,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Messgeraet item = (Messgeraet) mAdapterCurrent.getItem(i);
-        FileHandler.getInstance().setMessgeraet(item);
+        CurrentObjectNavigation.getInstance().setMessgeraet(item);
         Intent intent = null;
         switch (item.getTodo().getArt()) {
             case Dict.TODO_ABLESUNG:
@@ -126,10 +127,10 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
    }
 
     private void setEingabeMenuItemIcon(){
-            if (MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
+            if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
                 if (eingabeMenuItem != null) eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
             }
-            if (MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.TASTATUR){
+            if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
                 if (eingabeMenuItem != null)  eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
             }
         }
@@ -143,7 +144,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
         mAdapterCurrent = adapterCurrent;
         mListView.setAdapter(mAdapterCurrent);
         mAdapterCurrent.notifyDataSetChanged();
-        mListView.setSelection(mAdapter_man.getPosition(FileHandler.getInstance().getMessgeraet()));
+        mListView.setSelection(mAdapter_man.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));
     }
 
     protected void exit(){
@@ -180,10 +181,10 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
         eingabeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.TASTATUR){
-                    MessgeraeteListViewActivityConroller.getInstance().setEingabeArt( MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE);
-                }else if (MessgeraeteListViewActivityConroller.getInstance().getEingabeArt() == MessgeraeteListViewActivityConroller.EingabeArt.SPRACHE){
-                    MessgeraeteListViewActivityConroller.getInstance().setEingabeArt( MessgeraeteListViewActivityConroller.EingabeArt.TASTATUR);
+                if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
+                    MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.SPRACHE);
+                }else if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
+                    MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.TASTATUR);
                 }
                 setEingabeMenuItemIcon();
                 return true;
@@ -207,13 +208,13 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btShowEximFunk:
-                    MessgeraeteListViewActivityConroller.getInstance().setGereteart(MessgeraeteListViewActivityConroller.GeraeteArt.EXIM);
+                    MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.EXIM);
                 break;
             case R.id.btShowSontexFunk:
-                MessgeraeteListViewActivityConroller.getInstance().setGereteart(MessgeraeteListViewActivityConroller.GeraeteArt.SONTEX);
+                MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.SONTEX);
                 break;
             case R.id.btShowStandard:
-                MessgeraeteListViewActivityConroller.getInstance().setGereteart(MessgeraeteListViewActivityConroller.GeraeteArt.MANUELL);
+                MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.MANUELL);
                 break;
         }
         onResume();
@@ -230,11 +231,11 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,FileHandler.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0));
+            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0).replace(" ",""));
         }
         if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,FileHandler.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0));
+            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0).replace(" ",""));
         }
         mAdapterCurrent.notifyDataSetChanged();
 

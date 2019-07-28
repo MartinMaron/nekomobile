@@ -21,28 +21,16 @@ public class Dict {
     public static final String TODO_MONTAGE_KWZ = "MON_KWZ";
     public static final String TODO_MONTAGE_RWM = "MON_RWM";
     public static final String TODO_ABLESUNG = "ABL_ALL";
+    public static final String TODO_ZWISCHENABLESUNG = "ABL_ALL";
     public static final String TODO_FUNK_CHECK = "FUN_CHK";
 
 
-
-
     private static Dict instance = null;
-    private Dict()
-    {
-
-    }
+    private Dict(){}
 
     public static synchronized Dict getInstance()
     {
-        //Wenn die Instanz null ist wurde Sie noch nicht generiert.
-        if (instance == null)
-        {
-            //Generierung der Instanz bei ersten Aufruf des FileHandlers
-
-            instance = new Dict();
-        }
-
-        //Rueckgabe der einzigen Instanz.
+        if (instance == null) {instance = new Dict();}
         return instance;
     }
 
@@ -72,7 +60,6 @@ public class Dict {
     public ArrayList<FunkCheck_Austauschgrund> getFunkAustauschGrunds() {
         return mFunkAustauschGrunds;
     }
-
     public FunkCheck_Austauschgrund getFunkAustauschGrund(String Id) {
         FunkCheck_Austauschgrund ret_val = null;
         if (! Id.equals("")) {
@@ -89,7 +76,6 @@ public class Dict {
     public ArrayList<ZaehlerModel> getZaehlerModels() {
         return mZaehlerModels;
     }
-
     public ZaehlerModel getZaehlerModel(Integer modelId) {
         ZaehlerModel ret_val = null;
         if (modelId != 0) {
@@ -106,7 +92,6 @@ public class Dict {
     public ArrayList<FunkModel> getFunkModels() {
         return mFunkModels;
     }
-
     public FunkModel getFunkModel(String funkModelId) {
         FunkModel ret_val = null;
         if (!funkModelId.equals("")) {

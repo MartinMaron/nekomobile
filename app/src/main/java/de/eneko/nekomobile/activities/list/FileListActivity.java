@@ -17,6 +17,7 @@ import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.activities.adapter.FileListViewAdapter;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Route;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class FileListActivity extends ListActivity implements AdapterView.OnItemClickListener {
@@ -25,7 +26,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        FileHandler.getInstance().setRoute(mAdapter.getItem(i));
+        CurrentObjectNavigation.getInstance().setRoute(mAdapter.getItem(i));
         Intent intent = new Intent(view.getContext(), LiegenschaftListActivity.class);
         view.getContext().startActivity(intent);
     }

@@ -1,6 +1,5 @@
 package de.eneko.nekomobile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,8 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import de.eneko.nekomobile.activities.NekoDropboxActivity;
 import de.eneko.nekomobile.controllers.Dict;
+import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 import de.eneko.nekomobile.listener.MainActivityOnClickListener;
 
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         // init FloatingActionButton
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setVisibility(NavigationView.INVISIBLE);
+        fab.setVisibility(NavigationView.VISIBLE);
         fab.setOnClickListener(mainActivityOnClickListener);
 
         // init DrawerLayout
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity
         btCmdDropbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), NekoDropboxActivity.class);
-                startActivity(intent);
+               FileHandler.getInstance().getNekoDropBox().synchronize();
             }
         });
 
@@ -69,9 +68,8 @@ public class MainActivity extends AppCompatActivity
 
 
     private void initializeHlptas(){
+        FileHandler.getInstance().setNekoDropBox(new NekoDropBox(this));
         Dict.getInstance().initializeHelpers(this);
-
-
     }
 
 

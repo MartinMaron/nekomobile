@@ -52,7 +52,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NekoDropboxActivity"/>
+        <activity android:name=".activities.DropboxFilesActivity"/>
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAustauschActivity"/>
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAblesungActivity"/>
         <activity android:name=".activities.list.MessgeraetListActivity"/>
@@ -66,6 +66,8 @@
         <activity android:name=".activities.list.FileListActivity"/>
         <activity android:name=".activities.list.LiegenschaftListActivity"/>
         <activity android:name=".activities.list.NutzerListActivity"/>
+        <activity android:name=".activities.detail.Nutzer.NutzerActivity"/>
         <activity android:name=".activities.list.NutzerTodosListActivity"/>
+        <service android:name=".services.DropBoxService" />
     </application>
 </manifest>

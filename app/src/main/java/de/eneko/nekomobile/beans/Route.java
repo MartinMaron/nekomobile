@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.beans;
 
+import android.util.Log;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,6 +16,7 @@ import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.RouteModel;
 
 public class Route extends BaseObject implements InekoId, ItoXmlElement {
+    private static final String TAG = Route.class.getName();
     private String nekoId;
     private String mBezeichnung;
     private Date mDatum;
@@ -57,7 +60,7 @@ public class Route extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(retval, "createTimestamp",mCreateTimestamp);
             this.getLiegenschaften().forEach(item-> retval.appendChild(item.toXmlElement(xmldoc)));
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "export error.", e);
         }
         return  retval;
     }
@@ -94,12 +97,12 @@ public class Route extends BaseObject implements InekoId, ItoXmlElement {
                         }
                         break;
                     default:
-                        System.out.println(propElement.getNodeName() + ": keine bekannte Property");
+                        Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
             }
         }
        } catch (Exception e) {
-           e.printStackTrace();
+           Log.e(TAG, "import error.", e);
        }
     }
 

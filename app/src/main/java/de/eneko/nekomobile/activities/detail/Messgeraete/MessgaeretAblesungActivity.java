@@ -6,6 +6,7 @@ import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
 public class MessgaeretAblesungActivity extends MessgeraetBaseActivity {
@@ -13,7 +14,7 @@ public class MessgaeretAblesungActivity extends MessgeraetBaseActivity {
 
     @Override
     protected void createViewHolder(){
-        Messgeraet obj = FileHandler.getInstance().getMessgeraet();
+        Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
         viewHolder = new DetailViewHolder( null,obj.getBaseModel(), this){
             @Override
             public void save() {
