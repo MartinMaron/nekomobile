@@ -4,32 +4,22 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
-import android.os.Binder;
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.controllers.FileFactory;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
-import de.eneko.nekomobile.framework.dropbox.UploadFileTask;
 
 public class DropBoxService extends Service {
     private static final String TAG = DropBoxService.class.getName();
