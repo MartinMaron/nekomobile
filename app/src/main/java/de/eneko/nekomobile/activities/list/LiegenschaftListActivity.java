@@ -50,6 +50,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
 
     }
     protected void exit(){
+        FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, FileListActivity.class);
         startActivity(intent);
     }

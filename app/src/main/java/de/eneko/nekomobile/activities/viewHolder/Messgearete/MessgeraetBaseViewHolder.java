@@ -3,6 +3,7 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -26,6 +27,7 @@ import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
 import de.eneko.nekomobile.controllers.PhotoHandler;
+import java.util.Calendar;
 
 public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
@@ -121,7 +123,12 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
         });
-        getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getDatum()));
+        if (getBean().getDatum() != null) {
+            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getDatum()));
+        }else {
+            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(Calendar.getInstance().getTime()));
+        }
+
         getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getStichtagsdatum()));
         getTvAktuell().setOnClickListener(new View.OnClickListener() {
             @Override

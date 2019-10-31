@@ -81,6 +81,7 @@ public class NutzerListActivity extends AppCompatActivity implements
     }
 
     protected void exit(){
+        FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, LiegenschaftListActivity.class);
         startActivity(intent);
     }

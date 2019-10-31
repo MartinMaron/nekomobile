@@ -53,8 +53,8 @@ public class NekoDropBox {
         PicassoClient.init(mainActivity.getApplicationContext(), DropboxClientFactory.getClient());
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
-        //Intent i = new Intent(mMainActivity, DropBoxService.class);
-        //mMainActivity.startService(i);
+        Intent i = new Intent(mMainActivity, DropBoxService.class);
+        mMainActivity.startService(i);
 
     }
 

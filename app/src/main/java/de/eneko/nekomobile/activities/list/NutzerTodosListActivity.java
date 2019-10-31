@@ -52,6 +52,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
+
         datasource.addAll(CurrentObjectNavigation.getInstance().getNutzer().getToDos().stream()
                 .sorted(Comparator.comparing(ToDo::getArt))
                 .collect(Collectors.toList()));
@@ -69,6 +70,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
         mAdapter.notifyDataSetChanged();
     }
     protected void exit(){
+        FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, NutzerListActivity.class);
         startActivity(intent);
     }

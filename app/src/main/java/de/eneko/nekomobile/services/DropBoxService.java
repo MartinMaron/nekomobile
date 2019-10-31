@@ -49,13 +49,13 @@ public class DropBoxService extends Service {
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo netInfo = cm.getActiveNetworkInfo();
                 if (netInfo.isConnected() && netInfo.getTypeName().equals("WIFI")){
-//                        (netInfo.getExtraInfo().contains("eneko") ||
-//                        netInfo.getExtraInfo().contains("NETGEAR84"))){
-                    nekoDropBox.synchronize();
-                    Log.e(TAG,"nekoDropBox.synchronize : start");
-                    }
+                    if (netInfo.getExtraInfo().contains("easybox") ||
+                            netInfo.getExtraInfo().contains("easybox")){
+                        nekoDropBox.synchronize();
+                        Log.e(TAG,"nekoDropBox.synchronize : start");
+                    }}
                 Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
-            } catch (InterruptedException e) {
+            }   catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }

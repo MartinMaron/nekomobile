@@ -31,8 +31,6 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
         view.getContext().startActivity(intent);
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -72,6 +70,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
     }
 
     protected void exit(){
+        FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

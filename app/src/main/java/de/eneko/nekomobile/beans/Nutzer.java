@@ -107,7 +107,7 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                         mEnde = getSipleLongDate(propElement);
                         break;
                     case "lage":
-                        mLage = getString(propElement);
+                        mLage = getString(propElement).replace("\n","").replace(" ","");
                         break;
                     case "wohnungsNummer":
                         mWohnungsnummer = getInteger(propElement);

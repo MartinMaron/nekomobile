@@ -67,6 +67,7 @@ public class RauchmelderWartungListActivity extends AppCompatActivity {
 
 
     protected void exit(){
+        FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, NutzerTodosListActivity.class);
         startActivity(intent);
     }
