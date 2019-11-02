@@ -1,7 +1,5 @@
 package de.eneko.nekomobile.controllers;
 
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +19,7 @@ public class Dict {
     public static final String TODO_MONTAGE_KWZ = "MON_KWZ";
     public static final String TODO_MONTAGE_RWM = "MON_RWM";
     public static final String TODO_ABLESUNG = "ABL_ALL";
-    public static final String TODO_ZWISCHENABLESUNG = "ABL_ALL";
+    public static final String TODO_ZWISCHENABLESUNG = "ABL_ZWI";
     public static final String TODO_FUNK_CHECK = "FUN_CHK";
 
 

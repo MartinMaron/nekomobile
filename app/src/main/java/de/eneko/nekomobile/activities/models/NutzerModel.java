@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerModel extends Basemodel {
     // region privates
@@ -26,6 +25,9 @@ public class NutzerModel extends Basemodel {
     private String mBemerkung ="";
     private String mNutzerName ="";
     private String telNummer ="";
+    private String mZwischenablesungNeuerNutzer ="";
+    private String mZwischenablesungKontakt ="";
+
     // endregion
 
 
@@ -60,10 +62,16 @@ public class NutzerModel extends Basemodel {
         setBemerkung(getBean().getBemerkung());
         setNutzerName(getBean().getNutzerName());
         setTelNummer(getBean().getTelNummer());
+        setZwischenablesungKontakt(getBean().getZwischenablesungKontakt());
+        setZwischenablesungNeuerNutzer(getBean().getZwischenablesungNeuerNutzer());
     }
 
     public Boolean hasAblesung(){
         return getBean().getToDos().stream().filter(r -> r.getArt().equals("ABL_ALL"))
+                .collect(Collectors.toList()).size() > 0;
+    }
+    public Boolean hasZwischenAblesung(){
+        return getBean().getToDos().stream().filter(r -> r.getArt().equals("ABL_ZWI"))
                 .collect(Collectors.toList()).size() > 0;
     }
     public Boolean hasMontage(){
@@ -230,6 +238,22 @@ public class NutzerModel extends Basemodel {
 
     public void setTelNummer(String telNummer) {
         this.telNummer = telNummer;
+    }
+
+    public String getZwischenablesungNeuerNutzer() {
+        return mZwischenablesungNeuerNutzer;
+    }
+
+    public void setZwischenablesungNeuerNutzer(String zwischenablesungNeuerNutzer) {
+        mZwischenablesungNeuerNutzer = zwischenablesungNeuerNutzer;
+    }
+
+    public String getZwischenablesungKontakt() {
+        return mZwischenablesungKontakt;
+    }
+
+    public void setZwischenablesungKontakt(String zwischenablesungKontakt) {
+        mZwischenablesungKontakt = zwischenablesungKontakt;
     }
 
     // endregion

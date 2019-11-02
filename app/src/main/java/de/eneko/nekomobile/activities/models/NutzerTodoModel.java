@@ -85,6 +85,14 @@ public class NutzerTodoModel extends Basemodel{
                 return R.drawable.icon_ablesung;
             }
         }
+        if (getBean().getArt().equals(Dict.TODO_ZWISCHENABLESUNG))
+        {
+            if (isCompleted("GER")) {
+                return R.drawable.icon_ablesung_zwischen_complete;
+            }else {
+                return R.drawable.icon_ablesung_zwischen;
+            }
+        }
         if (getBean().getArt().equals(Dict.TODO_FUNK_CHECK))
         {
             if (isCompleted("GER")) {

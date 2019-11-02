@@ -34,7 +34,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
                 intent = new Intent(view.getContext(), RauchmelderWartungListActivity.class);
                 view.getContext().startActivity(intent);
                 break;
-            case "ABL_ALL":
+            case "ABL_ALL": case "ABL_ZWI":
                 intent = new Intent(view.getContext(), MessgeraetAblesungListActivity.class);
                 view.getContext().startActivity(intent);
                 break;

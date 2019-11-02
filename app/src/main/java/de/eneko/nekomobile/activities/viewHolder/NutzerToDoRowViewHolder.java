@@ -57,6 +57,11 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
                 vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
                 vhMessgeraeteAbsoluts.updateView();
                 break;
+            case Dict.TODO_ZWISCHENABLESUNG:
+                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                vhMessgeraeteAbsoluts.updateView();
+               break;
             case Dict.TODO_MONTAGE_RWM:
                 getIvImage().setImageResource(R.drawable.icon_rwm_montage);
                 break;
@@ -67,7 +72,7 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
     public NutzerToDoRowViewHolder(View pView, NutzerTodoModel model) {
         super(pView, model);
         this.model = model;
-        vhRwmAbsoluts = new NutzerToDoRowViewHolder_RwmWartung_Absoluts();
+//        vhRwmAbsoluts = new NutzerToDoRowViewHolder_RwmWartung_Absoluts();
 
     }
 

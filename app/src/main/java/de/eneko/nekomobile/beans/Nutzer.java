@@ -2,7 +2,6 @@ package de.eneko.nekomobile.beans;
 
 
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.w3c.dom.Attr;
@@ -12,12 +11,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
 
@@ -37,6 +33,8 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
     private String mBemerkung ="";
     private String mNutzerName ="";
     private String telNummer ="";
+    private String mZwischenablesungNeuerNutzer ="";
+    private String mZwischenablesungKontakt ="";
     private final Liegenschaft mLiegenschaft;
     private List<ToDo> mToDos;
 
@@ -135,6 +133,12 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                         break;
                     case "telNummer":
                         telNummer = getString(propElement);
+                        break;
+                    case "ZwischenablesungNeuerNutzer":
+                        mZwischenablesungNeuerNutzer = getString(propElement);
+                        break;
+                    case "ZwischenablesungKontakt":
+                        mZwischenablesungKontakt = getString(propElement);
                         break;
                     case "todos":
                         NodeList todoNodeList = propElement.getChildNodes();
@@ -287,6 +291,22 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
 
     public Liegenschaft getLiegenschaft() {
         return mLiegenschaft;
+    }
+
+    public String getZwischenablesungNeuerNutzer() {
+        return mZwischenablesungNeuerNutzer;
+    }
+
+    public void setZwischenablesungNeuerNutzer(String zwischenablesungNeuerNutzer) {
+        mZwischenablesungNeuerNutzer = zwischenablesungNeuerNutzer;
+    }
+
+    public String getZwischenablesungKontakt() {
+        return mZwischenablesungKontakt;
+    }
+
+    public void setZwischenablesungKontakt(String zwischenablesungKontakt) {
+        mZwischenablesungKontakt = zwischenablesungKontakt;
     }
 
 

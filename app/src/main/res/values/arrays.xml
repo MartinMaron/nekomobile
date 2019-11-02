@@ -22,6 +22,7 @@
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>
+        <item>STA;standardowa zmiana</item>
         <item>DEF;display defekt</item>
         <item>HKF;brak kaloryfera</item>
         <item>FFE;kein Funk</item>

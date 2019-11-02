@@ -216,6 +216,8 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     public Boolean isDone(){
         if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
         return (getStichtagValue() >= 0 || getAktuellValue() >= 0) && !getFunk() && !getDefekt();}
+        if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
+            return (getAktuellValue() >= 0) && !getFunk() && !getDefekt();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
             return getStichtagValue() >= 0 || getAktuellValue() >= 0 || !getAustauschGrund().equals("X");}
         return false;
@@ -224,6 +226,8 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     public Boolean isUnDone(){
         if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
             return !(getDefekt() || getStichtagValue() >= 0 || getAktuellValue() >= 0) && !getFunk();}
+        if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
+            return !(getDefekt() || getAktuellValue() >= 0) && !getFunk();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
             return !isDone();}
         return false;
@@ -231,6 +235,8 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public Boolean isWithError(){
         if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
+            return getDefekt();}
+        if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
             return getDefekt();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
             return false;}
