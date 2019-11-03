@@ -4,8 +4,10 @@ package de.eneko.nekomobile.activities.list;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,6 +29,13 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         //Aktuelle Notiz zwischenspeichern
         CurrentObjectNavigation.getInstance().setLiegenschaft((Liegenschaft) mAdapter.getItem(i));
+
+        if(!CurrentObjectNavigation.getInstance().getLiegenschaft().getBemerkung().equals("")){
+            Toast toast= Toast.makeText(getApplicationContext(),
+                    CurrentObjectNavigation.getInstance().getLiegenschaft().getBemerkung(), Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 400);
+            toast.show();
+         }
 
         //Generieren eines Intents fuer die NutzerListActivity zu wrappen
         Intent intent = new Intent(view.getContext(), NutzerListActivity.class);

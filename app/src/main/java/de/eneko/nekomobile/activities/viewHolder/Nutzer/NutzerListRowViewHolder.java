@@ -12,6 +12,7 @@ public class NutzerListRowViewHolder extends NutzerBaseViewHolder {
     private TodoRowItemViewHolder todoRow = null;
     private View svToDoRow = null;
 
+
     public NutzerListRowViewHolder(View pView, Basemodel pModel) {
         super(pView, pModel);
     }
@@ -55,5 +56,6 @@ public class NutzerListRowViewHolder extends NutzerBaseViewHolder {
         getTodoRow().getIvFunkCheck().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_FUNK_CHECK));
 
     }
+
 
 }

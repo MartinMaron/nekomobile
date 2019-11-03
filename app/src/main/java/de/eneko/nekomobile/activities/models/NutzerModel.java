@@ -28,6 +28,8 @@ public class NutzerModel extends Basemodel {
     private String mZwischenablesungNeuerNutzer ="";
     private String mZwischenablesungKontakt ="";
 
+    private String mNutzerNameNeuerInNeko = "";
+
     // endregion
 
 
@@ -64,6 +66,7 @@ public class NutzerModel extends Basemodel {
         setTelNummer(getBean().getTelNummer());
         setZwischenablesungKontakt(getBean().getZwischenablesungKontakt());
         setZwischenablesungNeuerNutzer(getBean().getZwischenablesungNeuerNutzer());
+        setNutzerNameNeuerInNeko(getBean().getNutzerNameNeuerInNeko());
     }
 
     public Boolean hasAblesung(){
@@ -97,6 +100,13 @@ public class NutzerModel extends Basemodel {
         if (!this.mNutzerName.equals("")) retval = this.mNutzerName ;
         if (!this.mNutzerName.equals("")) retval = retval + " " + getWohnungsnummerMitLage();
         return  retval;
+    }
+    public String getDisplayZwischenablesung()
+    {
+        String retval = "";
+        if (!getZwischenablesungNeuerNutzer().equals("")) retval = getZwischenablesungNeuerNutzer() ;
+        if (!getZwischenablesungKontakt().equals("")) retval = retval + ": " + getZwischenablesungKontakt();
+        return retval;
     }
 
     public String getWohnungsnummerMitLage() {
@@ -254,6 +264,14 @@ public class NutzerModel extends Basemodel {
 
     public void setZwischenablesungKontakt(String zwischenablesungKontakt) {
         mZwischenablesungKontakt = zwischenablesungKontakt;
+    }
+
+    public String getNutzerNameNeuerInNeko() {
+        return mNutzerNameNeuerInNeko;
+    }
+
+    public void setNutzerNameNeuerInNeko(String nutzerNameNeuerInNeko) {
+        mNutzerNameNeuerInNeko = nutzerNameNeuerInNeko;
     }
 
     // endregion

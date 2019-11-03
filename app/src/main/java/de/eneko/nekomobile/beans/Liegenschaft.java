@@ -1,6 +1,5 @@
 package de.eneko.nekomobile.beans;
 
-import android.text.format.DateFormat;
 import android.util.Log;
 
 import org.w3c.dom.Attr;
@@ -12,11 +11,9 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
-import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 
 public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private static final String TAG = Liegenschaft.class.getName();
@@ -27,7 +24,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private int mSortNo;
     private int mZeitInMin;
     private String mArt;
-    private String mBemerkung;
+    private String mBemerkung = "";
     private String mGoogleEventId;
     private double mLatitude;
     private double mLongitude;

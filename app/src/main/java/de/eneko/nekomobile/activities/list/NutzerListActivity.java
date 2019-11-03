@@ -41,6 +41,10 @@ public class NutzerListActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_list_view);
 
         getSupportActionBar().setTitle(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getAdresse());
+        if(!CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getBemerkung().equals(""));
+        {
+            getSupportActionBar().setSubtitle(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getBemerkung());
+        }
 
         datasource.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getNutzers().stream()
                 .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))

@@ -3,6 +3,7 @@ package de.eneko.nekomobile.activities.viewHolder;
 
 import android.view.View;
 import android.widget.TextView;
+
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
@@ -13,6 +14,7 @@ public class LiegenschaftRowViewHolder extends BaseViewHolder{
      */
     private TextView txtvLiegenschaft = null;
     private TextView txtvTermin = null;
+    private TextView txtvBemerkungen = null;
     private TodoRowItemViewHolder todoRow = null;
 
 
@@ -29,8 +31,9 @@ public class LiegenschaftRowViewHolder extends BaseViewHolder{
     public void updateView() {
         setTxtvLiegenschaft(mView.findViewById(R.id.txtvDescription));
         setTxtvTermin(mView.findViewById(R.id.txtvDescription2));
-
+        setTxtvBemerkungen(mView.findViewById(R.id.txtvBemerkung));
         View svToDoRow = (View) mView.findViewById(R.id.todorow);
+
         todoRow = new TodoRowItemViewHolder(svToDoRow,getBasemodel());
 
         todoRow.setIvAblesung(mView.findViewById(R.id.ivAblesung));
@@ -42,6 +45,11 @@ public class LiegenschaftRowViewHolder extends BaseViewHolder{
         //Befuellen der einzelen Widgets
         getTxtvLiegenschaft().setText(getBasemodel().getAdresseDisplay());
         getTxtvTermin().setText(getBasemodel().getTerminDisplay());
+        if (!getBasemodel().getBemerkung().equals("")){
+            getTxtvBemerkungen().setText(getBasemodel().getBemerkung());
+        }else {
+            getTxtvBemerkungen().setVisibility(View.GONE);
+        }
 
         // sichtbarkei der Icons
         todoRow.getIvAblesung().setVisibility(getBasemodel().hasAblesung() ? View.VISIBLE: View.GONE);
@@ -76,5 +84,15 @@ public class LiegenschaftRowViewHolder extends BaseViewHolder{
     public void setTodoRow(TodoRowItemViewHolder todoRow) {
         this.todoRow = todoRow;
     }
+
+
+    public TextView getTxtvBemerkungen() {
+        return txtvBemerkungen;
+    }
+
+    public void setTxtvBemerkungen(TextView txtvBemerkungen) {
+        this.txtvBemerkungen = txtvBemerkungen;
+    }
+
     // endregion properties
 }

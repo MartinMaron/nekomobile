@@ -10,9 +10,7 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
-import de.eneko.nekomobile.activities.viewHolder.TodoRowItemViewHolder;
 import de.eneko.nekomobile.beans.Nutzer;
-import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerBaseViewHolder extends BaseViewHolder {
     /*
@@ -20,6 +18,8 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
      */
     protected TextView txtvDescription = null;
     protected TextView txtvNutzerLage = null;
+    protected TextView tvZwischenablesung = null;
+
     protected ImageView ivStatus = null;
 
     public NutzerBaseViewHolder(View pView, Basemodel pModel) {
@@ -52,10 +52,23 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
 
         setTxtvDescription(findViewById(R.id.txtvDescription));
         setTxtvNutzerLage(findViewById(R.id.txtvNutzerLage));
+        setTvZwischenablesung(findViewById(R.id.txtvZwischenablesung));
 
         //Befuellen der einzelen Widgets
         getTxtvDescription().setText(getBasemodel().getNutzerName());
         getTxtvNutzerLage().setText(getBasemodel().getWohnungsnummerMitLage());
+
+       if (getTvZwischenablesung() != null) {
+            if (this.getBasemodel().hasZwischenAblesung()) {
+                getTvZwischenablesung().setText("Zwischenablesung bei " + this.getBasemodel().getDisplayZwischenablesung());
+            } else {
+                if (! this.getBasemodel().getNutzerNameNeuerInNeko().equals("")) {
+                    getTvZwischenablesung().setText("Neuer Nutzername in Neko: " + this.getBasemodel().getNutzerNameNeuerInNeko());
+                }else {
+                    getTvZwischenablesung().setVisibility(View.GONE);
+                }
+            }
+        }
         setStatusImage(getIvStatus(),getBasemodel().getBean());
 
     }
@@ -89,5 +102,12 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
     }
 
 
+    public TextView getTvZwischenablesung() {
+        return tvZwischenablesung;
+    }
+
+    public void setTvZwischenablesung(TextView tvZwischenablesung) {
+        this.tvZwischenablesung = tvZwischenablesung;
+    }
 
 }

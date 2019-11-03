@@ -35,6 +35,7 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
     private String telNummer ="";
     private String mZwischenablesungNeuerNutzer ="";
     private String mZwischenablesungKontakt ="";
+    private String mNutzerNameNeuerInNeko = "";
     private final Liegenschaft mLiegenschaft;
     private List<ToDo> mToDos;
 
@@ -79,6 +80,9 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(ret_val,"rwmNeuerNutzer",mRwmNeuerNutzer);
             CreateTextNode(ret_val,"bemerkung",mBemerkung.toString());
             CreateTextNode(ret_val,"nutzerName",mNutzerName.toString());
+            CreateTextNode(ret_val,"ZwischenablesungNeuerNutzer",mZwischenablesungNeuerNutzer.toString());
+            CreateTextNode(ret_val,"ZwischenablesungKontakt",mZwischenablesungKontakt.toString());
+            CreateTextNode(ret_val,"nutzerNameNeuerInNeko",mNutzerNameNeuerInNeko.toString());
             CreateTextNode(ret_val,"telNummer",telNummer.toString());
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -139,6 +143,9 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
                         break;
                     case "ZwischenablesungKontakt":
                         mZwischenablesungKontakt = getString(propElement);
+                        break;
+                    case "nutzerNameNeuerInNeko":
+                        mNutzerNameNeuerInNeko = getString(propElement);
                         break;
                     case "todos":
                         NodeList todoNodeList = propElement.getChildNodes();
@@ -309,6 +316,13 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
         mZwischenablesungKontakt = zwischenablesungKontakt;
     }
 
+    public String getNutzerNameNeuerInNeko() {
+        return mNutzerNameNeuerInNeko;
+    }
+
+    public void setNutzerNameNeuerInNeko(String nutzerNameNeuerInNeko) {
+        mNutzerNameNeuerInNeko = nutzerNameNeuerInNeko;
+    }
 
     // endregion properties
 }

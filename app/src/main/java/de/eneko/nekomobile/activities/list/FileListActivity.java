@@ -8,14 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.activities.adapter.FileListViewAdapter;
-import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
