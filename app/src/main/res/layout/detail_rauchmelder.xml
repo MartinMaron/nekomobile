@@ -15,6 +15,16 @@
         android:textAlignment="gravity"
         android:textSize="@dimen/sp_faktor_05" />
 
+    <CheckBox
+        android:id="@+id/cbDatenAufnahmeFremd"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lbModel"
+        android:layout_below="@id/lbModel"
+        android:button="@drawable/drawable_selector"
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:text="@string/Fremdgeraet" />
+
     <Spinner
         android:id="@+id/spModel"
         android:layout_width="@dimen/dp_faktor_70"

@@ -17,8 +17,6 @@ import java.util.Locale;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
-import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
-import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.KeyedValue;
 
 public class DetailViewHolder extends RwmBaseViewHolder {
@@ -33,10 +31,6 @@ public class DetailViewHolder extends RwmBaseViewHolder {
     public RwmActivity getActivity() {
         return (RwmActivity) mActivity;
     }
-
-//    public Rauchmelder getBean() {
-//        return getBasemodel().getBean();
-//    }
 
     @Override
     public void updateView() {
@@ -55,7 +49,7 @@ public class DetailViewHolder extends RwmBaseViewHolder {
         lbNummer = mActivity.findViewById(R.id.lbNummer);
         lbRaum = mActivity.findViewById(R.id.lbRaum);
         ivSpeaker = mActivity.findViewById(R.id.imageSpechToText);
-
+        cbDatenAufnahmeFremd = mActivity.findViewById(R.id.cbDatenAufnahmeFremd);
 
 
 
@@ -133,6 +127,7 @@ public class DetailViewHolder extends RwmBaseViewHolder {
         etNummer.setText(getBasemodel().getNummer());
         etBemerkungen.setText(getBasemodel().getBemerkung());
         etNeueNummer.setText(getBasemodel().getNeueNummer());
+        if (getCbDatenAufnahmeFremd() != null) getCbDatenAufnahmeFremd().setChecked(getBasemodel().getBean().getDatenAufnahmeFremd());
 
         for(int i=0 ; i<spinnerAdapter.getCount() ; i++){
             KeyedValue obj = (KeyedValue) spinnerAdapter.getItem(i);
@@ -177,9 +172,6 @@ public class DetailViewHolder extends RwmBaseViewHolder {
 
     }
 
-
-
-
     public void save(){
 
 
@@ -188,6 +180,7 @@ public class DetailViewHolder extends RwmBaseViewHolder {
         getBasemodel().setNummer(etNummer.getText().toString());
         getBasemodel().setNeueNummer(etNeueNummer.getText().toString());
         getBasemodel().setBemerkung(etBemerkungen.getText().toString());
+        getBasemodel().setmDatenAufnahmeFremd(getCbDatenAufnahmeFremd().isChecked());
 
         Integer modelId = Integer.parseInt (((KeyedValue) spModele.getSelectedItem()).getKey().toString());
         getBasemodel().setModel(modelId);

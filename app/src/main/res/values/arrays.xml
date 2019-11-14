@@ -23,8 +23,10 @@
     </array>
     <array name="rwm_modele">
         <item>1264;ei Elektronics i650</item>
+        <item>1336;ei Elektronics i650 (Fremdgerät)</item>
         <item>1277;Heckatron Rauchmelder</item>
         <item>1278;Mertens Rauchmelder</item>
+        <item>1337;GIRA Fremdgerät</item>
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>

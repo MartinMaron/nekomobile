@@ -27,6 +27,8 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     private String mBemerkung = "";
     private String mNeueNummer = null;
     private String mAustauschGrund = "XX";
+    private Boolean mDatenAufnahmeFremd = false;
+
 
     private ToDo mTodo;
 
@@ -66,6 +68,7 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
             if (mBemerkung != null) CreateTextNode(ret_val,"bemerkung",mBemerkung);
             if (mNeueNummer != null) CreateTextNode(ret_val,"neueNummer",mNeueNummer);
             if (mAustauschGrund != "X") CreateTextNode(ret_val,"austauschgrund",mAustauschGrund);
+            CreateTextNode(ret_val,"datenAufnahmeFremd",mDatenAufnahmeFremd.toString());
 
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
@@ -111,6 +114,8 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
                         break;
                     case "austauschgrund":
                         mAustauschGrund = getString(propElement);
+                    case "datenAufnahmeFremd":
+                        mDatenAufnahmeFremd = getBoolean(propElement);
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -217,6 +222,14 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     public void setAustauschGrund(String austauschGrund) {
         mAustauschGrund = austauschGrund;
         if (mEingabedatum == null) mEingabedatum = new Date();
+    }
+
+    public Boolean getDatenAufnahmeFremd() {
+        return mDatenAufnahmeFremd;
+    }
+
+    public void setDatenAufnahmeFremd(Boolean mDatenAufnahmeFremd) {
+        this.mDatenAufnahmeFremd = mDatenAufnahmeFremd;
     }
 
     // endregion properties

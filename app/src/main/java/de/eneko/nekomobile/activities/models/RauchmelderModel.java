@@ -14,6 +14,7 @@ public class RauchmelderModel extends Basemodel {
     private String mBemerkung = "";
     private String mNeueNummer = "";
     private String mAustauschGrund = "XX";
+    private Boolean mDatenAufnahmeFremd = false;
 
 
     public RauchmelderModel(Rauchmelder bean) {
@@ -31,6 +32,7 @@ public class RauchmelderModel extends Basemodel {
         getBean().setNummer(mNummer);
         getBean().setRaum(mRaum);
         getBean().setWithError(mWithError);
+        getBean().setDatenAufnahmeFremd(mDatenAufnahmeFremd);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class RauchmelderModel extends Basemodel {
         mNummer= getBean().getNummer();
         mRaum = getBean().getRaum();
         mWithError = getBean().getWithError();
+        mDatenAufnahmeFremd = getBean().getDatenAufnahmeFremd();
     }
 
     @Override
@@ -54,9 +57,6 @@ public class RauchmelderModel extends Basemodel {
     public Boolean getUnDone() {
         return !getWithError() && !getDone() && !getBean().getNekoId().contains("new");
     }
-
-
-
 
     //region properties
     public String getNummer() {
@@ -134,5 +134,14 @@ public class RauchmelderModel extends Basemodel {
     public void setAustauschGrund(String austauschGrund) {
         mAustauschGrund = austauschGrund;
     }
+
+    public Boolean getmDatenAufnahmeFremd() {
+        return mDatenAufnahmeFremd;
+    }
+
+    public void setmDatenAufnahmeFremd(Boolean mDatenAufnahmeFremd) {
+        this.mDatenAufnahmeFremd = mDatenAufnahmeFremd;
+    }
+
     //endregion
 }

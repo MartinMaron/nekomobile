@@ -16,8 +16,5 @@ public class GlobalConst {
     // Service wlaczamy i wylaczamy w konstruktorze NekoDropBox
 
     public static final Integer DROPBOX_SERVICE_INTERVALL = 3600000;   // 1 Stunde
-    public static final String DROPBOX_SYNC_WIFI_NAMES = "easybox;";
-
-
-
+    public static final String DROPBOX_SYNC_WIFI_NAMES = "easybox;eneko";
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -31,6 +32,9 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     protected ImageView ivBarcode1 = null;
     protected ImageView ivBarcode2 = null;
     protected ImageView ivSpeaker = null;
+    protected CheckBox cbDatenAufnahmeFremd = null;
+
+
 
     protected ArrayAdapter<KeyedValue> spinnerAdapter = null;
     protected ArrayAdapter<KeyedValue> austauschgrundeAdapter = null;
@@ -40,11 +44,11 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     protected ImageView ivInfo = null;
     protected ImageView ivAustausch = null;
     protected TextView txtvDescription = null;
-    protected Rauchmelder bean = null;
 
 
     public RwmBaseViewHolder(View pView, RauchmelderModel pRauchmelder, Activity pActivity){
         super(pView, pRauchmelder, pActivity );
+
     }
 
     @Override
@@ -258,6 +262,15 @@ public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder
     public void setTxtvDescription(TextView txtvDescription) {
         this.txtvDescription = txtvDescription;
     }
+
+    public CheckBox getCbDatenAufnahmeFremd() {
+        return cbDatenAufnahmeFremd;
+    }
+
+    public void setCbDatenAufnahmeFremd(CheckBox cbDatenAufnahmeFremd) {
+        this.cbDatenAufnahmeFremd = cbDatenAufnahmeFremd;
+    }
+
 
     // endregion Controls
 
