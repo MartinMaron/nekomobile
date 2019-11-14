@@ -41,7 +41,15 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
                 intent = new Intent(view.getContext(), MessgeraetAblesungListActivity.class);
                 view.getContext().startActivity(intent);
                 break;
-            case "FUN_CHK": case "MON_HKV": case "MON_WMZ": case "MON_WWZ": case "MON_KWZ":
+            case "MON_WMZ": case "MON_WWZ": case "MON_KWZ":
+                intent = new Intent(view.getContext(), MessgeraetMontageListActivity.class);
+                view.getContext().startActivity(intent);
+                break;
+            case "MON_HKV":
+                intent = new Intent(view.getContext(), MessgeraetMontageListActivity.class);
+                view.getContext().startActivity(intent);
+                break;
+            case "FUN_CHK":
                 intent = new Intent(view.getContext(), MessgeraetFunkCheckListActivity.class);
                 view.getContext().startActivity(intent);
                 break;

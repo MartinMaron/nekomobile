@@ -4,9 +4,11 @@ import android.text.TextUtils;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.ToDo;
 
@@ -142,6 +144,28 @@ public class NutzerModel extends Basemodel {
         if (todo == null){return 0;}
         return todo.getBaseModel().getProgressStatusImageResourceId();
    }
+    public Integer getProgressStatusImageMontageResourceId() {
+
+        List<ToDo> todoList = getBean().getToDos().stream()
+                .filter(item -> item.getArt().equals("MON_WMZ") || item.getArt().equals("MON_WWZ") || item.getArt().equals("MON_KWZ") || item.getArt().equals("MON_HKV"))
+                .collect(Collectors.toList());
+        for (ToDo t : todoList)
+        {
+
+            List<Messgeraet> messList = t.getMessgeraete().stream()
+                .filter(item -> item.isUnDone())
+                .collect(Collectors.toList());
+
+            if (messList.size() > 0)
+            {
+                return R.drawable.icon_montage;
+            }
+        };
+        return R.drawable.icon_montage_ok;
+
+    }
+
+
 
 
     // region properties
@@ -267,7 +291,7 @@ public class NutzerModel extends Basemodel {
     }
 
     public String getNutzerNameNeuerInNeko() {
-        return mNutzerNameNeuerInNeko;
+        return mNutzerNameNeuerInNeko.replace("\n","").trim();
     }
 
     public void setNutzerNameNeuerInNeko(String nutzerNameNeuerInNeko) {

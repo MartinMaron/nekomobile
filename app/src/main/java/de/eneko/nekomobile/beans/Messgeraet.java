@@ -42,6 +42,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String mNeueFunkNummer = "";
     private String mNeuesFunkModel = "X";
     private String mAustauschGrund = "X";
+    private String mUndoneGrund = "";
     private Liegenschaft mLiegenschaft = null;
     public Messgeraet(ToDo pTodo) {
         super();
@@ -149,6 +150,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
                     case "austauschGrund":
                         mAustauschGrund = getString(propElement);
                         break;
+                    case "unDoneGrund":
+                        mUndoneGrund = getString(propElement);
+                        break;
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -197,6 +201,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(ret_val,"neueFunkNummer" ,mNeueFunkNummer);
             CreateTextNode(ret_val,"neuesFunkModel" ,mNeuesFunkModel);
             CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
+            CreateTextNode(ret_val,"unDoneGrund" , mUndoneGrund);
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }
@@ -220,6 +225,14 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             return (getAktuellValue() >= 0) && !getFunk() && !getDefekt();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
             return getStichtagValue() >= 0 || getAktuellValue() >= 0 || !getAustauschGrund().equals("X");}
+        if (getTodo().getArt().equals(Dict.TODO_MONTAGE_KWZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
+                // hier ist der Zähler auf jeden Fall ausgetauscht
+                if (!getAustauschGrund().equals("X")) {return true;}
+                if (!getNeueNummer().equals("")) {return true;}
+                if (!getNeueFunkNummer().equals("")){return true;}
+            }
         return false;
     };
 
@@ -230,6 +243,11 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             return !(getDefekt() || getAktuellValue() >= 0) && !getFunk();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
             return !isDone();}
+        if (getTodo().getArt().equals(Dict.TODO_MONTAGE_KWZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
+            if (getAustauschGrund().equals("X") && getNeueNummer().equals("") && getNeueFunkNummer().equals("") && getUndoneGrund().equals("")) {return true;}
+        }
         return false;
     };
 
@@ -239,7 +257,13 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
         if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
             return getDefekt();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
-            return false;}
+            return getDefekt();}
+        if (getTodo().getArt().equals(Dict.TODO_MONTAGE_KWZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
+                getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
+            if (!getUndoneGrund().equals("")) {return true;}
+
+        }
         return false;
     };
     public Boolean isNew(){
@@ -465,6 +489,15 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     public void setStichtagsdatum(Date stichtagsdatum) {
         this.stichtagsdatum = stichtagsdatum;
     }
+
+    public String getUndoneGrund() {
+        return mUndoneGrund;
+    }
+
+    public void setUndoneGrund(String undoneGrund) {
+        mUndoneGrund = undoneGrund;
+    }
+
 
     // endregion "Properties"
 }

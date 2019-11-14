@@ -39,7 +39,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
             ArrayList<Route> datasoure = new ArrayList<Route>();
             datasoure.addAll(
                     FileHandler.getInstance().getAllRoutes().stream()
-                            .filter(r -> r.getDatum().compareTo(addDays(new Date(), -50)) > 0)
+                            .filter(r -> r.getDatum().compareTo(addDays(new Date(), -14)) > 0)
                             .sorted(Comparator.comparing(Route::getDatum))
                             .collect(Collectors.toList()));
 

@@ -3,7 +3,6 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.InputDialogClass;
@@ -24,10 +24,8 @@ import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
-import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
 import de.eneko.nekomobile.controllers.PhotoHandler;
-import java.util.Calendar;
 
 public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
@@ -80,6 +78,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private TextView lbBemerkung = null;
     private EditText etBemerkung = null;
     private ImageView ivSpechToText = null;
+    private TextView lbUnDoneGrund = null;
+    private AutoCompleteTextView acUnDoneGrund = null;
+
 
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean) {
         this(pView, pBean,null);
@@ -110,6 +111,10 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         setTvAktuell(findViewById(R.id.tvAktuell));
         setTvStichtag(findViewById(R.id.tvStichtag));
         setIvPhoto(findViewById(R.id.ivPhoto));
+        setLbUnDoneGrund(findViewById(R.id.lbUnDoneGrund));
+        setAcUnDoneGrund(findViewById(R.id.acUnDoneGrund));
+
+
 
         getIvPhoto().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -502,6 +507,21 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         this.spAustauschgrund = spAustauschgrund;
     }
 
+    public TextView getLbUnDoneGrund() {
+        return lbUnDoneGrund;
+    }
+
+    public void setLbUnDoneGrund(TextView lbKeinAustauschGrund) {
+        this.lbUnDoneGrund = lbKeinAustauschGrund;
+    }
+
+    public AutoCompleteTextView getAcUnDoneGrund() {
+        return acUnDoneGrund;
+    }
+
+    public void setAcUnDoneGrund(AutoCompleteTextView acKeinAustauschGrund) {
+        this.acUnDoneGrund = acKeinAustauschGrund;
+    }
 
     // endregion properties
 

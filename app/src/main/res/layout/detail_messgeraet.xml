@@ -109,7 +109,7 @@
         android:id="@+id/lbNewModel"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/tvStichtag"
+        android:layout_below="@id/spAustauschgrund"
         android:text="@string/neuerZaehler"
         android:textSize="@dimen/sp_faktor_05" />
 
@@ -126,7 +126,7 @@
         android:id="@+id/ivBarcodeNewModel"
         android:layout_width="@dimen/dp_faktor_14"
         android:layout_height="@dimen/dp_faktor_14"
-        android:layout_below="@+id/tvAktuell"
+        android:layout_below="@+id/spAustauschgrund"
         android:layout_toRightOf="@id/spNewModel"
         app:srcCompat="@drawable/icon_barcode" />
 
@@ -134,7 +134,7 @@
         android:id="@+id/lbAustauschgrund"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/spNewModel"
+        android:layout_below="@id/acUnDoneGrund"
         android:text="@string/austauschgrund"
         android:textSize="@dimen/sp_faktor_05" />
 
@@ -153,7 +153,7 @@
         android:id="@+id/lbNewNummer"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/spAustauschgrund"
+        android:layout_below="@id/spNewModel"
         android:text="@string/rwm_detail_lb_NewNummer"
         android:textSize="@dimen/sp_faktor_05" />
 
@@ -171,7 +171,7 @@
         android:id="@+id/ivBarcodeNewNummer"
         android:layout_width="@dimen/dp_faktor_14"
         android:layout_height="@dimen/dp_faktor_14"
-        android:layout_below="@+id/spAustauschgrund"
+        android:layout_below="@+id/spNewModel"
         android:layout_toRightOf="@id/lbNewNummer"
         app:srcCompat="@drawable/icon_barcode" />
 
@@ -231,15 +231,16 @@
         android:id="@+id/cbDefekt"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etNewFunkNummer"
+        android:layout_below="@id/acUnDoneGrund"
+        android:layout_toRightOf="@id/acUnDoneGrund"
         android:button="@drawable/drawable_selector"
-        android:text="@string/defekt"
-        android:paddingLeft="@dimen/dp_faktor_2"/>
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:text="@string/defekt" />
      <TextView
         android:id="@+id/lbBemerkung"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/cbDefekt"
+        android:layout_below="@id/etNewFunkNummer"
         android:text="@string/rwm_detail_lb_Bemerkung"
         android:textSize="@dimen/sp_faktor_05" />
 
@@ -253,6 +254,22 @@
         android:text="@string/empty"
         android:textAlignment="gravity"
         android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbUnDoneGrund"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/tvStichtag"
+        android:text="Grund warum kein Tausch erfolgt"
+        android:textSize="@dimen/sp_faktor_05" />
+    <AutoCompleteTextView
+        android:id="@+id/acUnDoneGrund"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbUnDoneGrund"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:textSize="@dimen/sp_faktor_08" />
     <ImageView
         android:id="@+id/ivSpechToText"
         android:layout_width="@dimen/dp_faktor_14"
@@ -265,8 +282,8 @@
         android:id="@+id/ivPhoto"
         android:layout_width="@dimen/dp_faktor_14"
         android:layout_height="@dimen/dp_faktor_14"
-        android:layout_below="@+id/ivSpechToText"
-        android:layout_toRightOf="@id/etBemerkung"
+        android:layout_below="@id/tvStichtag"
+        android:layout_toRightOf="@id/acUnDoneGrund"
         app:srcCompat="@drawable/icon_camera" />
 
 </RelativeLayout>

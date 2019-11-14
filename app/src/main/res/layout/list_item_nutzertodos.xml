@@ -44,5 +44,11 @@
         android:layout_toRightOf="@id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_faktor_12"/>
-
+    <include
+        android:id="@+id/messgeraet_content_single"
+        layout="@layout/list_item_nutzertodos_messgeraet_art_content_single"
+        android:layout_below="@id/txtvDescription"
+        android:layout_toRightOf="@id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_12"/>
 </RelativeLayout>

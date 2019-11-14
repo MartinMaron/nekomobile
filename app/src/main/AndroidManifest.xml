@@ -56,6 +56,7 @@
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAustauschActivity"/>
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAblesungActivity"/>
         <activity android:name=".activities.list.MessgeraetListActivity"/>
+        <activity android:name=".activities.list.MessgeraetMontageListActivity"/>
         <activity android:name=".activities.list.MessgeraetAblesungListActivity"/>
         <activity android:name=".activities.list.MessgeraetFunkCheckListActivity"/>
         <activity android:name=".activities.detail.Rwm.RwmActivity"/>

@@ -2,35 +2,25 @@ package de.eneko.nekomobile.controllers;
 
 
 import android.util.Log;
-import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.MainActivity;
-import de.eneko.nekomobile.beans.Liegenschaft;
-import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.beans.Nutzer;
-import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.Route;
-import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.framework.dropbox.DropboxClientFactory;
 import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 
 
@@ -125,7 +115,17 @@ public class FileHandler
                 for (String file : list) {
                     if (file.endsWith("neko.xml")) {
                         Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true);
-                        tmpAllRoutes.add(route);
+                        Calendar validDate = Calendar.getInstance();
+                        validDate.add(Calendar.DATE, -14);
+                        if (route.getDatum().after(validDate.getTime())){
+                            tmpAllRoutes.add(route);
+                        }else
+                        {
+                            File toDelFile = new File(dir, file);
+                            if (toDelFile.exists()){
+                            toDelFile.delete();
+                            }
+                        }
                     }
                 }
             }

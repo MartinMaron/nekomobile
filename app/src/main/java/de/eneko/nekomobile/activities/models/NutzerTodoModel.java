@@ -102,6 +102,15 @@ public class NutzerTodoModel extends Basemodel{
             }
         }
 
+        if (getBean().getArt().equals(Dict.TODO_MONTAGE_WWZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_WMZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_KWZ))
+        {
+            if (isCompleted("GER")) {
+                return R.drawable.icon_montage_ok;
+            }else {
+                return R.drawable.icon_montage;
+            }
+        }
+
         return 0;
     }
 

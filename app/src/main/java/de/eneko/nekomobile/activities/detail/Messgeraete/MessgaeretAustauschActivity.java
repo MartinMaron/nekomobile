@@ -1,8 +1,10 @@
 package de.eneko.nekomobile.activities.detail.Messgeraete;
 
+import android.content.Intent;
 import android.view.View;
 
-import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.InputDialogClass;
+import de.eneko.nekomobile.activities.list.MessgeraetMontageListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
@@ -10,7 +12,6 @@ import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
-import de.eneko.nekomobile.controllers.FileHandler;
 
 public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
@@ -29,7 +30,19 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                 getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
                 getBasemodel().setDefekt(getCbDefekt().isChecked());
                 getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
+                getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
+
+                String convertedValue = getTvStichtag().getText().toString().replace(" ","");
+                if (InputDialogClass.isDouble(convertedValue)) {
+                    getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
+                }
+                convertedValue = getTvAktuell().getText().toString().replace(" ","");
+                if (InputDialogClass.isDouble(convertedValue)) {
+                    getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
+                }
+
                 getBasemodel().setDefekt(getCbDefekt().isChecked());
+
                 getBasemodel().save();
             }
 
@@ -90,5 +103,10 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
         viewHolder.updateView();
     }
 
+    @Override
+    protected void exit() {
+        Intent intent = new Intent(this, MessgeraetMontageListActivity.class);
+        startActivity(intent);
+    }
 
 }

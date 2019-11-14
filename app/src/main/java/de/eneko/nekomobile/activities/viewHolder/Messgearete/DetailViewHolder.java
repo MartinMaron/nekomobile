@@ -16,15 +16,14 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.detail.Messgeraete.MessgeraetBaseActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.Dict;
-import de.eneko.nekomobile.framework.FormatHelper;
 import de.eneko.nekomobile.framework.BarcodeHelper;
+import de.eneko.nekomobile.framework.FormatHelper;
 
 public class DetailViewHolder extends MessgeraetBaseViewHolder {
     protected ArrayAdapter<ZaehlerModel> spNewModelAdapter = null;
@@ -82,6 +81,13 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                         mActivity.getResources().getStringArray(R.array.raum_list)
                 )
         );
+
+        if (getAcUnDoneGrund() != null) getAcUnDoneGrund().setAdapter(
+                new ArrayAdapter<String>(mActivity,android.R.layout.simple_list_item_1,
+                        mActivity.getResources().getStringArray(R.array.kein_austausch_grund)
+                )
+        );
+
 
 
         if (getSpNewModel() != null) {
@@ -170,6 +176,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         }.toString());
 
         if (getActvRaum() != null) getActvRaum().setText(getBean().getRaum());
+        if (getAcUnDoneGrund() != null) getAcUnDoneGrund().setText(getBean().getUndoneGrund());
         if (getTvNummer() != null) getTvNummer().setText(getBean().getNummer());
 
         if (getTvLetzterWert() != null) getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
@@ -282,6 +289,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
 
     public void save() {
+
         getBasemodel().save();
     }
 

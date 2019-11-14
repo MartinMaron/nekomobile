@@ -55,13 +55,11 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity{
 
 
     protected void exit(){
-//        Intent intent = new Intent(this, MessgeraetListActivity.class);
-//        startActivity(intent);
-        onBackPressed();
+
     }
 
     public void onBackPressed(){
-        super.onBackPressed();
+        exit();
     }
 
     @Override

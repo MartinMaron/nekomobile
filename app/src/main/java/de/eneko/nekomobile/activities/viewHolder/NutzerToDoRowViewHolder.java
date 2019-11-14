@@ -16,8 +16,12 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
     private ImageView ivImage = null;
     private View svRwmAbsoluts = null;
     private View svMessgeraeteAbsoluts = null;
+
+
+    private View svArtContentViewHolder = null;
     private NutzerToDoRowViewHolder_RwmWartung_Absoluts vhRwmAbsoluts = null;
     private NutzerToDoRowViewHolder_Messgeraete_Absoluts vhMessgeraeteAbsoluts = null;
+    private ArtContentViewHolder vhArtContentViewHolder = null;
 
     @Override
     public void updateView() {
@@ -29,6 +33,10 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
         if (getSvRwmAbsoluts() != null) getSvRwmAbsoluts().setVisibility(View.INVISIBLE);
         setSvMessgeraeteAbsoluts(mView.findViewById(R.id.messgeraet_content));
         if (getSvMessgeraeteAbsoluts() != null) getSvMessgeraeteAbsoluts().setVisibility(View.INVISIBLE);
+        setSvArtContentViewHolder(mView.findViewById(R.id.messgeraet_content_single));
+        if (getSvArtContentViewHolder() != null) getSvArtContentViewHolder().setVisibility(View.INVISIBLE);
+
+
 
         getIvImage().setImageResource(getBasemodel().getProgressStatusImageResourceId());
 
@@ -49,13 +57,55 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
                 vhRwmAbsoluts.getTxtvNew().setText("neu installiert: " + getBasemodel().getNewCount("RWM"));
                 getSvRwmAbsoluts().setVisibility(View.VISIBLE);
                 break;
-            case Dict.TODO_MONTAGE_HKV: case Dict.TODO_MONTAGE_WMZ: case Dict.TODO_MONTAGE_WWZ: case Dict.TODO_MONTAGE_KWZ:
-                getIvImage().setImageResource(R.drawable.icon_montage);
-            break;
+//            case Dict.TODO_MONTAGE_HKV: case Dict.TODO_MONTAGE_WMZ: case Dict.TODO_MONTAGE_WWZ: case Dict.TODO_MONTAGE_KWZ:
+//                getIvImage().setImageResource(R.drawable.icon_montage);
+//            break;
             case Dict.TODO_ABLESUNG: case Dict.TODO_FUNK_CHECK:
                 getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
                 vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
                 vhMessgeraeteAbsoluts.updateView();
+                break;
+            case Dict.TODO_MONTAGE_HKV:
+                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                vhMessgeraeteAbsoluts.updateView();
+                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
+                break;
+            case Dict.TODO_MONTAGE_WMZ:
+                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                vhMessgeraeteAbsoluts.updateView();
+                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
+                break;
+            case Dict.TODO_MONTAGE_WWZ:
+//                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+////                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+////                vhMessgeraeteAbsoluts.updateView();
+////                vhMessgeraeteAbsoluts.getVhWWZ().getTvArt().setVisibility(View.GONE);
+////                vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().setTextSize(20);
+////                ViewGroup.LayoutParams layoutParams = vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().getLayoutParams();
+////                layoutParams.width = 20;
+////                vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().setLayoutParams(layoutParams);
+////
+////                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
+////                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
+////                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
+                    getSvArtContentViewHolder().setVisibility(View.VISIBLE);
+                    vhArtContentViewHolder = new ArtContentViewHolder(getSvArtContentViewHolder(),getBasemodel());
+                    vhArtContentViewHolder.updateView();
+                    vhArtContentViewHolder.loadDataByArt(getSvArtContentViewHolder(),"WWZ");
+                break;
+            case Dict.TODO_MONTAGE_KWZ:
+                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                vhMessgeraeteAbsoluts.updateView();
+                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
+                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
                 break;
             case Dict.TODO_ZWISCHENABLESUNG:
                 getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
@@ -130,5 +180,22 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
     public void setVhMessgeraeteAbsoluts(NutzerToDoRowViewHolder_Messgeraete_Absoluts vhMessgeraeteAbsoluts) {
         this.vhMessgeraeteAbsoluts = vhMessgeraeteAbsoluts;
     }
+
+    public View getSvArtContentViewHolder() {
+        return svArtContentViewHolder;
+    }
+
+    public void setSvArtContentViewHolder(View svArtContentViewHolder) {
+        this.svArtContentViewHolder = svArtContentViewHolder;
+    }
+
+    public ArtContentViewHolder getVhArtContentViewHolder() {
+        return vhArtContentViewHolder;
+    }
+
+    public void setVhArtContentViewHolder(ArtContentViewHolder vhArtContentViewHolder) {
+        this.vhArtContentViewHolder = vhArtContentViewHolder;
+    }
+
     // endregion
 }

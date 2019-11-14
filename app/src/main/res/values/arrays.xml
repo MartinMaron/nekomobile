@@ -15,6 +15,12 @@
         <item>Treppenhaus</item>
         <item>Hobbyraum</item>
     </array>
+    <array name="kein_austausch_grund">
+        <item>keine Absperrung</item>
+        <item>Messstelle nicht mehr da</item>
+        <item>kein passender Zähler dabei</item>
+        <item>altgerät kann nicht ausgebaut werden</item>
+    </array>
     <array name="rwm_modele">
         <item>1264;ei Elektronics i650</item>
         <item>1277;Heckatron Rauchmelder</item>

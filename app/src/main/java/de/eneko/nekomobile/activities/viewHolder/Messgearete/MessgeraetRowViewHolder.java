@@ -5,13 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.ImageView;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
-import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.FormatHelper;
 
 public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
@@ -61,9 +61,7 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             }
         });
 
-
-
-
+        if (getIvDetail() !=null) setImage(getIvDetail());
         validate();
     }
 
@@ -84,11 +82,45 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             hasError = true;
         }
 
+        if (!getBean().getAustauschGrund().equals("X") &&
+                (getBean().getNeueNummer().equals("") || getBean().getZielmodel() == -1.0)){
+            if (getIvStatus() !=null) getIvStatus().setImageResource(R.drawable.icon_alert);
+            if (getTvLetzterWert() !=null) {
+                getTvLetzterWert().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                getTvLetzterWert().setText("Kein Model oder Nummer eingetragen");
+            }
+            hasError = true;
+        }
+
 
         if (!hasError){
             if (getTvAktuell() !=null) getTvAktuell().setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+            if (getTvLetzterWert() !=null) getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
             if (getTvLetzterWert() !=null) getTvLetzterWert().setTextColor(ContextCompat.getColor(getActivity(), R.color.navy));
-            if (getIvStatus() !=null) getIvStatus().setImageDrawable(null);
+            if (getIvStatus() !=null)  getIvStatus().setImageDrawable(null);
+        }
+
+
+
+
+
+
+    }
+
+    private void setImage(ImageView iv){
+        if (this.getBean().isDone()){
+            iv.setImageResource(R.drawable.icon_montage_ok);
+        }else {
+            if (getBean().isNew()) {
+                iv.setImageResource(R.drawable.icon_montage_new);
+            }else {
+                if (getBean().isWithError()) {
+                    iv.setImageResource(R.drawable.icon_montage_error);
+                }else{
+                    // getBean().isUnDone()
+                    iv.setImageResource(R.drawable.icon_montage);
+                }
+            }
         }
     }
 }

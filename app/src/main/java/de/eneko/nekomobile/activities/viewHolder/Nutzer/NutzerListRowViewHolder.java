@@ -47,7 +47,7 @@ public class NutzerListRowViewHolder extends NutzerBaseViewHolder {
         }
 
 
-
+        getTodoRow().getIvMontage().setImageResource(getBasemodel().getProgressStatusImageMontageResourceId());
         getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);

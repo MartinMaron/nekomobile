@@ -6,7 +6,6 @@ import java.util.Date;
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Messgeraet;
-import de.eneko.nekomobile.beans.ToDo;
 
 public class MessgeraetModel extends Basemodel {
     private Integer mSortNo = 0;
@@ -22,6 +21,7 @@ public class MessgeraetModel extends Basemodel {
     private String mNeuesFunkModel = "X";
     private String mAustauschGrund = "X";
     private Date mStichtagsdatum = null;
+    private String mUnDoneGrundGrund = "";
 
 
 
@@ -43,7 +43,7 @@ public class MessgeraetModel extends Basemodel {
         getBean().setNeueFunkNummer(mNeueFunkNummer);
         getBean().setNeuesFunkModel(mNeuesFunkModel);
         getBean().setAustauschGrund(mAustauschGrund);
-
+        getBean().setUndoneGrund(mUnDoneGrundGrund);
     }
 
     @Override
@@ -61,6 +61,7 @@ public class MessgeraetModel extends Basemodel {
         mNeuesFunkModel = getBean().getNeuesFunkModel();
         mAustauschGrund = getBean().getAustauschGrund();
         mStichtagsdatum = getBean().getStichtagsdatum();
+        mUnDoneGrundGrund = getBean().getUndoneGrund();
     }
 
 
@@ -212,5 +213,14 @@ public class MessgeraetModel extends Basemodel {
     public void setStichtagsdatum(Date stichtagsdatum) {
         this.mStichtagsdatum = stichtagsdatum;
     }
+
+    public String getUnDoneGrundGrund() {
+        return mUnDoneGrundGrund;
+    }
+
+    public void setUnDoneGrundGrund(String unDoneGrundGrund) {
+        mUnDoneGrundGrund = unDoneGrundGrund;
+    }
+
     //endregion
 }
