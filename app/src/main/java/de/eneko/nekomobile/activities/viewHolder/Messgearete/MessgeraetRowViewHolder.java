@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 
+import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
@@ -45,17 +46,17 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
         setIvDetail(mView.findViewById(R.id.ivDetail));
 
 
-        getTvNummer().setText(getBean().getNummer());
-        getTvRaum().setText(getBean().getRaum());
+        getTvNummer().setText(getBasemodel().getBean().getNummer());
+        getTvRaum().setText(getBasemodel().getRaum());
         getTvRaum().setFocusable(false);
         getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
-        getTvAktuell().setText(getBean().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getAktuellValue()));
-        getTvStichtag().setText(getBean().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getStichtagValue()));
+        getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getAktuellValue()));
+        getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getStichtagValue()));
         mView.setBackgroundResource(getBasemodel().getArtColor());
         getIvDetail().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
+                CurrentObjectNavigation.getInstance().setMessgeraet(getBasemodel().getBean());
                 Intent  intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
                 view.getContext().startActivity(intent);
             }
@@ -75,15 +76,15 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
         Boolean hasError = false;
 
         // falls gerät fortlaufend und aktueller Wert gefüllt muss der aktuelle Wert grösser sein als der letzte Wert.
-        if (getBean().getFortlaufend() && getBean().getAktuellValue() != -1.0 && getBean().getLetzter_wert() > getBean().getAktuellValue()){
+        if (getBasemodel().getBean().getFortlaufend() && getBasemodel().getAktuellValue() != -1.0 && getBasemodel().getBean().getLetzter_wert() > getBasemodel().getAktuellValue()){
             if (getIvStatus() !=null) getIvStatus().setImageResource(R.drawable.icon_alert);
             if (getTvAktuell() !=null) getTvAktuell().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
             if (getTvLetzterWert() !=null) getTvLetzterWert().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
             hasError = true;
         }
 
-        if (!getBean().getAustauschGrund().equals("X") &&
-                (getBean().getNeueNummer().equals("") || getBean().getZielmodel() == -1.0)){
+        if (!getBasemodel().getAustauschGrund().equals("X") &&
+                (getBasemodel().getNeueNummer().equals("") || getBasemodel().getZielmodel() == -1.0)){
             if (getIvStatus() !=null) getIvStatus().setImageResource(R.drawable.icon_alert);
             if (getTvLetzterWert() !=null) {
                 getTvLetzterWert().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
@@ -108,13 +109,13 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
     }
 
     private void setImage(ImageView iv){
-        if (this.getBean().isDone()){
+        if (this.getBasemodel().getBean().isDone()){
             iv.setImageResource(R.drawable.icon_montage_ok);
         }else {
-            if (getBean().isNew()) {
+            if (getBasemodel().getBean().isNew()) {
                 iv.setImageResource(R.drawable.icon_montage_new);
             }else {
-                if (getBean().isWithError()) {
+                if (getBasemodel().getBean().isWithError()) {
                     iv.setImageResource(R.drawable.icon_montage_error);
                 }else{
                     // getBean().isUnDone()
@@ -123,4 +124,32 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             }
         }
     }
+    @Override
+    public void inputDialogStichtag(String value){
+        new InputDialogClass(getActivity(), "stichtag", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBean().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    loadData();
+                }
+            }
+        }.show();
+    }
+
+    @Override
+    public void inputDialogAktuell(String value){
+        new InputDialogClass(getActivity(), "aktuell", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBean().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    loadData();
+                }
+            }
+        }.show();
+    }
+
 }

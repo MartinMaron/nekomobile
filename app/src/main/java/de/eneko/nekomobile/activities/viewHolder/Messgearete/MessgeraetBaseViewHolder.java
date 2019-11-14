@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
@@ -165,28 +164,10 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     protected abstract void createLayout();
 
     public void inputDialogStichtag(String value){
-        new InputDialogClass(getActivity(), "stichtag", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBean().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
+
     }
     public void inputDialogAktuell(String value){
-        new InputDialogClass(getActivity(), "aktuell", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBean().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

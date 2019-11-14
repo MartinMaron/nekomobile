@@ -15,16 +15,15 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
-import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.framework.BarcodeHelper;
 import de.eneko.nekomobile.framework.FormatHelper;
-import de.eneko.nekomobile.framework.KeyedValue;
 
 public class DetailViewHolder extends MessgeraetBaseViewHolder {
     protected ArrayAdapter<ZaehlerModel> spNewModelAdapter = null;
@@ -35,15 +34,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     public DetailViewHolder(View pView, MessgeraetModel pMessgeraet, Activity pActivity){
         super(pView, pMessgeraet, pActivity );
     }
-//    @Override
-//    public MessgeraetBaseActivity getActivity() {
-//        return (MessgeraetBaseActivity) mActivity;
-//    }
-//    @Override
-//    public Messgeraet getBean() {
-//        return (Messgeraet) super.getBean();
-//    }
-
 
 
     @Override
@@ -97,7 +87,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             spNewModelAdapter = new ArrayAdapter<ZaehlerModel>(mActivity,
                     android.R.layout.simple_spinner_item,
                     Dict.getInstance().getZaehlerModels().stream()
-                            .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBean().getArt())|| r.getArt().equals("ALL") ) )
+                            .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBasemodel().getBean().getArt()) || r.getArt().equals("ALL") ) )
                             .sorted(Comparator.comparing(ZaehlerModel::getBezeichnung))
                             .collect(Collectors.toList())
                     );
@@ -187,11 +177,11 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getEtBemerkung() != null) getEtBemerkung().setText(getBasemodel().getBemerkung());
         if (getLbAktuell() != null) getLbAktuell().setText("aktuell");
         if (getLbStichtag() != null) getLbStichtag().setText("stichtag");
-        if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getAktuellValue()));
-        if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getStichtagValue()));
+        if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getAktuellValue()));
+        if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getStichtagValue()));
         if (getCbDefekt() != null) getCbDefekt().setChecked(getBasemodel().getDefekt());
 
-        if (getSpNewModel() != null && getBean().getZielmodel() > 0) {
+        if (getSpNewModel() != null && getBasemodel().getZielmodel() > 0) {
             getSpNewModel().setSelection(
                        spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(getBasemodel().getZielmodel()))
             );
@@ -207,7 +197,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getTvNewNummer() != null) getTvNewNummer().setText(getBasemodel().getNeueNummer());
 
 
-        if (getSpNewFunkModel() != null && !getBean().getNeuesFunkModel().equals("")) {
+        if (getSpNewFunkModel() != null && !getBasemodel().getNeuesFunkModel().equals("")) {
             getSpNewFunkModel().setSelection(
                     spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(getBasemodel().getNeuesFunkModel()))
             );
@@ -234,15 +224,12 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBean().setNeueNummer(returnCode.getGeraetenummer());
-                getTvNewNummer().setText(returnCode.getGeraetenummer());
+                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
             }
             if (returnCode.getZaehlerModel() != null){
-                getBean().setZielmodel(returnCode.getZaehlerModel().getId());
-                getSpNewModel().setSelection(
-                        spNewModelAdapter.getPosition(returnCode.getZaehlerModel())
-                );
+                getBasemodel().setZielmodel(returnCode.getZaehlerModel().getId());
             }
+            loadData();
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_NUMMER && data != null ) {
@@ -251,7 +238,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
-                getTvNewNummer().setText(returnCode.getGeraetenummer());
+                loadData();
             }
 
         }
@@ -260,30 +247,29 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBean().setNeueFunkNummer(returnCode.getGeraetenummer());
+                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
                 getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
             }
             if (returnCode.getFunkModel() != null){
-                getBean().setNeuesFunkModel(returnCode.getFunkModel().getId());
-                getSpNewFunkModel().setSelection(
-                        spNewFunkModelAdapter.getPosition(returnCode.getFunkModel())
-                );
+                getBasemodel().setNeuesFunkModel(returnCode.getFunkModel().getId());
             }
+            loadData();
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKNUMMER && data != null ) {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBean().setNeueFunkNummer(returnCode.getGeraetenummer());
-                getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
+                loadData();
             }
         }
 //
 
         if (requestCode == DetailViewHolder.BT_SPEAKER && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            getBean().setBemerkung(! getEtBemerkung().getText().equals("") ? getEtBemerkung().getText() + "\n" + result.get(0): result.get(0));
+            getBasemodel().setBemerkung(! getEtBemerkung().getText().equals("") ? getEtBemerkung().getText() + "\n" + result.get(0): result.get(0));
+            loadData();
         }
 
 
@@ -291,80 +277,68 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     }
 
     public void setDataToModel() {
-//        getBasemodel().setRaum(tvRaum.getText().toString());
-//        getBasemodel().setNummer(etNummer.getText().toString());
-//        getBasemodel().setNeueNummer(etNeueNummer.getText().toString());
-//        getBasemodel().setBemerkung(etBemerkungen.getText().toString());
-//        getBasemodel().setmDatenAufnahmeFremd(getCbDatenAufnahmeFremd().isChecked());
-//
-//        Integer modelId = Integer.parseInt (((KeyedValue) spModele.getSelectedItem()).getKey().toString());
-//        getBasemodel().setModel(modelId);
-//
-//        String austauschId = ((KeyedValue) spAustauschgrunde.getSelectedItem()).getKey().toString();
-//        getBasemodel().setAustauschGrund(austauschId);
-//
-//        getBasemodel().setWithError(
-//                java.util.Arrays.asList(new String[]{"ST", "RE", "NV", "ZE", "DE"})
-//                        .contains(getBasemodel().getAustauschGrund()));
-//
-//        getBasemodel().save();
-//
-//        if(getBasemodel().getBean().getNew().equals(true)){
-//            if (getBasemodel().getNummer().equals("")){
-//                getBasemodel().getBean().getTodo().getRauchmelder().remove(getBasemodel().getBean());
-//            };
-//        }
 
-
+        // übergabe einfacher Werte
         getBasemodel().setRaum(getActvRaum().getText().toString());
-        FunkCheck_Austauschgrund austauschId = (FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem();
+        getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
+        getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
+        getBasemodel().setDefekt(getCbDefekt().isChecked());
+        getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
+        getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
 
-        //String austauschId =  ((KeyedValue) getSpAustauschgrund().getSelectedItem()).getKey().toString();
+        // Übergabe convertierter Werte
+        ZaehlerModel zaehlerModel = (ZaehlerModel) getSpNewModel().getSelectedItem();
+        getBasemodel().setZielmodel(zaehlerModel.getId());
+
+        FunkModel funkModel = (FunkModel) getSpNewFunkModel().getSelectedItem();
+        getBasemodel().setNeuesFunkModel(funkModel.getId());
+
+        FunkCheck_Austauschgrund austauschId = (FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem();
         getBasemodel().setAustauschGrund(austauschId.getId());
 
+        String valueString = getTvAktuell().getText().toString().replace(",",".");
+        if(!valueString.equals("")) getBasemodel().setAktuellValue(Double.parseDouble(valueString));
 
+        valueString = getTvStichtag().getText().toString().replace(",",".");
+        if(!valueString.equals(""))getBasemodel().setStichtagValue(Double.parseDouble(valueString));
 
-
-//        if (getAcUnDoneGrund() != null) getAcUnDoneGrund().setText(getBasemodel().getUnDoneGrundGrund());
-//        if (getTvNummer() != null) getTvNummer().setText(getBasemodel().getBean().getNummer());
-//
-//        if (getTvLetzterWert() != null) getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
-//        if (getEtBemerkung() != null) getEtBemerkung().setText(getBasemodel().getBemerkung());
-//        if (getLbAktuell() != null) getLbAktuell().setText("aktuell");
-//        if (getLbStichtag() != null) getLbStichtag().setText("stichtag");
-//        if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getAktuellValue()));
-//        if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBean().getStichtagValue()));
-//        if (getCbDefekt() != null) getCbDefekt().setChecked(getBasemodel().getDefekt());
-//
-//        if (getSpNewModel() != null && getBean().getZielmodel() > 0) {
-//            getSpNewModel().setSelection(
-//                    spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(getBasemodel().getZielmodel()))
-//            );
-//        }
-//
-//
-//
-//
-//        if (getTvNewNummer() != null) getTvNewNummer().setText(getBasemodel().getNeueNummer());
-//
-//
-//        if (getSpNewFunkModel() != null && !getBean().getNeuesFunkModel().equals("")) {
-//            getSpNewFunkModel().setSelection(
-//                    spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(getBasemodel().getNeuesFunkModel()))
-//            );
-//        }
-//        if (getTvNewFunkNummer() != null) getTvNewFunkNummer().setText(getBasemodel().getNeueFunkNummer());
-//        if (getEtBemerkung() != null) getEtBemerkung().setText(getBasemodel().getBemerkung());
-//
-//
-
-    }
+     }
 
 
     public void save() {
-
+        setDataToModel();
         getBasemodel().save();
     }
+
+    @Override
+    public void inputDialogStichtag(String value){
+        new InputDialogClass(getActivity(), "stichtag", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    loadData();
+                }
+            }
+        }.show();
+    }
+
+    @Override
+    public void inputDialogAktuell(String value){
+        new InputDialogClass(getActivity(), "aktuell", value){
+            @Override
+            public void OnDialogSubmit(String pValue) {
+                String convertedValue = pValue.replace(" ","");
+                if (isDouble(convertedValue)) {
+                    getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    loadData();
+                }
+            }
+        }.show();
+    }
+
+
 
 
 }

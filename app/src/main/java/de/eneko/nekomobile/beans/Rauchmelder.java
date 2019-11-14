@@ -114,8 +114,10 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
                         break;
                     case "austauschgrund":
                         mAustauschGrund = getString(propElement);
+                        break;
                     case "datenAufnahmeFremd":
                         mDatenAufnahmeFremd = getBoolean(propElement);
+                        break;
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
