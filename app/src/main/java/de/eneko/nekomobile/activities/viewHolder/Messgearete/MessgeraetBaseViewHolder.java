@@ -120,9 +120,12 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
             public void onClick(View v) {
                 String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
                 relativePath = relativePath + "@" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
-                String filename = "#" + getBean().getArt() + (getBean().getZielmodel() > 0 && !getBean().getNummer().equals("") ? "_NEW":"") + "@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
+                String filename = "#" + getBean().getArt() + (!getBean().getNeueNummer().equals("") && !getBean().getNummer().equals("") ? "_NEW":"") + "@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
                 if (!getBean().getNekoId().equals("")){
                     filename = filename  + getBean().getNekoId()+ "@";
+                }
+                if (!getBean().getNeueNummer().trim().equals("")){
+                    filename = filename  + getBean().getNeueNummer().trim()+ "@";
                 }
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
