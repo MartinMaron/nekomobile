@@ -10,14 +10,11 @@ import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerToDoRowViewHolder extends BaseViewHolder{
-    protected NutzerTodoModel model;
-
+    private NutzerTodoModel model;
     private TextView txtvDescription = null;
     private ImageView ivImage = null;
     private View svRwmAbsoluts = null;
     private View svMessgeraeteAbsoluts = null;
-
-
     private View svArtContentViewHolder = null;
     private NutzerToDoRowViewHolder_RwmWartung_Absoluts vhRwmAbsoluts = null;
     private NutzerToDoRowViewHolder_Messgeraete_Absoluts vhMessgeraeteAbsoluts = null;
@@ -35,11 +32,7 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
         if (getSvMessgeraeteAbsoluts() != null) getSvMessgeraeteAbsoluts().setVisibility(View.INVISIBLE);
         setSvArtContentViewHolder(mView.findViewById(R.id.messgeraet_content_single));
         if (getSvArtContentViewHolder() != null) getSvArtContentViewHolder().setVisibility(View.INVISIBLE);
-
-
-
         getIvImage().setImageResource(getBasemodel().getProgressStatusImageResourceId());
-
 
         //Befuellen der einzelen Widgets
         getTxtvDescription().setText(getBasemodel().getBezeichnung());
@@ -61,56 +54,40 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
 //                getIvImage().setImageResource(R.drawable.icon_montage);
 //            break;
             case Dict.TODO_ABLESUNG: case Dict.TODO_FUNK_CHECK:
-                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                vhMessgeraeteAbsoluts.updateView();
+                    getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                    vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                    vhMessgeraeteAbsoluts.updateView();
                 break;
             case Dict.TODO_MONTAGE_HKV:
-                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                vhMessgeraeteAbsoluts.updateView();
-                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
+                    getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                    vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                    vhMessgeraeteAbsoluts.updateView();
+                    vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
+                    vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
+                    vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
                 break;
             case Dict.TODO_MONTAGE_WMZ:
-                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                vhMessgeraeteAbsoluts.updateView();
-                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
+                    getSvArtContentViewHolder().setVisibility(View.VISIBLE);
+                    vhArtContentViewHolder = new ArtContentViewHolder(getSvArtContentViewHolder(),getBasemodel());
+                    vhArtContentViewHolder.updateView();
+                    vhArtContentViewHolder.loadDataByArt(getSvArtContentViewHolder(),"WMZ");
                 break;
             case Dict.TODO_MONTAGE_WWZ:
-//                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-////                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-////                vhMessgeraeteAbsoluts.updateView();
-////                vhMessgeraeteAbsoluts.getVhWWZ().getTvArt().setVisibility(View.GONE);
-////                vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().setTextSize(20);
-////                ViewGroup.LayoutParams layoutParams = vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().getLayoutParams();
-////                layoutParams.width = 20;
-////                vhMessgeraeteAbsoluts.getVhWWZ().getTvDone().setLayoutParams(layoutParams);
-////
-////                vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
-////                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
-////                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
                     getSvArtContentViewHolder().setVisibility(View.VISIBLE);
                     vhArtContentViewHolder = new ArtContentViewHolder(getSvArtContentViewHolder(),getBasemodel());
                     vhArtContentViewHolder.updateView();
                     vhArtContentViewHolder.loadDataByArt(getSvArtContentViewHolder(),"WWZ");
                 break;
             case Dict.TODO_MONTAGE_KWZ:
-                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                vhMessgeraeteAbsoluts.updateView();
-                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvHKV().setVisibility(View.GONE);
-                vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
+                    getSvArtContentViewHolder().setVisibility(View.VISIBLE);
+                    vhArtContentViewHolder = new ArtContentViewHolder(getSvArtContentViewHolder(),getBasemodel());
+                    vhArtContentViewHolder.updateView();
+                    vhArtContentViewHolder.loadDataByArt(getSvArtContentViewHolder(),"KWZ");
                 break;
             case Dict.TODO_ZWISCHENABLESUNG:
-                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                vhMessgeraeteAbsoluts.updateView();
+                    getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+                    vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+                    vhMessgeraeteAbsoluts.updateView();
                break;
             case Dict.TODO_MONTAGE_RWM:
                 getIvImage().setImageResource(R.drawable.icon_rwm_montage);

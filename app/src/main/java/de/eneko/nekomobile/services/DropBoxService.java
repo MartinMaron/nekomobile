@@ -3,8 +3,8 @@ package de.eneko.nekomobile.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -36,16 +36,16 @@ public class DropBoxService extends Service {
         @Override
         public void handleMessage(Message msg) {
             try {
-                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo netInfo = cm.getActiveNetworkInfo();
-                if (netInfo.isConnected() && netInfo.getTypeName().equals("WIFI")){
-                    if (netInfo.getExtraInfo() != null) {
-                        if (netInfo.getExtraInfo().contains("easybox") ||
-                                netInfo.getExtraInfo().contains("easybox")){
-                            nekoDropBox.synchronize();
-                            Log.e(TAG,"nekoDropBox.synchronize : start");
-                        }}
-                    }
+
+                WifiManager wifiManager;
+                wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                if (wifiInfo.getSSID().contains("easybox") ||
+                        wifiInfo.getSSID().contains("eneko")){
+                    nekoDropBox.synchronize();
+                    Log.e(TAG,"nekoDropBox.synchronize : start");
+                }
+
                 Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
             }   catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

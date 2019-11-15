@@ -22,6 +22,7 @@ import de.eneko.nekomobile.listener.MainActivityOnClickListener;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getName();
 
 
     @Override
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         // init FloatingActionButton
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setVisibility(NavigationView.VISIBLE);
+        //fab.setVisibility(NavigationView.VISIBLE);
         fab.setOnClickListener(mainActivityOnClickListener);
 
         // init DrawerLayout
@@ -61,9 +62,10 @@ public class MainActivity extends AppCompatActivity
                FileHandler.getInstance().getNekoDropBox().synchronize();
             }
         });
-
+       //registerNetworkCallback();
         initializeHlptas();
     }
+
 
 
 

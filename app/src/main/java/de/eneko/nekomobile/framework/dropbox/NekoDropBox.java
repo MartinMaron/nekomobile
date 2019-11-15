@@ -58,6 +58,9 @@ public class NekoDropBox {
 
     }
 
+
+
+
     public boolean hasToken() {
         SharedPreferences prefs = mMainActivity.getSharedPreferences("nekomobile", mMainActivity.MODE_PRIVATE);
         String accessToken = prefs.getString("dropbox-access-token", null);
