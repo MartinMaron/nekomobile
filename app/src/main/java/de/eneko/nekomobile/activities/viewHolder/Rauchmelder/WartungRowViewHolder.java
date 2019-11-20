@@ -64,7 +64,7 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
                 }else{
                     filename = filename  + getBean().getNekoId()+ "@";
                 }
-                filename = filename  + getBean().getTodo().getNutzer().getLiegenschaft().getNekoId() + "@";
+                filename = filename  + getBean().getTodo().getNutzer().getLiegenschaft().getBud_guid() + "@";
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
         });

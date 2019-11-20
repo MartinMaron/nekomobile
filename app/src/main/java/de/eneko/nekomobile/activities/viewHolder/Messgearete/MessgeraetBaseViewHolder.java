@@ -147,6 +147,12 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
                 }
                 // ID
+                if (getBasemodel().getTodo().getNutzer() != null){
+                    filename = filename  +  getBasemodel().getTodo().getNutzer().getLiegenschaft().getBud_guid()+ "@";
+                }else {
+                    filename = filename  +  getBasemodel().getTodo().getLiegenschaft().getBud_guid()+ "@";
+                }
+                // ID
                 if (!getBasemodel().getNekoId().equals("")){
                     filename = filename  +  getBasemodel().getNekoId()+ "@";
                 }
