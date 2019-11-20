@@ -99,7 +99,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     }
 
 
-
+    public MessgeraetModel getBasemodel() {
+        return (MessgeraetModel) super.getBasemodel();
+    }
 
 
     @Override
@@ -118,28 +120,52 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         getIvPhoto().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
-                relativePath = relativePath + "@" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
-                String filename = "#" + getBean().getArt() + (!getBean().getNeueNummer().equals("") && !getBean().getNummer().equals("") ? "_NEW":"") + "@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
-                if (!getBean().getNekoId().equals("")){
-                    filename = filename  + getBean().getNekoId()+ "@";
+                setDataToModel();
+                String relativePath = getBasemodel().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
+                relativePath = relativePath + "@" + getBasemodel().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
+                String filename = "#" + getBasemodel().getArt();
+
+                //ist es nur ein Photo oder oder wird der zähler ausgetauscht
+                if (!getBasemodel().getAustauschGrund().equals("X") || !getBasemodel().getUnDoneGrundGrund().equals("")){
+                    filename = filename + "@_WECHSEL";
+                }else{
+                    filename = filename + "@_PHOTO";
                 }
-                if (!getBean().getNeueNummer().trim().equals("")){
-                    filename = filename  + getBean().getNeueNummer().trim()+ "@";
+
+                //ist das Photo von ursprünglichen Zähler oder von neu getauschten
+                if (!getBasemodel().getNeueNummer().equals("")){
+                    filename = filename + "@NEU@";
+                    // nach welchen Zählernumern soll in neuen zähler gesucht werden
+                    if (!getBasemodel().getNeueFunkNummer().trim().equals("")){
+                        filename = filename  + getBasemodel().getNeueFunkNummer().trim()+ "@";
+                    }else if (!getBasemodel().getNeueNummer().trim().equals("")){
+                        filename = filename  + getBasemodel().getNeueNummer().trim()+ "@";
+                    }
+                }else{
+                    filename = filename + "@ALT@";
+                    filename = filename  + getBasemodel().getNummer().trim()+ "@";
+
+                }
+                // ID
+                if (!getBasemodel().getNekoId().equals("")){
+                    filename = filename  +  getBasemodel().getNekoId()+ "@";
                 }
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
+
         });
+
         if (getBean().getDatum() != null) {
-            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getDatum()));
+            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getDatum()));
         }else {
             getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(Calendar.getInstance().getTime()));
         }
 
-        getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getStichtagsdatum()));
+        getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getStichtagsdatum()));
         getTvAktuell().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setDataToModel();
                 CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
                 if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
                     startSpracheingabe(REQUEST_BT_AKTUELL);
@@ -151,6 +177,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         getTvStichtag().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view ) {
+                setDataToModel();
                 CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
                 if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
                     startSpracheingabe(REQUEST_BT_STICHTAG);
@@ -160,6 +187,12 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
             }
         });
     }
+
+    public void setDataToModel() {
+
+    }
+
+
 
     protected void loadData(){
 

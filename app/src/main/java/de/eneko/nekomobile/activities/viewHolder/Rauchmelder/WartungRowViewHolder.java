@@ -7,13 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Austausch;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_Info;
+import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
-import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 
 public class WartungRowViewHolder extends RwmBaseViewHolder {
@@ -60,9 +59,12 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
                 String relativePath = getBean().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
                 relativePath = relativePath + "@" + getBean().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
                 String filename = "#RWM@" + getBean().getNummer()+ "@" + getBean().getTodo().getNutzer().getNekoId()+ "@";
-                if (!getBean().getNekoId().equals("")){
+                if (getBean().getNekoId().contains("new"))                 {
+                    filename = filename  + "NEW@";
+                }else{
                     filename = filename  + getBean().getNekoId()+ "@";
                 }
+                filename = filename  + getBean().getTodo().getNutzer().getLiegenschaft().getNekoId() + "@";
                 PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
             }
         });

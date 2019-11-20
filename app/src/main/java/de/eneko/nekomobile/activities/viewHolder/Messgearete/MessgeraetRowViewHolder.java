@@ -31,11 +31,6 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
     }
 
     @Override
-    public MessgeraetModel getBasemodel() {
-        return (MessgeraetModel) super.getBasemodel();
-    }
-
-    @Override
     public void updateView() {
         super.updateView();
         setIvStatus(mView.findViewById(R.id.ivStatus));

@@ -6,6 +6,7 @@ import java.util.Date;
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.ToDo;
 
 public class MessgeraetModel extends Basemodel {
     private Integer mSortNo = 0;
@@ -221,6 +222,17 @@ public class MessgeraetModel extends Basemodel {
     public void setUnDoneGrundGrund(String unDoneGrundGrund) {
         mUnDoneGrundGrund = unDoneGrundGrund;
     }
-
-    //endregion
+    public String getArt() {
+        return getBean().getArt();
+    }
+    public String getNekoId() {
+        return getBean().getNekoId();
+    }
+    public ToDo getTodo() {
+        return getBean().getTodo();
+    }
+    public String getNummer() {
+        return getBean().getNummer();
+    }
+   //endregion
 }

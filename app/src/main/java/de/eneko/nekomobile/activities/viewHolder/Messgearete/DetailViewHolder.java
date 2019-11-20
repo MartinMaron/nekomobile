@@ -155,11 +155,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         loadData();
     }
 
-    @Override
-    public MessgeraetModel getBasemodel() {
-        return (MessgeraetModel) super.getBasemodel();
-    }
 
+
+
+    @Override
     protected void loadData(){
         if (getTvModel() != null) getTvModel().setText(new Object() {
             @Override
@@ -276,6 +275,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
     }
 
+    @Override
     public void setDataToModel() {
 
         // übergabe einfacher Werte
