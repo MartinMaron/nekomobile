@@ -286,4 +286,13 @@
         android:layout_toRightOf="@id/acUnDoneGrund"
         app:srcCompat="@drawable/icon_camera" />
 
+    <ImageButton
+        android:id="@+id/ibBewertung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:background="@android:drawable/ic_menu_manage"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
 </RelativeLayout>

@@ -1,11 +1,15 @@
 package de.eneko.nekomobile.activities.models;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.beans.Liegenschaft;
+import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.Nutzer;
+import de.eneko.nekomobile.beans.ToDo;
 
 public class LiegenschaftModel extends Basemodel{
     private Date mStart;
@@ -72,7 +76,19 @@ public class LiegenschaftModel extends Basemodel{
         return getBean().getNutzers().stream().filter(r -> r.getBaseModel().hasFunkcheck())
                 .collect(Collectors.toList()).size() > 0;
     }
-
+    public List<Messgeraet> getNutzerMessgaereteByArt(String pArt){
+        List<Messgeraet> qMessgeraet = new ArrayList<Messgeraet>();
+        for(Nutzer nutzer: getBean().getNutzers())
+        {
+            for(ToDo todo : nutzer.getToDos()) {
+                qMessgeraet.addAll(
+                        todo.getMessgeraete().stream().filter(r -> r.getArt().equals(pArt))
+                                .collect(Collectors.toList())
+                );
+            }
+        }
+        return qMessgeraet;
+    }
 
 
 

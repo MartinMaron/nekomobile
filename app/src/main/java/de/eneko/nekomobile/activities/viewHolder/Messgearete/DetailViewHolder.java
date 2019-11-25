@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
@@ -67,6 +68,9 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         setLbBemerkung(getActivity().findViewById(R.id.lbBemerkung));
         setEtBemerkung(getActivity().findViewById(R.id.etBemerkung));
         setIvSpechToText(getActivity().findViewById(R.id.ivSpechToText));
+        setIbBewertung(findViewById(R.id.ibBewertung));
+
+
 
 
         if (getActvRaum() != null) getActvRaum().setAdapter(
@@ -94,20 +98,16 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             spNewModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpNewModel().setAdapter(spNewModelAdapter);
         }
-
         if (getSpNewFunkModel() != null) {
             spNewFunkModelAdapter = new ArrayAdapter<FunkModel>(mActivity, android.R.layout.simple_spinner_item, Dict.getInstance().getFunkModels());
             spNewFunkModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpNewFunkModel().setAdapter(spNewFunkModelAdapter);
         }
-
         if (getSpAustauschgrund() != null) {
             spAustauschGrundAdapter = new ArrayAdapter<FunkCheck_Austauschgrund>(mActivity, android.R.layout.simple_spinner_item, Dict.getInstance().getFunkAustauschGrunds());
             spAustauschGrundAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpAustauschgrund().setAdapter(spAustauschGrundAdapter);
         }
-
-
 
         getIvBarcodeNewModel().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +138,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                 mActivity.startActivityForResult(launchIntent, BT_BARCODE_NEW_FUNKNUMMER);
             }
         });
-
         getIvSpechToText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +148,14 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                 if (launchIntent.resolveActivity(mActivity.getPackageManager()) != null) {
                     mActivity.startActivityForResult(launchIntent, BT_SPEAKER);
                 }
+            }
+        });
+
+        getIbBewertung().setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MessgaeretBewertungActivity.class);
+                getActivity().startActivity(intent);
             }
         });
 

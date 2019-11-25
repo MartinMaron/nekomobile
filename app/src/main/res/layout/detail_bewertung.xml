@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_faktor_2">
+
+    <TextView
+        android:id="@+id/lbGrundparameter"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:text="@string/grundparameter"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etGrundparameter"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbGrundparameter"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbReihenanordnung"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_toRightOf="@id/lbGrundparameter"
+        android:visibility="invisible"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:text="@string/Reihenanordnung"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <AutoCompleteTextView
+        android:id="@+id/actvReihenanordnung"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:visibility="invisible"
+        android:layout_below="@id/lbReihenanordnung"
+        android:layout_toRightOf="@id/etGrundparameter"
+        android:completionThreshold="1"
+        android:ems="10"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor01"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:visibility="invisible"
+        android:layout_below="@id/etGrundparameter"
+        android:text="@string/WebesBauhöhe"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <AutoCompleteTextView
+        android:id="@+id/actvBewertungsfaktor01"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor01"
+        android:completionThreshold="1"
+        android:visibility="invisible"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor02"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etGrundparameter"
+        android:layout_toRightOf="@id/lbBewertungsfaktor01"
+        android:text="@string/WebesNabenabstand"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor02"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor02"
+        android:layout_toRightOf="@id/lbBewertungsfaktor01"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor03"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/actvBewertungsfaktor01"
+        android:visibility="invisible"
+        android:text="@string/WebesBaulaenge"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor03"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor03"
+        android:ems="10"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor04"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:visibility="invisible"
+        android:layout_below="@id/etBewertungsfaktor02"
+        android:layout_toRightOf="@id/lbBewertungsfaktor03"
+        android:text="@string/WebesBautiefe"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor04"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor03"
+        android:layout_toRightOf="@id/lbBewertungsfaktor03"
+        android:ems="10"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor05"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:visibility="invisible"
+        android:layout_below="@id/etBewertungsfaktor03"
+        android:text="@string/WebesGliederbaulaenge"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor05"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor05"
+        android:ems="10"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor06"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor04"
+        android:layout_toRightOf="@id/lbBewertungsfaktor05"
+        android:visibility="invisible"
+        android:text="@string/WebesNabendurchmesser"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor06"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor05"
+        android:layout_toRightOf="@id/lbBewertungsfaktor05"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor07"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor05"
+        android:text="@string/WebesSaeulendicke"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor07"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor07"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor08"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor06"
+        android:layout_toRightOf="@id/lbBewertungsfaktor07"
+        android:text="@string/WebesSaeulenzahl"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor08"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor07"
+        android:layout_toRightOf="@id/lbBewertungsfaktor07"
+        android:ems="10"
+        android:visibility="invisible"
+        android:inputType="number"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor09"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor07"
+        android:text="@string/WebesGliederzahl"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor09"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor09"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor10"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor08"
+        android:layout_toRightOf="@id/lbBewertungsfaktor09"
+        android:text="@string/WebesNabendurchmesser"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor10"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor09"
+        android:layout_toRightOf="@id/lbBewertungsfaktor09"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+    <TextView
+        android:id="@+id/lbBewertungsfaktor11"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor09"
+        android:text="@string/WebesGliederbaulaenge"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor11"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor11"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBewertungsfaktor12"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_below="@id/etBewertungsfaktor10"
+        android:layout_toRightOf="@id/lbBewertungsfaktor11"
+        android:text="@string/WebesNabendurchmesser"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_05"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/etBewertungsfaktor12"
+        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/lbBewertungsfaktor11"
+        android:layout_toRightOf="@id/lbBewertungsfaktor11"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+</RelativeLayout>

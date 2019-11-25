@@ -46,7 +46,7 @@
     </array>
 
     <array name="zaehler_modele">
-        <item>-1@ @True@ALL@ @</item>
+        <item>-1@empty@True@ALL@ @</item>
         <item>1246@Gaszähler@False@GAS@000000@</item>
         <item>1247@Unterputz-Messkapsel Warmwasser@False@WWZ@ @</item>
         <item>54@APZ-We-ETW-2,5-130mm-3/4"-1 l/Imp@True@KWZ@0581R911@</item>

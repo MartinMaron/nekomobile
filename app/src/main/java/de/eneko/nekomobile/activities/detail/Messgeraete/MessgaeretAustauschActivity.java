@@ -23,7 +23,9 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
             @Override
             public void save() {
                 getBasemodel().setRaum(getActvRaum().getText().toString());
-                getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
+                Object zm = getSpNewModel().getSelectedItem();
+
+                if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
                 getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
                 getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
                 getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());

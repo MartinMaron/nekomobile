@@ -44,6 +44,28 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private String mAustauschGrund = "X";
     private String mUndoneGrund = "";
     private Liegenschaft mLiegenschaft = null;
+
+
+    private String mGrundparameter = "";
+    private String mFormparameter = "";
+    private Integer mBewertungsfaktor_01 = 0;
+    private Integer mBewertungsfaktor_02 = 0;
+    private Integer mBewertungsfaktor_03 = 0;
+    private Integer mBewertungsfaktor_04 = 0;
+    private Integer mBewertungsfaktor_05 = 0;
+    private Integer mBewertungsfaktor_06 = 0;
+    private Integer mBewertungsfaktor_07 = 0;
+    private Integer mBewertungsfaktor_08 = 0;
+    private Integer mBewertungsfaktor_09 = 0;
+    private Integer mBewertungsfaktor_10 = 0;
+    private Integer mBewertungsfaktor_11 = 0;
+    private String mReihenanordnung = "";
+
+
+
+
+
+
     public Messgeraet(ToDo pTodo) {
         super();
         mTodo = pTodo;
@@ -153,6 +175,49 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
                     case "unDoneGrund":
                         mUndoneGrund = getString(propElement);
                         break;
+                    case "grundparameter":
+                        mGrundparameter = getString(propElement);
+                        break;
+                    case "formparameter":
+                        mFormparameter = getString(propElement);
+                        break;
+                    case "bewertungsfaktor_01":
+                        mBewertungsfaktor_01 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_02":
+                        mBewertungsfaktor_02 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_03":
+                        mBewertungsfaktor_03 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_04":
+                        mBewertungsfaktor_04 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_05":
+                        mBewertungsfaktor_05 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_06":
+                        mBewertungsfaktor_06 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_07":
+                        mBewertungsfaktor_07 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_08":
+                        mBewertungsfaktor_08 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_09":
+                        mBewertungsfaktor_09 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_10":
+                        mBewertungsfaktor_10 = getInteger(propElement);
+                        break;
+                    case "bewertungsfaktor_11":
+                        mBewertungsfaktor_11 = getInteger(propElement);
+                        break;
+                    case "reihenanordnung":
+                        mReihenanordnung = getString(propElement);
+                        break;
+
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -162,6 +227,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             Log.e(TAG, "import error.", e);
         }
     }
+
 
     @Override
     public Element toXmlElement(Document document) {
@@ -202,6 +268,19 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             CreateTextNode(ret_val,"neuesFunkModel" ,mNeuesFunkModel);
             CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
             CreateTextNode(ret_val,"unDoneGrund" , mUndoneGrund);
+            CreateTextNode(ret_val,"grundparameter" ,mGrundparameter);
+            CreateTextNode(ret_val,"formparameter" ,mFormparameter);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_01" ,mBewertungsfaktor_01);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_02" ,mBewertungsfaktor_02);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_03" ,mBewertungsfaktor_03);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_04" ,mBewertungsfaktor_04);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_05" ,mBewertungsfaktor_05);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_06" ,mBewertungsfaktor_06);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_07" ,mBewertungsfaktor_07);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_08" ,mBewertungsfaktor_08);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_09" ,mBewertungsfaktor_09);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_10" ,mBewertungsfaktor_10);
+            CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }
@@ -496,6 +575,119 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     public void setUndoneGrund(String undoneGrund) {
         mUndoneGrund = undoneGrund;
+    }
+
+
+    public String getGrundparameter() {
+        return mGrundparameter;
+    }
+
+    public void setGrundparameter(String grundparameter) {
+        mGrundparameter = grundparameter;
+    }
+
+    public String getFormparameter() {
+        return mFormparameter;
+    }
+
+    public void setFormparameter(String formparameter) {
+        mFormparameter = formparameter;
+    }
+
+    public Integer getBewertungsfaktor_01() {
+        return mBewertungsfaktor_01;
+    }
+
+    public void setBewertungsfaktor_01(Integer bewertungsfaktor_01) {
+        mBewertungsfaktor_01 = bewertungsfaktor_01;
+    }
+
+    public Integer getBewertungsfaktor_02() {
+        return mBewertungsfaktor_02;
+    }
+
+    public void setBewertungsfaktor_02(Integer bewertungsfaktor_02) {
+        mBewertungsfaktor_02 = bewertungsfaktor_02;
+    }
+
+    public Integer getBewertungsfaktor_03() {
+        return mBewertungsfaktor_03;
+    }
+
+    public void setBewertungsfaktor_03(Integer bewertungsfaktor_03) {
+        mBewertungsfaktor_03 = bewertungsfaktor_03;
+    }
+
+    public Integer getBewertungsfaktor_04() {
+        return mBewertungsfaktor_04;
+    }
+
+    public void setBewertungsfaktor_04(Integer bewertungsfaktor_04) {
+        mBewertungsfaktor_04 = bewertungsfaktor_04;
+    }
+
+    public Integer getBewertungsfaktor_05() {
+        return mBewertungsfaktor_05;
+    }
+
+    public void setBewertungsfaktor_05(Integer bewertungsfaktor_05) {
+        mBewertungsfaktor_05 = bewertungsfaktor_05;
+    }
+
+    public Integer getBewertungsfaktor_06() {
+        return mBewertungsfaktor_06;
+    }
+
+    public void setBewertungsfaktor_06(Integer bewertungsfaktor_06) {
+        mBewertungsfaktor_06 = bewertungsfaktor_06;
+    }
+
+    public Integer getBewertungsfaktor_07() {
+        return mBewertungsfaktor_07;
+    }
+
+    public void setBewertungsfaktor_07(Integer bewertungsfaktor_07) {
+        mBewertungsfaktor_07 = bewertungsfaktor_07;
+    }
+
+    public Integer getBewertungsfaktor_08() {
+        return mBewertungsfaktor_08;
+    }
+
+    public void setBewertungsfaktor_08(Integer bewertungsfaktor_08) {
+        mBewertungsfaktor_08 = bewertungsfaktor_08;
+    }
+
+    public Integer getBewertungsfaktor_09() {
+        return mBewertungsfaktor_09;
+    }
+
+    public void setBewertungsfaktor_09(Integer bewertungsfaktor_09) {
+        mBewertungsfaktor_09 = bewertungsfaktor_09;
+    }
+
+    public Integer getBewertungsfaktor_10() {
+        return mBewertungsfaktor_10;
+    }
+
+    public void setBewertungsfaktor_10(Integer bewertungsfaktor_10) {
+        mBewertungsfaktor_10 = bewertungsfaktor_10;
+    }
+
+    public Integer getBewertungsfaktor_11() {
+        return mBewertungsfaktor_11;
+    }
+
+    public void setBewertungsfaktor_11(Integer bewertungsfaktor_11) {
+        mBewertungsfaktor_11 = bewertungsfaktor_11;
+    }
+
+    public String getReihenanordnung() {
+        return mReihenanordnung;
+    }
+
+    public void setReihenanordnung(String reihenanordnung) {
+        mReihenanordnung = reihenanordnung;
     }
 
 

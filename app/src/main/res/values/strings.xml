@@ -33,4 +33,15 @@
     <string name="telefon">Telefon</string>
     <string name="neuerNutzer">neuer Nutzer</string>
     <string name="Fremdgeraet">Fremdgerät</string>
+    <string name="grundparameter">grundparameter</string>
+    <string name="Reihenanordnung">reihenanordnung</string>
+    <string name="WebesBauhöhe">BH - Bauhöhe</string>
+    <string name="WebesNabenabstand">NA - Nabenabstand im mm</string>
+    <string name="WebesBaulaenge">BL - Baulänge in mm</string>
+    <string name="WebesBautiefe">BT - Bautiefe</string>
+    <string name="WebesGliederbaulaenge">GL - Gliderbaulänge in mm</string>
+    <string name="WebesNabendurchmesser">ND - Nabendurchmesser in mm</string>
+    <string name="WebesSaeulenzahl">SZ - Säulenzahl</string>
+    <string name="WebesSaeulendicke">SD - Säulendicke in mm</string>
+    <string name="WebesGliederzahl">GZ - Gliederzahl</string>
 </resources>

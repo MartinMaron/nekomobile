@@ -24,7 +24,20 @@ public class MessgeraetModel extends Basemodel {
     private Date mStichtagsdatum = null;
     private String mUnDoneGrundGrund = "";
 
-
+    private String mGrundparameter = "";
+    private String mFormparameter = "";
+    private Integer mBewertungsfaktor_01 = -1;
+    private Integer mBewertungsfaktor_02 = -1;
+    private Integer mBewertungsfaktor_03 = -1;
+    private Integer mBewertungsfaktor_04 = -1;
+    private Integer mBewertungsfaktor_05 = -1;
+    private Integer mBewertungsfaktor_06 = -1;
+    private Integer mBewertungsfaktor_07 = -1;
+    private Integer mBewertungsfaktor_08 = -1;
+    private Integer mBewertungsfaktor_09 = -1;
+    private Integer mBewertungsfaktor_10 = -1;
+    private Integer mBewertungsfaktor_11 = -1;
+    private String mReihenanordnung = "";
 
     public MessgeraetModel(Messgeraet bean) {
         super(bean);
@@ -32,37 +45,67 @@ public class MessgeraetModel extends Basemodel {
 
     @Override
     public void save() {
-        getBean().setSortNo(mSortNo);
-        getBean().setRaum(mRaum);
-        getBean().setZielmodel(mZielmodel);
-        getBean().setAktuellValue(mAktuellValue);
-        getBean().setStichtagValue(mStichtagValue);
-        getBean().setDatum(mDatum);
-        getBean().setDefekt(mDefekt);
-        getBean().setBemerkung(mBemerkung);
-        getBean().setNeueNummer(mNeueNummer);
-        getBean().setNeueFunkNummer(mNeueFunkNummer);
-        getBean().setNeuesFunkModel(mNeuesFunkModel);
-        getBean().setAustauschGrund(mAustauschGrund);
-        getBean().setUndoneGrund(mUnDoneGrundGrund);
+        getBean().setSortNo(getSortNo());
+        getBean().setRaum(getRaum());
+        getBean().setZielmodel(getZielmodel());
+        getBean().setAktuellValue(getAktuellValue());
+        getBean().setStichtagValue(getStichtagValue());
+        getBean().setDatum(getDatum());
+        getBean().setDefekt(getDefekt());
+        getBean().setBemerkung(getBemerkung());
+        getBean().setNeueNummer(getNeueNummer());
+        getBean().setNeueFunkNummer(getNeueFunkNummer());
+        getBean().setNeuesFunkModel(getNeuesFunkModel());
+        getBean().setAustauschGrund(getAustauschGrund());
+        getBean().setUndoneGrund(getUnDoneGrundGrund());
+        getBean().setFormparameter(getFormparameter());
+        getBean().setGrundparameter(getGrundparameter());
+        getBean().setBewertungsfaktor_01(getBewertungsfaktor_01());
+        getBean().setBewertungsfaktor_02(getBewertungsfaktor_02());
+        getBean().setBewertungsfaktor_03(getBewertungsfaktor_03());
+        getBean().setBewertungsfaktor_04(getBewertungsfaktor_04());
+        getBean().setBewertungsfaktor_05(getBewertungsfaktor_05());
+        getBean().setBewertungsfaktor_06(getBewertungsfaktor_06());
+        getBean().setBewertungsfaktor_07(getBewertungsfaktor_07());
+        getBean().setBewertungsfaktor_08(getBewertungsfaktor_08());
+        getBean().setBewertungsfaktor_09(getBewertungsfaktor_09());
+        getBean().setBewertungsfaktor_10(getBewertungsfaktor_10());
+        getBean().setBewertungsfaktor_11(getBewertungsfaktor_11());
+        getBean().setReihenanordnung(getReihenanordnung());
     }
+
+
 
     @Override
     public void load() {
-        mSortNo = getBean().getSortNo();
-        mRaum = getBean().getRaum();
-        mZielmodel = getBean().getZielmodel();
-        mAktuellValue = getBean().getAktuellValue();
-        mStichtagValue = getBean().getStichtagValue();
-        mDatum = getBean().getDatum();
-        mDefekt = getBean().getDefekt();
-        mBemerkung = getBean().getBemerkung();
-        mNeueNummer = getBean().getNeueNummer();
-        mNeueFunkNummer = getBean().getNeueFunkNummer();
-        mNeuesFunkModel = getBean().getNeuesFunkModel();
-        mAustauschGrund = getBean().getAustauschGrund();
-        mStichtagsdatum = getBean().getStichtagsdatum();
-        mUnDoneGrundGrund = getBean().getUndoneGrund();
+        setSortNo ( getBean().getSortNo());
+        setRaum ( getBean().getRaum());
+        setZielmodel ( getBean().getZielmodel());
+        setAktuellValue ( getBean().getAktuellValue());
+        setStichtagValue ( getBean().getStichtagValue());
+        setDatum ( getBean().getDatum());
+        setDefekt ( getBean().getDefekt());
+        setBemerkung ( getBean().getBemerkung());
+        setNeueNummer ( getBean().getNeueNummer());
+        setNeueFunkNummer ( getBean().getNeueFunkNummer());
+        setNeuesFunkModel (getBean().getNeuesFunkModel());
+        setAustauschGrund ( getBean().getAustauschGrund());
+        setStichtagsdatum ( getBean().getStichtagsdatum());
+        setUnDoneGrundGrund(getBean().getUndoneGrund());
+        setFormparameter(getBean().getFormparameter());
+        setGrundparameter(getBean().getGrundparameter());
+        setBewertungsfaktor_01(getBean().getBewertungsfaktor_01());
+        setBewertungsfaktor_02(getBean().getBewertungsfaktor_02());
+        setBewertungsfaktor_03(getBean().getBewertungsfaktor_03());
+        setBewertungsfaktor_04(getBean().getBewertungsfaktor_04());
+        setBewertungsfaktor_05(getBean().getBewertungsfaktor_05());
+        setBewertungsfaktor_06(getBean().getBewertungsfaktor_06());
+        setBewertungsfaktor_07(getBean().getBewertungsfaktor_07());
+        setBewertungsfaktor_08(getBean().getBewertungsfaktor_08());
+        setBewertungsfaktor_09(getBean().getBewertungsfaktor_09());
+        setBewertungsfaktor_10(getBean().getBewertungsfaktor_10());
+        setBewertungsfaktor_11(getBean().getBewertungsfaktor_11());
+        setReihenanordnung(getBean().getReihenanordnung());
     }
 
 
@@ -222,6 +265,119 @@ public class MessgeraetModel extends Basemodel {
     public void setUnDoneGrundGrund(String unDoneGrundGrund) {
         mUnDoneGrundGrund = unDoneGrundGrund;
     }
+
+    public String getGrundparameter() {
+        return mGrundparameter;
+    }
+
+    public void setGrundparameter(String grundparameter) {
+        mGrundparameter = grundparameter;
+    }
+
+    public String getFormparameter() {
+        return mFormparameter;
+    }
+
+    public void setFormparameter(String formparameter) {
+        mFormparameter = formparameter;
+    }
+
+    public Integer getBewertungsfaktor_01() {
+        return mBewertungsfaktor_01;
+    }
+
+    public void setBewertungsfaktor_01(Integer bewertungsfaktor_01) {
+        mBewertungsfaktor_01 = bewertungsfaktor_01;
+    }
+
+    public Integer getBewertungsfaktor_02() {
+        return mBewertungsfaktor_02;
+    }
+
+    public void setBewertungsfaktor_02(Integer bewertungsfaktor_02) {
+        mBewertungsfaktor_02 = bewertungsfaktor_02;
+    }
+
+    public Integer getBewertungsfaktor_03() {
+        return mBewertungsfaktor_03;
+    }
+
+    public void setBewertungsfaktor_03(Integer bewertungsfaktor_03) {
+        mBewertungsfaktor_03 = bewertungsfaktor_03;
+    }
+
+    public Integer getBewertungsfaktor_04() {
+        return mBewertungsfaktor_04;
+    }
+
+    public void setBewertungsfaktor_04(Integer bewertungsfaktor_04) {
+        mBewertungsfaktor_04 = bewertungsfaktor_04;
+    }
+
+    public Integer getBewertungsfaktor_05() {
+        return mBewertungsfaktor_05;
+    }
+
+    public void setBewertungsfaktor_05(Integer bewertungsfaktor_05) {
+        mBewertungsfaktor_05 = bewertungsfaktor_05;
+    }
+
+    public Integer getBewertungsfaktor_06() {
+        return mBewertungsfaktor_06;
+    }
+
+    public void setBewertungsfaktor_06(Integer bewertungsfaktor_06) {
+        mBewertungsfaktor_06 = bewertungsfaktor_06;
+    }
+
+    public Integer getBewertungsfaktor_07() {
+        return mBewertungsfaktor_07;
+    }
+
+    public void setBewertungsfaktor_07(Integer bewertungsfaktor_07) {
+        mBewertungsfaktor_07 = bewertungsfaktor_07;
+    }
+
+    public Integer getBewertungsfaktor_08() {
+        return mBewertungsfaktor_08;
+    }
+
+    public void setBewertungsfaktor_08(Integer bewertungsfaktor_08) {
+        mBewertungsfaktor_08 = bewertungsfaktor_08;
+    }
+
+    public Integer getBewertungsfaktor_09() {
+        return mBewertungsfaktor_09;
+    }
+
+    public void setBewertungsfaktor_09(Integer bewertungsfaktor_09) {
+        mBewertungsfaktor_09 = bewertungsfaktor_09;
+    }
+
+    public Integer getBewertungsfaktor_10() {
+        return mBewertungsfaktor_10;
+    }
+
+    public void setBewertungsfaktor_10(Integer bewertungsfaktor_10) {
+        mBewertungsfaktor_10 = bewertungsfaktor_10;
+    }
+
+    public Integer getBewertungsfaktor_11() {
+        return mBewertungsfaktor_11;
+    }
+
+    public void setBewertungsfaktor_11(Integer bewertungsfaktor_11) {
+        mBewertungsfaktor_11 = bewertungsfaktor_11;
+    }
+
+    public String getReihenanordnung() {
+        return mReihenanordnung;
+    }
+
+    public void setReihenanordnung(String reihenanordnung) {
+        mReihenanordnung = reihenanordnung;
+    }
+
     public String getArt() {
         return getBean().getArt();
     }
@@ -234,5 +390,7 @@ public class MessgeraetModel extends Basemodel {
     public String getNummer() {
         return getBean().getNummer();
     }
+    
+    
    //endregion
 }

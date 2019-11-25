@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -79,6 +80,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private ImageView ivSpechToText = null;
     private TextView lbUnDoneGrund = null;
     private AutoCompleteTextView acUnDoneGrund = null;
+    private ImageButton ibBewertung = null;
 
 
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean) {
@@ -115,83 +117,86 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         setLbUnDoneGrund(findViewById(R.id.lbUnDoneGrund));
         setAcUnDoneGrund(findViewById(R.id.acUnDoneGrund));
 
+        if(getIvPhoto() != null) {
+            getIvPhoto().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setDataToModel();
+                    String relativePath = getBasemodel().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
+                    relativePath = relativePath + "@" + getBasemodel().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
+                    String filename = "#" + getBasemodel().getArt();
 
-
-        getIvPhoto().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDataToModel();
-                String relativePath = getBasemodel().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
-                relativePath = relativePath + "@" + getBasemodel().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
-                String filename = "#" + getBasemodel().getArt();
-
-                //ist es nur ein Photo oder oder wird der zähler ausgetauscht
-                if (!getBasemodel().getAustauschGrund().equals("X") || !getBasemodel().getUnDoneGrundGrund().equals("")){
-                    filename = filename + "@_WECHSEL";
-                }else{
-                    filename = filename + "@_PHOTO";
-                }
-
-                //ist das Photo von ursprünglichen Zähler oder von neu getauschten
-                if (!getBasemodel().getNeueNummer().equals("")){
-                    filename = filename + "@NEU@";
-                    // nach welchen Zählernumern soll in neuen zähler gesucht werden
-                    if (!getBasemodel().getNeueFunkNummer().trim().equals("")){
-                        filename = filename  + getBasemodel().getNeueFunkNummer().trim()+ "@";
-                    }else if (!getBasemodel().getNeueNummer().trim().equals("")){
-                        filename = filename  + getBasemodel().getNeueNummer().trim()+ "@";
+                    //ist es nur ein Photo oder oder wird der zähler ausgetauscht
+                    if (!getBasemodel().getAustauschGrund().equals("X") || !getBasemodel().getUnDoneGrundGrund().equals("")){
+                        filename = filename + "@_WECHSEL";
+                    }else{
+                        filename = filename + "@_PHOTO";
                     }
-                }else{
-                    filename = filename + "@ALT@";
-                    filename = filename  + getBasemodel().getNummer().trim()+ "@";
 
-                }
-                // ID
-                if (getBasemodel().getTodo().getNutzer() != null){
-                    filename = filename  +  getBasemodel().getTodo().getNutzer().getLiegenschaft().getBud_guid()+ "@";
-                }else {
-                    filename = filename  +  getBasemodel().getTodo().getLiegenschaft().getBud_guid()+ "@";
-                }
-                // ID
-                if (!getBasemodel().getNekoId().equals("")){
-                    filename = filename  +  getBasemodel().getNekoId()+ "@";
-                }
-                PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
-            }
+                    //ist das Photo von ursprünglichen Zähler oder von neu getauschten
+                    if (!getBasemodel().getNeueNummer().equals("")){
+                        filename = filename + "@NEU@";
+                        // nach welchen Zählernumern soll in neuen zähler gesucht werden
+                        if (!getBasemodel().getNeueFunkNummer().trim().equals("")){
+                            filename = filename  + getBasemodel().getNeueFunkNummer().trim()+ "@";
+                        }else if (!getBasemodel().getNeueNummer().trim().equals("")){
+                            filename = filename  + getBasemodel().getNeueNummer().trim()+ "@";
+                        }
+                    }else{
+                        filename = filename + "@ALT@";
+                        filename = filename  + getBasemodel().getNummer().trim()+ "@";
 
-        });
+                    }
+                    // ID
+                    if (getBasemodel().getTodo().getNutzer() != null){
+                        filename = filename  +  getBasemodel().getTodo().getNutzer().getLiegenschaft().getBud_guid()+ "@";
+                    }else {
+                        filename = filename  +  getBasemodel().getTodo().getLiegenschaft().getBud_guid()+ "@";
+                    }
+                    // ID
+                    if (!getBasemodel().getNekoId().equals("")){
+                        filename = filename  +  getBasemodel().getNekoId()+ "@";
+                    }
+                    PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
+                }
 
-        if (getBean().getDatum() != null) {
-            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getDatum()));
+            });
+        }
+        if(getBean().getDatum() != null) {
+            if(getLbAktuell() != null) getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getDatum()));
         }else {
-            getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(Calendar.getInstance().getTime()));
+            if(getLbAktuell() != null) getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(Calendar.getInstance().getTime()));
+        }
+        if(getLbStichtag() != null) getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getStichtagsdatum()));
+        if(getTvAktuell() != null ){
+            getTvAktuell().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setDataToModel();
+                    CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
+                    if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
+                        startSpracheingabe(REQUEST_BT_AKTUELL);
+                    } else {
+                        inputDialogAktuell(getBean().getAktuellValue() != -1 ? getBean().getAktuellValue().toString() : "");
+                    }
+                }
+            });
+        }
+        if(getTvAktuell() != null ) {
+            getTvStichtag().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setDataToModel();
+                    CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
+                    if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
+                        startSpracheingabe(REQUEST_BT_STICHTAG);
+                    } else {
+                        inputDialogStichtag(getBean().getStichtagValue() != -1 ? getBean().getStichtagValue().toString() : "");
+                    }
+                }
+            });
         }
 
-        getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getStichtagsdatum()));
-        getTvAktuell().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDataToModel();
-                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
-                if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
-                    startSpracheingabe(REQUEST_BT_AKTUELL);
-                } else {
-                    inputDialogAktuell(getBean().getAktuellValue() != -1 ? getBean().getAktuellValue().toString(): "");
-                }
-            }
-        });
-        getTvStichtag().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view ) {
-                setDataToModel();
-                CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
-                if(MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
-                    startSpracheingabe(REQUEST_BT_STICHTAG);
-                }else {
-                    inputDialogStichtag(getBean().getStichtagValue() != -1 ? getBean().getStichtagValue().toString(): "");
-                }
-            }
-        });
     }
 
     public void setDataToModel() {
@@ -544,6 +549,14 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
     public void setAcUnDoneGrund(AutoCompleteTextView acKeinAustauschGrund) {
         this.acUnDoneGrund = acKeinAustauschGrund;
+    }
+
+    public ImageButton getIbBewertung() {
+        return ibBewertung;
+    }
+
+    public void setIbBewertung(ImageButton ibBewertung) {
+        this.ibBewertung = ibBewertung;
     }
 
     // endregion properties

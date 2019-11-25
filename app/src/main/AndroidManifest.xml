@@ -58,6 +58,7 @@
         <activity android:name=".activities.DropboxFilesActivity"/>
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAustauschActivity"/>
         <activity android:name=".activities.detail.Messgeraete.MessgaeretAblesungActivity"/>
+        <activity android:name=".activities.detail.Messgeraete.MessgaeretBewertungActivity"/>
         <activity android:name=".activities.list.MessgeraetListActivity"/>
         <activity android:name=".activities.list.MessgeraetMontageListActivity"/>
         <activity android:name=".activities.list.MessgeraetAblesungListActivity"/>
