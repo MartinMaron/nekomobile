@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Neko Mobile</string>
+    <string name="datenaustausch_mit_dropbox">Datenaustausch mit Dropbox</string>
+    <string name="routen_oeffnen">Routen öffnen</string>
+    <string name="dateien_archivieren">Dateien archivieren</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">eneko GmbH</string>

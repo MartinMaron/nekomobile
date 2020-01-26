@@ -48,7 +48,7 @@ public class LiegenschaftModel extends Basemodel{
 
 
     public String getAdresseDisplay(){
-        return getAdresse().replace("/n",",");
+        return getAdresse().replace("\n",",  ");
     }
 
     public String getTerminDisplay(){
@@ -127,6 +127,9 @@ public class LiegenschaftModel extends Basemodel{
     }
 
     public String getBemerkung() {
+        if (mBemerkung.replace("\n","").trim().isEmpty()){
+            return "";
+        }
         return mBemerkung;
     }
 

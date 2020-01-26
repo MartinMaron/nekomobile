@@ -12,12 +12,19 @@
         android:id="@+id/btCmdGetRoutes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Routen öffnen" />
+        android:text="@string/routen_oeffnen" />
 
     <Button
         android:id="@+id/btCmdDropbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btCmdGetRoutes"
-        android:text="synchronizacja z dropboxem" />
+        android:text="@string/datenaustausch_mit_dropbox" />
+
+    <Button
+        android:id="@+id/btCmdArchiviere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btCmdDropbox"
+        android:text="@string/dateien_archivieren" />
 </RelativeLayout>
