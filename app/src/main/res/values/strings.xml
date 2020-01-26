@@ -33,8 +33,8 @@
     <string name="telefon">Telefon</string>
     <string name="neuerNutzer">neuer Nutzer</string>
     <string name="Fremdgeraet">Fremdgerät</string>
-    <string name="grundparameter">grundparameter</string>
-    <string name="Reihenanordnung">reihenanordnung</string>
+    <string name="grundparameter">Grundparameter</string>
+    <string name="Reihenanordnung">Reihenanordnung</string>
     <string name="WebesBauhöhe">BH - Bauhöhe</string>
     <string name="WebesNabenabstand">NA - Nabenabstand im mm</string>
     <string name="WebesBaulaenge">BL - Baulänge in mm</string>

@@ -29,8 +29,8 @@ public class LiegenschaftRowViewHolder extends BaseViewHolder{
 
     @Override
     public void updateView() {
-        setTxtvLiegenschaft(mView.findViewById(R.id.txtvDescription));
-        setTxtvTermin(mView.findViewById(R.id.txtvDescription2));
+        setTxtvLiegenschaft(mView.findViewById(R.id.tvDisplay));
+        setTxtvTermin(mView.findViewById(R.id.tvLastPlace_1));
         setTxtvBemerkungen(mView.findViewById(R.id.txtvBemerkung));
         View svToDoRow = (View) mView.findViewById(R.id.todorow);
 

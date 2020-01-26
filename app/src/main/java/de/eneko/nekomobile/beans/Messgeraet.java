@@ -12,8 +12,10 @@ import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.Dict;
 
-public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
+public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ibewertung {
     private static final String TAG = Messgeraet.class.getName();
+    public static final Integer INTEGER_NULLVALUE = -1;
+
     private String nekoId;
     private String mNummer = "";
     private Integer mSortNo = 0;
@@ -26,14 +28,14 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
     private Boolean mIsEximFunk = false;
     private Boolean mIsFunkSontex = false;
     private String mArt = "";
-    private Integer mModel = -1;
+    private Integer mModel = INTEGER_NULLVALUE;
     private Boolean mFunkfehler_offen = false;
     private Boolean mFunkfehler_unerreichbar = false;
     private Boolean mFunkfehler_ignorieren = false;
-    private Integer mZielmodel = -1;
+    private Integer mZielmodel = INTEGER_NULLVALUE;
     private ToDo mTodo = null;
-    private Double mAktuellValue = -1.0;
-    private Double mStichtagValue = -1.0;
+    private Double mAktuellValue = INTEGER_NULLVALUE * 1.00; //zmiana Integer na Double
+    private Double mStichtagValue = INTEGER_NULLVALUE * 1.00;
     private Date mDatum = null;
     private Date stichtagsdatum = null;
     private Boolean mDefekt = false;
@@ -48,23 +50,41 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
 
     private String mGrundparameter = "";
     private String mFormparameter = "";
-    private Integer mBewertungsfaktor_01 = 0;
-    private Integer mBewertungsfaktor_02 = 0;
-    private Integer mBewertungsfaktor_03 = 0;
-    private Integer mBewertungsfaktor_04 = 0;
-    private Integer mBewertungsfaktor_05 = 0;
-    private Integer mBewertungsfaktor_06 = 0;
-    private Integer mBewertungsfaktor_07 = 0;
-    private Integer mBewertungsfaktor_08 = 0;
-    private Integer mBewertungsfaktor_09 = 0;
-    private Integer mBewertungsfaktor_10 = 0;
-    private Integer mBewertungsfaktor_11 = 0;
+    private Integer mBewertungsfaktor_01 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_02 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_03 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_04 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_05 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_06 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_07 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_08 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_09 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_10 = INTEGER_NULLVALUE;
+    private Integer mBewertungsfaktor_11 = INTEGER_NULLVALUE;
     private String mReihenanordnung = "";
 
 
-
-
-
+    public Boolean isBewertungEquals(Ibewertung value) {
+        if (value.getBewertungsfaktor_01().equals(getBewertungsfaktor_01())
+            && value.getBewertungsfaktor_02().equals(getBewertungsfaktor_02())
+            && value.getBewertungsfaktor_03().equals(getBewertungsfaktor_03())
+            && value.getBewertungsfaktor_04().equals(getBewertungsfaktor_04())
+            && value.getBewertungsfaktor_05().equals(getBewertungsfaktor_05())
+            && value.getBewertungsfaktor_06().equals(getBewertungsfaktor_06())
+            && value.getBewertungsfaktor_07().equals(getBewertungsfaktor_07())
+            && value.getBewertungsfaktor_08().equals(getBewertungsfaktor_08())
+            && value.getBewertungsfaktor_09().equals(getBewertungsfaktor_09())
+            && value.getBewertungsfaktor_10().equals(getBewertungsfaktor_10())
+            && value.getBewertungsfaktor_11().equals(getBewertungsfaktor_11())
+            && value.getReihenanordnung().equals(getReihenanordnung())
+        ){
+            return true;
+        }
+        else
+            {
+                return false;
+            }
+    }
 
     public Messgeraet(ToDo pTodo) {
         super();
@@ -280,7 +300,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement {
             CreateIntegerNode(ret_val,"bewertungsfaktor_08" ,mBewertungsfaktor_08);
             CreateIntegerNode(ret_val,"bewertungsfaktor_09" ,mBewertungsfaktor_09);
             CreateIntegerNode(ret_val,"bewertungsfaktor_10" ,mBewertungsfaktor_10);
-            CreateTextNode(ret_val,"austauschGrund" ,mAustauschGrund);
+            CreateTextNode(ret_val,"reihenanordnung" ,mReihenanordnung);
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }

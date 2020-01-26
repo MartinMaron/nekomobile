@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/txtvDescription"
+        android:id="@+id/tvDisplay"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:text="@string/empty"
@@ -22,7 +22,7 @@
         android:id="@+id/txtvNutzerLage"
         android:layout_width="300dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/txtvDescription"
+        android:layout_below="@+id/tvDisplay"
         android:text="@string/empty"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_faktor_08" />

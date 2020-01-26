@@ -35,6 +35,7 @@ public class NutzerTodoModel extends Basemodel{
     public void load() {
         bezeichnung = getBean().getBezeichnung();
         art = getBean().getArt();
+        setDataLoaded(true);
     }
 
 

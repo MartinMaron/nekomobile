@@ -90,6 +90,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean, Activity pActivity) {
         super(pView, pBean, pActivity);
     }
+    public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean, Activity pActivity, Boolean reload) {
+        super(pView, pBean, pActivity,reload);
+    }
 
     @Override
     public Activity getActivity() {
@@ -123,7 +126,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                 public void onClick(View v) {
                     setDataToModel();
                     String relativePath = getBasemodel().getTodo().getNutzer().getLiegenschaft().getAdresseOneLine();
-                    relativePath = relativePath + "@" + getBasemodel().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage();
+                    relativePath = relativePath + "@" + getBasemodel().getTodo().getNutzer().getBaseModel().getWohnungsnummerMitLage().replace('.','_');
                     String filename = "#" + getBasemodel().getArt();
 
                     //ist es nur ein Photo oder oder wird der zähler ausgetauscht

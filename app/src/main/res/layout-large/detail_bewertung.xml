@@ -8,317 +8,331 @@
 
     <TextView
         android:id="@+id/lbGrundparameter"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
-        android:text="@string/grundparameter"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
+        android:text="@string/grundparameter"/>
 
     <EditText
         android:id="@+id/etGrundparameter"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbGrundparameter"
         android:ems="10"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbReihenanordnung"
-        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_toRightOf="@id/lbGrundparameter"
         android:visibility="invisible"
-        android:layout_height="@dimen/dp_faktor_4"
-        android:text="@string/Reihenanordnung"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/Reihenanordnung" />
 
     <AutoCompleteTextView
         android:id="@+id/actvReihenanordnung"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:visibility="invisible"
         android:layout_below="@id/lbReihenanordnung"
         android:layout_toRightOf="@id/etGrundparameter"
         android:completionThreshold="1"
-        android:ems="10"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:ems="10"/>
 
     <TextView
         android:id="@+id/lbBewertungsfaktor01"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:visibility="invisible"
         android:layout_below="@id/etGrundparameter"
-        android:text="@string/WebesBauhöhe"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/WebesBauhöhe"/>
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor01"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor01"
         android:completionThreshold="1"
         android:visibility="invisible"
         android:ems="10"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty"/>
 
     <TextView
         android:id="@+id/lbBewertungsfaktor02"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/etGrundparameter"
         android:layout_toRightOf="@id/lbBewertungsfaktor01"
         android:text="@string/WebesNabenabstand"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor02"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor02"
         android:layout_toRightOf="@id/lbBewertungsfaktor01"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty"/>
 
     <TextView
         android:id="@+id/lbBewertungsfaktor03"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor01"
         android:visibility="invisible"
-        android:text="@string/WebesBaulaenge"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/WebesBaulaenge" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor03"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor03"
         android:completionThreshold="1"
         android:ems="10"
         android:visibility="invisible"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty"/>
 
     <TextView
         android:id="@+id/lbBewertungsfaktor04"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:visibility="invisible"
         android:layout_below="@id/actvBewertungsfaktor02"
         android:layout_toRightOf="@id/lbBewertungsfaktor03"
-        android:text="@string/WebesBautiefe"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/WebesBautiefe" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor04"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor03"
         android:layout_toRightOf="@id/lbBewertungsfaktor03"
         android:completionThreshold="1"
         android:ems="10"
         android:visibility="invisible"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
 
     <TextView
         android:id="@+id/lbBewertungsfaktor05"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:visibility="invisible"
         android:layout_below="@id/actvBewertungsfaktor03"
-        android:text="@string/WebesGliederbaulaenge"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/WebesGliederbaulaenge" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor05"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor05"
         android:completionThreshold="1"
         android:ems="10"
         android:visibility="invisible"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty"/>
 
     <TextView
         android:id="@+id/lbBewertungsfaktor06"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor04"
         android:layout_toRightOf="@id/lbBewertungsfaktor05"
         android:visibility="invisible"
-        android:text="@string/WebesNabendurchmesser"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:text="@string/WebesNabendurchmesser" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor06"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor05"
         android:layout_toRightOf="@id/lbBewertungsfaktor05"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbBewertungsfaktor07"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor05"
         android:text="@string/WebesSaeulendicke"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor07"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor07"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbBewertungsfaktor08"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor06"
         android:layout_toRightOf="@id/lbBewertungsfaktor07"
         android:text="@string/WebesSaeulenzahl"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor08"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor07"
         android:layout_toRightOf="@id/lbBewertungsfaktor07"
         android:completionThreshold="1"
         android:ems="10"
         android:visibility="invisible"
         android:inputType="number"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbBewertungsfaktor09"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor07"
         android:text="@string/WebesGliederzahl"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor09"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor09"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbBewertungsfaktor10"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor08"
         android:layout_toRightOf="@id/lbBewertungsfaktor09"
         android:text="@string/WebesNabendurchmesser"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor10"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor09"
         android:layout_toRightOf="@id/lbBewertungsfaktor09"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
     <TextView
         android:id="@+id/lbBewertungsfaktor11"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor09"
         android:text="@string/WebesGliederbaulaenge"
-        android:visibility="invisible"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/actvBewertungsfaktor11"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor11"
         android:completionThreshold="1"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty" />
 
     <TextView
         android:id="@+id/lbBewertungsfaktor12"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_4"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_faktor_08"
         android:layout_below="@id/actvBewertungsfaktor10"
         android:layout_toRightOf="@id/lbBewertungsfaktor11"
         android:text="@string/WebesNabendurchmesser"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_05"
         android:visibility="invisible" />
 
     <AutoCompleteTextView
         android:id="@+id/etBewertungsfaktor12"
-        android:layout_width="@dimen/dp_faktor_40"
-        android:layout_height="@dimen/dp_faktor_10"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbBewertungsfaktor11"
         android:layout_toRightOf="@id/lbBewertungsfaktor11"
         android:ems="10"
         android:inputType="number"
         android:visibility="invisible"
-        android:text="@string/empty"
-        android:textSize="@dimen/sp_faktor_08" />
+        android:text="@string/empty"/>
 
     <ListView
         android:id="@+id/listView"

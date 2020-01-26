@@ -1,5 +1,7 @@
 package de.eneko.nekomobile;
 
+import android.content.res.Configuration;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -8,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Configuration config = getResources().getConfiguration();
+
         // erstellen der Activity
         setContentView(R.layout.activity_main);
         // initialisierung listener
@@ -40,6 +47,14 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setVisibility(NavigationView.VISIBLE);
         fab.setOnClickListener(mainActivityOnClickListener);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
+
 
         // init DrawerLayout
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -1,10 +1,7 @@
 package de.eneko.nekomobile.activities.models;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Route;
 
 public class RouteModel extends Basemodel {
@@ -36,6 +33,7 @@ public class RouteModel extends Basemodel {
         setBemerkung(getBean().getBemerkung());
         setNotiz(getBean().getNotiz());
         setCreateTimestamp(getBean().getCreateTimestamp());
+        setDataLoaded(true);
     }
 
     // region properties

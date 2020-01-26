@@ -20,7 +20,7 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/txtvDescription"
+            android:id="@+id/tvDisplay"
             android:layout_gravity="center|left"
             android:gravity="center|left"
             android:layout_width="fill_parent"
@@ -31,10 +31,10 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtvDescription2"
+            android:id="@+id/tvLastPlace_1"
             android:layout_width="fill_parent"
             android:layout_height="20dp"
-            android:layout_below="@+id/txtvDescription"
+            android:layout_below="@+id/tvDisplay"
             android:text="Terminangabe"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_faktor_08" />
@@ -43,7 +43,7 @@
             android:id="@+id/txtvBemerkung"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_below="@+id/txtvDescription2"
+            android:layout_below="@+id/tvLastPlace_1"
             android:text="@string/empty"
             android:textColor="@color/dark_red"
             android:textSize="@dimen/sp_faktor_08" />

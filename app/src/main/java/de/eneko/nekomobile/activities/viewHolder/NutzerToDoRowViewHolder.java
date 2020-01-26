@@ -22,7 +22,7 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
 
     @Override
     public void updateView() {
-        setTxtvDescription(mView.findViewById(R.id.txtvDescription));
+        setTxtvDescription(mView.findViewById(R.id.tvDisplay));
         setIvImage(mView.findViewById(R.id.ivImage));
 
         // Rauchmeldder

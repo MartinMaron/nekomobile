@@ -19,11 +19,14 @@ public abstract class BaseViewHolder {
        this(pView,pModel,null);
     }
 
-    public BaseViewHolder(View pView, Basemodel pModel, Activity pActivity ){
+    public BaseViewHolder(View pView, Basemodel pModel, Activity pActivity){
+        this(pView, pModel, pActivity,true);
+    }
+    public BaseViewHolder(View pView, Basemodel pModel, Activity pActivity ,Boolean reload){
         mView = pView;
         mActivity = pActivity;
         mBasemodel = pModel;
-        mBasemodel.load();
+            mBasemodel.load();
     }
 
     public void startSpracheingabe(Integer requestId){

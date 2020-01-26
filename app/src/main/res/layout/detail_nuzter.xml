@@ -16,7 +16,7 @@
         android:textSize="@dimen/sp_faktor_05" />
 
     <EditText
-        android:id="@+id/txtvDescription"
+        android:id="@+id/tvDisplay"
         android:layout_width="@dimen/dp_faktor_80"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbDescription"
@@ -29,7 +29,7 @@
         android:id="@+id/lbNutzerLage"
         android:layout_width="@dimen/dp_faktor_80"
         android:layout_height="@dimen/dp_faktor_4"
-        android:layout_below="@id/txtvDescription"
+        android:layout_below="@id/tvDisplay"
         android:text="@string/rwm_detail_lb_raum"
         android:textSize="@dimen/sp_faktor_05" />
 

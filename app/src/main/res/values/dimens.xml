@@ -39,6 +39,16 @@
     <dimen name="sp_faktor_08">16sp</dimen>
     <dimen name="sp_faktor_09">18sp</dimen>
     <dimen name="sp_faktor_10">20sp</dimen>
+    <dimen name="sp_faktor_11">22sp</dimen>
+    <dimen name="sp_faktor_12">24sp</dimen>
+    <dimen name="sp_faktor_13">26sp</dimen>
+    <dimen name="sp_faktor_14">28sp</dimen>
+    <dimen name="sp_faktor_15">30sp</dimen>
+    <dimen name="sp_faktor_16">32sp</dimen>
+    <dimen name="sp_faktor_17">34sp</dimen>
+    <dimen name="sp_faktor_18">36sp</dimen>
+    <dimen name="sp_faktor_19">38sp</dimen>
+    <dimen name="sp_faktor_20">40sp</dimen>
     <dimen name="dp_faktor_50">200dp</dimen>
     <dimen name="dp_faktor_27">108dp</dimen>
     <dimen name="dp_faktor_40">160dp</dimen>

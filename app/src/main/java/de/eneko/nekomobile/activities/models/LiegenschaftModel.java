@@ -38,6 +38,7 @@ public class LiegenschaftModel extends Basemodel{
         mPlZ = getBean().getPlZ();
         mStart = getBean().getStart();
         mSortNo =getBean().getSortNo();
+        setDataLoaded(true);
     }
 
     @Override

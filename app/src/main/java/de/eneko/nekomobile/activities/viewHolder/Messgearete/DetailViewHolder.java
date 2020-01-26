@@ -3,6 +3,8 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 import android.app.Activity;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -112,6 +114,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIvBarcodeNewModel().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save();
                 Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
                 mActivity.startActivityForResult(launchIntent, BT_BARCODE_NEW_MODEL);
             }
@@ -119,7 +122,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIvBarcodeNewNummer().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDataToModel();
+                save();
                 Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
                 mActivity.startActivityForResult(launchIntent, BT_BARCODE_NEW_NUMMER);
             }
@@ -127,6 +130,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIvBarcodeNewFunkModel().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save();
                 Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
                 mActivity.startActivityForResult(launchIntent, BT_BARCODE_NEW_FUNKMODEL);
             }
@@ -134,6 +138,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIvBarcodeNewFunkNummer().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save();
                 Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(v.getContext(), true, false);
                 mActivity.startActivityForResult(launchIntent, BT_BARCODE_NEW_FUNKNUMMER);
             }
@@ -141,6 +146,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIvSpechToText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save();
                 Intent launchIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 launchIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.GERMAN);
@@ -154,6 +160,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getIbBewertung().setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                save();
                 Intent intent = new Intent(getActivity(), MessgaeretBewertungActivity.class);
                 getActivity().startActivity(intent);
             }
@@ -170,7 +177,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getTvModel() != null) getTvModel().setText(new Object() {
             @Override
             public String toString() {
-               ZaehlerModel mObj = Dict.getInstance().getZaehlerModel(getBasemodel().getZielmodel());
+               ZaehlerModel mObj = Dict.getInstance().getZaehlerModel(getBasemodel().getModel());
                return mObj != null ? mObj.getBezeichnung() : "";
             }
         }.toString());
@@ -201,7 +208,26 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
 
         if (getTvNewNummer() != null) getTvNewNummer().setText(getBasemodel().getNeueNummer());
+        getTvNewNummer().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("") &&  getSpAustauschgrund() != null && getSpAustauschgrund().getSelectedItemPosition() == 0) {
+                    getSpAustauschgrund().setSelection(
+                            spAustauschGrundAdapter.getPosition(Dict.getInstance().getFunkAustauschGrund("STA"))
+                    );
+                }
+            }
+        });
 
         if (getSpNewFunkModel() != null && !getBasemodel().getNeuesFunkModel().equals("")) {
             getSpNewFunkModel().setSelection(
@@ -303,10 +329,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         FunkCheck_Austauschgrund austauschId = (FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem();
         getBasemodel().setAustauschGrund(austauschId.getId());
 
-        String valueString = getTvAktuell().getText().toString().replace(",",".");
+        String valueString = getTvAktuell().getText().toString().replace(".","").replace(",",".");
         if(!valueString.equals("")) getBasemodel().setAktuellValue(Double.parseDouble(valueString));
 
-        valueString = getTvStichtag().getText().toString().replace(",",".");
+        valueString = getTvStichtag().getText().toString().replace(".","").replace(",",".");
         if(!valueString.equals(""))getBasemodel().setStichtagValue(Double.parseDouble(valueString));
 
      }

@@ -69,6 +69,7 @@ public class NutzerModel extends Basemodel {
         setZwischenablesungKontakt(getBean().getZwischenablesungKontakt());
         setZwischenablesungNeuerNutzer(getBean().getZwischenablesungNeuerNutzer());
         setNutzerNameNeuerInNeko(getBean().getNutzerNameNeuerInNeko());
+        setDataLoaded(true);
     }
 
     public Boolean hasAblesung(){

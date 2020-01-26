@@ -50,7 +50,7 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
             }
         });
 
-        setTxtvDescription(findViewById(R.id.txtvDescription));
+        setTxtvDescription(findViewById(R.id.tvDisplay));
         setTxtvNutzerLage(findViewById(R.id.txtvNutzerLage));
         setTvZwischenablesung(findViewById(R.id.txtvZwischenablesung));
 

@@ -47,6 +47,7 @@ public class RauchmelderModel extends Basemodel {
         mRaum = getBean().getRaum();
         mWithError = getBean().getWithError();
         mDatenAufnahmeFremd = getBean().getDatenAufnahmeFremd();
+        setDataLoaded(true);
     }
 
     @Override

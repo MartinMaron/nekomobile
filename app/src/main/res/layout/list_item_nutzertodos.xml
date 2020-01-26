@@ -19,7 +19,7 @@
         android:contentDescription="@string/empty" />
 
     <TextView
-        android:id="@+id/txtvDescription"
+        android:id="@+id/tvDisplay"
         android:layout_width="@dimen/dp_faktor_80"
         android:layout_height="@dimen/dp_faktor_8"
         android:textAlignment="gravity"
@@ -32,7 +32,7 @@
     <include
         android:id="@+id/rwm_wartung_content"
         layout="@layout/list_item_nutzertodos_rwm_wartung_content"
-        android:layout_below="@id/txtvDescription"
+        android:layout_below = "@id/tvDisplay"
         android:layout_toRightOf="@id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_faktor_12"/>
@@ -40,14 +40,14 @@
     <include
         android:id="@+id/messgeraet_content"
         layout="@layout/list_item_nutzertodos_messgeraet_content"
-        android:layout_below="@id/txtvDescription"
-        android:layout_toRightOf="@id/ivImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_faktor_12"/>
+        android:layout_height="@dimen/dp_faktor_12"
+        android:layout_below="@id/tvDisplay"
+        android:layout_toRightOf="@id/ivImage" />
     <include
         android:id="@+id/messgeraet_content_single"
         layout="@layout/list_item_nutzertodos_messgeraet_art_content_single"
-        android:layout_below="@id/txtvDescription"
+        android:layout_below="@id/tvDisplay"
         android:layout_toRightOf="@id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_faktor_12"/>

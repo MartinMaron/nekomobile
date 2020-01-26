@@ -39,6 +39,8 @@ public class MessgeraetModel extends Basemodel {
     private Integer mBewertungsfaktor_11 = -1;
     private String mReihenanordnung = "";
 
+
+
     public MessgeraetModel(Messgeraet bean) {
         super(bean);
     }
@@ -50,7 +52,7 @@ public class MessgeraetModel extends Basemodel {
         getBean().setZielmodel(getZielmodel());
         getBean().setAktuellValue(getAktuellValue());
         getBean().setStichtagValue(getStichtagValue());
-        getBean().setDatum(getDatum());
+        if (getDatum() == null) {getBean().setDatum(new Date());} else { getBean().setDatum(getDatum());}
         getBean().setDefekt(getDefekt());
         getBean().setBemerkung(getBemerkung());
         getBean().setNeueNummer(getNeueNummer());
@@ -73,7 +75,6 @@ public class MessgeraetModel extends Basemodel {
         getBean().setBewertungsfaktor_11(getBewertungsfaktor_11());
         getBean().setReihenanordnung(getReihenanordnung());
     }
-
 
 
     @Override
@@ -106,6 +107,29 @@ public class MessgeraetModel extends Basemodel {
         setBewertungsfaktor_10(getBean().getBewertungsfaktor_10());
         setBewertungsfaktor_11(getBean().getBewertungsfaktor_11());
         setReihenanordnung(getBean().getReihenanordnung());
+        setDataLoaded(true);
+    }
+
+    public String getDisplayBewertung() {
+        if (!getGrundparameter().equals("")){
+            switch (getGrundparameter()){
+                case "21":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BL:" + getBewertungsfaktor_04().toString()
+                            + "   BT:" + getBewertungsfaktor_05().toString()
+                            + "   T3:" + getBewertungsfaktor_06().toString()
+                            + "   PD:" + getBewertungsfaktor_09().toString()
+                            + "   LT:" + getBewertungsfaktor_10().toString()
+                            + "   LH:" + getBewertungsfaktor_11().toString()
+                            + "   " + getReihenanordnung();
+                default:
+                    return "";
+            }
+        }
+
+
+        return "";
     }
 
 
@@ -391,6 +415,8 @@ public class MessgeraetModel extends Basemodel {
         return getBean().getNummer();
     }
     
-    
+    public Integer getModel() {
+        return getBean().getModel();
+    }
    //endregion
 }

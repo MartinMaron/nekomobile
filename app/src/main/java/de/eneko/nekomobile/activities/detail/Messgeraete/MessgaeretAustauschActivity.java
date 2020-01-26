@@ -86,8 +86,8 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                 {
                     if (getBasemodel().getBean().getArt().equals("HKV"))
                     {
-                        getLbNewModel().setVisibility(View.GONE);
-                        getSpNewModel().setVisibility(View.GONE);
+                        getLbNewModel().setVisibility(View.VISIBLE);
+                        getSpNewModel().setVisibility(View.VISIBLE);
                         getIvBarcodeNewModel().setVisibility(View.GONE);
 
                         getLbNewFunkModel().setVisibility(View.GONE);
