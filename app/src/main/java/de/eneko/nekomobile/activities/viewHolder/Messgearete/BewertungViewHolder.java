@@ -418,6 +418,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
     private void setVisiblityForGrundparameter() {
         switch (getEtGrundparameter().getText().toString()) {
             case "":
+                // region code
+
                 getLbReihenanordnung().setVisibility(View.INVISIBLE);
                 getActvReihenanordnung().setVisibility(View.INVISIBLE);
                 getLbBewertungsfaktor01().setVisibility(View.INVISIBLE);
@@ -442,8 +444,146 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
                 getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
                 getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                // endregion code
                 break;
-            case "21":
+            case "11": case "13":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("GK - Gliedbaulänge in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("SD - Säulendicke in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("SZ - Säulenzahl");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("GZ - Gliederzahl");
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                // endregion code
+                break;
+            case "12":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("GK - Gliedbaulänge in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("ND - Nabendurchmesser in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("SD - Säulendicke in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("SZ - Säulenzahl");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("GZ - Gliederzahl");
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                // endregion code
+                break;
+            case "14":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("GK - Gliedbaulänge in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("RZ - Rippenzahl");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("GZ - Gliederzahl");
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                // endregion code
+                break;
+            case "21": case "22": case "23": case "24":
+                // region code
+
                 getLbReihenanordnung().setVisibility(View.VISIBLE);
                 getActvReihenanordnung().setVisibility(View.VISIBLE);
 
@@ -483,8 +623,673 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbBewertungsfaktor11().setVisibility(View.GONE);
                 getActvBewertungsfaktor11().setVisibility(View.GONE);
+                // endregion code
                 break;
-       }
+            case "31": case "33":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("VT - Verteilkanaltiefe in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("RB - Rohrbreite in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("RH - Rohrtiefe in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("LT - Lamellentiefe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("LH - Lamellenhöhe in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
+// endregion code
+                break;
+            case "32":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setText("LA - Lammelenabstand (10 mal) in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("VT - Verteilkanaltiefe in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("RB - Rohrbreite in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("RH - Rohrtiefe in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("LT - Lamellentiefe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("LH - Lamellenhöhe in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
+// endregion code
+                break;
+            case "41": case "42":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("DR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("dR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("HV - Höhe des Verteilskanals in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("TV - Tiefe des Verteilskanals in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("RZ - Rohrregisterzahl");
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+// endregion code
+                break;
+            case "43":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("DR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("dR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("HV - Höhe des Verteilskanals in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("TV - Tiefe des Verteilskanals in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("RZ - Rohrregisterzahl");
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
+// endregion code
+                break;
+            case "51":
+                // region code
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+                getLbReihenanordnung().setText("Registeranordnung");
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T1 - Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor09().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                // endregion code
+                break;
+            case "52":
+                // region code
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+                getLbReihenanordnung().setText("Registeranordnung");
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T1 - Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("RZ - Anz. der Rohrregister");
+
+                getLbBewertungsfaktor09().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("SZ - Segmentzahl");
+
+                // endregion code
+                break;
+            case "61":
+                // region code
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("NA - Nabenabstand in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor09().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("T10 - Maß über 10 Teilung in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+
+                // endregion code
+                break;
+            case "71":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("BLR - berippte Baulänge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("ZR - Zahl der Rohre");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T10 - Maß über 10 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor09().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+
+                // endregion code
+                break;
+            case "72":case "75":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("BLR - berippte Baulänge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("ZR - Zahl der Rohre");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T10 - Maß über 10 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("S2 - Lufteintritt in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("S3 - Luftaustritt in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("SK - Höhe Konvektor über Boden in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("S4 - Schachthöhe ");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("ST - Schachttiefe in mm");
+
+                // endregion code
+                break;
+            case "73": case "76":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("BLR - berippte Baulänge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("ZR - Zahl der Rohre");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T10 - Maß über 10 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("S2 - Lufteintritt in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("S3 - Luftaustritt in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor08().setText("S4 - Schachthöhe in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("VBH - Verkleidungshöhe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("VBL - Verkleidungslänge in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("VBT - Verkleidungstiefe in mm");
+
+                // endregion code
+                break;
+            case "74":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("BLR - berippte Baulänge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("ZR - Zahl der Rohre");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T10 - Maß über 10 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("KH - Kanalhöhe in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("KB - Kanalbreite in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("SK - Höhe Konvektor über Boden in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("S4 - Schachthöhe ");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("ST - Schachttiefe in mm");
+
+                // endregion code
+                break;
+            case "82":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor01().setText("ZR - Zahl der Rohre");
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("RL - berippte Länge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("RZ - Anzahl der Rohrregister");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T1 - Teilung in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("KD - Kernrohrdurchmesser in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("RS - Rippenstärke in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("dR - min Maß Rippe in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("DR - max Maß Rippe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("HW - Höhe der Wellen in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("RT - Rippentielung in mm (über 10 Teilungen)");
+
+                // endregion code
+                break;
+            case "81":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setText("RL - berippte Länge in mm");
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("KD - Kernrohrdurchmesser in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("RS - Rippenstärke in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("dR - min Maß Rippe in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("DR - max Maß Rippe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("HW - Höhe der Wellen in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("RT - Rippentielung in mm (über 10 Teilungen)");
+
+                // endregion code
+                break;
+            case "83":
+                // region code
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("LS - Länge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("D1 - 1. Rohrmaß in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("D2 - 2. Rohrmaß in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor09().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor10().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+
+                // endregion code
+                break;
+        }
     }
 
 
