@@ -18,8 +18,11 @@ import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +44,8 @@ public class NekoDropBox {
     protected String email = null;
     protected String username = null;
     protected String accountType = null;
+
+    protected List<Metadata> currentlyDownloadedFiles = null;
 
 
 
@@ -74,11 +79,20 @@ public class NekoDropBox {
                 email = result.getEmail();
                 username = result.getName().getDisplayName();
                 accountType = result.getAccountType().name();
+                //aktuell heruntergeladene Datein sollen nicht wieder synchroniziert werden
+                currentlyDownloadedFiles = new ArrayList<Metadata>();
+
                 Toast.makeText(mMainActivity,"Verbindung zu Dropbox erfogreich",Toast.LENGTH_LONG).show();
                 syncDownloadPath(NEKOMOBILE_PATH, GlobalConst.PATH_NEKOMOBILE);
                 syncDownloadPath(SONTEX_PATH, GlobalConst.PATH_SONTEX);
                 syncDownloadPath(EXIM_PATH, GlobalConst.PATH_EXIM);
-                syncUploadPath();
+                syncUploadPath(BILDER_PATH,GlobalConst.PATH_NEKOMOBILE_PICTURES);
+                syncUploadPath(NEKOMOBILE_PATH,GlobalConst.PATH_NEKOMOBILE);
+                syncUploadPath(SONTEX_PATH,GlobalConst.PATH_SONTEX);
+                syncUploadPath(EXIM_PATH,GlobalConst.PATH_EXIM);
+                moveFilesToArchive(GlobalConst.PATH_SONTEX);
+                moveFilesToArchive(GlobalConst.PATH_NEKOMOBILE);
+                moveFilesToArchive(GlobalConst.PATH_EXIM);
             }
 
             @Override
@@ -87,6 +101,39 @@ public class NekoDropBox {
             }
         }).execute();
     }
+
+
+    // region moveFiles
+    public void moveFilesToArchive(String pHomeDevicePath)
+    {
+        //new java.util.Date(result.lastModified())
+        String archivePath = pHomeDevicePath + "/archive";
+        File dir = new File(pHomeDevicePath);
+        if (dir.listFiles().length > 0) {
+            for (File loopfile : Arrays.stream(dir.listFiles()).collect(Collectors.toList())) {
+                if (loopfile.isFile() && loopfile.exists()) {
+                    moveFile(archivePath, loopfile);
+                }
+            }
+        }
+
+    }
+
+    private void moveFile(String archivePath, File file) {
+        Date lastModified = new Date(file.lastModified());
+        Calendar validDate = Calendar.getInstance();
+        validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);
+        if (! lastModified.after(validDate.getTime())){
+            Log.e(TAG, file.getName() + " wird verschoben.");
+            File folder = new File(archivePath);
+            if (!folder.exists()) {folder.mkdir();                        }
+            file.renameTo(new File(archivePath,file.getName()));
+        }
+    }
+
+// endregion moveFiles
+
+    // region download
 
     private void syncDownloadPath(String downloadPath, String targetPath){
         new ListFolderTask(DropboxClientFactory.getClient(),downloadPath , new ListFolderTask.Callback() {
@@ -108,7 +155,7 @@ public class NekoDropBox {
         dialog.setCancelable(false);
         dialog.setMessage("Downloading: " + file.getName());
         dialog.show();
-
+        currentlyDownloadedFiles.add(file);
 
         Toast.makeText(mMainActivity,file.getName(),Toast.LENGTH_SHORT).show();
         new DownloadFileTask(mMainActivity, DropboxClientFactory.getClient(),pAndroidTargetPath , new DownloadFileTask.Callback() {
@@ -117,20 +164,46 @@ public class NekoDropBox {
                 dialog.dismiss();
                 if (result != null) {
                     Log.e(TAG, "download file success.");
+                    if (result.exists()) {
+                        Date nDate = ((FileMetadata) file).getServerModified();
+                        result.setLastModified(nDate.getTime()-60000*60*24*15);
+                        Log.e(TAG, new java.util.Date(result.lastModified()).toString());
+                    }
                 }
             }
+
             @Override
             public void onError(Exception e) {
                 dialog.dismiss();
                 Log.e(TAG, "Failed to download file.", e);
             }
+
+
         }).execute((FileMetadata) file);
     }
-    private void syncUploadPath(){
-        new ListFolderTask(DropboxClientFactory.getClient(), BILDER_PATH , new ListFolderTask.Callback() {
+
+    private void performDownloadAction(List<Metadata> pFiles, String pTargetPath) {
+        File androidPath = new File(pTargetPath);
+        for(Metadata loopfile: pFiles)
+        {
+            if (loopfile.getName().startsWith("XXX_DONE_XXX")) continue;
+
+            File checkFile = new File(androidPath, loopfile.getName());
+            if (!checkFile.exists() && loopfile.toString().startsWith("{\".tag\":\"file\""))
+            {
+                downloadFile(loopfile, androidPath);
+            }
+        }
+    }
+
+    // endregion download
+
+    // region upload
+    private void syncUploadPath(String pDropBoxPath, String pHomeDevicePath){
+        new ListFolderTask(DropboxClientFactory.getClient(), pDropBoxPath , new ListFolderTask.Callback() {
             @Override
             public void onDataLoaded(ListFolderResult result) {
-                performUploadWithPermissions (Collections.unmodifiableList(result.getEntries()));
+                performUploadWithPermissions (Collections.unmodifiableList(result.getEntries()),pHomeDevicePath);
             }
 
             @Override
@@ -138,11 +211,10 @@ public class NekoDropBox {
                 Log.e(TAG, "Failed to list folder.", e);
                 Toast.makeText(mMainActivity,"An error has occurred",Toast.LENGTH_SHORT).show();
             }
-        }).execute(NEKOMOBILE_PATH);
+        }).execute(pDropBoxPath);
     }
-
-
     private void uploadFile(File fileUri) {
+
         final ProgressDialog dialog = new ProgressDialog(mMainActivity);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setCancelable(false);
@@ -166,7 +238,46 @@ public class NekoDropBox {
             }
         }).execute(fileUri.getAbsolutePath());
     }
+    private void performUploadAction(List<Metadata> pFiles, String pHomeDevicePath) {
+        File dir = new File(pHomeDevicePath);
+        if (dir.listFiles().length > 0){
+            for(File loopfile: Arrays.stream(dir.listFiles()).collect(Collectors.toList()))
+            {
+                // die Dateien mit gleichen Namen werden synchronisiert
+                // neue Dateien werden zu dropBox gesendet
+                if (loopfile.isFile() && loopfile.exists()) {
+                    List q = pFiles.stream().filter(r -> r.getName().equals(loopfile.getName())).collect(Collectors.toList());
+                    if (q.size() > 0)
+                    {
+                        FileMetadata fileMetadata = (FileMetadata) q.get(0);
+                        if (!currentlyDownloadedFiles.contains(q.get(0)) && fileMetadata.getServerModified().compareTo(new java.util.Date(loopfile.lastModified())) < 0)
+                        {
+                            uploadFile(loopfile);
+                        }
+                    }
+                    else
+                    {
+                        List qDel = pFiles.stream().filter(r -> ("XXX_DONE_XXX_" + r.getName()).equals(loopfile.getName())).collect(Collectors.toList());
+                        if (qDel.size() > 0)
+                        {
+                            String archivePath = pHomeDevicePath + "/archive";
+                            Log.e(TAG, loopfile.getName() + " wird verschoben.");
+                            File folder = new File(archivePath);
+                            if (!folder.exists()) {folder.mkdir();                        }
+                            loopfile.renameTo(new File(archivePath,loopfile.getName()));
+                        }else
+                        {
+                            uploadFile(loopfile);
+                        }
+                    }
+                }
+            }
+        }
 
+    }
+    // endregion upload
+
+    // region helpers
     private void performDownloadWithPermissions(List<Metadata> pFiles, String targetPath) {
         if (hasPermissionsForAction(FileAction.DOWNLOAD)) {
             performDownloadAction(pFiles, targetPath);
@@ -189,9 +300,9 @@ public class NekoDropBox {
             requestPermissionsForAction(FileAction.DOWNLOAD);
         }
     }
-    private void performUploadWithPermissions(List<Metadata> pFiles) {
+    private void performUploadWithPermissions(List<Metadata> pFiles, String pHomeDevicePath) {
         if (hasPermissionsForAction(FileAction.UPLOAD)) {
-            performUploadAction(pFiles);
+            performUploadAction(pFiles, pHomeDevicePath);
             return;
         }
 
@@ -211,6 +322,7 @@ public class NekoDropBox {
             requestPermissionsForAction(FileAction.UPLOAD);
         }
     }
+
     private boolean hasPermissionsForAction(NekoDropBox.FileAction action) {
         for (String permission : action.getPermissions()) {
             int result = ContextCompat.checkSelfPermission(mMainActivity, permission);
@@ -227,13 +339,6 @@ public class NekoDropBox {
             }
         }
         return false;
-    }
-    private void requestPermissionsForAction(NekoDropBox.FileAction action) {
-        ActivityCompat.requestPermissions(
-                mMainActivity,
-                action.getPermissions(),
-                action.getCode()
-        );
     }
     private enum FileAction {
         DOWNLOAD(Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -262,40 +367,19 @@ public class NekoDropBox {
             return values[code];
         }
     }
-    private void performDownloadAction(List<Metadata> pFiles, String pTargetPath) {
-        File androidPath = new File(pTargetPath);
-        for(Metadata loopfile: pFiles)
-        {
-            File checkFile = new File(androidPath, loopfile.getName());
-            if (!checkFile.exists() && loopfile.toString().startsWith("{\".tag\":\"file\"")) downloadFile(loopfile, androidPath);
-        }
+    private void requestPermissionsForAction(NekoDropBox.FileAction action) {
+        ActivityCompat.requestPermissions(
+                mMainActivity,
+                action.getPermissions(),
+                action.getCode()
+        );
     }
-    private void performUploadAction(List<Metadata> pFiles) {
-        File dir = new File(GlobalConst.PATH_NEKOMOBILE_PICTURES);
-        if (dir.listFiles().length > 0){
-            for(File loopfile: Arrays.stream(dir.listFiles()).collect(Collectors.toList()))
-            {if (loopfile.isFile()) uploadFile(loopfile);}
-        }
 
-        dir = new File(GlobalConst.PATH_NEKOMOBILE);
-        if (dir.listFiles().length > 0){
-            for(File loopfile: Arrays.stream(dir.listFiles()).collect(Collectors.toList()))
-            {if (loopfile.isFile()) uploadFile(loopfile);}
-        }
+    // endregion helpers
 
-        dir = new File(GlobalConst.PATH_SONTEX);
-        if (dir.listFiles().length > 0){
-            for(File loopfile: Arrays.stream(dir.listFiles()).collect(Collectors.toList()))
-            {if (loopfile.isFile()) uploadFile(loopfile);}
-        }
 
-        dir = new File(GlobalConst.PATH_EXIM);
-        if (dir.listFiles().length > 0){
-            for(File loopfile: Arrays.stream(dir.listFiles()).collect(Collectors.toList()))
-            {if (loopfile.isFile()) uploadFile(loopfile);}
-        }
 
-    }
+
 }
 
 

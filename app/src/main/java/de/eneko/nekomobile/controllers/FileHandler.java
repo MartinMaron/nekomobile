@@ -116,11 +116,13 @@ public class FileHandler
                     if (file.endsWith("neko.xml")) {
                         Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true);
                         Calendar validDate = Calendar.getInstance();
-                        validDate.add(Calendar.DATE, -14);
+                        validDate.add(Calendar.DATE, -60);
                         if (route.getDatum().after(validDate.getTime())){
                             tmpAllRoutes.add(route);
                         }else
                         {
+                            //verschieben ins archiv
+
                             File toDelFile = new File(dir, file);
                             if (toDelFile.exists()){
                             toDelFile.delete();

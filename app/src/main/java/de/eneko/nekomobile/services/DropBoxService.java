@@ -40,7 +40,7 @@ public class DropBoxService extends Service {
                 WifiManager wifiManager;
                 wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                if (wifiInfo.getSSID().contains("FRITZ!Box 7530 VR") ||
+                if (wifiInfo.getSSID().contains("vodafone") ||
                         wifiInfo.getSSID().contains("eneko")){
                     nekoDropBox.synchronize();
                     Log.e(TAG,"nekoDropBox.synchronize : start");
@@ -87,7 +87,7 @@ public class DropBoxService extends Service {
                 msg.arg1 = startId;
                 serviceHandler.sendMessage(msg);
               }
-        }, 1000, 1000);
+        }, 3600000, 3600000);
 
         // If we get killed, after returning from here, restart
         return START_STICKY;
