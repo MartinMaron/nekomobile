@@ -63,6 +63,7 @@
         <activity android:name=".activities.detail.Messgeraete.MessgaeretBewertungActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activities.PictureViewActivity"/>
         <activity android:name=".activities.list.MessgeraetListActivity"/>
         <activity android:name=".activities.list.MessgeraetMontageListActivity"/>
         <activity android:name=".activities.list.MessgeraetAblesungListActivity"/>

@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import de.eneko.nekomobile.controllers.FileHandler;
-
 public class InputDialogClass {
     private final Activity activity;
     private final String title;
@@ -32,7 +30,9 @@ public class InputDialogClass {
         final EditText etInput = alertLayout.findViewById(R.id.etInput);
 
         AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-        alert.setTitle(title);
+     //   alert.setTitle(title);
+
+
         // this is set the view from XML inside AlertDialog
         alert.setView(alertLayout);
         // disallow cancel of AlertDialog on click of back button and outside touch
@@ -59,7 +59,10 @@ public class InputDialogClass {
 
         });
         AlertDialog dialog = alert.create();
+
         etInput.setText(value);
+        etInput.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
+
         etInput.requestFocus();
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);

@@ -19,8 +19,10 @@
         android:layout_width="@dimen/dp_faktor_40"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbGrundparameter"
+        android:clickable="true"
         android:ems="10"
         android:inputType="number"
+        android:longClickable="true"
         android:text="@string/empty"
         android:textSize="@dimen/sp_faktor_08" />
 

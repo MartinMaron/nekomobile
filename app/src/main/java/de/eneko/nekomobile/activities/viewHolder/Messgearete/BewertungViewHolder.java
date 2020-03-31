@@ -87,6 +87,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
     }
 
+
+
     @Override
     public void updateView() {
         setLbGrundparameter(getActivity().findViewById(R.id.lbGrundparameter));
@@ -284,6 +286,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
         loadData();
     }
 
+
+
     private void updateListView(){
 
         List<Messgeraet> datasource = null;
@@ -411,6 +415,9 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
         };
         listView.setAdapter(bewertungListViewAdapter);
+
+
+
 
     }
 

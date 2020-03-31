@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_item_save"
+        android:icon="@drawable/icon_save"
+        android:iconTintMode="add"
+        android:title="@string/speichern"
+        app:showAsAction="always" />
+    <item android:id="@+id/showPicture"
+        android:title="Buchseite anzeigen"
+        android:icon="@drawable/book_icon_png"
+        app:showAsAction="collapseActionView|ifRoom"/>
+</menu>
