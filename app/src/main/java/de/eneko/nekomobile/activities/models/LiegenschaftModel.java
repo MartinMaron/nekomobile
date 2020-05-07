@@ -79,17 +79,27 @@ public class LiegenschaftModel extends Basemodel{
     }
     public List<Messgeraet> getNutzerMessgaereteByArt(String pArt){
         List<Messgeraet> qMessgeraet = new ArrayList<Messgeraet>();
+
+        qMessgeraet.addAll(getNutzerMessgaerete().stream()
+                                .filter(r -> r.getArt().equals(pArt))
+                                .collect(Collectors.toList()));
+
+        return qMessgeraet;
+    }
+
+    public List<Messgeraet> getNutzerMessgaerete(){
+        List<Messgeraet> qMessgeraet = new ArrayList<Messgeraet>();
         for(Nutzer nutzer: getBean().getNutzers())
         {
             for(ToDo todo : nutzer.getToDos()) {
                 qMessgeraet.addAll(
-                        todo.getMessgeraete().stream().filter(r -> r.getArt().equals(pArt))
-                                .collect(Collectors.toList())
+                        todo.getMessgeraete().stream().collect(Collectors.toList())
                 );
             }
         }
         return qMessgeraet;
     }
+
 
 
 

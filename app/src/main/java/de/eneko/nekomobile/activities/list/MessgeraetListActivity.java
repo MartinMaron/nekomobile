@@ -5,7 +5,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,8 +25,6 @@ import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
@@ -40,91 +37,123 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
         AdapterView.OnItemClickListener
         {
 
-    protected MessgeraetListViewAdapter mAdapterCurrent = null;
-    protected MessgeraetListViewAdapter mAdapter_man = null;
-    protected MessgeraetListViewAdapter mAdapter_exm = null;
-    protected MessgeraetListViewAdapter mAdapter_son = null;
-    protected ArrayList<Messgeraet> datasource = new ArrayList<>();
-    protected ArrayList<Messgeraet> datasource_man = new ArrayList<>();
-    protected ArrayList<Messgeraet> datasource_exm = new ArrayList<>();
-    protected ArrayList<Messgeraet> datasource_son = new ArrayList<>();
+            private enum ShowMode {LIST,TODO}
 
-    protected ImageView ivManuell = null;
-    protected ImageView ivSontex = null;
-    protected ImageView ivExim = null;
+            private ShowMode showMode = ShowMode.TODO;
 
+            protected MessgeraetListViewAdapter mAdapterCurrent = null;
+            protected MessgeraetListViewAdapter mAdapter_man = null;
+            protected MessgeraetListViewAdapter mAdapter_exm = null;
+            protected MessgeraetListViewAdapter mAdapter_son = null;
+            protected ArrayList<Messgeraet> datasource = new ArrayList<>();
+            protected ArrayList<Messgeraet> datasource_man = new ArrayList<>();
+            protected ArrayList<Messgeraet> datasource_exm = new ArrayList<>();
+            protected ArrayList<Messgeraet> datasource_son = new ArrayList<>();
 
-    protected ListView mListView = null;
-    protected MenuItem searchMenuItem = null;
-    protected MenuItem eingabeMenuItem = null;
-    protected SearchView searchView = null;
+            protected ImageView ivManuell = null;
+            protected ImageView ivSontex = null;
+            protected ImageView ivExim = null;
 
 
+            protected ListView mListView = null;
+            protected MenuItem searchMenuItem = null;
+            protected MenuItem eingabeMenuItem = null;
+            protected MenuItem modeMenuItem = null;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_view_ablesung);
-        NutzerTodoModel nutzerTodoModel = CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
-        nutzerTodoModel.load();
-        getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
+            protected SearchView searchView = null;
 
-        // Init datasource
-        datasource.addAll(CurrentObjectNavigation.getInstance().getNutzerTodo().getMessgeraete().stream()
-                .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                .collect(Collectors.toList()));
-
-        datasource_man.addAll(datasource.stream()
-                .filter(r -> !r.getEximFunk() && ! r.getFunkSontex())
-                .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                .collect(Collectors.toList()));
-        datasource_exm.addAll(datasource.stream()
-                .filter(r -> r.getEximFunk())
-                .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                .collect(Collectors.toList()));
-        datasource_son .addAll(datasource.stream()
-                .filter(r -> r.getFunkSontex())
-                .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                .collect(Collectors.toList()));
-
-
-        mAdapter_man = new MessgeraetListViewAdapter (this,datasource_man);
-        mAdapter_son = new MessgeraetListViewAdapter (this,datasource_son);
-        mAdapter_exm = new MessgeraetListViewAdapter (this,datasource_exm);
-
-        // init listview
-        mListView = findViewById(R.id.listView);
-        mListView.setAdapter(mAdapter_man);
-        mListView.setOnItemClickListener(this);
-        ivManuell = findViewById(R.id.btShowStandard);
-        ivManuell.setOnClickListener(this);
-        ivSontex = findViewById(R.id.btShowSontexFunk);
-        ivSontex.setOnClickListener(this);
-        ivExim = findViewById(R.id.btShowEximFunk);
-        ivExim.setOnClickListener(this);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Messgeraet item = (Messgeraet) mAdapterCurrent.getItem(i);
-        CurrentObjectNavigation.getInstance().setMessgeraet(item);
-        Intent intent = null;
-        switch (item.getTodo().getArt()) {
-            case Dict.TODO_ABLESUNG:
-                intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
-                break;
-            default:
-                intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
-        }
-        view.getContext().startActivity(intent);
-    }
 
             @Override
+            protected void onCreate(Bundle savedInstanceState)
+            {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.list_view_ablesung);
+                NutzerTodoModel nutzerTodoModel = CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
+                nutzerTodoModel.load();
+                getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
+
+                // init listview
+                mListView = findViewById(R.id.listView);
+                mListView.setOnItemClickListener(this);
+                ivManuell = findViewById(R.id.btShowStandard);
+                ivManuell.setOnClickListener(this);
+                ivSontex = findViewById(R.id.btShowSontexFunk);
+                ivSontex.setOnClickListener(this);
+                ivExim = findViewById(R.id.btShowEximFunk);
+                ivExim.setOnClickListener(this);
+
+                loadTodoDatasource();
+            }
+
+            protected void loadDatasourceCore(){
+                datasource_man.addAll(datasource.stream()
+                        .filter(r -> !r.getEximFunk() && ! r.getFunkSontex())
+                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList()));
+                datasource_exm.addAll(datasource.stream()
+                        .filter(r -> r.getEximFunk())
+                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList()));
+                datasource_son.addAll(datasource.stream()
+                        .filter(r -> r.getFunkSontex())
+                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList()));
+
+                mAdapter_man = new MessgeraetListViewAdapter (this,datasource_man);
+                mAdapter_son = new MessgeraetListViewAdapter (this,datasource_son);
+                mAdapter_exm = new MessgeraetListViewAdapter (this,datasource_exm);
+
+                mListView.setAdapter(mAdapter_man);
+
+            }
+
+
+            protected void loadTodoDatasource(){
+                datasource.clear();
+
+                // Init datasource
+                datasource.addAll(CurrentObjectNavigation.getInstance().getNutzerTodo().getMessgeraete().stream()
+                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList()));
+                loadDatasourceCore();
+            }
+
+
+            protected void loadRealestateDatasource(){
+                datasource.clear();
+
+                // Init datasource
+                datasource.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getNutzerMessgaerete().stream()
+                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList()));
+                loadDatasourceCore();
+            }
+
+
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Messgeraet item = (Messgeraet) mAdapterCurrent.getItem(i);
+                CurrentObjectNavigation.getInstance().setMessgeraet(item);
+                Intent intent = null;
+                switch (item.getTodo().getArt()) {
+                    case Dict.TODO_ABLESUNG:
+                        intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
+                        break;
+                    default:
+                        intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
+                }
+                view.getContext().startActivity(intent);
+            }
+
+    @Override
     protected void onResume() {
         super.onResume();
         setEingabeMenuItemIcon();
-   }
+    }
+
+
+
 
     private void setEingabeMenuItemIcon(){
             if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
@@ -135,6 +164,14 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             }
         }
 
+    private void setShowModeMenuItemIcon(){
+        if (showMode == ShowMode.TODO){
+            if (modeMenuItem != null) modeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
+        }
+        if (showMode == ShowMode.LIST){
+            if (modeMenuItem != null)  modeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
+        }
+    }
 
     public MessgeraetListViewAdapter getAdapterCurrent() {
         return mAdapterCurrent;
@@ -190,7 +227,26 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 setEingabeMenuItemIcon();
                 return true;
             }
+
         });
+
+        modeMenuItem = menu.findItem(R.id.showMode);
+        modeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (showMode == ShowMode.TODO){
+                    showMode = ShowMode.LIST;
+                    loadRealestateDatasource();
+                }else if (showMode == ShowMode.LIST){
+                    showMode = ShowMode.TODO;
+                    loadTodoDatasource();
+                }
+                setShowModeMenuItemIcon();
+                return true;
+            }
+        });
+
+
         return true;
     }
 
@@ -230,14 +286,14 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
-            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0).replace(" ",""));
-        }
-        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
-            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0).replace(" ",""));
-        }
+//        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
+//            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+//            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0).replace(" ",""));
+//        }
+//        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
+//            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+//            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0).replace(" ",""));
+//        }
         mAdapterCurrent.notifyDataSetChanged();
 
     }

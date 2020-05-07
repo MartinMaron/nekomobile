@@ -2,7 +2,6 @@ package de.eneko.nekomobile.beans;
 
 import android.util.Log;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
-import de.eneko.nekomobile.activities.models.LiegenschaftModel;
-import de.eneko.nekomobile.activities.models.NutzerModel;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 
 public class ToDo extends BaseObject implements ItoXmlElement {
@@ -48,6 +45,7 @@ public class ToDo extends BaseObject implements ItoXmlElement {
 
     @Override
     public NutzerTodoModel getBaseModel() {
+        if(super.getBaseModel() == null) baseModel = createBaseObject();
         return (NutzerTodoModel) super.getBaseModel();
     }
 

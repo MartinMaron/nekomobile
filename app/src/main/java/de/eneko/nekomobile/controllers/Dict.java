@@ -8,6 +8,7 @@ import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
+import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 
 public class Dict {
@@ -50,6 +51,12 @@ public class Dict {
         for (String strTemp : _FunkAustauschGrund){
             String[] _line = strTemp.split(";");
             mFunkAustauschGrunds.add(new FunkCheck_Austauschgrund(_line[0],_line[1]));
+        }
+
+        String[] _WebesGrundParameter = mainActivity.getResources().getStringArray(R.array.webes_grundparameter);
+        for (String strTemp : _WebesGrundParameter){
+            String[] _line = strTemp.split(";");
+            mWebesGrundparameters.add(new Webes_Grundparameter(_line[0],_line[1]));
         }
 
     }
@@ -101,7 +108,20 @@ public class Dict {
         return  ret_val;
     }
 
-
+    private ArrayList<Webes_Grundparameter> mWebesGrundparameters = new ArrayList<>();
+    public ArrayList<Webes_Grundparameter> getWebesGrundparameters() {
+        return mWebesGrundparameters;
+    }
+    public Webes_Grundparameter getWebesGrundparameter(String id) {
+        Webes_Grundparameter ret_val = null;
+        if (!id.equals("")) {
+            List<Webes_Grundparameter> q = Dict.getInstance().getWebesGrundparameters().stream()
+                    .filter(item -> item.getId().equals(id))
+                    .collect(Collectors.toList());
+            ret_val = q.size() > 0 ? q.get(0) : null ;
+        }
+        return  ret_val;
+    }
 
 }
 

@@ -33,6 +33,6 @@
             android:iconPreview="@drawable/sym_keyboard_delete"
             android:keyEdgeFlags="left" />
         <Key android:codes="7" android:keyLabel="0" />
-        <Key android:codes="55" android:keyLabel=","/>
+        <Key android:codes="56" android:keyLabel="+"/>
     </Row>
 </Keyboard>

@@ -14,14 +14,16 @@
         android:textSize="@dimen/sp_faktor_08"
         android:text="@string/grundparameter"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/etGrundparameter"
         android:layout_width="@dimen/dp_faktor_80"
         android:layout_height="@dimen/dp_faktor_12"
-        android:textColor="@color/black"
         android:textSize="@dimen/sp_faktor_12"
         android:layout_below="@id/lbGrundparameter"
+        android:clickable="true"
         android:ems="10"
+        android:completionThreshold="1"
+        android:dropDownWidth="match_parent"
         android:inputType="number"
         android:text="@string/empty" />
 

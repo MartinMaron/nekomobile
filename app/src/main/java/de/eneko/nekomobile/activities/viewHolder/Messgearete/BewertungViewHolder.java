@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,11 +24,14 @@ import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Ibewertung;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
+import de.eneko.nekomobile.controllers.Dict;
+
 //
 public class BewertungViewHolder extends BaseViewHolder implements View.OnClickListener, AdapterView.OnItemClickListener {
     private TextView lbGrundparameter = null;
-    private EditText etGrundparameter = null;
+    private AutoCompleteTextView etGrundparameter = null;
     private TextView lbReihenanordnung = null;
     private AutoCompleteTextView actvReihenanordnung = null;
     private TextView lbBewertungsfaktor01 = null;
@@ -119,6 +121,16 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
         setActvBewertungsfaktor11(getActivity().findViewById(R.id.actvBewertungsfaktor11));
         setListView(getActivity().findViewById(R.id.listView));
 
+
+        List<Webes_Grundparameter> qWebesParams = Dict.getInstance().getWebesGrundparameters();
+        if (getEtGrundparameter() != null) getEtGrundparameter().setAdapter(
+                new ArrayAdapter<>(mActivity,android.R.layout.simple_dropdown_item_1line,
+                        qWebesParams.stream()
+                                .map(r -> r.toString())
+                                .collect(Collectors.toList())
+                )
+        );
+
         getEtGrundparameter().addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
                 if(!s.equals("") ) {
@@ -130,6 +142,14 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
             }
             public void afterTextChanged(Editable s) {
                 setVisiblityForGrundparameter();
+                if (getEtGrundparameter().getText().toString().length() > 2)
+                {
+                    getEtGrundparameter().setText(getEtGrundparameter().getText().toString().substring(0,2));
+                }
+                if (getEtGrundparameter().getText().toString().length() == 2)
+                {
+                    getEtGrundparameter().dismissDropDown();
+                }
 
                 List<Messgeraet> qHKVs = getBasemodel().getTodo().getNutzer().getLiegenschaft().getBaseModel().getNutzerMessgaereteByArt("HKV");
                 if (getActvBewertungsfaktor01() != null) getActvBewertungsfaktor01().setAdapter(
@@ -1359,11 +1379,11 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
         this.lbGrundparameter = lbGrundparameter;
     }
 
-    public EditText getEtGrundparameter() {
+    public AutoCompleteTextView getEtGrundparameter() {
         return etGrundparameter;
     }
 
-    public void setEtGrundparameter(EditText etGrundparameter) {
+    public void setEtGrundparameter(AutoCompleteTextView etGrundparameter) {
         this.etGrundparameter = etGrundparameter;
     }
 

@@ -10,4 +10,8 @@
         android:title="Eingabe"
         android:icon="@drawable/icon_speaker_off"
         app:showAsAction="collapseActionView|ifRoom"/>
+    <item android:id="@+id/showMode"
+        android:title="Ansicht"
+        android:icon="@drawable/icon_speaker_off"
+        app:showAsAction="collapseActionView|ifRoom"/>
 </menu>

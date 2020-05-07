@@ -10,62 +10,102 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.framework.FormatHelper;
 
 public class InputDialogClass {
     private final Activity activity;
-    private final String title;
-    private final String value;
+    private String value;
+    private MessgeraetModel mMessgeraetModel;
 
-    public InputDialogClass(Activity activity, String title, String value) {
+    private EditText etStichtag;
+    private EditText etAktuell;
+    private TextView tvNummer;
+    private TextView tvPreviousStan;
+
+
+    public InputDialogClass(Activity activity, MessgeraetModel messgeraetModel) {
         this.activity = activity;
-        this.title = title;
-        this.value = value;
+        this.mMessgeraetModel = messgeraetModel;
     }
+
 
     public void show() {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.dialog_input_value, null);
-        final EditText etInput = alertLayout.findViewById(R.id.etInput);
+        etAktuell = alertLayout.findViewById(R.id.etInputAktuell);
+        etStichtag = alertLayout.findViewById(R.id.etInputStichtag);
+
+        tvNummer = alertLayout.findViewById(R.id.lbNummer);
+        tvNummer.setText(mMessgeraetModel.getNummer());
+
+        tvPreviousStan = alertLayout.findViewById(R.id.lbPrevStan);
+        tvPreviousStan.setText(mMessgeraetModel.getLetzterWertText());
 
         AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-     //   alert.setTitle(title);
 
-
-        // this is set the view from XML inside AlertDialog
         alert.setView(alertLayout);
-        // disallow cancel of AlertDialog on click of back button and outside touch
         alert.setCancelable(false);
-
         alert.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(activity.getBaseContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(etAktuell.getWindowToken(), 0);
             }
         });
-
         alert.setPositiveButton("Übernehmen", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);
-                OnDialogSubmit(etInput.getText().toString());
+                imm.hideSoftInputFromWindow(etAktuell.getWindowToken(), 0);
+                double val_akt = -1 ; double val_st = -1 ;
+
+
+                // kovertieren der Werte vom String zu Double
+                String convertedValue = etAktuell.getText().toString();//.replace(".","");
+                if (isDouble(convertedValue)) {val_akt = Double.parseDouble(convertedValue);}
+
+                 convertedValue = etStichtag.getText().toString();///.replace(".","");
+                if (isDouble(convertedValue)) {val_st = Double.parseDouble(convertedValue);}
+
+
+                OnDialogSubmit(val_akt,val_st);
             }
 
         });
         AlertDialog dialog = alert.create();
 
-        etInput.setText(value);
-        etInput.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
+        etAktuell.setText(mMessgeraetModel.getAktuellValue() == -1.0 ? "" : FormatHelper.formatInputDouble(mMessgeraetModel.getAktuellValue()));
+        etStichtag.setText(mMessgeraetModel.getStichtagValue() == -1.0 ? "" : FormatHelper.formatInputDouble(mMessgeraetModel.getStichtagValue()));
 
-        etInput.requestFocus();
+        //etAktuell.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
+        //etStichtag.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
+
+        tvNummer.setBackgroundResource(mMessgeraetModel.getArtColor());
+
+
+
+
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+
+        if(mMessgeraetModel.getArt().equals("HKV") || mMessgeraetModel.getArt().equals("WMZ")) {
+            etStichtag.setFocusable(true);
+            etStichtag.setFocusableInTouchMode(true);
+            etStichtag.requestFocus();
+        }else {
+            etAktuell.setFocusable(true);
+            etAktuell.setFocusableInTouchMode(true);
+            etAktuell.requestFocus();
+        }
+
+
+
         dialog.show();
         // Get the alert dialog buttons reference
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
@@ -77,7 +117,7 @@ public class InputDialogClass {
 
     }
 
-    public void OnDialogSubmit(String pValue){
+    public void OnDialogSubmit(double pValueAktuell, double pValueStichtag){
     }
 
     public static boolean isDouble(String s)

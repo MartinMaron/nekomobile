@@ -102,6 +102,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
 
     @Override
     public MessgeraetModel getBaseModel() {
+        if(super.getBaseModel() == null) baseModel = createBaseObject();
         return (MessgeraetModel) super.getBaseModel();
     }
 

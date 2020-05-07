@@ -27,7 +27,6 @@ public class PictureViewActivity extends AppCompatActivity {
         // erstellen der Activity
         setContentView(R.layout.picture_view);
         setImageView(findViewById(R.id.imageView));
-
     }
 
     @Override
@@ -35,9 +34,10 @@ public class PictureViewActivity extends AppCompatActivity {
         super.onPostResume();
         Bundle bundle = getIntent().getExtras();
         int pictureId = bundle.getInt("PICTURE_ID");
+        int pictureId2 = bundle.getInt("PICTURE_ID_2");
         //getImageView().setImageResource(pictureId);
         Glide.with(this).load(pictureId).into(imageView);
-
+        Glide.with(this).load(pictureId2).into(imageView);
     }
 
     public PhotoView getImageView() {

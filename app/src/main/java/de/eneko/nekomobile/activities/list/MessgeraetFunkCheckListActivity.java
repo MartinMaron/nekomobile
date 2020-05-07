@@ -15,10 +15,12 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
         ivExim.setVisibility(View.GONE);
         ivSontex.setVisibility(View.GONE);
         ivManuell.setVisibility(View.GONE);
-
-        setAdapterCurrent( new MessgeraetListViewAdapter (this,datasource));
-
+        loadDatasourceCore();
     }
 
-
+    @Override
+    protected void loadDatasourceCore() {
+        super.loadDatasourceCore();
+        setAdapterCurrent(new MessgeraetListViewAdapter (this,datasource));
+    }
 }

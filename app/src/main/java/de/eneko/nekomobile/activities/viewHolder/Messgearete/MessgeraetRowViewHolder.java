@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 
-import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
@@ -39,14 +38,9 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
         setTvLetzterWert(mView.findViewById(R.id.tvLetzterWert));
         setIvStatus(mView.findViewById(R.id.ivStatus));
         setIvDetail(mView.findViewById(R.id.ivDetail));
-
-
-        getTvNummer().setText(getBasemodel().getBean().getNummer());
-        getTvRaum().setText(getBasemodel().getRaum());
         getTvRaum().setFocusable(false);
-        getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
-        getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getAktuellValue()));
-        getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getStichtagValue()));
+
+
         mView.setBackgroundResource(getBasemodel().getArtColor());
         getIvDetail().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +51,21 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             }
         });
 
+        loadData();
+
         if (getIvDetail() !=null) setImage(getIvDetail());
         validate();
     }
+
+    @Override
+    protected void loadData(){
+        getTvNummer().setText(getBasemodel().getBean().getNummer());
+        getTvRaum().setText(getBasemodel().getRaum());
+        getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
+        getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getAktuellValue()));
+        getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getStichtagValue()));
+    }
+
 
     @Override
     protected void createLayout() {
@@ -119,32 +125,8 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             }
         }
     }
-    @Override
-    public void inputDialogStichtag(String value){
-        new InputDialogClass(getActivity(), "stichtag", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBean().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
-    }
 
-    @Override
-    public void inputDialogAktuell(String value){
-        new InputDialogClass(getActivity(), "aktuell", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBean().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
-    }
+
+
 
 }

@@ -10,7 +10,7 @@ import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.activities.models.Basemodel;
 
 public abstract class BaseObject {
-    private Basemodel baseModel;
+    protected Basemodel baseModel;
 
     public BaseObject() {
         this.baseModel = createBaseObject();

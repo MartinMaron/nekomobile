@@ -3,18 +3,78 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etInput"
+    <TextView
+        android:id="@+id/lbNummer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_faktor_30"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:gravity="center"
+        android:text="nummer"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lbPrevStan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbNummer"
+        android:gravity="center"
+        android:text="letzter Stand"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lbAktuell"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/lbPrevStan"
+        android:gravity="center"
+        android:text="Aktuell"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10" />
+
+    <EditText
+        android:id="@+id/etInputAktuell"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_20"
+        android:layout_below="@id/lbAktuell"
         android:layout_marginStart="2dp"
         android:ems="10"
         android:gravity="center"
-        android:textSize="@dimen/sp_faktor_10"
-        android:textStyle="bold"
         android:inputType="numberDecimal"
         android:digits="0123456789.,"
-        android:textAlignment="gravity" />
+        android:singleLine="false"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lbStichtag"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/etInputAktuell"
+        android:gravity="center"
+        android:text="Stichtag"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10" />
+    <EditText
+        android:id="@+id/etInputStichtag"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_20"
+        android:layout_marginStart="2dp"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.,"
+        android:ems="10"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_10"
+        android:layout_below="@id/lbStichtag"
+        android:textStyle="bold" />
+
+
+
+
 
     <android.inputmethodservice.KeyboardView
         android:id="@+id/keyboardview"

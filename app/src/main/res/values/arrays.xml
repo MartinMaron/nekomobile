@@ -44,7 +44,35 @@
         <item>541;541 - Funkmodul Wärmezähler;0</item>
         <item>531;531 - Funkmodul Wärmezähler;1</item>
     </array>
-
+    <array name="webes_grundparameter">
+        <item>11;Gliederheizkörper aus Stahlblech</item>
+        <item>12;Gliederheizkörper aus Guß</item>
+        <item>13;Gliederheizkörper aus Rohren</item>
+        <item>14;Gliederheizkörper aus Aluminium</item>
+        <item>21;Platenheizkörper vertikal profiliert</item>
+        <item>22;Plattenheizkörper horizontal profiliert</item>
+        <item>23;Plattenheizkörper Vorderseite glatt</item>
+        <item>24;Plattenheizkörper sonstige Profilierung</item>
+        <item>31;Heizkörper aus Flachprofilrohren mit vertikaler Rohrführung</item>
+        <item>32;Heizkörper aus Flachprofilrohren mit horizontaler Rohrführung</item>
+        <item>33;Heizkörper aus Flachprofilrohren Sonderformen</item>
+        <item>41;Heizkörper aus glatten Rohren mit vertikaler Rohrführung</item>
+        <item>42;Heizkörper aus glatten Rohren mit horizontaler Rohrführung</item>
+        <item>43;Heizkörper aus glatten Rohren Sonderformen</item>
+        <item>51;Rohrregisterheizkörper aus kastenartigen Konvektionsstellen</item>
+        <item>52;Rohrregisterheizkörper aus sonstigen Konvektionsstellen</item>
+        <item>61;Faltenradiatoren</item>
+        <item>71;Konvektoren ohne Verkleidung</item>
+        <item>72;Konvektoren Nischenverkleidung</item>
+        <item>73;Konvektoren Fertigverkleidung</item>
+        <item>74;Konvektoren Unterflureinbau</item>
+        <item>75;Konvektoren Badewannenverkleidung</item>
+        <item>76;Konvektoren Fußleisteneinbau</item>
+        <item>81;Einzelne Rohre als Heizfächen</item>
+        <item>82;Rohrregister</item>
+        <item>83;Rohre aus Verbindungsleitungen</item>
+        <item>91;Fensterbankradiatoren aus Stahlrohren</item>
+        </array>
     <array name="zaehler_modele">
         <item>-1@empty@True@ALL@ @</item>
         <item>1246@Gaszähler@False@GAS@000000@</item>

@@ -79,9 +79,6 @@ public class MessgaeretBewertungActivity extends AppCompatActivity {
         viewHolder.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -91,39 +88,41 @@ public class MessgaeretBewertungActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 int pictureId = -1;
+                int pictureId2 = -1;
 
-//                if (viewHolder.getEtGrundparameter().getText().toString().equals(""))
-//                {
-//                    Toast.makeText(this,"kein Grundparameter ausgesucht",Toast.LENGTH_SHORT);
-//                    return false;
-//                }
+                if (viewHolder.getEtGrundparameter().getText().toString().equals(""))
+                {
+                    return false;
+                }
                 switch (viewHolder.getEtGrundparameter().getText().toString().substring(0,2)) {
-                    case "11":pictureId = R.drawable.bew_11_gp;break;
-                    case "12":pictureId = R.drawable.bew_12_gp;break;
-                    case "13":pictureId = R.drawable.bew_13_gp;break;
-                    case "14":pictureId = R.drawable.bew_14_gp;break;
-                    case "21":pictureId = R.drawable.bew_21_gp;break;
-                    case "22":pictureId = R.drawable.bew_22_gp;break;
-                    case "23":pictureId = R.drawable.bew_23_gp;break;
-                    case "24":pictureId = R.drawable.bew_24_gp;break;
-                    case "31":pictureId = R.drawable.bew_31_gp;break;
-                    case "32":pictureId = R.drawable.bew_32_gp;break;
-                    case "33":pictureId = R.drawable.bew_33_gp;break;
-                    case "41":pictureId = R.drawable.bew_41_gp;break;
-                    case "42":pictureId = R.drawable.bew_42_gp;break;
-                    case "43":pictureId = R.drawable.bew_43_gp;break;
-                    case "51":pictureId = R.drawable.bew_51_gp;break;
-                    case "52":pictureId = R.drawable.bew_52_gp;break;
-                    case "61":pictureId = R.drawable.bew_61_gp;break;
-                    case "71":pictureId = R.drawable.bew_71_gp;break;
-                    case "72":pictureId = R.drawable.bew_72_gp;break;
-                    case "73":pictureId = R.drawable.bew_73_gp;break;
-                    case "74":pictureId = R.drawable.bew_74_gp;break;
-                    case "75":pictureId = R.drawable.bew_75_gp;break;
-                    case "76":pictureId = R.drawable.bew_76_gp;break;
-                    case "81":pictureId = R.drawable.bew_81_gp;break;
-                    case "82":pictureId = R.drawable.bew_82_gp;break;
-                    case "83":pictureId = R.drawable.bew_83_gp;break;
+                    case "11":pictureId = R.drawable.webesfront11;break;
+                    case "12":pictureId = R.drawable.webesfront12;break;
+                    case "13":pictureId = R.drawable.webesfront13;break;
+                    case "14":pictureId = R.drawable.webesfront14;break;
+                    case "21":
+                        pictureId = R.drawable.webesfront21;
+                        pictureId2 = R.drawable.webesfront21;break;
+                    case "22":pictureId = R.drawable.webesfront22;break;
+                    case "23":pictureId = R.drawable.webesfront23;break;
+                    case "24":pictureId = R.drawable.webesfront24;break;
+                    case "31":pictureId = R.drawable.webesfront31;break;
+                    case "32":pictureId = R.drawable.webesfront32;break;
+                    case "33":pictureId = R.drawable.webesfront33;break;
+                    case "41":pictureId = R.drawable.webesfront41;break;
+                    case "42":pictureId = R.drawable.webesfront42;break;
+                    case "43":pictureId = R.drawable.webesfront43;break;
+                    case "51":pictureId = R.drawable.webesfront51;break;
+                    case "52":pictureId = R.drawable.webesfront52;break;
+                    case "61":pictureId = R.drawable.webesfront61;break;
+                    case "71":pictureId = R.drawable.webesfront71;break;
+                    case "72":pictureId = R.drawable.webesfront72;break;
+                    case "73":pictureId = R.drawable.webesfront73;break;
+                    case "74":pictureId = R.drawable.webesfront74;break;
+                    case "75":pictureId = R.drawable.webesfront75;break;
+                    case "76":pictureId = R.drawable.webesfront76;break;
+                    case "81":pictureId = R.drawable.webesfront81;break;
+                    case "82":pictureId = R.drawable.webesfront82;break;
+                    case "83":pictureId = R.drawable.webesfront83;break;
                     default:
                         Toast.makeText(viewHolder.getActivity(),"Grundparameter  unbekannt",Toast.LENGTH_SHORT);
                         return false;
@@ -131,6 +130,7 @@ public class MessgaeretBewertungActivity extends AppCompatActivity {
                 Intent intent;
                 intent = new Intent(viewHolder.getActivity(), PictureViewActivity.class);
                 intent.putExtra("PICTURE_ID",pictureId);
+                intent.putExtra("PICTURE_ID_2",pictureId2);
                 viewHolder.getActivity().startActivity(intent);
                 return true;
             }
@@ -146,27 +146,27 @@ public class MessgaeretBewertungActivity extends AppCompatActivity {
                 exit();
                 return true;
             case R.id.showPicture:
-                int pictureId = -1;
-
-                if (viewHolder.getEtGrundparameter().getText().toString().equals(""))
-                {
-                    Toast.makeText(viewHolder.getActivity(),"kein Grundparameter ausgesucht",Toast.LENGTH_SHORT);
-                    return false;
-                }
-                switch (viewHolder.getEtGrundparameter().getText().toString().substring(0,2)) {
-                    case "11":
-                        Toast.makeText(viewHolder.getActivity(),"Grundparameter 11",Toast.LENGTH_SHORT);
-                        pictureId = R.drawable.bew_11_gp;
-                        break;
-
-                    default:
-                        Toast.makeText(viewHolder.getActivity(),"Grundparameter  unbekannt",Toast.LENGTH_SHORT);
-                        return false;
-                }
-                Intent intent;
-                intent = new Intent(viewHolder.getActivity(), PictureViewActivity.class);
-                intent.putExtra("PICTURE_ID",pictureId);
-                viewHolder.getActivity().startActivity(intent);
+//                int pictureId = -1;
+//
+//                if (viewHolder.getEtGrundparameter().getText().toString().equals(""))
+//                {
+//                    Toast.makeText(viewHolder.getActivity(),"kein Grundparameter ausgesucht",Toast.LENGTH_SHORT);
+//                    return false;
+//                }
+//                switch (viewHolder.getEtGrundparameter().getText().toString().substring(0,2)) {
+//                    case "11":
+//                        Toast.makeText(viewHolder.getActivity(),"Grundparameter 11",Toast.LENGTH_SHORT);
+//                        pictureId = R.drawable.bew_11_gp;
+//                        break;
+//
+//                    default:
+//                        Toast.makeText(viewHolder.getActivity(),"Grundparameter  unbekannt",Toast.LENGTH_SHORT);
+//                        return false;
+//                }
+//                Intent intent;
+//                intent = new Intent(viewHolder.getActivity(), PictureViewActivity.class);
+//                intent.putExtra("PICTURE_ID",pictureId);
+//                viewHolder.getActivity().startActivity(intent);
 
                 return true;
         }

@@ -17,7 +17,6 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
@@ -190,8 +189,8 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getEtBemerkung() != null) getEtBemerkung().setText(getBasemodel().getBemerkung());
         if (getLbAktuell() != null) getLbAktuell().setText("aktuell");
         if (getLbStichtag() != null) getLbStichtag().setText("stichtag");
-        if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getAktuellValue()));
-        if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDouble(getBasemodel().getStichtagValue()));
+        if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getAktuellValue()));
+        if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getStichtagValue()));
         if (getCbDefekt() != null) getCbDefekt().setChecked(getBasemodel().getDefekt());
 
         if (getSpNewModel() != null && getBasemodel().getZielmodel() > 0) {
@@ -343,33 +342,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getBasemodel().save();
     }
 
-    @Override
-    public void inputDialogStichtag(String value){
-        new InputDialogClass(getActivity(), "stichtag", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
-    }
-
-    @Override
-    public void inputDialogAktuell(String value){
-        new InputDialogClass(getActivity(), "aktuell", value){
-            @Override
-            public void OnDialogSubmit(String pValue) {
-                String convertedValue = pValue.replace(" ","");
-                if (isDouble(convertedValue)) {
-                    getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    loadData();
-                }
-            }
-        }.show();
-    }
 
 
 

@@ -3,7 +3,6 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
@@ -15,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import de.eneko.nekomobile.GlobalConst;
+import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
@@ -178,9 +177,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                     setDataToModel();
                     CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
                     if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
-                        startSpracheingabe(REQUEST_BT_AKTUELL);
+                        showInputDialog(); // startSpracheingabe(REQUEST_BT_AKTUELL);
                     } else {
-                        inputDialogAktuell(getBean().getAktuellValue() != -1 ? getBean().getAktuellValue().toString() : "");
+                        showInputDialog();
                     }
                 }
             });
@@ -192,9 +191,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                     setDataToModel();
                     CurrentObjectNavigation.getInstance().setMessgeraet(getBean());
                     if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE) {
-                        startSpracheingabe(REQUEST_BT_STICHTAG);
+                        showInputDialog(); //startSpracheingabe(REQUEST_BT_STICHTAG);
                     } else {
-                        inputDialogStichtag(getBean().getStichtagValue() != -1 ? getBean().getStichtagValue().toString() : "");
+                        showInputDialog();
                     }
                 }
             });
@@ -213,12 +212,19 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     }
     protected abstract void createLayout();
 
-    public void inputDialogStichtag(String value){
 
+    public void showInputDialog(){
+        new InputDialogClass(getActivity(), getBasemodel()){
+            @Override
+            public void OnDialogSubmit(double pValueAktuell, double pValueStichtag) {
+                getBasemodel().setAktuellValue(pValueAktuell);
+                getBasemodel().setStichtagValue(pValueStichtag);
+                getBasemodel().save();
+                loadData();
+            }
+        }.show();
     }
-    public void inputDialogAktuell(String value){
 
-    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -226,16 +232,6 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
             Toast.makeText(mActivity, "error", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (requestCode == REQUEST_BT_AKTUELL && data != null ) {
-            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,new MessgeraetModel(CurrentObjectNavigation.getInstance().getMessgeraet()),mActivity){}.inputDialogAktuell(result.get(0));
-        }
-        if (requestCode == REQUEST_BT_STICHTAG && data != null ) {
-            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            new DetailViewHolder(null,new MessgeraetModel(CurrentObjectNavigation.getInstance().getMessgeraet()),mActivity){}.inputDialogStichtag(result.get(0));
-        }
-
-
     }
 
 
