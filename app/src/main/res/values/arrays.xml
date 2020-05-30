@@ -30,14 +30,13 @@
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>
-        <item>STA;Standardtausch</item>
-        <item>DEF;defekt (zepsuty) </item>
-        <item>NHK;neuer Heizkörper - HKV neu befestigt</item>
-        <item>HKF;Kein Heizkörper mehr</item>
-        <item>FFE;kein Funksignal</item>
-        <item>NVO;nicht mehr vorhanden (nie ma a powinnien byc)</item>
-        <item>VER;beschädigt o. zerstört (uszkodzony lub zniszczony);</item>
-        <item>KTM;Heizkörper vorhanden aber zugebaut (jast kaloryfer ale nie mozna zalozyc);</item>
+        <item>STA;Standardtausch(standardowa zmiana)</item>
+        <item>DEF;display defekt</item>
+        <item>HKF;kein Heizkörper (brak kaloryfera)</item>
+        <item>FFE;kein Funk</item>
+        <item>NVO;nicht mehr vorhanden (nie ma a powinien byc)</item>
+        <item>VER;beschädigt o. zerstört (uszkodzony lub zniszczony)</item>
+        <item>KTM;das neue Gerät kann nicht angebracht werdne (jest ale nie mozna zalozyc)</item>
     </array>
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>
