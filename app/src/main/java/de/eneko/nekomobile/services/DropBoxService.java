@@ -41,7 +41,7 @@ public class DropBoxService extends Service {
                 wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                 if (wifiInfo.getSSID().contains("vodafone") ||
-                        wifiInfo.getSSID().contains("eneko")){
+                        wifiInfo.getSSID().contains("dom")){
                     nekoDropBox.synchronize();
                     Log.e(TAG,"nekoDropBox.synchronize : start");
                 }

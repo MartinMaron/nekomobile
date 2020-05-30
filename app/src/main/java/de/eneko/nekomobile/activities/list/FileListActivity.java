@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.activities.adapter.FileListViewAdapter;
 import de.eneko.nekomobile.beans.Route;
@@ -39,7 +40,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
             ArrayList<Route> datasoure = new ArrayList<Route>();
             datasoure.addAll(
                     FileHandler.getInstance().getAllRoutes().stream()
-                            .filter(r -> r.getDatum().compareTo(addDays(new Date(), -14)) > 0)
+                            .filter(r -> r.getDatum().compareTo(addDays(new Date(), GlobalConst.DAYS_TO_ARCHIVE)) > 0)
                             .sorted(Comparator.comparing(Route::getDatum))
                             .collect(Collectors.toList()));
 

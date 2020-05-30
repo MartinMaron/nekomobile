@@ -37,23 +37,28 @@ public class Dict {
 
     public void initializeHelpers(MainActivity mainActivity) {
         String[] _zaehlermodele = mainActivity.getResources().getStringArray(R.array.zaehler_modele);
+        mZaehlerModels.clear();
         for (String strTemp : _zaehlermodele){
             String[] _line = strTemp.split("@");
             mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3],_line[4]));
         }
+
         String[] _funkmodele = mainActivity.getResources().getStringArray(R.array.funk_modele);
+        mFunkModels.clear();
         for (String strTemp : _funkmodele){
             String[] _line = strTemp.split(";");
             mFunkModels.add(new FunkModel(_line[0],_line[1],_line[2]));
         }
 
         String[] _FunkAustauschGrund = mainActivity.getResources().getStringArray(R.array.funk_austausch_grund);
+        mFunkAustauschGrunds.clear();
         for (String strTemp : _FunkAustauschGrund){
             String[] _line = strTemp.split(";");
             mFunkAustauschGrunds.add(new FunkCheck_Austauschgrund(_line[0],_line[1]));
         }
 
         String[] _WebesGrundParameter = mainActivity.getResources().getStringArray(R.array.webes_grundparameter);
+        mWebesGrundparameters.clear();
         for (String strTemp : _WebesGrundParameter){
             String[] _line = strTemp.split(";");
             mWebesGrundparameters.add(new Webes_Grundparameter(_line[0],_line[1]));

@@ -6,7 +6,7 @@ public class GlobalConst {
     public static final String dayMonthDateFormat = "dd-MM";
     public static final String longDateTimeStamp = "yyyyMMddHHmmss";
 
-    public static final Integer DAYS_TO_ARCHIVE = -15;
+    public static final Integer DAYS_TO_ARCHIVE = -30;
 
 
     public static final String PATH_NEKOMOBILE = "//storage/emulated/0/nekomobile";
@@ -14,11 +14,11 @@ public class GlobalConst {
     public static final String PATH_SONTEX = "//storage/emulated/0/Supercom";
     public static final String PATH_EXIM = "//storage/emulated/0/Exim";
 
-    public static final String NEKOMOBILE_USER = "martin";
+    public static final String NEKOMOBILE_USER = "test";
     // Service wlaczamy i wylaczamy w konstruktorze NekoDropBox
 
     public static final Integer DROPBOX_SERVICE_INTERVALL = 3600000;   // 1 Stunde
-    public static final String DROPBOX_SYNC_WIFI_NAMES = "vodafone;Vodafone;eneko";
+    public static final String DROPBOX_SYNC_WIFI_NAMES = "vodafone;Vodafone;Dom;dom";
 
-    
+
 }
