@@ -75,6 +75,7 @@
         <activity android:name=".activities.list.RauchmelderWartungListActivity"/>
         <activity android:name=".activities.list.FileListActivity"/>
         <activity android:name=".activities.list.LiegenschaftListActivity"/>
+        <activity android:name=".activities.detail.Liegenschaft.LiegenschaftActivity"/>
         <activity android:name=".activities.list.NutzerListActivity"/>
         <activity android:name=".activities.detail.Nutzer.NutzerActivity"/>
         <activity android:name=".activities.list.NutzerTodosListActivity"/>

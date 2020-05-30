@@ -14,11 +14,14 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.adapter.LiegenschaftListViewAdapter;
+import de.eneko.nekomobile.activities.detail.Liegenschaft.LiegenschaftActivity;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.FileHandler;
 
-public class LiegenschaftListActivity extends ListActivity implements AdapterView.OnItemClickListener{
+public class LiegenschaftListActivity extends ListActivity implements AdapterView.OnItemLongClickListener,
+        AdapterView.OnItemClickListener
+{
 
     //ListView Adapter welcher den Inhalt verwaltet
     private LiegenschaftListViewAdapter mAdapter = null;
@@ -40,9 +43,40 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
         //Generieren eines Intents fuer die NutzerListActivity zu wrappen
         Intent intent = new Intent(view.getContext(), NutzerListActivity.class);
 
+        if (isLongClick) {
+            intent = new Intent(view.getContext(), LiegenschaftActivity.class);
+            isLongClick = false;
+        }else
+        {
+            intent = new Intent(view.getContext(), NutzerListActivity.class);
+        }
+
+
         //Aufrufen der Activity
         view.getContext().startActivity(intent);
     }
+
+
+    private Boolean isLongClick = false;
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        isLongClick = true;
+        return false;
+    }
+
+//    @Override
+//    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//        CurrentObjectNavigation.getInstance().setNutzer(mAdapter.getItem(i));
+//        Intent intent = null;
+//        if (isLongClick) {
+//            intent = new Intent(view.getContext(), NutzerActivity.class);
+//            isLongClick = false;
+//        }else
+//        {
+//            intent = new Intent(view.getContext(), NutzerTodosListActivity.class);
+//        }
+//        view.getContext().startActivity(intent);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +89,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
 
         mAdapter = new LiegenschaftListViewAdapter(this,datasource);
         getListView().setOnItemClickListener(this);
+        getListView().setOnItemLongClickListener(this);
         setListAdapter(mAdapter);
 
     }

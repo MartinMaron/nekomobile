@@ -19,6 +19,7 @@ public class LiegenschaftModel extends Basemodel{
     private String mAdresse;
     private String mPlZ;
     private Integer mSortNo;
+    private String mNotizMitarbeiter;
 
     public LiegenschaftModel(Object bean) {
         super(bean);
@@ -26,7 +27,7 @@ public class LiegenschaftModel extends Basemodel{
 
     @Override
     public void save() {
-        getBean().setBemerkung(mBemerkung);
+        getBean().setNotizMitarbeiter(mNotizMitarbeiter);
     }
 
     @Override
@@ -38,6 +39,7 @@ public class LiegenschaftModel extends Basemodel{
         mPlZ = getBean().getPlZ();
         mStart = getBean().getStart();
         mSortNo =getBean().getSortNo();
+        mNotizMitarbeiter= getBean().getNotizMitarbeiter();
         setDataLoaded(true);
     }
 
@@ -161,6 +163,14 @@ public class LiegenschaftModel extends Basemodel{
 
     public void setPlZ(String plZ) {
         mPlZ = plZ;
+    }
+
+    public String getNotizMitarbeiter() {
+        return mNotizMitarbeiter;
+    }
+
+    public void setNotizMitarbeiter(String notizMitarbeiter) {
+        mNotizMitarbeiter = notizMitarbeiter;
     }
 
     // endregion

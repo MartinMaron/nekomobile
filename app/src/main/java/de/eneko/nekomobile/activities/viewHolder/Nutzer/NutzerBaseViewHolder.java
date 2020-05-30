@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import de.eneko.nekomobile.Misc;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Nutzer;
+import de.eneko.nekomobile.controllers.PhotoHandler;
 
 public class NutzerBaseViewHolder extends BaseViewHolder {
     /*
@@ -21,6 +23,9 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
     protected TextView tvZwischenablesung = null;
 
     protected ImageView ivStatus = null;
+
+
+    protected ImageView ivPhoto = null;
 
     public NutzerBaseViewHolder(View pView, Basemodel pModel) {
         super(pView, pModel);
@@ -71,6 +76,23 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
         }
         setStatusImage(getIvStatus(),getBasemodel().getBean());
 
+
+        setIvPhoto(findViewById(R.id.ivPhoto));
+        if(getIvPhoto() != null) {
+            getIvPhoto().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String relativePath = getBasemodel().getBean().getLiegenschaft().getAdresseOneLine();
+                    relativePath = relativePath + "@" + getBasemodel().getWohnungsnummerMitLage().replace('.','_');
+                    String filename = "#" + Misc.getDateAsString() + "@";
+                    filename = filename  +  getBasemodel().getNekoId() + "@";
+
+                    PhotoHandler.getInstance().openCameraIntent(relativePath,filename,getActivity());
+                }
+
+            });
+        }
+
     }
 
     protected void setStatusImage( ImageView iv, Nutzer pNutzer){
@@ -110,4 +132,11 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
         this.tvZwischenablesung = tvZwischenablesung;
     }
 
+    public ImageView getIvPhoto() {
+        return ivPhoto;
+    }
+
+    public void setIvPhoto(ImageView ivPhoto) {
+        this.ivPhoto = ivPhoto;
+    }
 }

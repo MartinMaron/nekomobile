@@ -16,7 +16,7 @@ public class NutzerModel extends Basemodel {
     // region privates
     private Date mStart;
     private Date mEnde;
-    private String nekoId;
+    private String nekoId = "";
     private String mLage = "";
     private Integer mWohnungsnummer = 0;
     private Integer mNutzernummer = 0;
@@ -188,11 +188,7 @@ public class NutzerModel extends Basemodel {
     }
 
     public String getNekoId() {
-        return nekoId;
-    }
-
-    public void setNekoId(String nekoId) {
-        this.nekoId = nekoId;
+        return getBean().getNekoId();
     }
 
     public String getLage() {
@@ -298,6 +294,8 @@ public class NutzerModel extends Basemodel {
     public void setNutzerNameNeuerInNeko(String nutzerNameNeuerInNeko) {
         mNutzerNameNeuerInNeko = nutzerNameNeuerInNeko;
     }
+
+
 
     // endregion
 }

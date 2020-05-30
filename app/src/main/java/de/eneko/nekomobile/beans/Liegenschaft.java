@@ -25,6 +25,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private int mZeitInMin;
     private String mArt;
     private String mBemerkung = "";
+    private String mNotizMitarbeiter = "";
     private String mGoogleEventId;
     private double mLatitude;
     private double mLongitude;
@@ -34,6 +35,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private String mAdresse;
     private String mPlZ;
     private final Route route;
+
+
 
     public Route getRoute() {
         return route;
@@ -83,6 +86,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateDoubleNode(ret_val,"longitude",mLongitude);
             CreateTextNode(ret_val,"adresse",mAdresse);
             CreateTextNode(ret_val,"plZ",mPlZ);
+            CreateTextNode(ret_val,"notizMitarbeiter",mNotizMitarbeiter);
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -145,6 +149,9 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
                     case "plz":
                         mPlZ = getString(propElement);
+                        break;
+                    case "notizMitarbeiter":
+                        mNotizMitarbeiter = getString(propElement);
                         break;
                     case "Nutzerliste":
                         NodeList nutzernodeList = propElement.getChildNodes();
@@ -325,7 +332,15 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         this.bud_guid = bud_guid;
     }
 
-// endregion properties
+    public String getNotizMitarbeiter() {
+        return mNotizMitarbeiter;
+    }
+
+    public void setNotizMitarbeiter(String notizMitarbeiter) {
+        mNotizMitarbeiter = notizMitarbeiter;
+    }
+
+    // endregion properties
 
 
 

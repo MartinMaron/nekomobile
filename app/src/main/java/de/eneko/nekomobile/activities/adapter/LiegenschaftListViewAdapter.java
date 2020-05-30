@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.models.LiegenschaftModel;
-import de.eneko.nekomobile.activities.viewHolder.LiegenschaftRowViewHolder;
+import de.eneko.nekomobile.activities.viewHolder.Liegenschaft.LiegenschaftRowViewHolder;
 import de.eneko.nekomobile.beans.Liegenschaft;
 
 public class LiegenschaftListViewAdapter extends ArrayAdapter<Liegenschaft>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_faktor_2">
+
+    <TextView
+        android:id="@+id/lbDescription"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:text="@string/rwm_detail_lb_nummer"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <TextView
+        android:id="@+id/tvDisplay"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_40"
+        android:layout_below="@id/lbDescription"
+        android:ems="10"
+        android:text="@string/empty"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbBemerkung"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="@dimen/dp_faktor_4"
+        android:text="@string/rwm_detail_lb_Bemerkung"
+        android:layout_below="@id/tvDisplay"
+        android:textSize="@dimen/sp_faktor_05" />
+
+    <ImageView
+        android:id="@+id/ivStatus"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@id/lbDescription"
+        android:layout_toRightOf="@id/tvDisplay" />
+
+    <EditText
+        android:id="@+id/etBemerkung"
+        android:layout_width="@dimen/dp_faktor_70"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lbBemerkung"
+        android:gravity="start"
+        android:hint="@string/rwm_detail_etBemerkungen"
+        android:text="@string/austauschgrund"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/sp_faktor_08" />
+    <ImageView
+        android:id="@+id/ivSpechToText"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/ivStatus"
+        android:layout_toRightOf="@id/etBemerkung"
+        app:srcCompat="@drawable/icon_speaker" />
+
+    <ImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="@dimen/dp_faktor_14"
+        android:layout_height="@dimen/dp_faktor_14"
+        android:layout_below="@+id/ivSpechToText"
+        android:layout_toRightOf="@id/etBemerkung"
+        app:srcCompat="@drawable/icon_camera" />
+
+</RelativeLayout>

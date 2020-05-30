@@ -26,7 +26,7 @@ public abstract class BaseViewHolder {
         mView = pView;
         mActivity = pActivity;
         mBasemodel = pModel;
-            mBasemodel.load();
+        mBasemodel.load();
     }
 
     public void startSpracheingabe(Integer requestId){
