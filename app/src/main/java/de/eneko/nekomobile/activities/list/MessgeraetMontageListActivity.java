@@ -16,7 +16,7 @@ public class MessgeraetMontageListActivity extends MessgeraetListActivity {
         ivSontex.setVisibility(View.GONE);
         ivManuell.setVisibility(View.GONE);
 
-        setAdapterCurrent( new MessgeraetListViewAdapter (this,datasource));
+        setAdapterCurrent( new MessgeraetListViewAdapter (this,datasource,MessgeraetListViewAdapter.ViewHolderType.WORK));
 
     }
 

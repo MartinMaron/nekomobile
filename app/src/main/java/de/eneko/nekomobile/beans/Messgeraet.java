@@ -324,7 +324,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
             return (getAktuellValue() >= 0) && !getFunk() && !getDefekt();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
-            return getStichtagValue() >= 0 || getAktuellValue() >= 0 || !getAustauschGrund().equals("X");}
+            return isForFunkCheck() && (getStichtagValue() >= 0 || getAktuellValue() >= 0 || !getAustauschGrund().equals("X"));}
         if (getTodo().getArt().equals(Dict.TODO_MONTAGE_KWZ) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
@@ -342,7 +342,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         if (getTodo().getArt().equals(Dict.TODO_ZWISCHENABLESUNG)){
             return !(getDefekt() || getAktuellValue() >= 0) && !getFunk();}
         if (getTodo().getArt().equals(Dict.TODO_FUNK_CHECK)){
-            return !isDone();}
+            return isForFunkCheck() && !isDone();}
         if (getTodo().getArt().equals(Dict.TODO_MONTAGE_KWZ) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
@@ -370,7 +370,15 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         return getNekoId().contains("new");
     };
 
-
+    public Boolean isForFunkCheck (){
+        return !getFunkfehler_ignorieren () && (getFunkfehler_offen() || getFunkfehler_unerreichbar());
+    }
+    public Boolean isInfo (){
+        return getTodo().getArt().equals("INF_RWM") || getTodo().getArt().equals("INF_GER");
+    }
+    public Boolean isWork (){
+        return !isInfo();
+    }
 
     // region "Properties"
 

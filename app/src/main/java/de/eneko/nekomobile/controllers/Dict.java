@@ -22,6 +22,8 @@ public class Dict {
     public static final String TODO_ABLESUNG = "ABL_ALL";
     public static final String TODO_ZWISCHENABLESUNG = "ABL_ZWI";
     public static final String TODO_FUNK_CHECK = "FUN_CHK";
+    public static final String TODO_INFO_RWM = "INF_RWM";
+    public static final String TODO_INFO_GER = "INF_GER";
 
 
     private static Dict instance = null;

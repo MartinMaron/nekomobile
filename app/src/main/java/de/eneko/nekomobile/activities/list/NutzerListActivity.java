@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.InputDialogChoiceListModeClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.NutzerListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Nutzer.NutzerActivity;
@@ -28,11 +29,12 @@ public class NutzerListActivity extends AppCompatActivity implements
         SearchView.OnQueryTextListener, AdapterView.OnItemLongClickListener,
         AdapterView.OnItemClickListener {
 
-    private NutzerListViewAdapter mAdapter = null;
-    private ArrayList<Nutzer> datasource = new ArrayList<>();
-    private ListView mListView = null;
-    private MenuItem searchMenuItem = null;
-    private SearchView searchView = null;
+    protected NutzerListViewAdapter mCurrentAdapter = null;
+    protected ArrayList<Nutzer> datasource = new ArrayList<>();
+    protected ListView mListView = null;
+    protected MenuItem searchMenuItem = null;
+    protected SearchView searchView = null;
+    protected MenuItem modeMenuItem = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,20 +47,49 @@ public class NutzerListActivity extends AppCompatActivity implements
         {
             getSupportActionBar().setSubtitle(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getBemerkung());
         }
-
-        datasource.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getNutzers().stream()
-                .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))
-                .collect(Collectors.toList()));
-        mAdapter = new NutzerListViewAdapter(this,datasource);
         mListView = findViewById(R.id.listView);
-        mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadDatasourceCore();
+    }
+
+    // region Data - Management
+
+    protected void loadDatasourceCore(){
+        getDatasource().clear();
+        getDatasource().addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getNutzers().stream()
+                .filter( r -> r.isWork())
+                .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))
+                .collect(Collectors.toList()));
+        setAdapterCurrent(new NutzerListViewAdapter(this,getDatasource()));
+    }
+    protected void loadInfoDatasourceCore(){
+        getDatasource().clear();
+        getDatasource().addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getNutzers().stream()
+                .sorted(Comparator.comparing(Nutzer::getWohnungsnummer))
+                .collect(Collectors.toList()));
+        setAdapterCurrent(new NutzerListViewAdapter(this,getDatasource()));
+    }
+
+
+    public void setAdapterCurrent(NutzerListViewAdapter adapter) {
+        mCurrentAdapter = adapter;
+        getListView().setAdapter(mCurrentAdapter);
+        mCurrentAdapter.notifyDataSetChanged();
+        if(CurrentObjectNavigation.getInstance().getNutzer() != null) { getListView().setSelection(mCurrentAdapter.getPosition(CurrentObjectNavigation.getInstance().getNutzer()));}
+    }
+
+// endregion
+
+    // region UI (On Click)
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        CurrentObjectNavigation.getInstance().setNutzer(mAdapter.getItem(i));
+        CurrentObjectNavigation.getInstance().setNutzer(getCurrentAdapter().getItem(i));
         Intent intent = null;
         if (isLongClick) {
             intent = new Intent(view.getContext(), NutzerActivity.class);
@@ -76,13 +107,10 @@ public class NutzerListActivity extends AppCompatActivity implements
         isLongClick = true;
         return false;
     }
+// endregion
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mAdapter.notifyDataSetChanged();
-        mListView.setSelection(mAdapter.getPosition(CurrentObjectNavigation.getInstance().getNutzer()));
-    }
+    // region Exit
+
 
     protected void exit(){
         FileHandler.getInstance().saveFile();
@@ -91,17 +119,19 @@ public class NutzerListActivity extends AppCompatActivity implements
     }
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         exit();
     }
+// endregion
+
+    // region Menu
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
+        inflater.inflate(R.menu.nutzer_menu, menu);
 
         SearchManager searchManager = (SearchManager)
                 getSystemService(Context.SEARCH_SERVICE);
@@ -117,8 +147,50 @@ public class NutzerListActivity extends AppCompatActivity implements
 
         searchView.onActionViewCollapsed();
 
+        modeMenuItem = menu.findItem(R.id.showMode);
+        modeMenuItem.setIcon(getDrawable(R.drawable.ic_list));
+        modeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                showListChoiceDialog();
+                return true;
+            }
+        });
+
+
         return true;
     }
+
+    public void showListChoiceDialog(){
+        new InputDialogChoiceListModeClass(this, "LA"){
+            @Override
+            protected void OnDialogSubmit(String selItem) {
+                OnDialogChoiceListModeSubmit(selItem);
+            }
+        }.show();
+    }
+
+    protected void OnDialogChoiceListModeSubmit(String selItem){
+
+        switch (selItem) {
+            case "L":
+                loadDatasourceCore();
+                modeMenuItem.setIcon(getDrawable(R.drawable.ic_list));
+                break;
+            case "W":
+                break;
+            case "T":
+                break;
+            case "A":
+                loadInfoDatasourceCore();
+                modeMenuItem.setIcon(getDrawable(R.drawable.ic_list_info));
+                break;
+            default:
+                break;
+
+        }
+    }
+
 
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -127,10 +199,29 @@ public class NutzerListActivity extends AppCompatActivity implements
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        mAdapter.getFilter().filter(newText);
+        getCurrentAdapter().getFilter().filter(newText);
         return false;
     }
 
+// endregion
 
+    // region properties
 
+    public ArrayList<Nutzer> getDatasource() {
+        return datasource;
+    }
+
+    public void setDatasource(ArrayList<Nutzer> datasource) {
+        this.datasource = datasource;
+    }
+
+    public ListView getListView() {
+        return mListView;
+    }
+
+    public NutzerListViewAdapter getCurrentAdapter() {
+        return mCurrentAdapter;
+    }
+
+    // endregion
 }

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         btCmdDropbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               FileHandler.getInstance().getNekoDropBox().synchronize();
+               FileHandler.getInstance().getNekoDropBox().synchronize(true);
             }
         });
        //registerNetworkCallback();

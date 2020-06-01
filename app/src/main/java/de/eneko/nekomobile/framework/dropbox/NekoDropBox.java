@@ -18,6 +18,7 @@ import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -59,7 +60,7 @@ public class NekoDropBox {
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
         Intent i = new Intent(mMainActivity, DropBoxService.class);
-        mMainActivity.startService(i);
+    //    mMainActivity.startService(i);
 
     }
 
@@ -72,7 +73,7 @@ public class NekoDropBox {
         return accessToken != null;
     }
 
-    public void synchronize() {
+    public void synchronize(Boolean pWithPictures) {
         new GetCurrentAccountTask(DropboxClientFactory.getClient(), new GetCurrentAccountTask.Callback() {
             @Override
             public void onComplete(FullAccount result) {
@@ -82,7 +83,7 @@ public class NekoDropBox {
                 //aktuell heruntergeladene Datein sollen nicht wieder synchroniziert werden
                 currentlyDownloadedFiles = new ArrayList<Metadata>();
 
-                Toast.makeText(mMainActivity,"Verbindung zu Dropbox erfogreich",Toast.LENGTH_LONG).show();
+               // Toast.makeText(mMainActivity,"Verbindung zu Dropbox erfogreich",Toast.LENGTH_LONG).show();
                 syncDownloadPath(NEKOMOBILE_PATH, GlobalConst.PATH_NEKOMOBILE);
                 syncDownloadPath(SONTEX_PATH, GlobalConst.PATH_SONTEX);
                 syncDownloadPath(EXIM_PATH, GlobalConst.PATH_EXIM);
@@ -124,10 +125,12 @@ public class NekoDropBox {
         Calendar validDate = Calendar.getInstance();
         validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);
         if (! lastModified.after(validDate.getTime())){
-            Log.e(TAG, file.getName() + " wird verschoben.");
             File folder = new File(archivePath);
-            if (!folder.exists()) {folder.mkdir();                        }
-            file.renameTo(new File(archivePath,file.getName()));
+            if (!folder.exists()) {folder.mkdir();}
+            SimpleDateFormat zeitformat = new SimpleDateFormat("dd.MM.yyyy_HH");
+            String lastModifiedString = zeitformat.format(new Date(file.lastModified()));
+            file.renameTo(new File(archivePath,lastModifiedString + "_" + file.getName()));
+            file.delete();
         }
     }
 
@@ -157,7 +160,6 @@ public class NekoDropBox {
         dialog.show();
         currentlyDownloadedFiles.add(file);
 
-        Toast.makeText(mMainActivity,file.getName(),Toast.LENGTH_SHORT).show();
         new DownloadFileTask(mMainActivity, DropboxClientFactory.getClient(),pAndroidTargetPath , new DownloadFileTask.Callback() {
             @Override
             public void onDownloadComplete(File result) {
@@ -226,7 +228,7 @@ public class NekoDropBox {
             public void onUploadComplete(FileMetadata result) {
                 if (fileUri.getName().endsWith("neko.jpg")) fileUri.delete();
                 dialog.dismiss();
-                Toast.makeText(mMainActivity,fileUri.getName() + " wpisana na Dropbox.",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mMainActivity,fileUri.getName() + " wpisana na Dropbox.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -257,14 +259,10 @@ public class NekoDropBox {
                     }
                     else
                     {
-                        List qDel = pFiles.stream().filter(r -> ("XXX_DONE_XXX_" + r.getName()).equals(loopfile.getName())).collect(Collectors.toList());
+                        List qDel = pFiles.stream().filter(r -> (r.getName()).equals("XXX_DONE_XXX_" + loopfile.getName())).collect(Collectors.toList());
                         if (qDel.size() > 0)
                         {
-                            String archivePath = pHomeDevicePath + "/archive";
-                            Log.e(TAG, loopfile.getName() + " wird verschoben.");
-                            File folder = new File(archivePath);
-                            if (!folder.exists()) {folder.mkdir();                        }
-                            loopfile.renameTo(new File(archivePath,loopfile.getName()));
+                            //Tue nichts
                         }else
                         {
                             uploadFile(loopfile);

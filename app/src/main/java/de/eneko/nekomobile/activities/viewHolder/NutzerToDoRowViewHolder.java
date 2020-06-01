@@ -89,6 +89,15 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
                     vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
                     vhMessgeraeteAbsoluts.updateView();
                break;
+//            case Dict.TODO_INFO_GER:
+//                getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
+//                vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
+//                vhMessgeraeteAbsoluts.updateView();
+//                break;
+//            case Dict.TODO_INFO_RWM:
+//                vhRwmAbsoluts = new NutzerToDoRowViewHolder_RwmWartung_Absoluts();
+//                getSvRwmAbsoluts().setVisibility(View.VISIBLE);
+//                break;
             case Dict.TODO_MONTAGE_RWM:
                 getIvImage().setImageResource(R.drawable.icon_rwm_montage);
                 break;

@@ -10,7 +10,7 @@ import de.eneko.nekomobile.InputDialogChoiceListModeClass;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
 import de.eneko.nekomobile.beans.Messgeraet;
 
-public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
+public class MessgeraetInfoListActivity extends MessgeraetListActivity {
     protected ArrayList<Messgeraet> datasource_FunkCheck = new ArrayList<>();
 
 
@@ -32,26 +32,19 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
         super.loadTodoDatasource();
         datasource_man.clear();
         datasource_man.addAll(datasource.stream()
-                .filter(r -> r.isForFunkCheck())
+                .filter(r -> r.isInfo())
                 .sorted(Comparator.comparing(Messgeraet::getSortNo))
                 .collect(Collectors.toList()));
         setAdapterCurrent(new MessgeraetListViewAdapter (this,datasource_man,MessgeraetListViewAdapter.ViewHolderType.WORK));
     }
 
 
-    protected void loadWohnungDatasource() {
-        super.loadTodoDatasource();
-        datasource_man.clear();
-        datasource_man.addAll(datasource.stream()
-                .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                .collect(Collectors.toList()));
-        setAdapterCurrent(new MessgeraetListViewAdapter (this,datasource_man, MessgeraetListViewAdapter.ViewHolderType.WORK));
-    }
+
 
 
     @Override
     public void showListChoiceDialog(){
-        new InputDialogChoiceListModeClass(this, "TALW"){
+        new InputDialogChoiceListModeClass(this, "TAL"){
             @Override
             protected void OnDialogSubmit(String selItem) {
                 OnDialogChoiceListModeSubmit(selItem);
@@ -64,6 +57,7 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
         super.loadRealestateDatasource();
         datasource_man.clear();
         datasource_man.addAll(datasource.stream()
+                .filter(r -> r.isInfo())
                 .sorted(Comparator.comparing(Messgeraet::getSortNo))
                 .collect(Collectors.toList()));
         setAdapterCurrent(new MessgeraetListViewAdapter (this,datasource_man,MessgeraetListViewAdapter.ViewHolderType.WORK));
@@ -73,7 +67,7 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
         super.loadRealestateDatasource();
         datasource_man.clear();
         datasource_man.addAll(datasource.stream()
-                .filter(r -> r.isForFunkCheck())
+                .filter(r -> r.isWork())
                 .sorted(Comparator.comparing(Messgeraet::getSortNo))
                 .collect(Collectors.toList()));
         setAdapterCurrent(new MessgeraetListViewAdapter (this,datasource_man,MessgeraetListViewAdapter.ViewHolderType.WORK));
@@ -88,7 +82,6 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
                 loadRealestateDatasource();
                 break;
             case "W":
-                loadWohnungDatasource();
                 break;
             case "T":
                 loadTodoDatasource();

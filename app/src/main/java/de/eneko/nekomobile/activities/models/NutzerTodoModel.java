@@ -112,6 +112,18 @@ public class NutzerTodoModel extends Basemodel{
             }
         }
 
+        if (getBean().getArt().equals(Dict.TODO_INFO_RWM))
+        {
+
+            return R.drawable.ic_system_information;
+        }
+        if (getBean().getArt().equals(Dict.TODO_INFO_GER))
+        {
+
+            return R.drawable.ic_system_information;
+        }
+
+
         return 0;
     }
 

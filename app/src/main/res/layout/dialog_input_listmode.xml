@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <RadioButton
+            android:id="@+id/rbTodo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_faktor_20"
+            android:layout_weight="2"
+            android:onClick="checkButton"
+            android:tag="T"
+            android:text="Aufgabe" />
+
+        <RadioButton
+            android:id="@+id/rbWohnung"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_faktor_20"
+            android:layout_weight="1"
+            android:onClick="checkButton"
+            android:tag="W"
+            android:text="Wohnung" />
+        <RadioButton
+            android:id="@+id/rbLiegenschaft"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_faktor_20"
+            android:layout_weight="1"
+            android:tag="L"
+            android:onClick="checkButton"
+            android:text="Alle für diesen Termin" />
+
+        <RadioButton
+            android:id="@+id/rbLiegenschaftAlle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_faktor_20"
+            android:layout_weight="1"
+            android:tag="A"
+            android:onClick="checkButton"
+            android:text="Alle " />
+    </RadioGroup>
+</RelativeLayout>

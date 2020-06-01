@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
-import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetRowViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
@@ -27,13 +26,21 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
     private MessgeraetListActivity activity;
     private customFilter mFilter;
+    private ViewHolderType vhType = ViewHolderType.WORK;
 
-    public MessgeraetListViewAdapter(Context context, ArrayList<Messgeraet> values) {
+    public enum ViewHolderType
+    {
+        WORK, INFO
+
+    }
+
+    public MessgeraetListViewAdapter(Context context, ArrayList<Messgeraet> values, ViewHolderType viewHolderType) {
         super(context, -1, values);
         this.context = context;
         this.activity = (MessgeraetListActivity) context;
         this.values = values;
         this.valuesFiltered = values;
+        this.vhType = viewHolderType;
         getFilter();
     }
 
@@ -67,13 +74,23 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
             currentView = inflater.inflate(R.layout.list_item_messgeraet, parent, false);
 
         }
-
         MessgeraetBaseViewHolder viewHolder = new MessgeraetRowViewHolder(currentView, obj.getBaseModel(), activity);
         viewHolder.updateView();
 
+        if (vhType == ViewHolderType.INFO) {
+           viewHolder.getLbStichtag().setVisibility(View.GONE);
+           viewHolder.getLbAktuell().setVisibility(View.GONE);
+           viewHolder.getTvAktuell().setVisibility(View.GONE);
+           viewHolder.getTvStichtag().setVisibility(View.GONE);
+           viewHolder.getIvDetail().setVisibility(View.GONE);
+           viewHolder.getIvStatus().setVisibility(View.GONE);
+
+        }
         currentView.setTag(viewHolder);
         return currentView;
     }
+
+
 
 
 

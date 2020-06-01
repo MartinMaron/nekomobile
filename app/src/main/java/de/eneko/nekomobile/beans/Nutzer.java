@@ -1,7 +1,6 @@
 package de.eneko.nekomobile.beans;
 
 
-
 import android.util.Log;
 
 import org.w3c.dom.Attr;
@@ -13,6 +12,7 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
@@ -174,13 +174,16 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
 
     // endregion Xml
 
-
-
-
-
-
-
         // region properties
+
+    public Boolean isInfo (){
+            return getToDos().stream().filter(r -> !r.getArt().contains("INF"))
+                    .collect(Collectors.toList()).size() == 0;
+    }
+    public Boolean isWork (){
+        return !isInfo();
+    }
+
     @Override
     public String getNekoId() {
         return nekoId;

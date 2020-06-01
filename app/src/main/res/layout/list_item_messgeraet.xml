@@ -96,7 +96,7 @@
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/ivStatus"
-        android:layout_toRightOf="@id/lbStichtag"
+        android:layout_toRightOf="@id/tvNummer"
         android:src="@drawable/icon_camera"
         app:srcCompat="@drawable/icon_camera" />
 

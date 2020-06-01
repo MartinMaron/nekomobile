@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -24,14 +25,26 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
 {
 
     //ListView Adapter welcher den Inhalt verwaltet
-    private LiegenschaftListViewAdapter mAdapter = null;
+    private LiegenschaftListViewAdapter mAdapterCurrent = null;
     private ArrayList<Liegenschaft> datasource = new ArrayList<Liegenschaft>();
+    protected MenuItem modeMenuItem = null;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        getListView().setOnItemClickListener(this);
+        getListView().setOnItemLongClickListener(this);
+        loadDatasourceCore();
+    }
+
+
+    // region UI (on click)
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        //Aktuelle Notiz zwischenspeichern
-        CurrentObjectNavigation.getInstance().setLiegenschaft((Liegenschaft) mAdapter.getItem(i));
+        //aktuelle Liegenschaft in der Navigation speichern
+        CurrentObjectNavigation.getInstance().setLiegenschaft((Liegenschaft) getAdapterCurrent().getItem(i));
 
         if(!CurrentObjectNavigation.getInstance().getLiegenschaft().getBemerkung().equals("")){
             Toast toast= Toast.makeText(getApplicationContext(),
@@ -40,7 +53,6 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
             toast.show();
          }
 
-        //Generieren eines Intents fuer die NutzerListActivity zu wrappen
         Intent intent = new Intent(view.getContext(), NutzerListActivity.class);
 
         if (isLongClick) {
@@ -56,43 +68,43 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
         view.getContext().startActivity(intent);
     }
 
-
     private Boolean isLongClick = false;
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         isLongClick = true;
         return false;
     }
+    // endregion
 
-//    @Override
-//    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        CurrentObjectNavigation.getInstance().setNutzer(mAdapter.getItem(i));
-//        Intent intent = null;
-//        if (isLongClick) {
-//            intent = new Intent(view.getContext(), NutzerActivity.class);
-//            isLongClick = false;
-//        }else
-//        {
-//            intent = new Intent(view.getContext(), NutzerTodosListActivity.class);
-//        }
-//        view.getContext().startActivity(intent);
-//    }
+    // region Data - Management
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
-        datasource.addAll(CurrentObjectNavigation.getInstance().getRoute().getLiegenschaften().stream()
+    protected void loadDatasourceCore(){
+        getDatasource().clear();
+        getDatasource().addAll(CurrentObjectNavigation.getInstance().getRoute().getLiegenschaften().stream()
                 .sorted(Comparator.comparing(Liegenschaft::getSortNo))
                 .collect(Collectors.toList()));
-
-        mAdapter = new LiegenschaftListViewAdapter(this,datasource);
-        getListView().setOnItemClickListener(this);
-        getListView().setOnItemLongClickListener(this);
-        setListAdapter(mAdapter);
-
+        setAdapterCurrent(new LiegenschaftListViewAdapter(this,getDatasource()));
     }
+
+
+    public void setAdapterCurrent(LiegenschaftListViewAdapter adapterCurrent) {
+        mAdapterCurrent = adapterCurrent;
+        setListAdapter(mAdapterCurrent);
+        mAdapterCurrent.notifyDataSetChanged();
+        if(CurrentObjectNavigation.getInstance().getMessgeraet() != null) { getListView().setSelection(mAdapterCurrent.getPosition(CurrentObjectNavigation.getInstance().getLiegenschaft()));}
+    }
+
+// endregion
+
+
+    public LiegenschaftListViewAdapter getAdapterCurrent() {
+        return mAdapterCurrent;
+    }
+    public ArrayList<Liegenschaft> getDatasource() {
+        return datasource;
+    }
+
+
     protected void exit(){
         FileHandler.getInstance().saveFile();
         Intent intent = new Intent(this, FileListActivity.class);

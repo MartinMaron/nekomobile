@@ -3,6 +3,7 @@ package de.eneko.nekomobile.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -11,9 +12,10 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
-import android.util.Log;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,10 +42,15 @@ public class DropBoxService extends Service {
                 WifiManager wifiManager;
                 wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                if (wifiInfo.getSSID().contains("vodafone") ||
-                        wifiInfo.getSSID().contains("dom")){
-                    nekoDropBox.synchronize();
-                    Log.e(TAG,"nekoDropBox.synchronize : start");
+
+                if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED)
+                {
+                    Calendar kalender = Calendar.getInstance();
+                    SimpleDateFormat zeitformat = new SimpleDateFormat("HH");
+                    int uhr = Integer.parseInt(zeitformat.format(kalender.getTime()));
+                    if(uhr >= 22 || uhr <=6){
+                        nekoDropBox.synchronize(true);
+                    }
                 }
 
                 Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
@@ -68,7 +75,7 @@ public class DropBoxService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
         nekoDropBox = FileHandler.getInstance().getNekoDropBox();
 
         // For each start request, send a message to start a job and deliver the
@@ -103,6 +110,6 @@ public class DropBoxService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Nekomobile: Dropboxservice done", Toast.LENGTH_SHORT).show();
     }
 }

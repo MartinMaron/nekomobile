@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.InputDialogChoiceListModeClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
@@ -30,6 +32,7 @@ import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
+
 
 public abstract class MessgeraetListActivity extends AppCompatActivity
         implements View.OnClickListener,
@@ -53,7 +56,6 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected ImageView ivManuell = null;
             protected ImageView ivSontex = null;
             protected ImageView ivExim = null;
-
 
             protected ListView mListView = null;
             protected MenuItem searchMenuItem = null;
@@ -85,9 +87,17 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 loadTodoDatasource();
             }
 
+            @Override
+            protected void onResume() {
+                super.onResume();
+                setEingabeMenuItemIcon();
+            }
+
+
+            // region Data-Management
             protected void loadDatasourceCore(){
                 datasource_man.addAll(datasource.stream()
-                        .filter(r -> !r.getEximFunk() && ! r.getFunkSontex())
+                        .filter(r -> !r.getEximFunk() && !r.getFunkSontex())
                         .sorted(Comparator.comparing(Messgeraet::getSortNo))
                         .collect(Collectors.toList()));
                 datasource_exm.addAll(datasource.stream()
@@ -99,14 +109,18 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                         .sorted(Comparator.comparing(Messgeraet::getSortNo))
                         .collect(Collectors.toList()));
 
-                mAdapter_man = new MessgeraetListViewAdapter (this,datasource_man);
-                mAdapter_son = new MessgeraetListViewAdapter (this,datasource_son);
-                mAdapter_exm = new MessgeraetListViewAdapter (this,datasource_exm);
+                mAdapter_man = new MessgeraetListViewAdapter (this,datasource_man, MessgeraetListViewAdapter.ViewHolderType.WORK){
+                    @Override
+                    public View getView(int index, View currentView, ViewGroup parent) {
+                        return super.getView(index, currentView, parent);
+                    }
+                };
+                mAdapter_son = new MessgeraetListViewAdapter (this,datasource_son,MessgeraetListViewAdapter.ViewHolderType.WORK);
+                mAdapter_exm = new MessgeraetListViewAdapter (this,datasource_exm,MessgeraetListViewAdapter.ViewHolderType.WORK);
 
-                mListView.setAdapter(mAdapter_man);
+                setAdapterCurrent(mAdapter_man);
 
             }
-
 
             protected void loadTodoDatasource(){
                 datasource.clear();
@@ -118,7 +132,6 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 loadDatasourceCore();
             }
 
-
             protected void loadRealestateDatasource(){
                 datasource.clear();
 
@@ -129,7 +142,14 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 loadDatasourceCore();
             }
 
+            public void setAdapterCurrent(MessgeraetListViewAdapter adapterCurrent) {
+                mAdapterCurrent = adapterCurrent;
+                mListView.setAdapter(mAdapterCurrent);
+                mAdapterCurrent.notifyDataSetChanged();
+                if(CurrentObjectNavigation.getInstance().getMessgeraet() != null) { mListView.setSelection(mAdapterCurrent.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));}
+            }
 
+            // endregion
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -146,161 +166,156 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 view.getContext().startActivity(intent);
             }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setEingabeMenuItemIcon();
-    }
 
+            // region Exit
 
-
-
-    private void setEingabeMenuItemIcon(){
-            if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
-                if (eingabeMenuItem != null) eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
+            protected void exit(){
+                FileHandler.getInstance().saveFile();
+                Intent intent = new Intent(this, NutzerTodosListActivity.class);
+                startActivity(intent);
             }
-            if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
-                if (eingabeMenuItem != null)  eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
-            }
-        }
 
-    private void setShowModeMenuItemIcon(){
-        if (showMode == ShowMode.TODO){
-            if (modeMenuItem != null) modeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
-        }
-        if (showMode == ShowMode.LIST){
-            if (modeMenuItem != null)  modeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
-        }
-    }
-
-    public MessgeraetListViewAdapter getAdapterCurrent() {
-        return mAdapterCurrent;
-    }
-
-    public void setAdapterCurrent(MessgeraetListViewAdapter adapterCurrent) {
-        mAdapterCurrent = adapterCurrent;
-        mListView.setAdapter(mAdapterCurrent);
-        mAdapterCurrent.notifyDataSetChanged();
-        mListView.setSelection(mAdapter_man.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));
-    }
-
-    protected void exit(){
-        FileHandler.getInstance().saveFile();
-        Intent intent = new Intent(this, NutzerTodosListActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        exit();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.ablesung_menu, menu);
-
-        SearchManager searchManager = (SearchManager)
-                getSystemService(Context.SEARCH_SERVICE);
-        searchMenuItem = menu.findItem(R.id.search);
-        searchView = (SearchView) searchMenuItem.getActionView();
-        searchView.onActionViewCollapsed();
-
-
-        searchView.setSearchableInfo(searchManager.
-                getSearchableInfo(getComponentName()));
-        searchView.setSubmitButtonEnabled(true);
-        searchView.setOnQueryTextListener(this);
-
-        searchView.onActionViewCollapsed();
-
-        eingabeMenuItem = menu.findItem(R.id.eingabeMode);
-        eingabeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
+            public void onBackPressed() {
+                super.onBackPressed();
+                exit();
+            }
+            // endregion
+
+            // region Menu
+                @Override
+                public boolean onCreateOptionsMenu(Menu menu) {
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.ablesung_menu, menu);
+
+                SearchManager searchManager = (SearchManager)
+                        getSystemService(Context.SEARCH_SERVICE);
+                searchMenuItem = menu.findItem(R.id.search);
+                searchView = (SearchView) searchMenuItem.getActionView();
+                searchView.onActionViewCollapsed();
+
+
+                searchView.setSearchableInfo(searchManager.
+                        getSearchableInfo(getComponentName()));
+                searchView.setSubmitButtonEnabled(true);
+                searchView.setOnQueryTextListener(this);
+
+                searchView.onActionViewCollapsed();
+
+                eingabeMenuItem = menu.findItem(R.id.eingabeMode);
+                eingabeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
+                            MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.SPRACHE);
+                        }else if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
+                            MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.TASTATUR);
+                        }
+                        setEingabeMenuItemIcon();
+                        return true;
+                    }
+
+                });
+
+                modeMenuItem = menu.findItem(R.id.showMode);
+                modeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        showListChoiceDialog();
+                        return true;
+                    }
+              });
+
+                return true;
+            }
+
+                protected void OnDialogChoiceListModeSubmit(String selItem){
+
+                switch (selItem) {
+                    case "L":
+                        loadRealestateDatasource();
+                        break;
+                    case "W":
+                        break;
+                    case "T":
+                        loadTodoDatasource();
+                        break;
+                    case "A":
+                        break;
+                    default:
+                        break;
+
+                    }
+                }
+                private void setEingabeMenuItemIcon(){
+                if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
+                    if (eingabeMenuItem != null) eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
+                }
                 if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
-                    MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.SPRACHE);
-                }else if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
-                    MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.TASTATUR);
+                    if (eingabeMenuItem != null)  eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
                 }
-                setEingabeMenuItemIcon();
-                return true;
             }
 
-        });
 
-        modeMenuItem = menu.findItem(R.id.showMode);
-        modeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            public void showListChoiceDialog(){
+                new InputDialogChoiceListModeClass(this, "TA"){
+                    @Override
+                    protected void OnDialogSubmit(String selItem) {
+                        OnDialogChoiceListModeSubmit(selItem);
+                    }
+                }.show();
+            }
+
             @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if (showMode == ShowMode.TODO){
-                    showMode = ShowMode.LIST;
-                    loadRealestateDatasource();
-                }else if (showMode == ShowMode.LIST){
-                    showMode = ShowMode.TODO;
-                    loadTodoDatasource();
-                }
-                setShowModeMenuItemIcon();
-                return true;
+            public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapterCurrent.getFilter().filter(newText);
+                return false;
             }
-        });
+
+            // endregion
+
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.btShowEximFunk:
+                            MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.EXIM);
+                        break;
+                    case R.id.btShowSontexFunk:
+                        MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.SONTEX);
+                        break;
+                    case R.id.btShowStandard:
+                        MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.MANUELL);
+                        break;
+                }
+                onResume();
+            }
+
+            @Override
+            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                super.onActivityResult(requestCode, resultCode, data);
+
+                if (resultCode != Activity.RESULT_OK) {
+                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mAdapterCurrent.notifyDataSetChanged();
+
+            }
 
 
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        mAdapterCurrent.getFilter().filter(newText);
-        return false;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btShowEximFunk:
-                    MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.EXIM);
-                break;
-            case R.id.btShowSontexFunk:
-                MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.SONTEX);
-                break;
-            case R.id.btShowStandard:
-                MessgeraeteConroller.getInstance().setGereteart(MessgeraeteConroller.GeraeteArt.MANUELL);
-                break;
-        }
-        onResume();
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != Activity.RESULT_OK) {
-            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
-            return;
-        }
-//        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_AKTUELL && data != null ) {
-//            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogAktuell(result.get(0).replace(" ",""));
-//        }
-//        if (requestCode == MessgeraetBaseViewHolder.REQUEST_BT_STICHTAG && data != null ) {
-//            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-//            new DetailViewHolder(null,CurrentObjectNavigation.getInstance().getMessgeraet().getBaseModel(),this){}.inputDialogStichtag(result.get(0).replace(" ",""));
-//        }
-        mAdapterCurrent.notifyDataSetChanged();
-
-    }
+    // region properties
+    public MessgeraetListViewAdapter getAdapterCurrent() {
+                return mAdapterCurrent;
+            }
 
 
 
-
+    // endregion
 
 
 }
