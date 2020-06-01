@@ -10,18 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.InputDialogChoiceListModeClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAblesungActivity;
@@ -39,29 +34,12 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
         SearchView.OnQueryTextListener,
         AdapterView.OnItemClickListener
         {
-
-            private enum ShowMode {LIST,TODO}
-
-            private ShowMode showMode = ShowMode.TODO;
-
-            protected MessgeraetListViewAdapter mAdapterCurrent = null;
-            protected MessgeraetListViewAdapter mAdapter_man = null;
-            protected MessgeraetListViewAdapter mAdapter_exm = null;
-            protected MessgeraetListViewAdapter mAdapter_son = null;
+            protected MessgeraetListViewAdapter mCurrentAdapter = null;
             protected ArrayList<Messgeraet> datasource = new ArrayList<>();
-            protected ArrayList<Messgeraet> datasource_man = new ArrayList<>();
-            protected ArrayList<Messgeraet> datasource_exm = new ArrayList<>();
-            protected ArrayList<Messgeraet> datasource_son = new ArrayList<>();
-
-            protected ImageView ivManuell = null;
-            protected ImageView ivSontex = null;
-            protected ImageView ivExim = null;
 
             protected ListView mListView = null;
             protected MenuItem searchMenuItem = null;
-            protected MenuItem eingabeMenuItem = null;
             protected MenuItem modeMenuItem = null;
-
             protected SearchView searchView = null;
 
 
@@ -69,7 +47,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected void onCreate(Bundle savedInstanceState)
             {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.list_view_ablesung);
+                setContentView(R.layout.activity_list_view);
                 NutzerTodoModel nutzerTodoModel = CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
                 nutzerTodoModel.load();
                 getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
@@ -77,97 +55,34 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 // init listview
                 mListView = findViewById(R.id.listView);
                 mListView.setOnItemClickListener(this);
-                ivManuell = findViewById(R.id.btShowStandard);
-                ivManuell.setOnClickListener(this);
-                ivSontex = findViewById(R.id.btShowSontexFunk);
-                ivSontex.setOnClickListener(this);
-                ivExim = findViewById(R.id.btShowEximFunk);
-                ivExim.setOnClickListener(this);
-
-                loadTodoDatasource();
+                loadDatasourceCore();
             }
 
             @Override
             protected void onResume() {
                 super.onResume();
-                setEingabeMenuItemIcon();
+                loadDatasourceCore();
             }
 
 
-            // region Data-Management
+// region Data-Management
             protected void loadDatasourceCore(){
-                datasource_man.addAll(datasource.stream()
-                        .filter(r -> !r.getEximFunk() && !r.getFunkSontex())
-                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                        .collect(Collectors.toList()));
-                datasource_exm.addAll(datasource.stream()
-                        .filter(r -> r.getEximFunk())
-                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                        .collect(Collectors.toList()));
-                datasource_son.addAll(datasource.stream()
-                        .filter(r -> r.getFunkSontex())
-                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                        .collect(Collectors.toList()));
-
-                mAdapter_man = new MessgeraetListViewAdapter (this,datasource_man, MessgeraetListViewAdapter.ViewHolderType.WORK){
-                    @Override
-                    public View getView(int index, View currentView, ViewGroup parent) {
-                        return super.getView(index, currentView, parent);
-                    }
-                };
-                mAdapter_son = new MessgeraetListViewAdapter (this,datasource_son,MessgeraetListViewAdapter.ViewHolderType.WORK);
-                mAdapter_exm = new MessgeraetListViewAdapter (this,datasource_exm,MessgeraetListViewAdapter.ViewHolderType.WORK);
-
-                setAdapterCurrent(mAdapter_man);
 
             }
 
-            protected void loadTodoDatasource(){
-                datasource.clear();
 
-                // Init datasource
-                datasource.addAll(CurrentObjectNavigation.getInstance().getNutzerTodo().getMessgeraete().stream()
-                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                        .collect(Collectors.toList()));
-                loadDatasourceCore();
+
+
+            protected void setCurrentAdapter(MessgeraetListViewAdapter currentAdapter) {
+                mCurrentAdapter = currentAdapter;
+                mListView.setAdapter(mCurrentAdapter);
+                mCurrentAdapter.notifyDataSetChanged();
+                if(CurrentObjectNavigation.getInstance().getMessgeraet() != null) { mListView.setSelection(mCurrentAdapter.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));}
             }
 
-            protected void loadRealestateDatasource(){
-                datasource.clear();
+// endregion
 
-                // Init datasource
-                datasource.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getBaseModel().getNutzerMessgaerete().stream()
-                        .sorted(Comparator.comparing(Messgeraet::getSortNo))
-                        .collect(Collectors.toList()));
-                loadDatasourceCore();
-            }
-
-            public void setAdapterCurrent(MessgeraetListViewAdapter adapterCurrent) {
-                mAdapterCurrent = adapterCurrent;
-                mListView.setAdapter(mAdapterCurrent);
-                mAdapterCurrent.notifyDataSetChanged();
-                if(CurrentObjectNavigation.getInstance().getMessgeraet() != null) { mListView.setSelection(mAdapterCurrent.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));}
-            }
-
-            // endregion
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Messgeraet item = (Messgeraet) mAdapterCurrent.getItem(i);
-                CurrentObjectNavigation.getInstance().setMessgeraet(item);
-                Intent intent = null;
-                switch (item.getTodo().getArt()) {
-                    case Dict.TODO_ABLESUNG:
-                        intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
-                        break;
-                    default:
-                        intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
-                }
-                view.getContext().startActivity(intent);
-            }
-
-
-            // region Exit
+// region Exit
 
             protected void exit(){
                 FileHandler.getInstance().saveFile();
@@ -182,9 +97,9 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             }
             // endregion
 
-            // region Menu
-                @Override
-                public boolean onCreateOptionsMenu(Menu menu) {
+// region Menu
+            @Override
+            public boolean onCreateOptionsMenu(Menu menu) {
                 MenuInflater inflater = getMenuInflater();
                 inflater.inflate(R.menu.ablesung_menu, menu);
 
@@ -193,29 +108,12 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 searchMenuItem = menu.findItem(R.id.search);
                 searchView = (SearchView) searchMenuItem.getActionView();
                 searchView.onActionViewCollapsed();
-
-
                 searchView.setSearchableInfo(searchManager.
                         getSearchableInfo(getComponentName()));
                 searchView.setSubmitButtonEnabled(true);
                 searchView.setOnQueryTextListener(this);
 
                 searchView.onActionViewCollapsed();
-
-                eingabeMenuItem = menu.findItem(R.id.eingabeMode);
-                eingabeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
-                            MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.SPRACHE);
-                        }else if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
-                            MessgeraeteConroller.getInstance().setEingabeArt( MessgeraeteConroller.EingabeArt.TASTATUR);
-                        }
-                        setEingabeMenuItemIcon();
-                        return true;
-                    }
-
-                });
 
                 modeMenuItem = menu.findItem(R.id.showMode);
                 modeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -229,42 +127,8 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 return true;
             }
 
-                protected void OnDialogChoiceListModeSubmit(String selItem){
-
-                switch (selItem) {
-                    case "L":
-                        loadRealestateDatasource();
-                        break;
-                    case "W":
-                        break;
-                    case "T":
-                        loadTodoDatasource();
-                        break;
-                    case "A":
-                        break;
-                    default:
-                        break;
-
-                    }
-                }
-                private void setEingabeMenuItemIcon(){
-                if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.SPRACHE){
-                    if (eingabeMenuItem != null) eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker));
-                }
-                if (MessgeraeteConroller.getInstance().getEingabeArt() == MessgeraeteConroller.EingabeArt.TASTATUR){
-                    if (eingabeMenuItem != null)  eingabeMenuItem.setIcon(getDrawable(R.drawable.icon_speaker_off));
-                }
-            }
-
-
-            public void showListChoiceDialog(){
-                new InputDialogChoiceListModeClass(this, "TA"){
-                    @Override
-                    protected void OnDialogSubmit(String selItem) {
-                        OnDialogChoiceListModeSubmit(selItem);
-                    }
-                }.show();
-            }
+            protected abstract void OnDialogChoiceListModeSubmit(String selItem);
+            protected abstract void showListChoiceDialog();
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -273,11 +137,26 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapterCurrent.getFilter().filter(newText);
+                getCurrentAdapter().getFilter().filter(newText);
                 return false;
             }
+// endregion
 
-            // endregion
+// region UI (on Click)
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Messgeraet item = (Messgeraet) mCurrentAdapter.getItem(i);
+                CurrentObjectNavigation.getInstance().setMessgeraet(item);
+                Intent intent = null;
+                switch (item.getTodo().getArt()) {
+                    case Dict.TODO_ABLESUNG:
+                        intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
+                        break;
+                    default:
+                        intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
+                }
+                view.getContext().startActivity(intent);
+            }
 
             @Override
             public void onClick(View view) {
@@ -303,19 +182,25 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                     Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mAdapterCurrent.notifyDataSetChanged();
+                mCurrentAdapter.notifyDataSetChanged();
 
             }
 
+// endregion
 
-    // region properties
-    public MessgeraetListViewAdapter getAdapterCurrent() {
-                return mAdapterCurrent;
+// region properties
+    public MessgeraetListViewAdapter getCurrentAdapter() {
+                return mCurrentAdapter;
             }
 
+    public ArrayList<Messgeraet> getDatasource() {
+        return datasource;
+    }
 
-
-    // endregion
+    public ListView getListView() {
+        return mListView;
+    }
+// endregion
 
 
 }

@@ -30,8 +30,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
     public enum ViewHolderType
     {
-        WORK, INFO
-
+        WORK, WORK_WITH_NAME, INFO, INFO_WITH_NAME
     }
 
     public MessgeraetListViewAdapter(Context context, ArrayList<Messgeraet> values, ViewHolderType viewHolderType) {
@@ -84,8 +83,21 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
            viewHolder.getTvStichtag().setVisibility(View.GONE);
            viewHolder.getIvDetail().setVisibility(View.GONE);
            viewHolder.getIvStatus().setVisibility(View.GONE);
-
         }
+
+        if (vhType == ViewHolderType.INFO_WITH_NAME) {
+            viewHolder.getLbStichtag().setVisibility(View.GONE);
+            viewHolder.getLbAktuell().setVisibility(View.GONE);
+            viewHolder.getTvAktuell().setVisibility(View.GONE);
+            viewHolder.getTvStichtag().setVisibility(View.GONE);
+            viewHolder.getIvDetail().setVisibility(View.GONE);
+            viewHolder.getIvStatus().setVisibility(View.GONE);
+            if (obj.getTodo().getNutzer() != null ) { viewHolder.getTvLetzterWert().setText(obj.getTodo().getNutzer().getBaseModel().getDisplay());}else {viewHolder.getTvLetzterWert().setText("DDD");}
+        }
+        if (vhType == ViewHolderType.WORK_WITH_NAME) {
+            if (obj.getTodo().getNutzer() != null ) { viewHolder.getTvLetzterWert().setText(obj.getTodo().getNutzer().getBaseModel().getDisplay());}else {viewHolder.getTvLetzterWert().setText("DDD");}
+        }
+
         currentView.setTag(viewHolder);
         return currentView;
     }

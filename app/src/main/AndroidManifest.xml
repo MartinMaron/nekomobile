@@ -66,6 +66,7 @@
         <activity android:name=".activities.PictureViewActivity"/>
         <activity android:name=".activities.list.MessgeraetListActivity"/>
         <activity android:name=".activities.list.MessgeraetMontageListActivity"/>
+        <activity android:name=".activities.list.MessgeraetInfoListActivity"/>
         <activity android:name=".activities.list.MessgeraetAblesungListActivity"/>
         <activity android:name=".activities.list.MessgeraetFunkCheckListActivity"/>
         <activity android:name=".activities.detail.Rwm.RwmActivity"/>

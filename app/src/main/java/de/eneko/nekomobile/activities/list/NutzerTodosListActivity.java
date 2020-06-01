@@ -53,6 +53,10 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
                 intent = new Intent(view.getContext(), MessgeraetFunkCheckListActivity.class);
                 view.getContext().startActivity(intent);
                 break;
+            case "INF_GER":
+                intent = new Intent(view.getContext(), MessgeraetInfoListActivity.class);
+                view.getContext().startActivity(intent);
+                break;
             default:
         }
     }
