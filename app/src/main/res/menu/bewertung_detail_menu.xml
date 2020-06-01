@@ -11,4 +11,8 @@
         android:title="Buchseite anzeigen"
         android:icon="@drawable/book_icon_png"
         app:showAsAction="collapseActionView|ifRoom"/>
+    <item android:id="@+id/showPictureBook"
+        android:title="Buchseite anzeigen"
+        android:icon="@drawable/book_icon_png"
+        app:showAsAction="collapseActionView|ifRoom"/>
 </menu>
