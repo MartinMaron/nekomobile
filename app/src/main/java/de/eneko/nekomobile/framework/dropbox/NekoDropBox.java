@@ -60,7 +60,7 @@ public class NekoDropBox {
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
         Intent i = new Intent(mMainActivity, DropBoxService.class);
-    //    mMainActivity.startService(i);
+        mMainActivity.startService(i);
 
     }
 
@@ -110,7 +110,7 @@ public class NekoDropBox {
         //new java.util.Date(result.lastModified())
         String archivePath = pHomeDevicePath + "/archive";
         File dir = new File(pHomeDevicePath);
-        if (dir.listFiles().length > 0) {
+        if (dir != null && dir.listFiles() != null && dir.listFiles().length > 0) {
             for (File loopfile : Arrays.stream(dir.listFiles()).collect(Collectors.toList())) {
                 if (loopfile.isFile() && loopfile.exists()) {
                     moveFile(archivePath, loopfile);
