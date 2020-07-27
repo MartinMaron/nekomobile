@@ -79,12 +79,6 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
         android.support.v7.app.ActionBar mActionBar = getSupportActionBar();
         mActionBar.setSubtitle("Subtitle");
 
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); //bellow setSupportActionBar(toolbar);
-//        getSupportActionBar().setCustomView(R.layout.custom_bar_title);
-//        titleTextView = (TextView) findViewById(R.id.action_bar_title);
-//        titleTextView.setText("Custom text");
-
-
     }
 
     @Override

@@ -165,11 +165,11 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
             });
         }
         if(getBean().getDatum() != null) {
-            if(getLbAktuell() != null) getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getDatum()));
+            if(getLbAktuell() != null) getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBean().getDatum()));
         }else {
             if(getLbAktuell() != null) getLbAktuell().setText("Aktuell: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(Calendar.getInstance().getTime()));
         }
-        if(getLbStichtag() != null) getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getStichtagsdatum()));
+        if(getLbStichtag() != null && getBasemodel().getStichtagsdatum() != null) getLbStichtag().setText("Stichtag: " + new SimpleDateFormat(GlobalConst.dayMonthDateFormat).format(getBasemodel().getStichtagsdatum()));
         if(getTvAktuell() != null ){
             getTvAktuell().setOnClickListener(new View.OnClickListener() {
                 @Override

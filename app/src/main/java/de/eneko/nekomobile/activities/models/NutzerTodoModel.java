@@ -103,7 +103,7 @@ public class NutzerTodoModel extends Basemodel{
             }
         }
 
-        if (getBean().getArt().equals(Dict.TODO_MONTAGE_WWZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_WMZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_KWZ))
+        if (getBean().getArt().equals(Dict.TODO_MONTAGE_WWZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_HKV) || getBean().getArt().equals(Dict.TODO_MONTAGE_WMZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_KWZ))
         {
             if (isCompleted("GER")) {
                 return R.drawable.icon_montage_ok;
@@ -179,7 +179,7 @@ public class NutzerTodoModel extends Basemodel{
             return getBean().getRauchmelder().stream().filter(r -> r.getNew())
                     .collect(Collectors.toList()).size();
         }else {
-            return getBean().getMessgeraete().stream().filter(r -> r.getNekoId().contains("new"))
+            return getBean().getMessgeraete().stream().filter(r -> r.getNew())
                     .collect(Collectors.toList()).size();
         }
      }

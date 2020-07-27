@@ -68,7 +68,7 @@ public class NutzerTodosListViewAdapter extends ArrayAdapter<ToDo>
             currentView = inflater.inflate(R.layout.list_item_nutzertodos, parent, false);
         }
 
-        NutzerToDoRowViewHolder viewHolder = new NutzerToDoRowViewHolder(currentView,obj.getBaseModel());
+        NutzerToDoRowViewHolder viewHolder = new NutzerToDoRowViewHolder(currentView, ((NutzerTodoModel) obj.getBaseModel()));
         viewHolder.updateView();
         currentView.setTag(viewHolder);
         return currentView;

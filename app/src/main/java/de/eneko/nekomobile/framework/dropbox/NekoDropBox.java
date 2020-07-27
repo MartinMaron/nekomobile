@@ -60,11 +60,8 @@ public class NekoDropBox {
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
         Intent i = new Intent(mMainActivity, DropBoxService.class);
-        mMainActivity.startService(i);
-
+       // mMainActivity.startService(i);
     }
-
-
 
 
     public boolean hasToken() {

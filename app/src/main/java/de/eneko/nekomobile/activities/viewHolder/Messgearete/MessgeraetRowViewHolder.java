@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretNeuActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
@@ -46,8 +47,14 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
             @Override
             public void onClick(View view) {
                 CurrentObjectNavigation.getInstance().setMessgeraet(getBasemodel().getBean());
-                Intent  intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
-                view.getContext().startActivity(intent);
+
+                if (getBasemodel().getBean().isNew()) {
+                    Intent  intent = new Intent(view.getContext(), MessgaeretNeuActivity.class);
+                    view.getContext().startActivity(intent);
+                }else{
+                    Intent  intent = new Intent(view.getContext(), MessgaeretAustauschActivity.class);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
 
@@ -59,7 +66,11 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
 
     @Override
     protected void loadData(){
-        getTvNummer().setText(getBasemodel().getBean().getNummer());
+        if (getBasemodel().getBean().isNew()){
+            getTvNummer().setText("N:" + getBasemodel().getBean().getNeueNummer());
+        } else {
+            getTvNummer().setText(getBasemodel().getBean().getNummer());
+        }
         getTvRaum().setText(getBasemodel().getRaum());
         getTvLetzterWert().setText(getBasemodel().getLetzterWertText());
         getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getAktuellValue()));

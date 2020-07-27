@@ -35,7 +35,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,29 +59,72 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DropboxFilesActivity"/>
-        <activity android:name=".activities.detail.Messgeraete.MessgaeretAustauschActivity"/>
-        <activity android:name=".activities.detail.Messgeraete.MessgaeretAblesungActivity"/>
+        <activity android:name=".activities.DropboxFilesActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Messgeraete.MessgaeretAustauschActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Messgeraete.MessgaeretAblesungActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Messgeraete.MessgaeretNeuActivity"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".activities.detail.Messgeraete.MessgaeretBewertungActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".activities.PictureViewActivity"/>
-        <activity android:name=".activities.list.MessgeraetListActivity"/>
-        <activity android:name=".activities.list.MessgeraetMontageListActivity"/>
-        <activity android:name=".activities.list.MessgeraetInfoListActivity"/>
-        <activity android:name=".activities.list.MessgeraetAblesungListActivity"/>
-        <activity android:name=".activities.list.MessgeraetFunkCheckListActivity"/>
-        <activity android:name=".activities.detail.Rwm.RwmActivity"/>
-        <activity android:name=".activities.detail.Rwm.RwmActivity_Info"/>
-        <activity android:name=".activities.detail.Rwm.RwmActivity_New"/>
-        <activity android:name=".activities.detail.Rwm.RwmActivity_Austausch"/>
-        <activity android:name=".activities.list.RauchmelderWartungListActivity"/>
-        <activity android:name=".activities.list.FileListActivity"/>
-        <activity android:name=".activities.list.LiegenschaftListActivity"/>
-        <activity android:name=".activities.detail.Liegenschaft.LiegenschaftActivity"/>
-        <activity android:name=".activities.list.NutzerListActivity"/>
-        <activity android:name=".activities.detail.Nutzer.NutzerActivity"/>
-        <activity android:name=".activities.list.NutzerTodosListActivity"/>
+        <activity android:name=".activities.PictureViewActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.MessgeraetListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.MessgeraetMontageListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.MessgeraetInfoListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.MessgeraetAblesungListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.MessgeraetFunkCheckListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Rwm.RwmActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Rwm.RwmActivity_Info"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Rwm.RwmActivity_New"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Rwm.RwmActivity_Austausch"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.RauchmelderWartungListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.FileListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.LiegenschaftListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Liegenschaft.LiegenschaftActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.NutzerListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.detail.Nutzer.NutzerActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activities.list.NutzerTodosListActivity"
+            android:screenOrientation="portrait"
+            />
         <service android:name=".services.DropBoxService" />
     </application>
 </manifest>

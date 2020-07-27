@@ -35,6 +35,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private String mAdresse;
     private String mPlZ;
     private final Route route;
+    private Date mStichtag = new Date();
 
 
 
@@ -87,6 +88,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateTextNode(ret_val,"adresse",mAdresse);
             CreateTextNode(ret_val,"plZ",mPlZ);
             CreateTextNode(ret_val,"notizMitarbeiter",mNotizMitarbeiter);
+            CreateDateTextNode(ret_val, "stichtag", mStichtag);
+
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -152,6 +155,9 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
                     case "notizMitarbeiter":
                         mNotizMitarbeiter = getString(propElement);
+                        break;
+                    case "stichtag":
+                        mStichtag = getSipleDate(propElement);
                         break;
                     case "Nutzerliste":
                         NodeList nutzernodeList = propElement.getChildNodes();

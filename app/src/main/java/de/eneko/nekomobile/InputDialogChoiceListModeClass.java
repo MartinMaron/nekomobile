@@ -17,9 +17,11 @@ public class InputDialogChoiceListModeClass {
     private Activity mActivity;
 
     private RadioButton rbTodo;
+    private RadioButton rbTodos;
     private RadioButton rbWohnung;
     private RadioButton rbAlle;
     private RadioButton rbLiegenschaft;
+
     private RadioGroup mRadioGroup;
     private AlertDialog dialog;
 
@@ -39,6 +41,7 @@ public class InputDialogChoiceListModeClass {
         rbLiegenschaft = alertLayout.findViewById(R.id.rbLiegenschaft);
         rbWohnung = alertLayout.findViewById(R.id.rbWohnung);
         rbTodo = alertLayout.findViewById(R.id.rbTodo);
+        rbTodos = alertLayout.findViewById(R.id.rbTodos);
         rbAlle = alertLayout.findViewById(R.id.rbLiegenschaftAlle);
         mRadioGroup = alertLayout.findViewById(R.id.radiogroup);
         mRadioGroup.setTag("");
@@ -54,15 +57,18 @@ public class InputDialogChoiceListModeClass {
         rbLiegenschaft.setOnClickListener(ocl);
         rbWohnung.setOnClickListener(ocl);
         rbTodo.setOnClickListener(ocl);
+        rbTodos.setOnClickListener(ocl);
 
         rbWohnung.setSelected(false);
         rbAlle.setSelected(false);
         rbTodo.setSelected(false);
+        rbTodos.setSelected(false);
         rbLiegenschaft.setSelected(false);
 
         if (!values.contains(rbWohnung.getTag().toString())) {rbWohnung.setVisibility(View.GONE);}
         if (!values.contains(rbLiegenschaft.getTag().toString())) {rbLiegenschaft.setVisibility(View.GONE);}
         if (!values.contains(rbTodo.getTag().toString())) {rbTodo.setVisibility(View.GONE);}
+        if (!values.contains(rbTodos.getTag().toString())) {rbTodos.setVisibility(View.GONE);}
         if (!values.contains(rbAlle.getTag().toString())) {rbAlle.setVisibility(View.GONE);}
 
 

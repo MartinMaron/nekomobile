@@ -59,12 +59,10 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
                     vhMessgeraeteAbsoluts.updateView();
                 break;
             case Dict.TODO_MONTAGE_HKV:
-                    getSvMessgeraeteAbsoluts().setVisibility(View.VISIBLE);
-                    vhMessgeraeteAbsoluts = new NutzerToDoRowViewHolder_Messgeraete_Absoluts(getSvMessgeraeteAbsoluts(),getBasemodel());
-                    vhMessgeraeteAbsoluts.updateView();
-                    vhMessgeraeteAbsoluts.getSvKWZ().setVisibility(View.GONE);
-                    vhMessgeraeteAbsoluts.getSvWMZ().setVisibility(View.GONE);
-                    vhMessgeraeteAbsoluts.getSvWWZ().setVisibility(View.GONE);
+                    getSvArtContentViewHolder().setVisibility(View.VISIBLE);
+                    vhArtContentViewHolder = new ArtContentViewHolder(getSvArtContentViewHolder(),getBasemodel());
+                    vhArtContentViewHolder.updateView();
+                    vhArtContentViewHolder.loadDataByArt(getSvArtContentViewHolder(),"HKV");
                 break;
             case Dict.TODO_MONTAGE_WMZ:
                     getSvArtContentViewHolder().setVisibility(View.VISIBLE);

@@ -13,7 +13,7 @@ import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 
-public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
+public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
 
 
     @Override
@@ -100,6 +100,17 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                         getCbDefekt().setVisibility(View.GONE);
                     }
                 }
+
+                  if (getBasemodel().getBean().isNew()) {
+                    getTvNummer().setEnabled(true);
+                    getTvNummer().setFocusable(true);
+                    getLbStichtag().setVisibility(View.GONE);
+                    getTvStichtag().setVisibility(View.GONE);
+                    getTvAktuell().setVisibility(View.GONE);
+                    getLbAktuell().setVisibility(View.GONE);
+                }
+
+
             }
         };
         viewHolder.updateView();

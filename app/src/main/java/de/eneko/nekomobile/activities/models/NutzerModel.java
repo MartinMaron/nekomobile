@@ -2,6 +2,7 @@ package de.eneko.nekomobile.activities.models;
 
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -122,6 +123,17 @@ public class NutzerModel extends Basemodel {
         return retval;
     }
 
+    public List<Messgeraet> getNutzerTodoMessgaerete(){
+        List<Messgeraet> qMessgeraet = new ArrayList<Messgeraet>();
+        for(ToDo todo : getBean().getToDos()) {
+                if (!todo.getArt().contains("INF"))
+                    qMessgeraet.addAll(
+                        todo.getMessgeraete().stream().collect(Collectors.toList())
+                );
+            }
+        return qMessgeraet;
+    }
+
     public Boolean isCompleted(){
         return false;
     }
@@ -143,7 +155,7 @@ public class NutzerModel extends Basemodel {
     public Integer getProgressStatusImageResourceId(String todoArt) {
         ToDo todo = getToDoByArt(todoArt);
         if (todo == null){return 0;}
-        return todo.getBaseModel().getProgressStatusImageResourceId();
+        return ((NutzerTodoModel) todo.getBaseModel()).getProgressStatusImageResourceId();
    }
     public Integer getProgressStatusImageMontageResourceId() {
 

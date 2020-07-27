@@ -252,15 +252,18 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_MODEL && data != null ) {
+            loadData();
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
+                getBasemodel().save();
             }
             if (returnCode.getZaehlerModel() != null){
                 getBasemodel().setZielmodel(returnCode.getZaehlerModel().getId());
+                getBasemodel().save();
             }
-            loadData();
+
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_NUMMER && data != null ) {
@@ -269,30 +272,32 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
-                loadData();
+                getBasemodel().save();
             }
-
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKMODEL && data != null ) {
+            loadData();
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
                 getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                getBasemodel().save();
             }
             if (returnCode.getFunkModel() != null){
                 getBasemodel().setNeuesFunkModel(returnCode.getFunkModel().getId());
+                getBasemodel().save();
             }
-            loadData();
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKNUMMER && data != null ) {
+            loadData();
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
-                loadData();
+                getBasemodel().save();
             }
         }
 //

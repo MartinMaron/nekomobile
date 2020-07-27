@@ -1,5 +1,6 @@
 package de.eneko.nekomobile.controllers;
 
+import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.ToDo;
 
@@ -25,5 +26,13 @@ public class ObjectFactory {
         return ret_val;
     }
 
+    public Messgeraet createNewMessgaeret(ToDo pToDo){
+        Messgeraet ret_val = new Messgeraet(pToDo);
+        pToDo.getMessgeraete().add(ret_val);
+        ret_val.setArt(pToDo.getArt().replace("MON_",""));
+        ret_val.setNew(true);
+        ret_val.setNekoId("new_" + pToDo.getMessgeraete().size());
+        return ret_val;
+    }
 
 }
