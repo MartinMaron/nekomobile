@@ -136,6 +136,9 @@ public class NekoDropBox {
     // region download
 
     private void syncDownloadPath(String downloadPath, String targetPath){
+        File folder = new File(targetPath);
+        if (!folder.exists()) {folder.mkdir();}
+
         new ListFolderTask(DropboxClientFactory.getClient(),downloadPath , new ListFolderTask.Callback() {
             @Override
             public void onDataLoaded(ListFolderResult result) {
@@ -199,6 +202,9 @@ public class NekoDropBox {
 
     // region upload
     private void syncUploadPath(String pDropBoxPath, String pHomeDevicePath){
+        File folder = new File(pHomeDevicePath);
+        if (!folder.exists()) {folder.mkdir();}
+
         new ListFolderTask(DropboxClientFactory.getClient(), pDropBoxPath , new ListFolderTask.Callback() {
             @Override
             public void onDataLoaded(ListFolderResult result) {
