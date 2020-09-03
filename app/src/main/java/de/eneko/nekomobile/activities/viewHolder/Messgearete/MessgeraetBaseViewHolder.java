@@ -227,11 +227,15 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (resultCode != Activity.RESULT_OK) {
+        try {
+            if (resultCode != Activity.RESULT_OK) {
             Toast.makeText(mActivity, "error", Toast.LENGTH_SHORT).show();
             return;
+            }
+        } catch (Exception e){
+            System.out.println (e.toString());
         }
+
     }
 
 
