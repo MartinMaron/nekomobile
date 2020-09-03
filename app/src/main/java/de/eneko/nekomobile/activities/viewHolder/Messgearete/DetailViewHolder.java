@@ -18,11 +18,13 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.framework.BarcodeHelper;
 import de.eneko.nekomobile.framework.FormatHelper;
@@ -245,6 +247,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
 
         if (resultCode != Activity.RESULT_OK) {
             Toast.makeText(mActivity, "error in  scanning", Toast.LENGTH_SHORT).show();
@@ -255,21 +258,27 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
+                getTvNewNummer().setText(returnCode.getGeraetenummer());
+//                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
+                save();
             }
             if (returnCode.getZaehlerModel() != null){
-                getBasemodel().setZielmodel(returnCode.getZaehlerModel().getId());
+//                getBasemodel().setZielmodel(returnCode.getZaehlerModel().getId());
+                getSpNewModel().setSelection(
+                        spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(returnCode.getZaehlerModel().getId()))
+                );
+                save();
             }
-            loadData();
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_NUMMER && data != null ) {
-            loadData();
+            getBasemodel().save();
+            getBasemodel().load();
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
-                loadData();
+                getBasemodel().save();
             }
 
         }
@@ -303,7 +312,14 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             loadData();
         }
 
+        CurrentObjectNavigation.getInstance().setMessgeraet(getBasemodel().getBean());
+        Intent  intent = new Intent(getActivity(), MessgaeretAustauschActivity.class);
+        getActivity().startActivity(intent);
 
+
+        } catch (Exception e){
+            System.out.println (e.toString());
+        }
 
     }
 
