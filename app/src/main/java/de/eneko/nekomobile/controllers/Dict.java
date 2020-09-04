@@ -42,7 +42,7 @@ public class Dict {
         mZaehlerModels.clear();
         for (String strTemp : _zaehlermodele){
             String[] _line = strTemp.split("@");
-            mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3],_line[4]));
+            mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3],_line[4],_line[5]));
         }
 
         String[] _funkmodele = mainActivity.getResources().getStringArray(R.array.funk_modele);

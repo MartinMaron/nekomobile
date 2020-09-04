@@ -6,6 +6,7 @@ import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -201,6 +202,32 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             );
         }
 
+        if (getSpNewModel() != null) {
+            getSpNewModel().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                   ZaehlerModel zm = spNewModelAdapter.getItem(position);
+                    if (spNewModelAdapter.getItem(position).getFunkintegriert()) {
+                        getSpNewFunkModel().setSelection(
+//                                spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(Dict.getInstance().getZaehlerModel(position).getFunkadapter()))
+                                spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(spNewModelAdapter.getItem(position).getFunkadapter()))
+
+                        );
+                    } else {
+                        getSpNewFunkModel().setSelection(
+                               spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel("X"))
+                            );
+                    };
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
+
+
         if (getSpAustauschgrund() != null) {
             getSpAustauschgrund().setSelection(
                     spAustauschGrundAdapter.getPosition(Dict.getInstance().getFunkAustauschGrund(getBasemodel().getAustauschGrund()))
@@ -247,7 +274,8 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
+
+        boolean safe = false ;
 
         if (resultCode != Activity.RESULT_OK) {
             Toast.makeText(mActivity, "error in  scanning", Toast.LENGTH_SHORT).show();
@@ -259,28 +287,23 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getTvNewNummer().setText(returnCode.getGeraetenummer());
-//                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
-                save();
+                safe = true;
             }
             if (returnCode.getZaehlerModel() != null){
-//                getBasemodel().setZielmodel(returnCode.getZaehlerModel().getId());
                 getSpNewModel().setSelection(
-                        spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(returnCode.getZaehlerModel().getId()))
+                    spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(returnCode.getZaehlerModel().getId()))
                 );
-                save();
+             safe = true;
             }
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_NUMMER && data != null ) {
-            getBasemodel().save();
-            getBasemodel().load();
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
-                getBasemodel().save();
+                safe = true;
             }
-
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKMODEL && data != null ) {
@@ -311,14 +334,11 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             getBasemodel().setBemerkung(! getEtBemerkung().getText().equals("") ? getEtBemerkung().getText() + "\n" + result.get(0): result.get(0));
             loadData();
         }
-
-        CurrentObjectNavigation.getInstance().setMessgeraet(getBasemodel().getBean());
-        Intent  intent = new Intent(getActivity(), MessgaeretAustauschActivity.class);
-        getActivity().startActivity(intent);
-
-
-        } catch (Exception e){
-            System.out.println (e.toString());
+        if (safe) {
+            save();
+            CurrentObjectNavigation.getInstance().setMessgeraet(getBasemodel().getBean());
+            Intent intent = new Intent(getActivity(), MessgaeretAustauschActivity.class);
+            getActivity().startActivity(intent);
         }
 
     }

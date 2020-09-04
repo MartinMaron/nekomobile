@@ -1,7 +1,5 @@
 package de.eneko.nekomobile.beans.hlpta;
 
-import de.eneko.nekomobile.MainActivity;
-
 public class ZaehlerModel {
     private Integer mId = 0;
     private String mBezeichnung = "";
@@ -9,14 +7,16 @@ public class ZaehlerModel {
     private final Boolean mAustauschmodel;
     private final Boolean mFunkintegriert;
     private final String mArtikelnummer;
+    private final String mFunkadapter;
 
-    public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt, String pArtikelnummer){
+    public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt,String pFunkadapter, String pArtikelnummer){
         mId = Integer.parseInt(pId);
         mBezeichnung = pBezeichnung;
         mAustauschmodel = pAustauschmodel.equals("True");
         mArt = pArt;
-        mFunkintegriert = false;
+        mFunkintegriert = !pFunkadapter.equals("");
         mArtikelnummer = pArtikelnummer;
+        mFunkadapter = pFunkadapter;
     }
 
 
@@ -47,5 +47,9 @@ public class ZaehlerModel {
     @Override
     public String toString() {
         return mBezeichnung;
+    }
+
+    public String getFunkadapter() {
+        return mFunkadapter;
     }
 }
