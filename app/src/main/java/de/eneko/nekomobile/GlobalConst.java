@@ -13,11 +13,10 @@ public class GlobalConst {
     public static final String PATH_SONTEX = "//storage/emulated/0/Supercom";
     public static final String PATH_EXIM = "//storage/emulated/0/Exim";
 
-    public static final String NEKOMOBILE_USER = "christof";
+    public static final String NEKOMOBILE_USER = "test";
     // Service wlaczamy i wylaczamy w konstruktorze NekoDropBox
 
     public static final Integer DROPBOX_SERVICE_INTERVALL = 3600000;   // 1 Stunde
     public static final String DROPBOX_SYNC_WIFI_NAMES = "Dom;dom";
-
 
 }
