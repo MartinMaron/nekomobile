@@ -1,20 +1,26 @@
 package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.view.LayoutInflater;
 
 import com.google.android.gms.vision.barcode.Barcode;
 import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
@@ -22,6 +28,7 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
@@ -98,6 +105,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                             .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBasemodel().getBean().getArt()) || r.getArt().equals("ALL") ) )
                             .sorted(Comparator.comparing(ZaehlerModel::getBezeichnung))
                             .collect(Collectors.toList())
+
                     );
             spNewModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpNewModel().setAdapter(spNewModelAdapter);
@@ -301,7 +309,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
+                getTvNewNummer().setText(returnCode.getGeraetenummer());
                 safe = true;
             }
         }
@@ -310,21 +318,24 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
                 getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
             }
-            if (returnCode.getFunkModel() != null){
-                getBasemodel().setNeuesFunkModel(returnCode.getFunkModel().getId());
+            if (returnCode.getFunkModel() != null) {
+                if (returnCode.getZaehlerModel() != null) {
+                    getSpNewModel().setSelection(
+                            spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(returnCode.getFunkModel().getId()))
+                    );
+                }
             }
-            loadData();
+            safe = true;
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKNUMMER && data != null ) {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
-                loadData();
+                getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                safe = true;
             }
         }
 //
@@ -332,7 +343,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (requestCode == DetailViewHolder.BT_SPEAKER && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             getBasemodel().setBemerkung(! getEtBemerkung().getText().equals("") ? getEtBemerkung().getText() + "\n" + result.get(0): result.get(0));
-            loadData();
+            safe = true;
         }
         if (safe) {
             save();

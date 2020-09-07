@@ -572,8 +572,8 @@
         <item>1270@Funk Wärmezähler SC739 - Qn2.5 - Funk- 130mm @True@WMZ@ @739RN141R11E00@</item>
         <item>1271@Funk 581 - Up. Kaltwasserzähler 581  Allmess @True@KWZ@581@60050@</item>
         <item>1272@Funk 581 Up.  Warmwasserzähler 581  Allmess@True@WWZ@581@60060@</item>
-        <item>1273@EHKV Typ Sontex 566 Funksystem@False@HKV@ @ @</item>
-        <item>1274@EHKV Typ Sontex 566 Funksystem mit Fernfühler@False@HKV@ @ @</item>
+        <item>1273@EHKV Typ Sontex 566 Funksystem@True@HKV@ @ @</item>
+        <item>1274@EHKV Typ Sontex 566 Funksystem mit Fernfühler@True@HKV@ @ @</item>
         <item>1275@Wärmezähler mit Sontex Funkmodul 531@False@WMZ@ @ @</item>
         <item>1276@Wärmezähler Sontex für Kälte @False@WMZ@ @ @</item>
         <item>1277@Heckatron Rauchmelder@False@RWM@ @ @</item>

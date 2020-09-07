@@ -29,7 +29,8 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                 getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
                 getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
                 getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
-                getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
+
+                if(getSpNewFunkModel() != null) getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
                 getBasemodel().setDefekt(getCbDefekt().isChecked());
                 getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
                 getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
