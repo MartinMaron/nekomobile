@@ -328,6 +328,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                 }
             }
             safe = true;
+
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKNUMMER && data != null ) {
