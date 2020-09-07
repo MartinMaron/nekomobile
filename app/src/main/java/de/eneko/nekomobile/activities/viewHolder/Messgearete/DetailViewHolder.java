@@ -209,9 +209,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                    ZaehlerModel zm = spNewModelAdapter.getItem(position);
                     if (spNewModelAdapter.getItem(position).getFunkintegriert()) {
                         getSpNewFunkModel().setSelection(
-//                                spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(Dict.getInstance().getZaehlerModel(position).getFunkadapter()))
                                 spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(spNewModelAdapter.getItem(position).getFunkadapter()))
-
                         );
                     } else {
                         getSpNewFunkModel().setSelection(
@@ -301,7 +299,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueNummer(returnCode.getGeraetenummer());
+                getTvNewNummer().setText(returnCode.getGeraetenummer());
                 safe = true;
             }
         }
