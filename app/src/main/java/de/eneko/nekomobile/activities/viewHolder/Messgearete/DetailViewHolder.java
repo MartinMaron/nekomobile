@@ -98,7 +98,8 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                             .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBasemodel().getBean().getArt()) || r.getArt().equals("ALL") ) )
                             .sorted(Comparator.comparing(ZaehlerModel::getBezeichnung))
                             .collect(Collectors.toList())
-                    );
+
+            );
             spNewModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpNewModel().setAdapter(spNewModelAdapter);
         }
@@ -179,8 +180,8 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getTvModel() != null) getTvModel().setText(new Object() {
             @Override
             public String toString() {
-               ZaehlerModel mObj = Dict.getInstance().getZaehlerModel(getBasemodel().getModel());
-               return mObj != null ? mObj.getBezeichnung() : "";
+                ZaehlerModel mObj = Dict.getInstance().getZaehlerModel(getBasemodel().getModel());
+                return mObj != null ? mObj.getBezeichnung() : "";
             }
         }.toString());
 
@@ -198,7 +199,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
         if (getSpNewModel() != null && getBasemodel().getZielmodel() > 0) {
             getSpNewModel().setSelection(
-                       spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(getBasemodel().getZielmodel()))
+                    spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(getBasemodel().getZielmodel()))
             );
         }
 
@@ -206,15 +207,17 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             getSpNewModel().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                   ZaehlerModel zm = spNewModelAdapter.getItem(position);
+                    ZaehlerModel zm = spNewModelAdapter.getItem(position);
                     if (spNewModelAdapter.getItem(position).getFunkintegriert()) {
                         getSpNewFunkModel().setSelection(
+//                                spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(Dict.getInstance().getZaehlerModel(position).getFunkadapter()))
                                 spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(spNewModelAdapter.getItem(position).getFunkadapter()))
+
                         );
                     } else {
                         getSpNewFunkModel().setSelection(
-                               spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel("X"))
-                            );
+                                spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel("X"))
+                        );
                     };
                 }
 
@@ -289,9 +292,9 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             }
             if (returnCode.getZaehlerModel() != null){
                 getSpNewModel().setSelection(
-                    spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(returnCode.getZaehlerModel().getId()))
+                        spNewModelAdapter.getPosition(Dict.getInstance().getZaehlerModel(returnCode.getZaehlerModel().getId()))
                 );
-             safe = true;
+                safe = true;
             }
         }
 
@@ -308,21 +311,25 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
                 getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
             }
-            if (returnCode.getFunkModel() != null){
-                getBasemodel().setNeuesFunkModel(returnCode.getFunkModel().getId());
+            if (returnCode.getFunkModel() != null) {
+                if (returnCode.getZaehlerModel() != null) {
+                    getSpNewModel().setSelection(
+                            spNewFunkModelAdapter.getPosition(Dict.getInstance().getFunkModel(returnCode.getFunkModel().getId()))
+                    );
+                }
             }
-            loadData();
+            safe = true;
+
         }
 
         if (requestCode == DetailViewHolder.BT_BARCODE_NEW_FUNKNUMMER && data != null ) {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getBasemodel().setNeueFunkNummer(returnCode.getGeraetenummer());
-                loadData();
+                getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                safe = true;
             }
         }
 //
@@ -330,7 +337,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (requestCode == DetailViewHolder.BT_SPEAKER && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             getBasemodel().setBemerkung(! getEtBemerkung().getText().equals("") ? getEtBemerkung().getText() + "\n" + result.get(0): result.get(0));
-            loadData();
+            safe = true;
         }
         if (safe) {
             save();
@@ -368,7 +375,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         valueString = getTvStichtag().getText().toString().replace(".","").replace(",",".");
         if(!valueString.equals(""))getBasemodel().setStichtagValue(Double.parseDouble(valueString));
 
-     }
+    }
 
 
     public void save() {

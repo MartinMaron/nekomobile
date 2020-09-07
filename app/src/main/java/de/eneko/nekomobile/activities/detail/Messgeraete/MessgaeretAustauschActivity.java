@@ -45,7 +45,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                     getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
                 }
 
-
+//test
                 getBasemodel().save();
             }
 
