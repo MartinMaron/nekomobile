@@ -75,380 +75,549 @@
         </array>
     <array name="zaehler_modele">
         <item>-1@empty@True@ALL@ @ @</item>
-        <item>1246@Gaszähler@False@GAS@ @000000@</item>
-        <item>1247@Unterputz-Messkapsel Warmwasser@False@WWZ@ @ @</item>
+        <item>1046@Abdeckhaube blau für Zapfhahnzähler@False@ZUB@ @700005-2@</item>
+        <item>1084@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
+        <item>1086@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
+        <item>1085@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
+        <item>1087@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
+        <item>57@APZ-A-ETW-1,5-110mm-1/2"-1 l/Imp@False@WWZ@ @106120@</item>
         <item>54@APZ-We-ETW-2,5-130mm-3/4"-1 l/Imp@False@WWZ@ @106060@</item>
         <item>55@APZ-We-ETW-2,5-130mm-3/4"-10 l/Imp@False@WWZ@ @106070@</item>
-        <item>1248@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @ @</item>
-        <item>57@APZ-A-ETW-1,5-110mm-1/2"-1 l/Imp@False@WWZ@ @106120@</item>
-        <item>1250@Funk -Unterputz-Messkapsel Kaltwasser e-wireless @False@KWZ@ @110025@</item>
-        <item>790@Aufputz-Kaltwasserzähler Qn 1.5 m3/h 80mm-1/2"@False@KWZ@ @100310@</item>
-        <item>791@Aufputz-Kaltwasserzähler Qn 1.5 m3/h 110mm-1/2"@False@KWZ@ @100320@</item>
-        <item>792@Aufputz-Kaltwasserzähler Qn 2.5 m3/h 130mm-3/4"@False@KWZ@ @100330@</item>
+        <item>1331@Aufputz -Kaltwasserzähler -LO-ETK -1,5-130mm-3/4"@False@KWZ@ @100322@</item>
         <item>793@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100415@</item>
         <item>794@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100425@</item>
         <item>795@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100426@</item>
         <item>796@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100427@</item>
-        <item>204@Kompaktwärmezähler SC 539 - Qn 2.5@False@WMZ@ @200030@</item>
-        <item>797@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @120030@</item>
-        <item>798@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110015@</item>
-        <item>799@UP Kaltwasser Typ: ABB MO-C@False@KWZ@ @110030@</item>
-        <item>800@Waschtisch-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @400010@</item>
-        <item>801@Zapfhahn-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @410010@</item>
-        <item>802@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110036@</item>
-        <item>803@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110045@</item>
-        <item>1251@Funk -Unterputz-Messkapsel Warmwasser e-wireless @False@WWZ@ @ @</item>
-        <item>805@Up.-Messkapsel Kaltwasser Typ: Metrona 307/1 K2@False@KWZ@ @110035@</item>
-        <item>806@UPl Kaltwasser Typ: ABB MO-I (passend auf ISTA)@False@KWZ@ @110022@</item>
-        <item>807@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110060@</item>
-        <item>808@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110050@</item>
-        <item>809@Kaltwasserzähler Qn 2.5 m3/h, Steigrohr@False@KWZ@ @122030@</item>
-        <item>810@VZ/MBZ-Meßblock Kaltwasserzähler Qn 1,5@False@KWZ@ @700018-02@</item>
-        <item>811@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110041@</item>
-        <item>812@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @100200@</item>
         <item>813@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100428@</item>
         <item>814@Aufputz-Kaltwasserzähler m. Verlängerung@False@KWZ@ @100435@</item>
+        <item>812@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @100200@</item>
         <item>815@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @102310@</item>
         <item>816@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @102315@</item>
         <item>817@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @102320@</item>
         <item>818@Aufputz-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @102325@</item>
-        <item>819@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110040@</item>
-        <item>820@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @120060@</item>
+        <item>791@Aufputz-Kaltwasserzähler Qn 1.5 m3/h 110mm-1/2"@False@KWZ@ @100320@</item>
+        <item>790@Aufputz-Kaltwasserzähler Qn 1.5 m3/h 80mm-1/2"@False@KWZ@ @100310@</item>
         <item>821@Aufputz-Kaltwasserzähler Qn 2.5 m3/h@False@KWZ@ @102330@</item>
         <item>822@Aufputz-Kaltwasserzähler Qn 2.5 m3/h@False@KWZ@ @102335@</item>
-        <item>823@VZ/MBZ-Meßblock Kaltwasser (A) ABB@False@KWZ@ @700018@</item>
-        <item>824@VZ/MBZ-Meßblock Kaltwasser@False@KWZ@ @700018-03@</item>
-        <item>825@VZ/MBZ-Meßblock Kaltwasser@False@KWZ@ @700018-04@</item>
-        <item>826@Kaltwasserzähler Qn 2.5 m3/h@False@KWZ@ @120031@</item>
-        <item>827@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @122060@</item>
-        <item>828@Mischbatterie-Kaltwasserzähler@False@KWZ@ @430015@</item>
-        <item>829@Ventilzähler Kaltwasser@False@KWZ@ @420021@</item>
-        <item>830@Mischbatterie-Kaltwasserzähler@False@KWZ@ @430011@</item>
-        <item>831@Kaltwasserzähler Qn 6 m3/h@False@KWZ@ @120061@</item>
-        <item>832@Kaltwasserzähler Qn 2.5 m3/h, Fallrohr@False@KWZ@ @124030@</item>
-        <item>833@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @121032@</item>
-        <item>834@Kaltwasserzähler Qn 10 m3/h, waagrecht@False@KWZ@ @120070@</item>
-        <item>835@Kaltwasserzähler Qn 2.5 m3/h, Steigrohr@False@KWZ@ @123032@</item>
-        <item>836@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @121062@</item>
-        <item>837@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @123062@</item>
-        <item>838@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @122068@</item>
-        <item>839@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @122070@</item>
-        <item>840@Kaltwasserzähler Qn 10 m3/h@False@KWZ@ @120071@</item>
-        <item>841@Kaltwasserzähler Qn 10 m3/h, waagrecht@False@KWZ@ @121072@</item>
-        <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @</item>
-        <item>1019@Montagesatz Gliederheizkörper@False@ZUB@ @720050@</item>
-        <item>1020@Distanzring Manschette, grau@False@ZUB@ @730615@</item>
-        <item>1021@Distanzring Manschette, grau@False@ZUB@ @730615@</item>
-        <item>1022@Montagesatz Platte für Sontex 501/502@False@ZUB@ @720005@</item>
-        <item>1023@Montagesatz Platte für Sontex 501/502@False@ZUB@ @720005@</item>
-        <item>1024@Distanzring Manschette, verchromt@False@ZUB@ @730620@</item>
-        <item>1025@Distanzring Manschette, verchromt@False@ZUB@ @730620@</item>
-        <item>1026@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@</item>
-        <item>1027@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
-        <item>1028@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@</item>
-        <item>1029@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
-        <item>1030@Montagesatz Röhre für Sontex 501/502@False@ZUB@ @720055@</item>
-        <item>77@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110061@</item>
-        <item>1031@Montagesatz Röhre für Sontex 501/502@False@ZUB@ @720055@</item>
-        <item>1032@Plombierschelle R1", für Qn 3.5/6@False@ZUB@ @700310@</item>
-        <item>1033@Verschraubung 1/2", Messing@False@ZUB@ @740000@</item>
-        <item>1034@Plombierschelle R1", für Qn 3.5/6@False@ZUB@ @700310@</item>
-        <item>1035@Verschraubung 1/2", Messing@False@ZUB@ @740000@</item>
-        <item>1036@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740200@</item>
-        <item>1037@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
-        <item>1038@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740200@</item>
-        <item>1039@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
-        <item>1040@Kugelhahn 1/2" IG@False@ZUB@ @740300@</item>
-        <item>1041@Kugelhahn 1/2" IG@False@ZUB@ @740300@</item>
-        <item>1042@Verschraubung 3/4", Messing@False@ZUB@ @740010@</item>
-        <item>1043@Verschraubung 3/4", Messing@False@ZUB@ @740010@</item>
-        <item>1044@Verschraubung 1/2", verchromt@False@ZUB@ @740005@</item>
-        <item>1045@Verschraubung 1/2", verchromt@False@ZUB@ @740005@</item>
-        <item>1046@Abdeckhaube blau für Zapfhahnzähler@False@ZUB@ @700005-2@</item>
-        <item>1047@Verschraubung Löt 15mm@False@ZUB@ @740050@</item>
-        <item>1048@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@</item>
-        <item>1049@Verschraubung Löt 15mm@False@ZUB@ @740050@</item>
-        <item>1050@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@</item>
-        <item>1051@Kugelhahn 3/4" IG@False@ZUB@ @740305@</item>
-        <item>1052@Kugelhahn 3/4" IG@False@ZUB@ @740305@</item>
-        <item>1053@Verschraubung Löt 18mm@False@ZUB@ @740055@</item>
-        <item>1054@Verschraubung Löt 18mm@False@ZUB@ @740055@</item>
-        <item>1055@Verschraubungsset WTZ-Armatur@False@ZUB@ @700000@</item>
-        <item>1056@Verschraubungsset WTZ-Ventil@False@ZUB@ @700001@</item>
-        <item>1057@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740203@</item>
-        <item>1058@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740203@</item>
-        <item>1059@Verlängerungshülse 80mm@False@ZUB@ @730702@</item>
-        <item>1060@Verlängerungshülse 80mm@False@ZUB@ @730702@</item>
-        <item>1061@Metallschlauch, flexibel, Länge: 300mm@False@ZUB@ @700003@</item>
-        <item>1062@Rosette 137x137@False@ZUB@ @730315@</item>
-        <item>1063@Rosette 137x137@False@ZUB@ @730315@</item>
-        <item>1064@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
-        <item>1065@Verschraubung Löt 22mm@False@ZUB@ @740060@</item>
-        <item>1066@Kugelhahn 1/2" IG@False@ZUB@ @740302@</item>
-        <item>1067@Kugelhahn 1/2" IG@False@ZUB@ @740303@</item>
-        <item>1068@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
-        <item>1069@Verschraubung Löt 22mm@False@ZUB@ @740060@</item>
-        <item>1070@Kugelhahn 1/2" IG@False@ZUB@ @740302@</item>
-        <item>1071@Kugelhahn 1/2" IG@False@ZUB@ @740303@</item>
-        <item>1072@Rosette/A 150x150@False@ZUB@ @730320@</item>
-        <item>1073@Verschraubung 3/4", verchromt@False@ZUB@ @740015@</item>
-        <item>1074@Rosette/A 150x150@False@ZUB@ @730320@</item>
-        <item>1075@Verschraubung 3/4", verchromt@False@ZUB@ @740015@</item>
-        <item>1076@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730300@</item>
-        <item>1077@Rosette/Manschette/Ring@False@ZUB@ @730330@</item>
-        <item>1078@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730300@</item>
-        <item>1079@Rosette/Manschette/Ring@False@ZUB@ @730330@</item>
-        <item>1080@Verschraubung 1", Messing@False@ZUB@ @740020@</item>
-        <item>1081@Verschraubung 1", Messing@False@ZUB@ @740020@</item>
-        <item>1082@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740205@</item>
-        <item>1083@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740205@</item>
-        <item>1084@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
-        <item>1085@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
-        <item>1086@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
-        <item>307@VHKV ECOMESS@False@HKV@ @600010@</item>
-        <item>308@EHKV ECOTRON1@False@HKV@ @610010@</item>
-        <item>309@EHKV Typ Sontex 555@False@HKV@ @610511@</item>
-        <item>1087@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
-        <item>311@EHKV Typ Sontex 556 Funksystem@False@HKV@ @640511@</item>
-        <item>1088@Metallschlauch, flexibel, Länge: 400mm@False@ZUB@ @700002@</item>
-        <item>1089@Kugelhahn 3/4" IG@False@ZUB@ @740308@</item>
-        <item>1090@Kugelhahn 3/4" IG@False@ZUB@ @740308@</item>
-        <item>1091@Kugelhahn 1" IG@False@ZUB@ @740310@</item>
-        <item>1092@Kugelhahn 1" IG@False@ZUB@ @740310@</item>
-        <item>1093@Montageschlüssel/A KS (Kunststoff)@False@ZUB@ @730550@</item>
-        <item>1094@Montageschlüssel/A KS (Kunststoff)@False@ZUB@ @730550@</item>
-        <item>1095@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740206@</item>
-        <item>1096@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740206@</item>
-        <item>1097@Verschraubungsset ZHZ@False@ZUB@ @700005@</item>
-        <item>1098@Kugelhahn 3/4" IG@False@ZUB@ @740307@</item>
-        <item>1099@Kugelhahn 3/4" IG@False@ZUB@ @740309@</item>
-        <item>1100@Kugelhahn 3/4" IG@False@ZUB@ @740307@</item>
-        <item>1101@Kugelhahn 3/4" IG@False@ZUB@ @740309@</item>
-        <item>1102@Kugelhahn 1" IG@False@ZUB@ @740313@</item>
-        <item>1103@Kugelhahn 1" IG@False@ZUB@ @740313@</item>
-        <item>1104@Verlängerung zu VZ-Anschluss L25mm@False@ZUB@ @700013@</item>
-        <item>1105@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
-        <item>1106@Kugelhahn 1" IG@False@ZUB@ @740312@</item>
-        <item>1107@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
-        <item>1108@Kugelhahn 1" IG@False@ZUB@ @740312@</item>
-        <item>1109@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730303@</item>
-        <item>1110@Blindabdeckung zu MO-C, kplt.@False@ZUB@ @730640@</item>
-        <item>1111@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730303@</item>
-        <item>1112@Blindabdeckung zu MO-C, kplt.@False@ZUB@ @730640@</item>
-        <item>1113@UP-Gehäuse/I 1/2" IG@False@ZUB@ @730053@</item>
-        <item>1114@UP-Gehäuse/I 3/4" IG@False@ZUB@ @730055@</item>
-        <item>1115@UP-Gehäuse/I 1/2" IG@False@ZUB@ @730053@</item>
-        <item>1116@UP-Gehäuse/I 3/4" IG@False@ZUB@ @730055@</item>
-        <item>1117@Ventilzähler-Anschluss /A, 1/2"@False@ZUB@ @700007@</item>
-        <item>1118@Ventilzähler-Anschluss /A, 3/4"@False@ZUB@ @700008-01@</item>
-        <item>1119@Ventilzähler-Anschluss /A, 1"@False@ZUB@ @700009@</item>
-        <item>1120@Distanzstück MBZ, 63mm@False@ZUB@ @700250@</item>
-        <item>1121@Distanzstück MBZ, 63mm@False@ZUB@ @700250@</item>
-        <item>1122@Tauchhülse 1/2", D6mm, 85mm, Edelstahl@False@ZUB@ @710025@</item>
-        <item>1123@Tauchhülse 1/2", D6mm, 85mm, Edelstahl@False@ZUB@ @710025@</item>
-        <item>1124@UP-Gehäuse/I 1/2" AG u. Löt 15mm@False@ZUB@ @730050@</item>
-        <item>1125@UP-Gehäuse/I 3/4" AG u. Löt 18mm@False@ZUB@ @730060@</item>
-        <item>1126@UP-Gehäuse/I Löt 22mm@False@ZUB@ @730065@</item>
-        <item>1127@UP-Gehäuse/A 1/2" IG@False@ZUB@ @730100@</item>
-        <item>1128@UP-Gehäuse/A 3/4" IG@False@ZUB@ @730105@</item>
-        <item>1129@UP-Gehäuse/A Löt 15mm@False@ZUB@ @730110@</item>
-        <item>1130@UP-Gehäuse/A Löt 18mm@False@ZUB@ @730115@</item>
-        <item>1131@UP-Gehäuse/A Löt 22mm@False@ZUB@ @730120@</item>
-        <item>1132@UP-Gehäuse/I 1/2" AG u. Löt 15mm@False@ZUB@ @730050@</item>
-        <item>1133@UP-Gehäuse/I 3/4" AG u. Löt 18mm@False@ZUB@ @730060@</item>
-        <item>1134@UP-Gehäuse/I Löt 22mm@False@ZUB@ @730065@</item>
-        <item>1135@UP-Gehäuse/A 1/2" IG@False@ZUB@ @730100@</item>
-        <item>1136@UP-Gehäuse/A 3/4" IG@False@ZUB@ @730105@</item>
-        <item>1137@UP-Gehäuse/A Löt 15mm@False@ZUB@ @730110@</item>
-        <item>1138@UP-Gehäuse/A Löt 18mm@False@ZUB@ @730115@</item>
-        <item>1139@UP-Gehäuse/A Löt 22mm@False@ZUB@ @730120@</item>
-        <item>1140@Einbausatz WMZ-Qn 2,5@False@ZUB@ @710209@</item>
-        <item>1141@Einbausatz WMZ-Qn 2,5@False@ZUB@ @710209@</item>
-        <item>1142@Verschraubung 1 1/4", Messing@False@ZUB@ @740025@</item>
-        <item>1143@Verschraubung 1 1/4", Messing@False@ZUB@ @740025@</item>
-        <item>1144@Verschraubung 1 1/2", Messing@False@ZUB@ @740030@</item>
-        <item>1145@Verschraubung 1 1/2", Messing@False@ZUB@ @740030@</item>
-        <item>1146@Modul Batterie 6+1 Jahr@False@ZUB@ @710600@</item>
-        <item>1147@Modul Batterie 6+1 Jahr@False@ZUB@ @710600@</item>
-        <item>1148@Tauchhülse 1/2", D6mm, 134mm, Edelstahl@False@ZUB@ @710030@</item>
-        <item>1149@Tauchhülse 1/2", D6mm, 134mm, Edelstahl@False@ZUB@ @710030@</item>
-        <item>1150@Einbaubügel waagr. Qn2.5, 3/4" x 3/4"@False@ZUB@ @700200@</item>
-        <item>1151@Einbaubügel waagr. Qn2.5, 1" x 1"@False@ZUB@ @700202@</item>
-        <item>1152@Einbaubügel waagr. Qn2.5, 3/4" x 3/4"@False@ZUB@ @700200@</item>
-        <item>1153@Einbaubügel waagr. Qn2.5, 1" x 1"@False@ZUB@ @700202@</item>
-        <item>1154@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710206@</item>
-        <item>1155@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710206@</item>
-        <item>1156@Einbaubügel senkrecht Qn2,5, 3/4" x 3/4"@False@ZUB@ @700215@</item>
-        <item>1157@Einbaubügel senkrecht Qn2,5, 3/4" x 3/4"@False@ZUB@ @700215@</item>
-        <item>1158@Einbaubügel senkrecht Qn2,5, 1" x 1"@False@ZUB@ @700216@</item>
-        <item>1159@Einbaubügel senkrecht Qn2,5, 1" x 1"@False@ZUB@ @700216@</item>
-        <item>1160@Modul Netz 230V - 45/60Hz@False@ZUB@ @710604@</item>
-        <item>1161@Modul Netz 24VAC - 45/65Hz@False@ZUB@ @710606@</item>
-        <item>842@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @123072@</item>
-        <item>843@Woltman-Kaltwasserzähler@False@KWZ@ @150020@</item>
-        <item>844@Woltman-Kaltwasserzähler@False@KWZ@ @154020@</item>
-        <item>845@Woltman-Kaltwasserzähler@False@KWZ@ @150030@</item>
-        <item>846@Woltman-Kaltwasserzähler@False@KWZ@ @154030@</item>
-        <item>847@Woltman-Kaltwasserzähler@False@KWZ@ @150040@</item>
-        <item>848@Woltman-Kaltwasserzähler@False@KWZ@ @154040@</item>
-        <item>849@Woltman-Kaltwasserzähler@False@KWZ@ @150050@</item>
-        <item>850@Woltman-Kaltwasserzähler@False@KWZ@ @154050@</item>
-        <item>851@Volumenmessteil@False@WMZ@ @180010@</item>
-        <item>852@Volumenmessteil@False@WMZ@ @180210@</item>
-        <item>853@Volumenmessteil@False@WMZ@ @180410@</item>
-        <item>854@Wärmezähler SensoStar2+ , Qn 0.6@False@WMZ@ @200300@</item>
-        <item>855@Wärmezähler SensoStar2+ , Qn 1.5@False@WMZ@ @200310@</item>
-        <item>856@Funk 539 Wärmezähler QN 0,6  -KOAX - ista@False@WMZ@ @0739TL141R11@</item>
-        <item>857@Wärmezähler SensoStar2+-ES-KOAX , Qn 1.5 ista@False@WMZ@ @200410@</item>
-        <item>858@Wärmezähler SensoStar2+-ES-Allmess , Qn 0.6@False@WMZ@ @200430@</item>
-        <item>859@Wärmezähler SensoStar2+-ES-Allmess , Qn 1.5@False@WMZ@ @200431@</item>
-        <item>860@Wärmezähler SensoStar2+ , Qn 2.5@False@WMZ@ @200320@</item>
-        <item>861@Wärmezähler SensoStar2+-ES-KOAX , Qn 2.5 ista@False@WMZ@ @200420@</item>
-        <item>862@Wärmezähler SensoStar2+-ES-Allmess , Qn 2.5@False@WMZ@ @200432@</item>
-        <item>863@Wärmezähler SensoStar2+-ES-TE , Qn 1.5@False@WMZ@ @200450@</item>
-        <item>864@Kompaktwärmezähler SC 539 - Qn 0.6@False@WMZ@ @200010@</item>
-        <item>865@Kompaktwärmezähler SC 539 - Qn 1.5@False@WMZ@ @200020@</item>
-        <item>866@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301000@</item>
-        <item>867@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301010@</item>
-        <item>868@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301020@</item>
-        <item>1255@Funk-Ventil-Kaltwasserzähler- e-wirelesse inkl.M.@False@KWZ@ @ @</item>
-        <item>870@Wärmezähler SensoStar2+ , Qn 0.6, Impulsausgang@False@WMZ@ @200301@</item>
-        <item>871@Wärmezähler SensoStar2+ , Qn 1.5, Impulsausgang@False@WMZ@ @200311@</item>
-        <item>872@Wärmezähler SensoStar2+ , Qn 2.5, Impulsausgang@False@WMZ@ @200321@</item>
-        <item>873@Wärmezähler SensoStar2+ , Qn 2.5 WÄRME/KÄLTE@False@WMZ@ @200327@</item>
-        <item>874@Wärmezähler SensoStar2+  Qn 1.5 SOLAR@False@WMZ@ @200315@</item>
-        <item>875@Volumenmessteil Qn 2,5 m3/h, waagrecht@False@WMZ@ @182205@</item>
-        <item>876@Wärmezähler SensoStar2+ , Qn 0.6, M-Bus@False@WMZ@ @200302@</item>
-        <item>877@Wärmezähler SensoStar2+ , Qn 1.5, M-Bus@False@WMZ@ @200312@</item>
-        <item>878@Rechenwerk SensoStar2C@False@WMZ@ @301200@</item>
-        <item>879@Rechenwerk SensoStar2C@False@WMZ@ @301210@</item>
-        <item>880@Rechenwerk SensoStar2C@False@WMZ@ @301220@</item>
-        <item>881@Wärmezähler SensoStar2+ , Qn 2.5, M-Bus@False@WMZ@ @200322@</item>
-        <item>882@Volumenmessteil Qn 2,5 m3/h, Steigrohr@False@WMZ@ @183025@</item>
-        <item>883@Volumenmessteil Qn 2,5 m3/h, Fallrohr@False@WMZ@ @184025@</item>
-        <item>884@Kompaktwärmezähler SC539 - Qn0.6 - OC@False@WMZ@ @200045@</item>
-        <item>885@Kompaktwärmezähler SC539 - Qn1.5 - OC@False@WMZ@ @200055@</item>
-        <item>886@Wärmezähler Sharky Heat, Qn 0.6@False@WMZ@ @200700@</item>
-        <item>887@Wärmezähler Sharky Heat, Qn 1.5@False@WMZ@ @200710@</item>
-        <item>888@Kompaktwärmezähler SC539 - Qn2.5 - OC@False@WMZ@ @200065@</item>
-        <item>889@Kompaktwärmezähler SC539 - Qn0.6 -M-Bus@False@WMZ@ @200070@</item>
-        <item>890@Kompaktwärmezähler SC539 - Qn1.5 - M-Bus@False@WMZ@ @200080@</item>
-        <item>891@Wärmezähler Sharky Heat, Qn 2.5@False@WMZ@ @200720@</item>
-        <item>892@Volumenmessteil Qn 2,5 m3/h, waagrecht@False@WMZ@ @182215@</item>
-        <item>893@Kompaktwärmezähler SC539 - Qn2.5 - M-Bus@False@WMZ@ @200090@</item>
-        <item>894@Volumenmessteil Qn 3,5 m3/h, waagrecht@False@WMZ@ @182310@</item>
-        <item>895@Volumenmessteil Qn 6 m3/h, waagrecht@False@WMZ@ @182410@</item>
-        <item>896@Kompaktwärmezähler SC539 - Qn 0.6 - Funk@False@WMZ@ @200093@</item>
-        <item>897@Kompaktwärmezähler SC539 - Qn1.5 - Funk@False@WMZ@ @200095@</item>
-        <item>898@Kompaktwärmezähler SC539 - Qn2.5 - Funk@False@WMZ@ @200097@</item>
-        <item>899@Volumenmessteil Qn 3,5 m3/h, Steigrohr@False@WMZ@ @183035@</item>
-        <item>314@Heizkostenverteiler@False@HKV@ @000000@</item>
-        <item>316@Kaltwasserzähler@False@KWZ@ @000000@</item>
-        <item>318@Stromzähler@False@STZ@ @000000@</item>
-        <item>317@Warmwasserzähler@False@WWZ@ @000000@</item>
-        <item>319@Wärmemengenzähler@False@WMZ@ @000000@</item>
-        <item>900@Volumenmessteil Qn 3,5 m3/h, Fallrohr@False@WMZ@ @184035@</item>
-        <item>901@Volumenmessteil Qn 6 m3/h, Steigrohr@False@WMZ@ @183045@</item>
-        <item>902@Volumenmessteil Qn 6 m3/h, Fallrohr@False@WMZ@ @184045@</item>
-        <item>903@Volumenmessteil Qn 3,5 m3/h, waagrecht@False@WMZ@ @182320@</item>
-        <item>904@Volumenmessteil Qn 6 m3/h, waagrecht@False@WMZ@ @182420@</item>
-        <item>905@Wärmezähler ProSelect-MT2,5@False@WMZ@ @250220@</item>
-        <item>906@Wärmezähler ProSelect-MTF2,5@False@WMZ@ @250250@</item>
-        <item>320@Brunata Verdunster (Optronic)@False@HKV@ @ @</item>
-        <item>907@Wärmezähler ProSelect-MTS2,5@False@WMZ@ @250280@</item>
-        <item>908@Volumenmessteil Qn 10 m3/h, waagrecht@False@WMZ@ @182510@</item>
-        <item>909@Wärmezähler ProSelect-MT3,5@False@WMZ@ @250225@</item>
-        <item>910@Wärmezähler ProSelect-MT6@False@WMZ@ @250230@</item>
-        <item>911@Volumenmessteil Qn 10 m3/h, Steigrohr@False@WMZ@ @183055@</item>
-        <item>912@Volumenmessteil Qn 10 m3/h, Fallrohr@False@WMZ@ @184055@</item>
-        <item>913@Wärmezähler ProSelect-MTF3,5@False@WMZ@ @250255@</item>
-        <item>914@Wärmezähler ProSelect-MTS3,5@False@WMZ@ @250285@</item>
-        <item>915@Wärmezähler ProSelect-MTF6@False@WMZ@ @250260@</item>
-        <item>916@Wärmezähler ProSelect-MTS6@False@WMZ@ @250290@</item>
-        <item>917@Volumenmessteil Qn 10 m3/h, waagrecht@False@WMZ@ @182520@</item>
-        <item>918@Wärmezähler ProSelect-MT10@False@WMZ@ @250235@</item>
-        <item>919@Wärmezähler Sharky Heat, Qn 3.5@False@WMZ@ @250400@</item>
-        <item>920@Wärmezähler ProSelect-MTF10@False@WMZ@ @250265@</item>
-        <item>921@Wärmezähler ProSelect-MTS10@False@WMZ@ @250295@</item>
-        <item>922@Wärmezähler Sharky, Qn 10@False@WMZ@ @250410@</item>
-        <item>923@Volumenmessteil BL 200mm-100l/Imp-Reed-120°C@False@WMZ@ @185010@</item>
-        <item>924@Volumenmessteil BL 270mm-100l/Imp-Reed-120°C@False@WMZ@ @186020@</item>
-        <item>925@Wärmezähler ProSelect-WS50@False@WMZ@ @250300@</item>
-        <item>926@Wärmezähler ProSelect-WP50@False@WMZ@ @250325@</item>
-        <item>927@Volumenmessteil BL 200mm-100l/Imp-Reed-120°C@False@WMZ@ @185080@</item>
-        <item>928@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @186100@</item>
-        <item>929@Volumenmessteil BL 225mm-100l/Imp-Reed-120°C@False@WMZ@ @185150@</item>
-        <item>930@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @186180@</item>
-        <item>931@Wärmezähler ProSelect-WS65@False@WMZ@ @250305@</item>
-        <item>932@Wärmezähler ProSelect-WP65@False@WMZ@ @250330@</item>
-        <item>933@Volumenmessteil BL 250mm-100l/Imp-Reed-120°C@False@WMZ@ @185220@</item>
-        <item>934@Volumenmessteil BL 360mm-100l/Imp-Reed-120°C@False@WMZ@ @186250@</item>
-        <item>935@Wärmezähler ProSelect-WS80@False@WMZ@ @250310@</item>
-        <item>936@Wärmezähler ProSelect-WP80@False@WMZ@ @250335@</item>
-        <item>937@Volumenmessteil BL 250mm-100l/Imp-Reed-120°C@False@WMZ@ @185290@</item>
-        <item>938@Wärmezähler ProSelect-WS100@False@WMZ@ @250315@</item>
-        <item>939@Wärmezähler ProSelect-WP100@False@WMZ@ @250340@</item>
-        <item>940@Wärmezähler ProSelect-WP125@False@WMZ@ @250345@</item>
-        <item>941@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @185360@</item>
-        <item>942@Volumenmessteil BL 500mm-100l/Imp-Reed-120°C@False@WMZ@ @186320@</item>
-        <item>943@Wärmezähler ProSelect-WS150@False@WMZ@ @250320@</item>
-        <item>944@Wärmezähler ProSelect-WP150@False@WMZ@ @250350@</item>
-        <item>945@Aufputz-Warmwasserzähler Qn 1.5 m3/h 80mm-1/2"@False@WWZ@ @104310@</item>
-        <item>946@Aufputz-Warmwasserzähler Qn 1.5 m3/h 110mm-1/2"@False@WWZ@ @104320@</item>
-        <item>947@Aufputz-Warmwasserzähler Qn 2.5 m3/h 130mm-3/4"@False@WWZ@ @104330@</item>
+        <item>792@Aufputz-Kaltwasserzähler Qn 2.5 m3/h 130mm-3/4"@False@KWZ@ @100330@</item>
         <item>948@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104415@</item>
         <item>949@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104425@</item>
         <item>950@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104426@</item>
         <item>951@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104427@</item>
-        <item>952@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114015@</item>
-        <item>953@UP Warmwasser ABB MO-C@False@WWZ@ @114030@</item>
-        <item>324@EHKV Typ Exim V1-R@False@HKV@ @610250@</item>
-        <item>954@Waschtisch-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @400050@</item>
-        <item>955@Zapfhahn-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @410050@</item>
-        <item>956@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114036@</item>
-        <item>957@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114045@</item>
-        <item>958@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114061@</item>
-        <item>959@Up.-Messkapsel Warmwasser Typ: Metrona 307/1 W2@False@WWZ@ @114035@</item>
-        <item>960@UP Warmwasser ABB MO-I (passend auf ISTA)@False@WWZ@ @114022@</item>
-        <item>961@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114060@</item>
-        <item>962@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114050@</item>
-        <item>963@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 @False@WWZ@ @700019-02@</item>
-        <item>964@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-02@</item>
-        <item>965@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114041@</item>
-        <item>966@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @104200@</item>
         <item>967@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104428@</item>
         <item>968@Aufputz-Warmwasserzähler m. Verlängerung@False@WWZ@ @104435@</item>
+        <item>966@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @104200@</item>
         <item>969@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @106310@</item>
         <item>970@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @106315@</item>
         <item>971@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @106320@</item>
         <item>972@Aufputz-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @106325@</item>
-        <item>973@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114040@</item>
+        <item>946@Aufputz-Warmwasserzähler Qn 1.5 m3/h 110mm-1/2"@False@WWZ@ @104320@</item>
+        <item>945@Aufputz-Warmwasserzähler Qn 1.5 m3/h 80mm-1/2"@False@WWZ@ @104310@</item>
         <item>974@Aufputz-Warmwasserzähler Qn 2.5 m3/h@False@WWZ@ @106330@</item>
         <item>975@Aufputz-Warmwasserzähler Qn 2.5 m3/h@False@WWZ@ @106335@</item>
-        <item>976@VZ/MBZ-Meßblock Warmwasser (A)@False@WWZ@ @700019@</item>
+        <item>947@Aufputz-Warmwasserzähler Qn 2.5 m3/h 130mm-3/4"@False@WWZ@ @104330@</item>
+        <item>1110@Blindabdeckung zu MO-C, kplt.@False@ZUB@ @730640@</item>
+        <item>1112@Blindabdeckung zu MO-C, kplt.@False@ZUB@ @730640@</item>
+        <item>320@Brunata Verdunster (Optronic)@False@HKV@ @ @</item>
+        <item>1008@Dichtung Fiber 1/2"@False@ZUB@ @740100@</item>
+        <item>1010@Dichtung Fiber 1/2"@False@ZUB@ @740100@</item>
+        <item>1013@Dichtung Fiber 3/4"@False@ZUB@ @740105@</item>
+        <item>1016@Dichtung Fiber 3/4"@False@ZUB@ @740105@</item>
+        <item>1009@Dichtung Kunststoff 1/2"@False@ZUB@ @740101@</item>
+        <item>1011@Dichtung Kunststoff 1/2"@False@ZUB@ @740101@</item>
+        <item>1014@Dichtung Kunststoff 3/4"@False@ZUB@ @740106@</item>
+        <item>1017@Dichtung Kunststoff 3/4"@False@ZUB@ @740106@</item>
+        <item>1020@Distanzring Manschette, grau@False@ZUB@ @730615@</item>
+        <item>1021@Distanzring Manschette, grau@False@ZUB@ @730615@</item>
+        <item>1024@Distanzring Manschette, verchromt@False@ZUB@ @730620@</item>
+        <item>1025@Distanzring Manschette, verchromt@False@ZUB@ @730620@</item>
+        <item>1120@Distanzstück MBZ, 63mm@False@ZUB@ @700250@</item>
+        <item>1121@Distanzstück MBZ, 63mm@False@ZUB@ @700250@</item>
+        <item>1105@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
+        <item>1107@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
+        <item>308@EHKV ECOTRON1@False@HKV@ @610010@</item>
+        <item>1280@EHKV Typ Exim (ohne Funk)@False@HKV@ @ @</item>
+        <item>324@EHKV Typ Exim V1-R@False@HKV@ @610250@</item>
+        <item>309@EHKV Typ Sontex 555@False@HKV@ @610511@</item>
+        <item>311@EHKV Typ Sontex 556 Funksystem@False@HKV@ @640511@</item>
+        <item>1285@EHKV Typ Sontex 556 Funksystem 7,00@False@HKV@ @ @</item>
+        <item>1249@EHKV Typ Sontex 556 Funksystem mit Fernfühler@False@HKV@ @ @</item>
+        <item>1292@EHKV Typ Sontex 565@False@HKV@ @EHKV Typ Sontex 565@</item>
+        <item>1273@EHKV Typ Sontex 566 Funksystem@True@HKV@ @ @</item>
+        <item>1274@EHKV Typ Sontex 566 Funksystem mit Fernfühler@True@HKV@ @ @</item>
+        <item>1264@ei Elektronics i650@False@RWM@ @ @</item>
+        <item>1336@ei Elektronics i650 (Fremdgerät)@False@RWM@ @ @</item>
+        <item>1158@Einbaubügel senkrecht Qn2,5, 1" x 1"@False@ZUB@ @700216@</item>
+        <item>1159@Einbaubügel senkrecht Qn2,5, 1" x 1"@False@ZUB@ @700216@</item>
+        <item>1156@Einbaubügel senkrecht Qn2,5, 3/4" x 3/4"@False@ZUB@ @700215@</item>
+        <item>1157@Einbaubügel senkrecht Qn2,5, 3/4" x 3/4"@False@ZUB@ @700215@</item>
+        <item>1200@Einbaubügel senkrecht Qn6, 1" x 1"@False@ZUB@ @700219@</item>
+        <item>1201@Einbaubügel senkrecht Qn6, 1" x 1"@False@ZUB@ @700219@</item>
+        <item>1202@Einbaubügel senkrecht Qn6, 5/4" x 5/4"@False@ZUB@ @700220@</item>
+        <item>1203@Einbaubügel senkrecht Qn6, 5/4" x 5/4"@False@ZUB@ @700220@</item>
+        <item>1220@Einbaubügel waagr. Qn10, 2" x 2"@False@ZUB@ @700211@</item>
+        <item>1221@Einbaubügel waagr. Qn10, 2" x 2"@False@ZUB@ @700211@</item>
+        <item>1214@Einbaubügel waagr. Qn10, 6/4" x 6/4"@False@ZUB@ @700210@</item>
+        <item>1215@Einbaubügel waagr. Qn10, 6/4" x 6/4"@False@ZUB@ @700210@</item>
+        <item>1151@Einbaubügel waagr. Qn2.5, 1" x 1"@False@ZUB@ @700202@</item>
+        <item>1153@Einbaubügel waagr. Qn2.5, 1" x 1"@False@ZUB@ @700202@</item>
+        <item>1150@Einbaubügel waagr. Qn2.5, 3/4" x 3/4"@False@ZUB@ @700200@</item>
+        <item>1152@Einbaubügel waagr. Qn2.5, 3/4" x 3/4"@False@ZUB@ @700200@</item>
+        <item>1182@Einbaubügel waagr. Qn6, 1" x 1"@False@ZUB@ @700203@</item>
+        <item>1183@Einbaubügel waagr. Qn6, 1" x 1"@False@ZUB@ @700203@</item>
+        <item>1198@Einbaubügel waagr. Qn6, 5/4" x 5/4"@False@ZUB@ @700204@</item>
+        <item>1199@Einbaubügel waagr. Qn6, 5/4" x 5/4"@False@ZUB@ @700204@</item>
+        <item>1154@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710206@</item>
+        <item>1155@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710206@</item>
+        <item>1169@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710207@</item>
+        <item>1171@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710207@</item>
+        <item>1178@Einbausatz WMZ Qn 2,5@False@ZUB@ @710215@</item>
+        <item>1179@Einbausatz WMZ Qn 2,5@False@ZUB@ @710215@</item>
+        <item>1184@Einbausatz WMZ Qn 2,5@False@ZUB@ @710216@</item>
+        <item>1185@Einbausatz WMZ Qn 2,5@False@ZUB@ @710216@</item>
+        <item>1140@Einbausatz WMZ-Qn 2,5@False@ZUB@ @710209@</item>
+        <item>1141@Einbausatz WMZ-Qn 2,5@False@ZUB@ @710209@</item>
+        <item>1242@Elan-Karte inklusive Anschlusskabel@False@ZUB@ @750055@</item>
+        <item>1243@Elan-Karte inklusive Anschlusskabel@False@ZUB@ @750055@</item>
+        <item>1295@Funk 281 Aufputz Kaltwasserzähler 110mm@True@KWZ@ @0281R11E0 @</item>
+        <item>1299@Funk 281 Aufputz Kaltwasserzähler 130mm@True@KWZ@ @0281R21E0 @</item>
+        <item>1298@Funk 281 Aufputz Kaltwasserzähler Qn 1,5 80mm@True@KWZ@ @0281R01E0@</item>
+        <item>1296@Funk 281 Aufputz Warmwasserzähler 110mm@True@WWZ@ @0281R10E0 @</item>
+        <item>1300@Funk 281 Aufputz Warmwasserzähler 130mm@True@WWZ@ @0281R20E0 @</item>
+        <item>1297@Funk 281 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@ @0281R00E0@</item>
+        <item>1290@Funk 281 Up. Messkapsel Kaltwasserzähler Allmess@True@KWZ@ @0281RC1E0@</item>
+        <item>1291@Funk 281 Up. Messkapsel Warmwasserzähler Allmess@True@WWZ@ @0281RC0E0@</item>
+        <item>1347@Funk 281 Up.-Messkapsel Kaltwasser Brunata HT3@True@KWZ@ @0281RE1E0@</item>
+        <item>1293@Funk 281 Up.-Messkapsel Kaltwasserzähler ABB@True@KWZ@ @0281RA1E0 @</item>
+        <item>1289@Funk 281 Up.-Messkapsel Kaltwasserzähler KOAX ista@True@KWZ@ @0281RD1E0@</item>
+        <item>1344@Funk 281 Up.-Messkapsel Kaltwasserzähler Techem@True@KWZ@ @0281RB1E0@</item>
+        <item>1346@Funk 281 Up.-Messkapsel Warmwasser Brunata HT3@True@WWZ@ @0281RE0E0@</item>
+        <item>1288@Funk 281 Up.-Messkapsel Warmwasser KOAX ista@True@WWZ@ @0281RD0E0@</item>
+        <item>1294@Funk 281 Up.-Messkapsel Warmwasserzähler ABB@True@WWZ@ @0281RA0E0@</item>
+        <item>1345@Funk 281 Up.-Messkapsel Warmwasserzähler Techem@True@WWZ@ @0281RB0E0@</item>
+        <item>856@Funk 539 Wärmezähler QN 0,6  -KOAX - ista@False@WMZ@ @0739TL141R11@</item>
+        <item>1335@Funk 541 Wärmezähler SensoStar Ultraschall Qn 3.5 BL 150mm @False@WMZ@ @200954A50@</item>
+        <item>1329@Funk 581 - Kaltwasserzähler Brunata 307/2 K3 @True@KWZ@581@110037@</item>
+        <item>1271@Funk 581 - Up. Kaltwasserzähler 581  Allmess @True@KWZ@581@60050@</item>
+        <item>1328@Funk 581 - Warmwasserzähler Brunata 307/2 W3 @True@WWZ@581@114037@</item>
+        <item>1303@Funk 581 Aufputz Kaltwasserzähler 110mm@True@KWZ@581@25103@</item>
+        <item>1305@Funk 581 Aufputz Kaltwasserzähler 130mm@True@KWZ@581@25105@</item>
+        <item>1304@Funk 581 Aufputz Kaltwasserzähler Qn 1,5 80mm@True@KWZ@581@25102@</item>
+        <item>1306@Funk 581 Aufputz Warmwasserzähler 110mm@True@WWZ@581@25603@</item>
+        <item>1308@Funk 581 Aufputz Warmwasserzähler 130mm@True@WWZ@581@25605@</item>
+        <item>1307@Funk 581 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@581@25602@</item>
+        <item>1267@Funk 581 -Up.  Kaltwasserzähler-  KOAX ista@True@KWZ@581@50030@</item>
+        <item>1272@Funk 581 Up.  Warmwasserzähler 581  Allmess@True@WWZ@581@60060@</item>
+        <item>1302@Funk 581 Up.-Messkapsel Kaltwasserzähler ABB@True@KWZ@581@60010@</item>
+        <item>1301@Funk 581 Up.-Messkapsel Warmwasserzähler ABB@True@WWZ@581@60020@</item>
+        <item>1341@Funk 583 - Up. Kaltwasserzähler Allmess @False@KWZ@ @ @</item>
+        <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@False@WWZ@ @ @</item>
+        <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @</item>
+        <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @</item>
+        <item>1250@Funk -Unterputz-Messkapsel Kaltwasser e-wireless @False@KWZ@ @110025@</item>
+        <item>1251@Funk -Unterputz-Messkapsel Warmwasser e-wireless @False@WWZ@ @ @</item>
+        <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @False@WMZ@ @RN141R11 @</item>
+        <item>1309@Funk Wärmemengenzähler 739 Qn 1,5 Baulänge 130mm@True@WMZ@ @0739RN141R11E00@</item>
+        <item>1316@Funk Wärmezähler SC739 - Qn 0,6 - Allmess- Sontex@True@WMZ@ @0739SJ841R11E00@</item>
+        <item>1312@Funk Wärmezähler SC739 - Qn 0,6 - KOAX ista@True@WMZ@ @0739TJ141R11E00@</item>
+        <item>1314@Funk Wärmezähler SC739 - Qn1.5 - Allmess- Sontex@True@WMZ@ @0739SL841R11E00@</item>
+        <item>1310@Funk Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141R11E00@</item>
+        <item>1269@Funk Wärmezähler SC739 - Qn1.5 - Sontex@False@WMZ@ @ @</item>
+        <item>1315@Funk Wärmezähler SC739 - Qn2.5 - Allmess- Sontex@True@WMZ@ @0739SN841R11E00@</item>
+        <item>1270@Funk Wärmezähler SC739 - Qn2.5 - Funk- 130mm @True@WMZ@ @739RN141R11E00@</item>
+        <item>1311@Funk Wärmezähler SC739 - Qn2.5 - KOAX ista@True@WMZ@ @0739TN141R11E00@</item>
+        <item>1261@Funk Wärmezähler SC739 Qn 1,5 Baulänge 110mm@True@WMZ@ @0739RL141R11E00@</item>
+        <item>1330@Funk Wärmezähler SC739 Qn 1,5 Baulänge 110mm@True@WMZ@ @0739RL241R11E00@</item>
+        <item>1339@Funk Wärmezähler SC789 Qn 1,5 Baulänge 110mm@False@WMZ@ @0789RL141R5E@</item>
+        <item>1254@Funk -Zapfhahn- Kaltwasserzähler e-wireless @False@KWZ@ @ @</item>
+        <item>1266@Funk-581 -Warmwasserzähler UP - KOAX ista@True@WWZ@581@50040@</item>
+        <item>1244@Funkmodem SONTEX 545@False@GAS@ @750050@</item>
+        <item>1245@Funkmodem SONTEX 545@False@GAS@ @750050@</item>
+        <item>1224@Funkmodul 540-2@False@GAS@ @750100@</item>
+        <item>1225@Funkmodul 540-2@False@GAS@ @750100@</item>
+        <item>1226@Funkmodul 540-4@False@GAS@ @750120@</item>
+        <item>1227@Funkmodul 540-4@False@GAS@ @750120@</item>
+        <item>1255@Funk-Ventil-Kaltwasserzähler- e-wirelesse inkl.M.@False@KWZ@ @ @</item>
+        <item>1256@Funk-Ventil-Warmwasserzähler- e-wirelesse inkl. M.@False@WWZ@ @ @</item>
+        <item>1246@Gaszähler@False@GAS@ @000000@</item>
+        <item>1337@GIRA Fremdgerät@False@RWM@ @ @</item>
+        <item>1277@Heckatron Rauchmelder@False@RWM@ @ @</item>
+        <item>314@Heizkostenverteiler@False@HKV@ @000000@</item>
+        <item>1206@Impulszählermodul IM001@False@ZUB@ @760105@</item>
+        <item>1207@Impulszählermodul IM001@False@ZUB@ @760105@</item>
+        <item>1218@Impulszählermodul IM002@False@ZUB@ @760110@</item>
+        <item>1219@Impulszählermodul IM002@False@ZUB@ @760110@</item>
+        <item>1228@Impulszählermodul IM004@False@ZUB@ @760115@</item>
+        <item>1229@Impulszählermodul IM004@False@ZUB@ @760115@</item>
+        <item>1263@Ista - HKV@False@HKV@ @ @</item>
+        <item>1265@Ista Warmwasserzähler@False@WWZ@ @ @</item>
+        <item>316@Kaltwasserzähler@False@KWZ@ @000000@</item>
+        <item>1333@Kaltwasserzähler Qn 1,5  Modulmeter MOC @False@KWZ@ @60010@</item>
+        <item>840@Kaltwasserzähler Qn 10 m3/h@False@KWZ@ @120071@</item>
+        <item>838@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @122068@</item>
+        <item>839@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @122070@</item>
+        <item>842@Kaltwasserzähler Qn 10 m3/h, Steigrohr@False@KWZ@ @123072@</item>
+        <item>834@Kaltwasserzähler Qn 10 m3/h, waagrecht@False@KWZ@ @120070@</item>
+        <item>841@Kaltwasserzähler Qn 10 m3/h, waagrecht@False@KWZ@ @121072@</item>
+        <item>826@Kaltwasserzähler Qn 2.5 m3/h@False@KWZ@ @120031@</item>
+        <item>832@Kaltwasserzähler Qn 2.5 m3/h, Fallrohr@False@KWZ@ @124030@</item>
+        <item>809@Kaltwasserzähler Qn 2.5 m3/h, Steigrohr@False@KWZ@ @122030@</item>
+        <item>835@Kaltwasserzähler Qn 2.5 m3/h, Steigrohr@False@KWZ@ @123032@</item>
+        <item>797@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @120030@</item>
+        <item>833@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @121032@</item>
+        <item>831@Kaltwasserzähler Qn 6 m3/h@False@KWZ@ @120061@</item>
+        <item>827@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @122060@</item>
+        <item>837@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @123062@</item>
+        <item>820@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @120060@</item>
+        <item>836@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @121062@</item>
+        <item>864@Kompaktwärmezähler SC 539 - Qn 0.6@False@WMZ@ @200010@</item>
+        <item>865@Kompaktwärmezähler SC 539 - Qn 1.5@False@WMZ@ @200020@</item>
+        <item>204@Kompaktwärmezähler SC 539 - Qn 2.5@False@WMZ@ @200030@</item>
+        <item>896@Kompaktwärmezähler SC539 - Qn 0.6 - Funk@False@WMZ@ @200093@</item>
+        <item>884@Kompaktwärmezähler SC539 - Qn0.6 - OC@False@WMZ@ @200045@</item>
+        <item>889@Kompaktwärmezähler SC539 - Qn0.6 -M-Bus@False@WMZ@ @200070@</item>
+        <item>897@Kompaktwärmezähler SC539 - Qn1.5 - Funk@False@WMZ@ @200095@</item>
+        <item>890@Kompaktwärmezähler SC539 - Qn1.5 - M-Bus@False@WMZ@ @200080@</item>
+        <item>885@Kompaktwärmezähler SC539 - Qn1.5 - OC@False@WMZ@ @200055@</item>
+        <item>898@Kompaktwärmezähler SC539 - Qn2.5 - Funk@False@WMZ@ @200097@</item>
+        <item>893@Kompaktwärmezähler SC539 - Qn2.5 - M-Bus@False@WMZ@ @200090@</item>
+        <item>888@Kompaktwärmezähler SC539 - Qn2.5 - OC@False@WMZ@ @200065@</item>
+        <item>1091@Kugelhahn 1" IG@False@ZUB@ @740310@</item>
+        <item>1092@Kugelhahn 1" IG@False@ZUB@ @740310@</item>
+        <item>1102@Kugelhahn 1" IG@False@ZUB@ @740313@</item>
+        <item>1103@Kugelhahn 1" IG@False@ZUB@ @740313@</item>
+        <item>1106@Kugelhahn 1" IG@False@ZUB@ @740312@</item>
+        <item>1108@Kugelhahn 1" IG@False@ZUB@ @740312@</item>
+        <item>1040@Kugelhahn 1/2" IG@False@ZUB@ @740300@</item>
+        <item>1041@Kugelhahn 1/2" IG@False@ZUB@ @740300@</item>
+        <item>1066@Kugelhahn 1/2" IG@False@ZUB@ @740302@</item>
+        <item>1067@Kugelhahn 1/2" IG@False@ZUB@ @740303@</item>
+        <item>1070@Kugelhahn 1/2" IG@False@ZUB@ @740302@</item>
+        <item>1071@Kugelhahn 1/2" IG@False@ZUB@ @740303@</item>
+        <item>1051@Kugelhahn 3/4" IG@False@ZUB@ @740305@</item>
+        <item>1052@Kugelhahn 3/4" IG@False@ZUB@ @740305@</item>
+        <item>1089@Kugelhahn 3/4" IG@False@ZUB@ @740308@</item>
+        <item>1090@Kugelhahn 3/4" IG@False@ZUB@ @740308@</item>
+        <item>1098@Kugelhahn 3/4" IG@False@ZUB@ @740307@</item>
+        <item>1099@Kugelhahn 3/4" IG@False@ZUB@ @740309@</item>
+        <item>1100@Kugelhahn 3/4" IG@False@ZUB@ @740307@</item>
+        <item>1101@Kugelhahn 3/4" IG@False@ZUB@ @740309@</item>
+        <item>1234@M-Bus Auslese-/Speisegerät PW20@False@ZUB@ @760010@</item>
+        <item>1235@M-Bus Auslese-/Speisegerät PW20@False@ZUB@ @760010@</item>
+        <item>1230@M-Bus Auslese-/Speisegerät PW3@False@ZUB@ @760005@</item>
+        <item>1231@M-Bus Auslese-/Speisegerät PW3@False@ZUB@ @760005@</item>
+        <item>1240@M-Bus Auslese-/Speisegerät PW60@False@ZUB@ @760015@</item>
+        <item>1241@M-Bus Auslese-/Speisegerät PW60@False@ZUB@ @760015@</item>
+        <item>1278@Mertens Rauchmelder@False@RWM@ @ @</item>
+        <item>1061@Metallschlauch, flexibel, Länge: 300mm@False@ZUB@ @700003@</item>
+        <item>1088@Metallschlauch, flexibel, Länge: 400mm@False@ZUB@ @700002@</item>
+        <item>828@Mischbatterie-Kaltwasserzähler@False@KWZ@ @430015@</item>
+        <item>830@Mischbatterie-Kaltwasserzähler@False@KWZ@ @430011@</item>
+        <item>981@Mischbatterie-Warmwasserzähler@False@WWZ@ @430055@</item>
+        <item>983@Mischbatterie-Warmwasserzähler@False@WWZ@ @430051@</item>
+        <item>1166@Modul Batterie 11+1 Jahr@False@ZUB@ @710602@</item>
+        <item>1167@Modul Batterie 11+1 Jahr@False@ZUB@ @710602@</item>
+        <item>1146@Modul Batterie 6+1 Jahr@False@ZUB@ @710600@</item>
+        <item>1147@Modul Batterie 6+1 Jahr@False@ZUB@ @710600@</item>
+        <item>1162@Modul Netz 12 - 24 VDC@False@ZUB@ @710608@</item>
+        <item>1165@Modul Netz 12 - 24 VDC@False@ZUB@ @710608@</item>
+        <item>1160@Modul Netz 230V - 45/60Hz@False@ZUB@ @710604@</item>
+        <item>1163@Modul Netz 230V - 45/60Hz@False@ZUB@ @710604@</item>
+        <item>1161@Modul Netz 24VAC - 45/65Hz@False@ZUB@ @710606@</item>
+        <item>1164@Modul Netz 24VAC - 45/65Hz@False@ZUB@ @710606@</item>
+        <item>1208@Montageblock/A DUO@False@ZUB@ @700150@</item>
+        <item>1211@Montageblock/A DUO@False@ZUB@ @700150@</item>
+        <item>1188@Montageblock/A MONO@False@ZUB@ @700100@</item>
+        <item>1191@Montageblock/A MONO@False@ZUB@ @700100@</item>
+        <item>1210@Montageblock/All DUO@False@ZUB@ @700153@</item>
+        <item>1213@Montageblock/All DUO@False@ZUB@ @700153@</item>
+        <item>1190@Montageblock/All MONO@False@ZUB@ @700103@</item>
+        <item>1193@Montageblock/All MONO@False@ZUB@ @700103@</item>
+        <item>1204@Montageblock/I DUO@False@ZUB@ @700151@</item>
+        <item>1205@Montageblock/I DUO@False@ZUB@ @700151@</item>
+        <item>1222@Montageblock/I DUO@False@ZUB@ @700171@</item>
+        <item>1223@Montageblock/I DUO@False@ZUB@ @700171@</item>
+        <item>1180@Montageblock/I MONO@False@ZUB@ @700101@</item>
+        <item>1181@Montageblock/I MONO@False@ZUB@ @700101@</item>
+        <item>1216@Montageblock/Mi DUO@False@ZUB@ @700154@</item>
+        <item>1217@Montageblock/Mi DUO@False@ZUB@ @700154@</item>
+        <item>1196@Montageblock/Mi MONO@False@ZUB@ @700104@</item>
+        <item>1197@Montageblock/Mi MONO@False@ZUB@ @700104@</item>
+        <item>1209@Montageblock/Te DUO@False@ZUB@ @700152@</item>
+        <item>1212@Montageblock/Te DUO@False@ZUB@ @700152@</item>
+        <item>1189@Montageblock/Te MONO@False@ZUB@ @700102@</item>
+        <item>1192@Montageblock/Te MONO@False@ZUB@ @700102@</item>
+        <item>1236@Montagekoffer@False@ZUB@ @730510@</item>
+        <item>1237@Montagekoffer@False@ZUB@ @730510@</item>
+        <item>1019@Montagesatz Gliederheizkörper@False@ZUB@ @720050@</item>
+        <item>1018@Montagesatz Gliederheizkörper@False@ZUB@ @720050@</item>
+        <item>1022@Montagesatz Platte für Sontex 501/502@False@ZUB@ @720005@</item>
+        <item>1023@Montagesatz Platte für Sontex 501/502@False@ZUB@ @720005@</item>
+        <item>1012@Montagesatz Plattenheizkörper@False@ZUB@ @720000@</item>
+        <item>1015@Montagesatz Plattenheizkörper@False@ZUB@ @720000@</item>
+        <item>1030@Montagesatz Röhre für Sontex 501/502@False@ZUB@ @720055@</item>
+        <item>1031@Montagesatz Röhre für Sontex 501/502@False@ZUB@ @720055@</item>
+        <item>1194@Montageschlüssel Kombi (Metall)@False@ZUB@ @730560@</item>
+        <item>1195@Montageschlüssel Kombi (Metall)@False@ZUB@ @730560@</item>
+        <item>1176@Montageschlüssel Metall@False@ZUB@ @730521@</item>
+        <item>1177@Montageschlüssel Metall@False@ZUB@ @730521@</item>
+        <item>1093@Montageschlüssel/A KS (Kunststoff)@False@ZUB@ @730550@</item>
+        <item>1094@Montageschlüssel/A KS (Kunststoff)@False@ZUB@ @730550@</item>
+        <item>1232@Ölzähler VZO4@False@ZUB@ @650000@</item>
+        <item>1233@Ölzähler VZO8@False@ZUB@ @650002@</item>
+        <item>1032@Plombierschelle R1", für Qn 3.5/6@False@ZUB@ @700310@</item>
+        <item>1034@Plombierschelle R1", für Qn 3.5/6@False@ZUB@ @700310@</item>
+        <item>1026@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@</item>
+        <item>1028@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@</item>
+        <item>1027@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
+        <item>1029@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
+        <item>878@Rechenwerk SensoStar2C@False@WMZ@ @301200@</item>
+        <item>879@Rechenwerk SensoStar2C@False@WMZ@ @301210@</item>
+        <item>880@Rechenwerk SensoStar2C@False@WMZ@ @301220@</item>
+        <item>866@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301000@</item>
+        <item>867@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301010@</item>
+        <item>868@Rechenwerk Supercal 531-Basisgerät@False@WMZ@ @301020@</item>
+        <item>1062@Rosette 137x137@False@ZUB@ @730315@</item>
+        <item>1063@Rosette 137x137@False@ZUB@ @730315@</item>
+        <item>1076@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730300@</item>
+        <item>1078@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730300@</item>
+        <item>1109@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730303@</item>
+        <item>1111@Rosette D140, mit Sollbruchstellen@False@ZUB@ @730303@</item>
+        <item>1072@Rosette/A 150x150@False@ZUB@ @730320@</item>
+        <item>1074@Rosette/A 150x150@False@ZUB@ @730320@</item>
+        <item>1077@Rosette/Manschette/Ring@False@ZUB@ @730330@</item>
+        <item>1079@Rosette/Manschette/Ring@False@ZUB@ @730330@</item>
+        <item>1238@Sontex 912@False@ZUB@ @800300@</item>
+        <item>1239@Sontex 912@False@ZUB@ @800300@</item>
+        <item>1327@Standard Kaltwasserzähler UP Qn 1,5 Allmess 6000@True@KWZ@ @60050@</item>
+        <item>1282@Standard Up. Kaltwasser KOAX ista@True@KWZ@ @50030@</item>
+        <item>1281@Standard Up. Warmwasserzähler - KOAX ista@True@WWZ@ @50040@</item>
+        <item>1319@Standard Wärmezähler SC739 - Qn 0,6 - Allmess@True@WMZ@ @0739SJ841S11E00@</item>
+        <item>1323@Standard Wärmezähler SC739 - Qn1.5 - 110mm@True@WMZ@ @0739RL141S11E00@</item>
+        <item>1317@Standard Wärmezähler SC739 - Qn1.5 - Allmess@True@WMZ@ @0739SL841S11E00@</item>
+        <item>1324@Standard Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141S11E00@</item>
+        <item>1287@Standard Wärmezähler SC739 - Qn2,5 - 130mm@True@WMZ@ @0739RN141S11E00@</item>
+        <item>1318@Standard Wärmezähler SC739 - Qn2.5 - Allmess@True@WMZ@ @0739SN841S11E00@</item>
+        <item>1326@Standard Warmwasserzähler UP Qn 1,5 Allmess 6000@True@WWZ@ @60060@</item>
+        <item>318@Stromzähler@False@STZ@ @000000@</item>
+        <item>1064@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
+        <item>1068@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
+        <item>1148@Tauchhülse 1/2", D6mm, 134mm, Edelstahl@False@ZUB@ @710030@</item>
+        <item>1149@Tauchhülse 1/2", D6mm, 134mm, Edelstahl@False@ZUB@ @710030@</item>
+        <item>1168@Tauchhülse 1/2", D6mm, 174mm, Edelstah@False@ZUB@ @710035@</item>
+        <item>1170@Tauchhülse 1/2", D6mm, 174mm, Edelstah@False@ZUB@ @710035@</item>
+        <item>1122@Tauchhülse 1/2", D6mm, 85mm, Edelstahl@False@ZUB@ @710025@</item>
+        <item>1123@Tauchhülse 1/2", D6mm, 85mm, Edelstahl@False@ZUB@ @710025@</item>
+        <item>1279@Telmetric@False@HKV@ @ @</item>
+        <item>1348@Ultraschall Wärmezähler Allmess Integral -MK UltraMaxx Qn 1,5@False@WMZ@ @01@</item>
+        <item>1321@Unterputz Kaltwasserzähler Qn 1,5 Metrona 307/2 K3@False@KWZ@ @110037@</item>
+        <item>1320@Unterputz Warmwasserzähler Qn 1,5 Metrona 307/2 W3@False@WWZ@ @114037@</item>
+        <item>1248@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @ @</item>
+        <item>798@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110015@</item>
+        <item>802@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110036@</item>
+        <item>803@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110045@</item>
+        <item>807@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110060@</item>
+        <item>808@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110050@</item>
+        <item>811@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110041@</item>
+        <item>819@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110040@</item>
+        <item>77@Unterputz-Messkapsel Kaltwasser@False@KWZ@ @110061@</item>
+        <item>1283@Unterputz-Messkapsel Kaltwasser KOAX@False@KWZ@ @ @</item>
+        <item>1247@Unterputz-Messkapsel Warmwasser@False@WWZ@ @ @</item>
+        <item>952@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114015@</item>
+        <item>956@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114036@</item>
+        <item>957@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114045@</item>
+        <item>958@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114061@</item>
+        <item>961@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114060@</item>
+        <item>962@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114050@</item>
+        <item>965@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114041@</item>
+        <item>973@Unterputz-Messkapsel Warmwasser@False@WWZ@ @114040@</item>
+        <item>1284@Unterputz-Messkapsel Warmwasser KOAX ista@False@WWZ@ @ @</item>
+        <item>799@UP Kaltwasser Typ: ABB MO-C@False@KWZ@ @110030@</item>
+        <item>953@UP Warmwasser ABB MO-C@False@WWZ@ @114030@</item>
+        <item>960@UP Warmwasser ABB MO-I (passend auf ISTA)@False@WWZ@ @114022@</item>
+        <item>805@Up.-Messkapsel Kaltwasser Typ: Metrona 307/1 K2@False@KWZ@ @110035@</item>
+        <item>959@Up.-Messkapsel Warmwasser Typ: Metrona 307/1 W2@False@WWZ@ @114035@</item>
+        <item>1127@UP-Gehäuse/A 1/2" IG@False@ZUB@ @730100@</item>
+        <item>1135@UP-Gehäuse/A 1/2" IG@False@ZUB@ @730100@</item>
+        <item>1128@UP-Gehäuse/A 3/4" IG@False@ZUB@ @730105@</item>
+        <item>1136@UP-Gehäuse/A 3/4" IG@False@ZUB@ @730105@</item>
+        <item>1129@UP-Gehäuse/A Löt 15mm@False@ZUB@ @730110@</item>
+        <item>1137@UP-Gehäuse/A Löt 15mm@False@ZUB@ @730110@</item>
+        <item>1130@UP-Gehäuse/A Löt 18mm@False@ZUB@ @730115@</item>
+        <item>1138@UP-Gehäuse/A Löt 18mm@False@ZUB@ @730115@</item>
+        <item>1131@UP-Gehäuse/A Löt 22mm@False@ZUB@ @730120@</item>
+        <item>1139@UP-Gehäuse/A Löt 22mm@False@ZUB@ @730120@</item>
+        <item>1124@UP-Gehäuse/I 1/2" AG u. Löt 15mm@False@ZUB@ @730050@</item>
+        <item>1132@UP-Gehäuse/I 1/2" AG u. Löt 15mm@False@ZUB@ @730050@</item>
+        <item>1113@UP-Gehäuse/I 1/2" IG@False@ZUB@ @730053@</item>
+        <item>1115@UP-Gehäuse/I 1/2" IG@False@ZUB@ @730053@</item>
+        <item>1125@UP-Gehäuse/I 3/4" AG u. Löt 18mm@False@ZUB@ @730060@</item>
+        <item>1133@UP-Gehäuse/I 3/4" AG u. Löt 18mm@False@ZUB@ @730060@</item>
+        <item>1114@UP-Gehäuse/I 3/4" IG@False@ZUB@ @730055@</item>
+        <item>1116@UP-Gehäuse/I 3/4" IG@False@ZUB@ @730055@</item>
+        <item>1126@UP-Gehäuse/I Löt 22mm@False@ZUB@ @730065@</item>
+        <item>1134@UP-Gehäuse/I Löt 22mm@False@ZUB@ @730065@</item>
+        <item>806@UPl Kaltwasser Typ: ABB MO-I (passend auf ISTA)@False@KWZ@ @110022@</item>
+        <item>829@Ventilzähler Kaltwasser@False@KWZ@ @420021@</item>
+        <item>982@Ventilzähler Warmwasser@False@WWZ@ @420061@</item>
+        <item>1119@Ventilzähler-Anschluss /A, 1"@False@ZUB@ @700009@</item>
+        <item>1117@Ventilzähler-Anschluss /A, 1/2"@False@ZUB@ @700007@</item>
+        <item>1118@Ventilzähler-Anschluss /A, 3/4"@False@ZUB@ @700008-01@</item>
+        <item>1104@Verlängerung zu VZ-Anschluss L25mm@False@ZUB@ @700013@</item>
+        <item>1059@Verlängerungshülse 80mm@False@ZUB@ @730702@</item>
+        <item>1060@Verlängerungshülse 80mm@False@ZUB@ @730702@</item>
+        <item>1144@Verschraubung 1 1/2", Messing@False@ZUB@ @740030@</item>
+        <item>1145@Verschraubung 1 1/2", Messing@False@ZUB@ @740030@</item>
+        <item>1142@Verschraubung 1 1/4", Messing@False@ZUB@ @740025@</item>
+        <item>1143@Verschraubung 1 1/4", Messing@False@ZUB@ @740025@</item>
+        <item>1080@Verschraubung 1", Messing@False@ZUB@ @740020@</item>
+        <item>1081@Verschraubung 1", Messing@False@ZUB@ @740020@</item>
+        <item>1033@Verschraubung 1/2", Messing@False@ZUB@ @740000@</item>
+        <item>1035@Verschraubung 1/2", Messing@False@ZUB@ @740000@</item>
+        <item>1044@Verschraubung 1/2", verchromt@False@ZUB@ @740005@</item>
+        <item>1045@Verschraubung 1/2", verchromt@False@ZUB@ @740005@</item>
+        <item>1186@Verschraubung 2", Messing@False@ZUB@ @740035@</item>
+        <item>1187@Verschraubung 2", Messing@False@ZUB@ @740035@</item>
+        <item>1042@Verschraubung 3/4", Messing@False@ZUB@ @740010@</item>
+        <item>1043@Verschraubung 3/4", Messing@False@ZUB@ @740010@</item>
+        <item>1073@Verschraubung 3/4", verchromt@False@ZUB@ @740015@</item>
+        <item>1075@Verschraubung 3/4", verchromt@False@ZUB@ @740015@</item>
+        <item>1047@Verschraubung Löt 15mm@False@ZUB@ @740050@</item>
+        <item>1049@Verschraubung Löt 15mm@False@ZUB@ @740050@</item>
+        <item>1053@Verschraubung Löt 18mm@False@ZUB@ @740055@</item>
+        <item>1054@Verschraubung Löt 18mm@False@ZUB@ @740055@</item>
+        <item>1065@Verschraubung Löt 22mm@False@ZUB@ @740060@</item>
+        <item>1069@Verschraubung Löt 22mm@False@ZUB@ @740060@</item>
+        <item>1055@Verschraubungsset WTZ-Armatur@False@ZUB@ @700000@</item>
+        <item>1056@Verschraubungsset WTZ-Ventil@False@ZUB@ @700001@</item>
+        <item>1097@Verschraubungsset ZHZ@False@ZUB@ @700005@</item>
+        <item>307@VHKV ECOMESS@False@HKV@ @600010@</item>
+        <item>851@Volumenmessteil@False@WMZ@ @180010@</item>
+        <item>852@Volumenmessteil@False@WMZ@ @180210@</item>
+        <item>853@Volumenmessteil@False@WMZ@ @180410@</item>
+        <item>923@Volumenmessteil BL 200mm-100l/Imp-Reed-120°C@False@WMZ@ @185010@</item>
+        <item>927@Volumenmessteil BL 200mm-100l/Imp-Reed-120°C@False@WMZ@ @185080@</item>
+        <item>929@Volumenmessteil BL 225mm-100l/Imp-Reed-120°C@False@WMZ@ @185150@</item>
+        <item>933@Volumenmessteil BL 250mm-100l/Imp-Reed-120°C@False@WMZ@ @185220@</item>
+        <item>937@Volumenmessteil BL 250mm-100l/Imp-Reed-120°C@False@WMZ@ @185290@</item>
+        <item>924@Volumenmessteil BL 270mm-100l/Imp-Reed-120°C@False@WMZ@ @186020@</item>
+        <item>928@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @186100@</item>
+        <item>930@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @186180@</item>
+        <item>941@Volumenmessteil BL 300mm-100l/Imp-Reed-120°C@False@WMZ@ @185360@</item>
+        <item>934@Volumenmessteil BL 360mm-100l/Imp-Reed-120°C@False@WMZ@ @186250@</item>
+        <item>942@Volumenmessteil BL 500mm-100l/Imp-Reed-120°C@False@WMZ@ @186320@</item>
+        <item>912@Volumenmessteil Qn 10 m3/h, Fallrohr@False@WMZ@ @184055@</item>
+        <item>911@Volumenmessteil Qn 10 m3/h, Steigrohr@False@WMZ@ @183055@</item>
+        <item>908@Volumenmessteil Qn 10 m3/h, waagrecht@False@WMZ@ @182510@</item>
+        <item>917@Volumenmessteil Qn 10 m3/h, waagrecht@False@WMZ@ @182520@</item>
+        <item>883@Volumenmessteil Qn 2,5 m3/h, Fallrohr@False@WMZ@ @184025@</item>
+        <item>882@Volumenmessteil Qn 2,5 m3/h, Steigrohr@False@WMZ@ @183025@</item>
+        <item>875@Volumenmessteil Qn 2,5 m3/h, waagrecht@False@WMZ@ @182205@</item>
+        <item>892@Volumenmessteil Qn 2,5 m3/h, waagrecht@False@WMZ@ @182215@</item>
+        <item>900@Volumenmessteil Qn 3,5 m3/h, Fallrohr@False@WMZ@ @184035@</item>
+        <item>899@Volumenmessteil Qn 3,5 m3/h, Steigrohr@False@WMZ@ @183035@</item>
+        <item>894@Volumenmessteil Qn 3,5 m3/h, waagrecht@False@WMZ@ @182310@</item>
+        <item>903@Volumenmessteil Qn 3,5 m3/h, waagrecht@False@WMZ@ @182320@</item>
+        <item>902@Volumenmessteil Qn 6 m3/h, Fallrohr@False@WMZ@ @184045@</item>
+        <item>901@Volumenmessteil Qn 6 m3/h, Steigrohr@False@WMZ@ @183045@</item>
+        <item>895@Volumenmessteil Qn 6 m3/h, waagrecht@False@WMZ@ @182410@</item>
+        <item>904@Volumenmessteil Qn 6 m3/h, waagrecht@False@WMZ@ @182420@</item>
+        <item>824@VZ/MBZ-Meßblock Kaltwasser@False@KWZ@ @700018-03@</item>
+        <item>825@VZ/MBZ-Meßblock Kaltwasser@False@KWZ@ @700018-04@</item>
+        <item>823@VZ/MBZ-Meßblock Kaltwasser (A) ABB@False@KWZ@ @700018@</item>
+        <item>810@VZ/MBZ-Meßblock Kaltwasserzähler Qn 1,5@False@KWZ@ @700018-02@</item>
+        <item>964@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-02@</item>
         <item>977@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-03@</item>
         <item>978@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-04@</item>
         <item>979@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-03@</item>
         <item>980@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-04@</item>
-        <item>981@Mischbatterie-Warmwasserzähler@False@WWZ@ @430055@</item>
-        <item>982@Ventilzähler Warmwasser@False@WWZ@ @420061@</item>
-        <item>983@Mischbatterie-Warmwasserzähler@False@WWZ@ @430051@</item>
-        <item>984@Warmwasserzähler Qn 2.5 m3/h, waagrecht@False@WWZ@ @140030@</item>
-        <item>985@Warmwasserzähler Qn 2.5 m3/h, Steigrohr@False@WWZ@ @142030@</item>
-        <item>986@Warmwasserzähler Qn 2.5 m3/h, waagrecht@False@WWZ@ @141032@</item>
-        <item>987@Warmwasserzähler Qn 2.5 m3/h, Steigrohr@False@WWZ@ @143032@</item>
-        <item>988@Warmwasserzähler Qn 6 m3/h, waagrecht@False@WWZ@ @140060@</item>
-        <item>989@Warmwasserzähler Qn 2.5 m3/h, Fallrohr@False@WWZ@ @144030@</item>
-        <item>990@Warmwasserzähler Qn 6 m3/h, Steigrohr@False@WWZ@ @142060@</item>
-        <item>991@Warmwasserzähler Qn 6 m3/h, waagrecht@False@WWZ@ @141062@</item>
-        <item>992@Warmwasserzähler Qn 6 m3/h, Steigrohr@False@WWZ@ @143062@</item>
-        <item>993@Warmwasserzähler Qn 10 m3/h, waagrecht@False@WWZ@ @140070@</item>
-        <item>994@Warmwasserzähler Qn 10 m3/h, waagrecht@False@WWZ@ @141072@</item>
+        <item>976@VZ/MBZ-Meßblock Warmwasser (A)@False@WWZ@ @700019@</item>
+        <item>963@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 @False@WWZ@ @700019-02@</item>
+        <item>1343@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 Sontex 581@False@WWZ@ @700019-02@</item>
+        <item>319@Wärmemengenzähler@False@WMZ@ @000000@</item>
+        <item>1262@Wärmemengenzähler für Kälte@False@WMZ@ @ @</item>
+        <item>1258@Wärmezähler Delta Mess Qn 1,5 @False@WMZ@ @ @</item>
+        <item>1275@Wärmezähler mit Sontex Funkmodul 531@False@WMZ@ @ @</item>
+        <item>1268@Wärmezähler mit Sontex Funkmodul 541@False@WMZ@ @0541R 000@</item>
+        <item>1257@Wärmezähler ProSelect2 Qn 1,5@False@WMZ@ @ @</item>
+        <item>918@Wärmezähler ProSelect-MT10@False@WMZ@ @250235@</item>
+        <item>905@Wärmezähler ProSelect-MT2,5@False@WMZ@ @250220@</item>
+        <item>909@Wärmezähler ProSelect-MT3,5@False@WMZ@ @250225@</item>
+        <item>910@Wärmezähler ProSelect-MT6@False@WMZ@ @250230@</item>
+        <item>920@Wärmezähler ProSelect-MTF10@False@WMZ@ @250265@</item>
+        <item>906@Wärmezähler ProSelect-MTF2,5@False@WMZ@ @250250@</item>
+        <item>913@Wärmezähler ProSelect-MTF3,5@False@WMZ@ @250255@</item>
+        <item>915@Wärmezähler ProSelect-MTF6@False@WMZ@ @250260@</item>
+        <item>921@Wärmezähler ProSelect-MTS10@False@WMZ@ @250295@</item>
+        <item>907@Wärmezähler ProSelect-MTS2,5@False@WMZ@ @250280@</item>
+        <item>914@Wärmezähler ProSelect-MTS3,5@False@WMZ@ @250285@</item>
+        <item>916@Wärmezähler ProSelect-MTS6@False@WMZ@ @250290@</item>
+        <item>939@Wärmezähler ProSelect-WP100@False@WMZ@ @250340@</item>
+        <item>940@Wärmezähler ProSelect-WP125@False@WMZ@ @250345@</item>
+        <item>944@Wärmezähler ProSelect-WP150@False@WMZ@ @250350@</item>
+        <item>926@Wärmezähler ProSelect-WP50@False@WMZ@ @250325@</item>
+        <item>932@Wärmezähler ProSelect-WP65@False@WMZ@ @250330@</item>
+        <item>936@Wärmezähler ProSelect-WP80@False@WMZ@ @250335@</item>
+        <item>938@Wärmezähler ProSelect-WS100@False@WMZ@ @250315@</item>
+        <item>943@Wärmezähler ProSelect-WS150@False@WMZ@ @250320@</item>
+        <item>925@Wärmezähler ProSelect-WS50@False@WMZ@ @250300@</item>
+        <item>931@Wärmezähler ProSelect-WS65@False@WMZ@ @250305@</item>
+        <item>935@Wärmezähler ProSelect-WS80@False@WMZ@ @250310@</item>
+        <item>1260@Wärmezähler SC539 - Qn1.5 - Funk- EXIM@False@WMZ@ @ @</item>
+        <item>1313@Wärmezähler SC739 - Qn1.5 - Funk -Allmess@True@WMZ@ @0739SL841R11E00@</item>
+        <item>1325@Wärmezähler SensoStar E, Qn 1.5 110mm Vorlauf M.@False@WMZ@ @200901A50@</item>
+        <item>1332@Wärmezähler SensoStar Ultraschall Qn 3.5 BL 150mm @False@WMZ@ @200954A50@</item>
+        <item>874@Wärmezähler SensoStar2+  Qn 1.5 SOLAR@False@WMZ@ @200315@</item>
+        <item>854@Wärmezähler SensoStar2+ , Qn 0.6@False@WMZ@ @200300@</item>
+        <item>870@Wärmezähler SensoStar2+ , Qn 0.6, Impulsausgang@False@WMZ@ @200301@</item>
+        <item>876@Wärmezähler SensoStar2+ , Qn 0.6, M-Bus@False@WMZ@ @200302@</item>
+        <item>855@Wärmezähler SensoStar2+ , Qn 1.5@False@WMZ@ @200310@</item>
+        <item>871@Wärmezähler SensoStar2+ , Qn 1.5, Impulsausgang@False@WMZ@ @200311@</item>
+        <item>877@Wärmezähler SensoStar2+ , Qn 1.5, M-Bus@False@WMZ@ @200312@</item>
+        <item>860@Wärmezähler SensoStar2+ , Qn 2.5@False@WMZ@ @200320@</item>
+        <item>873@Wärmezähler SensoStar2+ , Qn 2.5 WÄRME/KÄLTE@False@WMZ@ @200327@</item>
+        <item>872@Wärmezähler SensoStar2+ , Qn 2.5, Impulsausgang@False@WMZ@ @200321@</item>
+        <item>881@Wärmezähler SensoStar2+ , Qn 2.5, M-Bus@False@WMZ@ @200322@</item>
+        <item>858@Wärmezähler SensoStar2+-ES-Allmess , Qn 0.6@False@WMZ@ @200430@</item>
+        <item>859@Wärmezähler SensoStar2+-ES-Allmess , Qn 1.5@False@WMZ@ @200431@</item>
+        <item>862@Wärmezähler SensoStar2+-ES-Allmess , Qn 2.5@False@WMZ@ @200432@</item>
+        <item>857@Wärmezähler SensoStar2+-ES-KOAX , Qn 1.5 ista@False@WMZ@ @200410@</item>
+        <item>861@Wärmezähler SensoStar2+-ES-KOAX , Qn 2.5 ista@False@WMZ@ @200420@</item>
+        <item>863@Wärmezähler SensoStar2+-ES-TE , Qn 1.5@False@WMZ@ @200450@</item>
+        <item>886@Wärmezähler Sharky Heat, Qn 0.6@False@WMZ@ @200700@</item>
+        <item>887@Wärmezähler Sharky Heat, Qn 1.5@False@WMZ@ @200710@</item>
+        <item>891@Wärmezähler Sharky Heat, Qn 2.5@False@WMZ@ @200720@</item>
+        <item>919@Wärmezähler Sharky Heat, Qn 3.5@False@WMZ@ @250400@</item>
+        <item>922@Wärmezähler Sharky, Qn 10@False@WMZ@ @250410@</item>
+        <item>1276@Wärmezähler Sontex für Kälte @False@WMZ@ @ @</item>
+        <item>1286@Wärmezähler Sontex Supercal 539 - Qn1.5 - Funk@False@WMZ@ @ @</item>
+        <item>1342@Wärmezähler Superstatic Funk 531 Qn 10m3/h, 300mm@False@WMZ@ @0440L8BE1RM0R0@</item>
+        <item>1338@Wärmezähler Superstatic Funk 531 Qn 3,5 260mm@False@WMZ@ @440L6BE1SM0R0@</item>
+        <item>1322@Wärmezähler- VMT -MTF Qn 6 150mm G3/2B 10l/Imp @False@WMZ@ @184046@</item>
+        <item>317@Warmwasserzähler@False@WWZ@ @000000@</item>
+        <item>1334@Warmwasserzähler Qn 1,5  Modulmeter MOC @False@WWZ@ @60020@</item>
+        <item>999@Warmwasserzähler Qn 10 m3/h, Fallrohr@False@WWZ@ @144068@</item>
         <item>995@Warmwasserzähler Qn 10 m3/h, Steigrohr@False@WWZ@ @143072@</item>
-        <item>996@Warmwasserzähler Qn 6 m3/h, Fallrohr@False@WWZ@ @144060@</item>
         <item>997@Warmwasserzähler Qn 10 m3/h, Steigrohr@False@WWZ@ @142070@</item>
         <item>998@Warmwasserzähler Qn 10 m3/h, Steigrohr@False@WWZ@ @142068@</item>
-        <item>999@Warmwasserzähler Qn 10 m3/h, Fallrohr@False@WWZ@ @144068@</item>
+        <item>993@Warmwasserzähler Qn 10 m3/h, waagrecht@False@WWZ@ @140070@</item>
+        <item>994@Warmwasserzähler Qn 10 m3/h, waagrecht@False@WWZ@ @141072@</item>
+        <item>989@Warmwasserzähler Qn 2.5 m3/h, Fallrohr@False@WWZ@ @144030@</item>
+        <item>985@Warmwasserzähler Qn 2.5 m3/h, Steigrohr@False@WWZ@ @142030@</item>
+        <item>987@Warmwasserzähler Qn 2.5 m3/h, Steigrohr@False@WWZ@ @143032@</item>
+        <item>984@Warmwasserzähler Qn 2.5 m3/h, waagrecht@False@WWZ@ @140030@</item>
+        <item>986@Warmwasserzähler Qn 2.5 m3/h, waagrecht@False@WWZ@ @141032@</item>
+        <item>996@Warmwasserzähler Qn 6 m3/h, Fallrohr@False@WWZ@ @144060@</item>
+        <item>990@Warmwasserzähler Qn 6 m3/h, Steigrohr@False@WWZ@ @142060@</item>
+        <item>992@Warmwasserzähler Qn 6 m3/h, Steigrohr@False@WWZ@ @143062@</item>
+        <item>988@Warmwasserzähler Qn 6 m3/h, waagrecht@False@WWZ@ @140060@</item>
+        <item>991@Warmwasserzähler Qn 6 m3/h, waagrecht@False@WWZ@ @141062@</item>
+        <item>800@Waschtisch-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @400010@</item>
+        <item>954@Waschtisch-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @400050@</item>
+        <item>1172@Wasserzähler-Funkmodul Sontex 580@False@KWZ@ @750060@</item>
+        <item>1173@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750061@</item>
+        <item>1174@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750060@</item>
+        <item>1175@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750061@</item>
         <item>1000@Woltman-Heisswasserzähler@False@WWZ@ @152020@</item>
         <item>1001@Woltman-Heisswasserzähler@False@WWZ@ @156020@</item>
         <item>1002@Woltman-Heisswasserzähler@False@WWZ@ @152030@</item>
@@ -457,197 +626,28 @@
         <item>1005@Woltman-Heisswasserzähler@False@WWZ@ @156040@</item>
         <item>1006@Woltman-Heisswasserzähler@False@WWZ@ @152050@</item>
         <item>1007@Woltman-Heisswasserzähler@False@WWZ@ @156050@</item>
-        <item>1008@Dichtung Fiber 1/2"@False@ZUB@ @740100@</item>
-        <item>1009@Dichtung Kunststoff 1/2"@False@ZUB@ @740101@</item>
-        <item>1010@Dichtung Fiber 1/2"@False@ZUB@ @740100@</item>
-        <item>1011@Dichtung Kunststoff 1/2"@False@ZUB@ @740101@</item>
-        <item>1012@Montagesatz Plattenheizkörper@False@ZUB@ @720000@</item>
-        <item>1013@Dichtung Fiber 3/4"@False@ZUB@ @740105@</item>
-        <item>1014@Dichtung Kunststoff 3/4"@False@ZUB@ @740106@</item>
-        <item>1015@Montagesatz Plattenheizkörper@False@ZUB@ @720000@</item>
-        <item>1016@Dichtung Fiber 3/4"@False@ZUB@ @740105@</item>
-        <item>1017@Dichtung Kunststoff 3/4"@False@ZUB@ @740106@</item>
-        <item>1018@Montagesatz Gliederheizkörper@False@ZUB@ @720050@</item>
-        <item>1162@Modul Netz 12 - 24 VDC@False@ZUB@ @710608@</item>
-        <item>1163@Modul Netz 230V - 45/60Hz@False@ZUB@ @710604@</item>
-        <item>1164@Modul Netz 24VAC - 45/65Hz@False@ZUB@ @710606@</item>
-        <item>1165@Modul Netz 12 - 24 VDC@False@ZUB@ @710608@</item>
-        <item>1166@Modul Batterie 11+1 Jahr@False@ZUB@ @710602@</item>
-        <item>1167@Modul Batterie 11+1 Jahr@False@ZUB@ @710602@</item>
-        <item>1168@Tauchhülse 1/2", D6mm, 174mm, Edelstah@False@ZUB@ @710035@</item>
-        <item>1169@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710207@</item>
-        <item>1170@Tauchhülse 1/2", D6mm, 174mm, Edelstah@False@ZUB@ @710035@</item>
-        <item>1171@Einbausatz WMZ Qn 0,6/1,5@False@ZUB@ @710207@</item>
-        <item>1172@Wasserzähler-Funkmodul Sontex 580@False@KWZ@ @750060@</item>
-        <item>1173@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750061@</item>
-        <item>1174@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750060@</item>
-        <item>1175@Wasserzähler-Funkmodul Sontex 581@False@KWZ@ @750061@</item>
-        <item>1176@Montageschlüssel Metall@False@ZUB@ @730521@</item>
-        <item>1177@Montageschlüssel Metall@False@ZUB@ @730521@</item>
-        <item>1178@Einbausatz WMZ Qn 2,5@False@ZUB@ @710215@</item>
-        <item>1179@Einbausatz WMZ Qn 2,5@False@ZUB@ @710215@</item>
-        <item>1180@Montageblock/I MONO@False@ZUB@ @700101@</item>
-        <item>1181@Montageblock/I MONO@False@ZUB@ @700101@</item>
-        <item>1182@Einbaubügel waagr. Qn6, 1" x 1"@False@ZUB@ @700203@</item>
-        <item>1183@Einbaubügel waagr. Qn6, 1" x 1"@False@ZUB@ @700203@</item>
-        <item>1184@Einbausatz WMZ Qn 2,5@False@ZUB@ @710216@</item>
-        <item>1185@Einbausatz WMZ Qn 2,5@False@ZUB@ @710216@</item>
-        <item>1186@Verschraubung 2", Messing@False@ZUB@ @740035@</item>
-        <item>1187@Verschraubung 2", Messing@False@ZUB@ @740035@</item>
-        <item>1188@Montageblock/A MONO@False@ZUB@ @700100@</item>
-        <item>1189@Montageblock/Te MONO@False@ZUB@ @700102@</item>
-        <item>1190@Montageblock/All MONO@False@ZUB@ @700103@</item>
-        <item>1191@Montageblock/A MONO@False@ZUB@ @700100@</item>
-        <item>1192@Montageblock/Te MONO@False@ZUB@ @700102@</item>
-        <item>1193@Montageblock/All MONO@False@ZUB@ @700103@</item>
-        <item>1194@Montageschlüssel Kombi (Metall)@False@ZUB@ @730560@</item>
-        <item>1195@Montageschlüssel Kombi (Metall)@False@ZUB@ @730560@</item>
-        <item>1196@Montageblock/Mi MONO@False@ZUB@ @700104@</item>
-        <item>1197@Montageblock/Mi MONO@False@ZUB@ @700104@</item>
-        <item>1198@Einbaubügel waagr. Qn6, 5/4" x 5/4"@False@ZUB@ @700204@</item>
-        <item>1199@Einbaubügel waagr. Qn6, 5/4" x 5/4"@False@ZUB@ @700204@</item>
-        <item>1200@Einbaubügel senkrecht Qn6, 1" x 1"@False@ZUB@ @700219@</item>
-        <item>1201@Einbaubügel senkrecht Qn6, 1" x 1"@False@ZUB@ @700219@</item>
-        <item>1202@Einbaubügel senkrecht Qn6, 5/4" x 5/4"@False@ZUB@ @700220@</item>
-        <item>1203@Einbaubügel senkrecht Qn6, 5/4" x 5/4"@False@ZUB@ @700220@</item>
-        <item>1204@Montageblock/I DUO@False@ZUB@ @700151@</item>
-        <item>1205@Montageblock/I DUO@False@ZUB@ @700151@</item>
-        <item>1206@Impulszählermodul IM001@False@ZUB@ @760105@</item>
-        <item>1207@Impulszählermodul IM001@False@ZUB@ @760105@</item>
-        <item>1208@Montageblock/A DUO@False@ZUB@ @700150@</item>
-        <item>1209@Montageblock/Te DUO@False@ZUB@ @700152@</item>
-        <item>1210@Montageblock/All DUO@False@ZUB@ @700153@</item>
-        <item>1211@Montageblock/A DUO@False@ZUB@ @700150@</item>
-        <item>1212@Montageblock/Te DUO@False@ZUB@ @700152@</item>
-        <item>1213@Montageblock/All DUO@False@ZUB@ @700153@</item>
-        <item>1214@Einbaubügel waagr. Qn10, 6/4" x 6/4"@False@ZUB@ @700210@</item>
-        <item>1215@Einbaubügel waagr. Qn10, 6/4" x 6/4"@False@ZUB@ @700210@</item>
-        <item>1216@Montageblock/Mi DUO@False@ZUB@ @700154@</item>
-        <item>1217@Montageblock/Mi DUO@False@ZUB@ @700154@</item>
-        <item>1218@Impulszählermodul IM002@False@ZUB@ @760110@</item>
-        <item>1219@Impulszählermodul IM002@False@ZUB@ @760110@</item>
-        <item>1220@Einbaubügel waagr. Qn10, 2" x 2"@False@ZUB@ @700211@</item>
-        <item>1221@Einbaubügel waagr. Qn10, 2" x 2"@False@ZUB@ @700211@</item>
-        <item>1222@Montageblock/I DUO@False@ZUB@ @700171@</item>
-        <item>1223@Montageblock/I DUO@False@ZUB@ @700171@</item>
-        <item>1224@Funkmodul 540-2@False@GAS@ @750100@</item>
-        <item>1225@Funkmodul 540-2@False@GAS@ @750100@</item>
-        <item>1226@Funkmodul 540-4@False@GAS@ @750120@</item>
-        <item>1227@Funkmodul 540-4@False@GAS@ @750120@</item>
-        <item>1228@Impulszählermodul IM004@False@ZUB@ @760115@</item>
-        <item>1229@Impulszählermodul IM004@False@ZUB@ @760115@</item>
-        <item>1230@M-Bus Auslese-/Speisegerät PW3@False@ZUB@ @760005@</item>
-        <item>1231@M-Bus Auslese-/Speisegerät PW3@False@ZUB@ @760005@</item>
-        <item>1232@Ölzähler VZO4@False@ZUB@ @650000@</item>
-        <item>1233@Ölzähler VZO8@False@ZUB@ @650002@</item>
-        <item>1234@M-Bus Auslese-/Speisegerät PW20@False@ZUB@ @760010@</item>
-        <item>1235@M-Bus Auslese-/Speisegerät PW20@False@ZUB@ @760010@</item>
-        <item>1236@Montagekoffer@False@ZUB@ @730510@</item>
-        <item>1237@Montagekoffer@False@ZUB@ @730510@</item>
-        <item>1238@Sontex 912@False@ZUB@ @800300@</item>
-        <item>1239@Sontex 912@False@ZUB@ @800300@</item>
-        <item>1240@M-Bus Auslese-/Speisegerät PW60@False@ZUB@ @760015@</item>
-        <item>1241@M-Bus Auslese-/Speisegerät PW60@False@ZUB@ @760015@</item>
-        <item>1242@Elan-Karte inklusive Anschlusskabel@False@ZUB@ @750055@</item>
-        <item>1243@Elan-Karte inklusive Anschlusskabel@False@ZUB@ @750055@</item>
-        <item>1244@Funkmodem SONTEX 545@False@GAS@ @750050@</item>
-        <item>1245@Funkmodem SONTEX 545@False@GAS@ @750050@</item>
-        <item>1249@EHKV Typ Sontex 556 Funksystem mit Fernfühler@False@HKV@ @ @</item>
-        <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @</item>
-        <item>1254@Funk -Zapfhahn- Kaltwasserzähler e-wireless @False@KWZ@ @ @</item>
-        <item>1256@Funk-Ventil-Warmwasserzähler- e-wirelesse inkl. M.@False@WWZ@ @ @</item>
-        <item>1257@Wärmezähler ProSelect2 Qn 1,5@False@WMZ@ @ @</item>
-        <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @False@WMZ@ @RN141R11 @</item>
-        <item>1260@Wärmezähler SC539 - Qn1.5 - Funk- EXIM@False@WMZ@ @ @</item>
-        <item>1261@Funk Wärmezähler SC739 Qn 1,5 Baulänge 110mm@True@WMZ@ @0739RL141R11E00@</item>
-        <item>1258@Wärmezähler Delta Mess Qn 1,5 @False@WMZ@ @ @</item>
-        <item>1265@Ista Warmwasserzähler@False@WWZ@ @ @</item>
-        <item>1262@Wärmemengenzähler für Kälte@False@WMZ@ @ @</item>
-        <item>1263@Ista - HKV@False@HKV@ @ @</item>
-        <item>1264@ei Elektronics i650@False@RWM@ @ @</item>
-        <item>1266@Funk-581 -Warmwasserzähler UP - KOAX ista@True@WWZ@581@50040@</item>
-        <item>1267@Funk 581 -Up.  Kaltwasserzähler-  KOAX ista@True@KWZ@581@50030@</item>
-        <item>1268@Wärmezähler mit Sontex Funkmodul 541@False@WMZ@ @0541R 000@</item>
-        <item>1269@Funk Wärmezähler SC739 - Qn1.5 - Sontex@False@WMZ@ @ @</item>
-        <item>1270@Funk Wärmezähler SC739 - Qn2.5 - Funk- 130mm @True@WMZ@ @739RN141R11E00@</item>
-        <item>1271@Funk 581 - Up. Kaltwasserzähler 581  Allmess @True@KWZ@581@60050@</item>
-        <item>1272@Funk 581 Up.  Warmwasserzähler 581  Allmess@True@WWZ@581@60060@</item>
-        <item>1273@EHKV Typ Sontex 566 Funksystem@True@HKV@ @ @</item>
-        <item>1274@EHKV Typ Sontex 566 Funksystem mit Fernfühler@True@HKV@ @ @</item>
-        <item>1275@Wärmezähler mit Sontex Funkmodul 531@False@WMZ@ @ @</item>
-        <item>1276@Wärmezähler Sontex für Kälte @False@WMZ@ @ @</item>
-        <item>1277@Heckatron Rauchmelder@False@RWM@ @ @</item>
-        <item>1278@Mertens Rauchmelder@False@RWM@ @ @</item>
-        <item>1279@Telmetric@False@HKV@ @ @</item>
-        <item>1280@EHKV Typ Exim (ohne Funk)@False@HKV@ @ @</item>
-        <item>1281@Standard Up. Warmwasserzähler - KOAX ista@True@WWZ@ @50040@</item>
-        <item>1282@Standard Up. Kaltwasser KOAX ista@True@KWZ@ @50030@</item>
-        <item>1283@Unterputz-Messkapsel Kaltwasser KOAX@False@KWZ@ @ @</item>
-        <item>1284@Unterputz-Messkapsel Warmwasser KOAX ista@False@WWZ@ @ @</item>
-        <item>1285@EHKV Typ Sontex 556 Funksystem 7,00@False@HKV@ @ @</item>
-        <item>1286@Wärmezähler Sontex Supercal 539 - Qn1.5 - Funk@False@WMZ@ @ @</item>
-        <item>1287@Standard Wärmezähler SC739 - Qn2,5 - 130mm@True@WMZ@ @0739RN141S11E00@</item>
-        <item>1288@Funk 281 Up.-Messkapsel Warmwasser KOAX ista@True@WWZ@ @0281RD0E0@</item>
-        <item>1289@Funk 281 Up.-Messkapsel Kaltwasserzähler KOAX ista@True@KWZ@ @0281RD1E0@</item>
-        <item>1290@Funk 281 Up. Messkapsel Kaltwasserzähler Allmess@True@KWZ@ @0281RC1E0@</item>
-        <item>1291@Funk 281 Up. Messkapsel Warmwasserzähler Allmess@True@WWZ@ @0281RC0E0@</item>
-        <item>1292@EHKV Typ Sontex 565@False@HKV@ @EHKV Typ Sontex 565@</item>
-        <item>1301@Funk 581 Up.-Messkapsel Warmwasserzähler ABB@True@WWZ@581@60020@</item>
-        <item>1302@Funk 581 Up.-Messkapsel Kaltwasserzähler ABB@True@KWZ@581@60010@</item>
-        <item>1303@Funk 581 Aufputz Kaltwasserzähler 110mm@True@KWZ@581@25103@</item>
-        <item>1304@Funk 581 Aufputz Kaltwasserzähler Qn 1,5 80mm@True@KWZ@581@25102@</item>
-        <item>1293@Funk 281 Up.-Messkapsel Kaltwasserzähler ABB@True@KWZ@ @0281RA1E0 @</item>
-        <item>1294@Funk 281 Up.-Messkapsel Warmwasserzähler ABB@True@WWZ@ @0281RA0E0@</item>
-        <item>1295@Funk 281 Aufputz Kaltwasserzähler 110mm@True@KWZ@ @0281R11E0 @</item>
-        <item>1296@Funk 281 Aufputz Warmwasserzähler 110mm@True@WWZ@ @0281R10E0 @</item>
-        <item>1297@Funk 281 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@ @0281R00E0@</item>
-        <item>1298@Funk 281 Aufputz Kaltwasserzähler Qn 1,5 80mm@True@KWZ@ @0281R01E0@</item>
-        <item>1299@Funk 281 Aufputz Kaltwasserzähler 130mm@True@KWZ@ @0281R21E0 @</item>
-        <item>1300@Funk 281 Aufputz Warmwasserzähler 130mm@True@WWZ@ @0281R20E0 @</item>
-        <item>1305@Funk 581 Aufputz Kaltwasserzähler 130mm@True@KWZ@581@25105@</item>
-        <item>1306@Funk 581 Aufputz Warmwasserzähler 110mm@True@WWZ@581@25603@</item>
-        <item>1307@Funk 581 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@581@25602@</item>
-        <item>1308@Funk 581 Aufputz Warmwasserzähler 130mm@True@WWZ@581@25605@</item>
-        <item>1309@Funk Wärmemengenzähler 739 Qn 1,5 Baulänge 130mm@True@WMZ@ @0739RN141R11E00@</item>
-        <item>1310@Funk Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141R11E00@</item>
-        <item>1311@Funk Wärmezähler SC739 - Qn2.5 - KOAX ista@True@WMZ@ @0739TN141R11E00@</item>
-        <item>1312@Funk Wärmezähler SC739 - Qn 0,6 - KOAX ista@True@WMZ@ @0739TJ141R11E00@</item>
-        <item>1313@Wärmezähler SC739 - Qn1.5 - Funk -Allmess@True@WMZ@ @0739SL841R11E00@</item>
-        <item>1314@Funk Wärmezähler SC739 - Qn1.5 - Allmess- Sontex@True@WMZ@ @0739SL841R11E00@</item>
-        <item>1315@Funk Wärmezähler SC739 - Qn2.5 - Allmess- Sontex@True@WMZ@ @0739SN841R11E00@</item>
-        <item>1316@Funk Wärmezähler SC739 - Qn 0,6 - Allmess- Sontex@True@WMZ@ @0739SJ841R11E00@</item>
-        <item>1325@Wärmezähler SensoStar E, Qn 1.5 110mm Vorlauf M.@False@WMZ@ @200901A50@</item>
-        <item>1326@Standard Warmwasserzähler UP Qn 1,5 Allmess 6000@True@WWZ@ @60060@</item>
-        <item>1327@Standard Kaltwasserzähler UP Qn 1,5 Allmess 6000@True@KWZ@ @60050@</item>
-        <item>1328@Funk 581 - Warmwasserzähler Brunata 307/2 W3 @True@WWZ@581@114037@</item>
-        <item>1329@Funk 581 - Kaltwasserzähler Brunata 307/2 K3 @True@KWZ@581@110037@</item>
-        <item>1330@Funk Wärmezähler SC739 Qn 1,5 Baulänge 110mm@True@WMZ@ @0739RL241R11E00@</item>
-        <item>1317@Standard Wärmezähler SC739 - Qn1.5 - Allmess@True@WMZ@ @0739SL841S11E00@</item>
-        <item>1318@Standard Wärmezähler SC739 - Qn2.5 - Allmess@True@WMZ@ @0739SN841S11E00@</item>
-        <item>1319@Standard Wärmezähler SC739 - Qn 0,6 - Allmess@True@WMZ@ @0739SJ841S11E00@</item>
-        <item>1320@Unterputz Warmwasserzähler Qn 1,5 Metrona 307/2 W3@False@WWZ@ @114037@</item>
-        <item>1321@Unterputz Kaltwasserzähler Qn 1,5 Metrona 307/2 K3@False@KWZ@ @110037@</item>
-        <item>1322@Wärmezähler- VMT -MTF Qn 6 150mm G3/2B 10l/Imp @False@WMZ@ @184046@</item>
-        <item>1323@Standard Wärmezähler SC739 - Qn1.5 - 110mm@True@WMZ@ @0739RL141S11E00@</item>
-        <item>1324@Standard Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141S11E00@</item>
-        <item>1331@Aufputz -Kaltwasserzähler -LO-ETK -1,5-130mm-3/4"@False@KWZ@ @100322@</item>
-        <item>1332@Wärmezähler SensoStar Ultraschall Qn 3.5 BL 150mm @False@WMZ@ @200954A50@</item>
-        <item>1335@Funk 541 Wärmezähler SensoStar Ultraschall Qn 3.5 BL 150mm @False@WMZ@ @200954A50@</item>
-        <item>1336@ei Elektronics i650 (Fremdgerät)@False@RWM@ @ @</item>
-        <item>1337@GIRA Fremdgerät@False@RWM@ @ @</item>
-        <item>1338@Wärmezähler Superstatic Funk 531 Qn 3,5 260mm@False@WMZ@ @440L6BE1SM0R0@</item>
-        <item>1333@Kaltwasserzähler Qn 1,5  Modulmeter MOC @False@KWZ@ @60010@</item>
-        <item>1334@Warmwasserzähler Qn 1,5  Modulmeter MOC @False@WWZ@ @60020@</item>
-        <item>1339@Funk Wärmezähler SC789 Qn 1,5 Baulänge 110mm@False@WMZ@ @0789RL141R5E@</item>
-        <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@False@WWZ@ @ @</item>
-        <item>1341@Funk 583 - Up. Kaltwasserzähler Allmess @False@KWZ@ @ @</item>
-        <item>1342@Wärmezähler Superstatic Funk 531 Qn 10m3/h, 300mm@False@WMZ@ @0440L8BE1RM0R0@</item>
-        <item>1343@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 Sontex 581@False@WWZ@ @700019-02@</item>
-        <item>1344@Funk 281 Up.-Messkapsel Kaltwasserzähler Techem@True@KWZ@ @0281RB1E0@</item>
-        <item>1345@Funk 281 Up.-Messkapsel Warmwasserzähler Techem@True@WWZ@ @0281RB0E0@</item>
-        <item>1346@Funk 281 Up.-Messkapsel Warmwasser Brunata HT3@True@WWZ@ @0281RE0E0@</item>
-        <item>1347@Funk 281 Up.-Messkapsel Kaltwasser Brunata HT3@True@KWZ@ @0281RE1E0@</item>
-        <item>1348@Ultraschall Wärmezähler Allmess Integral -MK UltraMaxx Qn 1,5@False@WMZ@ @01@</item>
+        <item>843@Woltman-Kaltwasserzähler@False@KWZ@ @150020@</item>
+        <item>844@Woltman-Kaltwasserzähler@False@KWZ@ @154020@</item>
+        <item>845@Woltman-Kaltwasserzähler@False@KWZ@ @150030@</item>
+        <item>846@Woltman-Kaltwasserzähler@False@KWZ@ @154030@</item>
+        <item>847@Woltman-Kaltwasserzähler@False@KWZ@ @150040@</item>
+        <item>848@Woltman-Kaltwasserzähler@False@KWZ@ @154040@</item>
+        <item>849@Woltman-Kaltwasserzähler@False@KWZ@ @150050@</item>
+        <item>850@Woltman-Kaltwasserzähler@False@KWZ@ @154050@</item>
+        <item>1037@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
+        <item>1039@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
+        <item>1057@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740203@</item>
+        <item>1058@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740203@</item>
+        <item>1082@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740205@</item>
+        <item>1083@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740205@</item>
+        <item>1095@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740206@</item>
+        <item>1096@Zählerersatzstück 130 mm, AG 1"@False@ZUB@ @740206@</item>
+        <item>1036@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740200@</item>
+        <item>1038@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740200@</item>
+        <item>1048@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@</item>
+        <item>1050@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@</item>
+        <item>801@Zapfhahn-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @410010@</item>
+        <item>955@Zapfhahn-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @410050@</item>
     </array>
     <array name="rwm_Austauschgrund">
         <item>XX;kein Austausch </item>
