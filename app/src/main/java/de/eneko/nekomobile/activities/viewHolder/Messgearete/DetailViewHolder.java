@@ -371,10 +371,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getBasemodel().setZielmodel(zaehlerModel.getId());
 
         FunkModel funkModel = (FunkModel) getSpNewFunkModel().getSelectedItem();
-        getBasemodel().setNeuesFunkModel(funkModel.getId());
+        if(funkModel != null) getBasemodel().setNeuesFunkModel(funkModel.getId());
 
         FunkCheck_Austauschgrund austauschId = (FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem();
-        getBasemodel().setAustauschGrund(austauschId.getId());
+        if(austauschId != null)  getBasemodel().setAustauschGrund(austauschId.getId());
 
         String valueString = getTvAktuell().getText().toString().replace(".","").replace(",",".");
         if(!valueString.equals("")) getBasemodel().setAktuellValue(Double.parseDouble(valueString));

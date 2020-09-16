@@ -540,7 +540,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
-                getLbBewertungsfaktor05().setText("GK - Gliedbaulänge in mm");
+                getLbBewertungsfaktor05().setText("GL - Gliedbaulänge in mm");
 
                 getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
@@ -833,8 +833,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor10().setText("RZ - Rohrregisterzahl");
 
-                getLbBewertungsfaktor11().setVisibility(View.INVISIBLE);
-                getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
 // endregion code
                 break;
