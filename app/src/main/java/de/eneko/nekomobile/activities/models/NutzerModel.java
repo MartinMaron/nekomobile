@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.activities.models;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -135,7 +136,22 @@ public class NutzerModel extends Basemodel {
     }
 
     public Boolean isCompleted(){
-        return false;
+        if (hasAblesung() || hasMontage() || hasFunkcheck()) {
+            Integer absolutUndoneCount_GER = getNutzerTodoMessgaerete().stream()
+                    .filter(r -> r.isUnDone())
+                    .collect(Collectors.toList()).size();
+        };
+        if (hasRwmMontage() || hasRwmWartung()) {
+            Integer absolutUndoneCount_RWM = getToDoByArt("").stream()
+                    .filter(r -> r.isUnDone())
+                    .collect(Collectors.toList()).size();
+        };
+
+        getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
+        getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
+        getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);
+        getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE: View.GONE);
+
     }
 
     public Integer getStatusImageResourceId() {

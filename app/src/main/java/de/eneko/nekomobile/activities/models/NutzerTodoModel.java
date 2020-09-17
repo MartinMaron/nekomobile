@@ -1,7 +1,5 @@
 package de.eneko.nekomobile.activities.models;
 
-import android.util.Log;
-
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
@@ -43,10 +41,10 @@ public class NutzerTodoModel extends Basemodel{
 
     public Integer getToDoCount(String pArt)
     {
-        Log.d(TAG,"Nutzer" + getBean().getNutzer().getNutzerName());
-        Log.d(TAG,"getDoneCount" + getDoneCount(pArt).toString());
-        Log.d(TAG,"getUndoneCount" + getUndoneCount(pArt).toString());
-        Log.d(TAG,"getWithErrorCount" + getWithErrorCount(pArt).toString());
+//        Log.d(TAG,"Nutzer" + getBean().getNutzer().getNutzerName());
+//        Log.d(TAG,"getDoneCount" + getDoneCount(pArt).toString());
+//        Log.d(TAG,"getUndoneCount" + getUndoneCount(pArt).toString());
+//        Log.d(TAG,"getWithErrorCount" + getWithErrorCount(pArt).toString());
         return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
     }
 

@@ -47,6 +47,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
     private String mUndoneGrund = "";
     private Liegenschaft mLiegenschaft = null;
     private Boolean mNew = false;
+    private Double mStartWert = -1.0;
 
 
 
@@ -243,7 +244,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
                     case "reihenanordnung":
                         mReihenanordnung = getString(propElement);
                         break;
-
+                    case "startWert":
+                        mStartWert = getDouble(propElement);
+                        break;
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -308,6 +311,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
             CreateIntegerNode(ret_val,"bewertungsfaktor_09" ,mBewertungsfaktor_09);
             CreateIntegerNode(ret_val,"bewertungsfaktor_10" ,mBewertungsfaktor_10);
             CreateTextNode(ret_val,"reihenanordnung" ,mReihenanordnung);
+            CreateDoubleNode(ret_val,"startWert" ,mStartWert);
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }
@@ -740,6 +744,13 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         mReihenanordnung = reihenanordnung;
     }
 
+    public Double getStartWert() {
+        return mStartWert;
+    }
 
-    // endregion "Properties"
+    public void setStartWert(Double startWert) {
+        mStartWert = startWert;
+    }
+
+// endregion "Properties"
 }

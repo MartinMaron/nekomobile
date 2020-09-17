@@ -6,27 +6,27 @@
 
     <TextView
         android:id="@+id/txtvUndone"
-        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_6"
         android:textColor="@color/blue" />
 
     <TextView
         android:id="@+id/txtvDone"
-        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_6"
         android:layout_below="@id/txtvUndone"
         android:textColor="@color/green" />
 
     <TextView
         android:id="@+id/txtvWithError"
-        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_6"
         android:layout_toRightOf="@id/txtvUndone"
         android:textColor="@color/red" />
 
     <TextView
         android:id="@+id/txtvNew"
-        android:layout_width="@dimen/dp_faktor_40"
+        android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_6"
         android:layout_below="@id/txtvWithError"
         android:layout_toRightOf="@id/txtvDone"

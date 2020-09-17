@@ -6,10 +6,10 @@
 
     <TextView
         android:id="@+id/tvArt"
-        android:layout_width="@dimen/dp_faktor_20"
+        android:layout_width="@dimen/dp_faktor_12"
         android:layout_height="@dimen/dp_faktor_6"
+        android:gravity="left|center_vertical"
         android:textAlignment="gravity"
-        android:gravity="center_horizontal"
         android:textColor="@color/blue" />
 
     <TextView
@@ -17,12 +17,16 @@
         android:layout_width="@dimen/dp_faktor_6"
         android:layout_height="@dimen/dp_faktor_6"
         android:layout_toRightOf="@id/tvArt"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
         android:textColor="@color/green" />
 
     <TextView
         android:id="@+id/tvWithError"
         android:layout_width="@dimen/dp_faktor_6"
         android:layout_height="@dimen/dp_faktor_6"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
         android:layout_toRightOf="@id/tvDone"
         android:textColor="@color/red" />
 
@@ -30,6 +34,8 @@
         android:id="@+id/tvUnDone"
         android:layout_width="@dimen/dp_faktor_6"
         android:layout_height="@dimen/dp_faktor_6"
+        android:gravity="left|center_vertical"
+        android:textAlignment="gravity"
         android:layout_toRightOf="@id/tvWithError"
         android:textColor="@color/gray" />
 

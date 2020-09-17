@@ -23,6 +23,7 @@ public class MessgeraetModel extends Basemodel {
     private String mAustauschGrund = "X";
     private Date mStichtagsdatum = null;
     private String mUnDoneGrundGrund = "";
+    private Double mStartWert = -1.0;
 
     private String mGrundparameter = "";
     private String mFormparameter = "";
@@ -52,6 +53,7 @@ public class MessgeraetModel extends Basemodel {
         getBean().setZielmodel(getZielmodel());
         getBean().setAktuellValue(getAktuellValue());
         getBean().setStichtagValue(getStichtagValue());
+        getBean().setStartWert(getStichtagValue());
         if (getDatum() == null) {getBean().setDatum(new Date());} else { getBean().setDatum(getDatum());}
         getBean().setDefekt(getDefekt());
         getBean().setBemerkung(getBemerkung());
@@ -107,6 +109,7 @@ public class MessgeraetModel extends Basemodel {
         setBewertungsfaktor_10(getBean().getBewertungsfaktor_10());
         setBewertungsfaktor_11(getBean().getBewertungsfaktor_11());
         setReihenanordnung(getBean().getReihenanordnung());
+        setStartWert(getBean().getStartWert());
         setDataLoaded(true);
     }
 
@@ -454,5 +457,14 @@ public class MessgeraetModel extends Basemodel {
     public Integer getModel() {
         return getBean().getModel();
     }
-   //endregion
+
+    public Double getStartWert() {
+        return mStartWert;
+    }
+
+    public void setStartWert(Double startWert) {
+        mStartWert = startWert;
+    }
+
+    //endregion
 }

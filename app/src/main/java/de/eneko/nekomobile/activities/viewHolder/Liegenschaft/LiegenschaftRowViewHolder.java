@@ -50,6 +50,15 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
         getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE: View.GONE);
+
+       if (getTodoRow().getIvAblesung().getVisibility() == View.VISIBLE) {
+
+
+
+
+       }
+
+
     }
 
     // endregion properties

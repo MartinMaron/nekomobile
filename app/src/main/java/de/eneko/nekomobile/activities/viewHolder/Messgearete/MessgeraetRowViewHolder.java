@@ -131,7 +131,24 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
                     iv.setImageResource(R.drawable.icon_montage_error);
                 }else{
                     // getBean().isUnDone()
-                    iv.setImageResource(R.drawable.icon_montage);
+                    if (this.getBasemodel().getTodo().getArt().equals("FUN_CHK") && this.getBasemodel().getBean().isForFunkCheck()) {
+                        if(getBasemodel().getBean().getEximFunk() == true){
+                            if(getBasemodel().getBean().getFunkfehler_offen() == true){
+                                iv.setImageResource(R.drawable.icon_ablesung_exim_open);
+                            } else {
+                                iv.setImageResource(R.drawable.icon_ablesung_exim_funk);
+                            }
+                        }
+                        if(getBasemodel().getBean().getFunkSontex() == true){
+                            if(getBasemodel().getBean().getFunkfehler_offen() == true){
+                                iv.setImageResource(R.drawable.icon_ablesung_sontex_open);
+                            } else {
+                                iv.setImageResource(R.drawable.icon_ablesung_sontex_funk);
+                            }
+                        }
+                    } else {
+                        iv.setImageResource(R.drawable.icon_montage);
+                    }
                 }
             }
         }
