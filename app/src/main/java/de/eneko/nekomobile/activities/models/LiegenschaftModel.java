@@ -6,12 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.beans.ToDo;
-import de.eneko.nekomobile.controllers.Dict;
 
 public class LiegenschaftModel extends Basemodel{
     private Date mStart;
@@ -104,14 +102,16 @@ public class LiegenschaftModel extends Basemodel{
         return qMessgeraet;
     }
 
-
-
     public Boolean isCompleted(String pArt){
 
-
-            Integer absolutUndoneCount_RWM = getBean().getNutzers().stream()
-                    .filter(r -> r.getBaseModel().isCompleted())
+            Integer absolutUndoneCount = getBean().getNutzers().stream()
+                    .filter(r -> ! r.getBaseModel().isCompleted(pArt))
                     .collect(Collectors.toList()).size();
+
+            List<Nutzer> n = getBean().getNutzers().stream()
+                    .filter(r -> ! r.getBaseModel().isCompleted(pArt))
+                    .collect(Collectors.toList());
+
 
             if (absolutUndoneCount == 0) {
                 return true;
@@ -120,65 +120,6 @@ public class LiegenschaftModel extends Basemodel{
                 return false;
             }
         }
-    }
-    public Integer getProgressStatusImageResourceId(){
-        if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM))
-        {
-            if (isCompleted("RWM")) {
-                return R.drawable.icon_smoke_detector_green_ok;
-            }else {
-                return R.drawable.icon_smoke_detector_b;
-            }
-        }
-        if (getBean().getArt().equals(Dict.TODO_ABLESUNG))
-        {
-            if (isCompleted("GER")) {
-                return R.drawable.icon_ablesung_complete;
-            }else {
-                return R.drawable.icon_ablesung;
-            }
-        }
-        if (getBean().getArt().equals(Dict.TODO_ZWISCHENABLESUNG))
-        {
-            if (isCompleted("GER")) {
-                return R.drawable.icon_ablesung_zwischen_complete;
-            }else {
-                return R.drawable.icon_ablesung_zwischen;
-            }
-        }
-        if (getBean().getArt().equals(Dict.TODO_FUNK_CHECK))
-        {
-            if (isCompleted("GER")) {
-                return R.drawable.icon_funk_check_complete;
-            }else {
-                return R.drawable.icon_funk_check;
-            }
-        }
-
-        if (getBean().getArt().equals(Dict.TODO_MONTAGE_WWZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_HKV) || getBean().getArt().equals(Dict.TODO_MONTAGE_WMZ) || getBean().getArt().equals(Dict.TODO_MONTAGE_KWZ))
-        {
-            if (isCompleted("GER")) {
-                return R.drawable.icon_montage_ok;
-            }else {
-                return R.drawable.icon_montage;
-            }
-        }
-
-        if (getBean().getArt().equals(Dict.TODO_INFO_RWM))
-        {
-
-            return R.drawable.ic_system_information;
-        }
-        if (getBean().getArt().equals(Dict.TODO_INFO_GER))
-        {
-
-            return R.drawable.ic_system_information;
-        }
-
-
-        return 0;
-    }
-
 
 
 

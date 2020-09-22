@@ -1,26 +1,20 @@
 package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
-import android.widget.TextView;
-import android.view.LayoutInflater;
 
 import com.google.android.gms.vision.barcode.Barcode;
 import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
@@ -28,12 +22,12 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
-import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
+import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.BarcodeHelper;
 import de.eneko.nekomobile.framework.FormatHelper;
 
@@ -388,6 +382,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     public void save() {
         setDataToModel();
         getBasemodel().save();
+        FileHandler.getInstance().saveFile();
     }
 
 

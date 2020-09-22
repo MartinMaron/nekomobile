@@ -1,5 +1,7 @@
 package de.eneko.nekomobile.activities.models;
 
+import android.util.Log;
+
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
@@ -41,31 +43,34 @@ public class NutzerTodoModel extends Basemodel{
 
     public Integer getToDoCount(String pArt)
     {
-//        Log.d(TAG,"Nutzer" + getBean().getNutzer().getNutzerName());
-//        Log.d(TAG,"getDoneCount" + getDoneCount(pArt).toString());
-//        Log.d(TAG,"getUndoneCount" + getUndoneCount(pArt).toString());
-//        Log.d(TAG,"getWithErrorCount" + getWithErrorCount(pArt).toString());
+        Log.d(TAG,"Nutzer " + getBean().getNutzer().getNutzerName());
+        Log.d(TAG,"getDoneCount " + getDoneCount(pArt).toString());
+        Log.d(TAG,"getUndoneCount " + getUndoneCount(pArt).toString());
+        Log.d(TAG,"getWithErrorCount " + getWithErrorCount(pArt).toString());
+
+
         return getDoneCount(pArt) + getUndoneCount(pArt) + getWithErrorCount(pArt);
     }
 
     public Boolean isCompleted(String pArt){
+        boolean ret_val = false;
+        if (getBean().getArt().contains("INF")) return true;
+
 
        if(pArt.equals("RWM")){
-           if (getNewCount("RWM") > 0) {return true;}
-           if (getToDoCount(pArt)== 0) {return false;}
-            return getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
-       }else{
+           if (getNewCount("RWM") > 0) {ret_val = true;}
+           if (getToDoCount(pArt)== 0) {ret_val = false;}
+           ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
+       }
+
+       if(pArt.equals("GER")){
            Integer absolutUndoneCount = getBean().getMessgeraete().stream()
                    .filter(r -> r.isUnDone())
                    .collect(Collectors.toList()).size();
 
-           if (absolutUndoneCount == 0) {
-               return true;
-           }else
-           {
-               return false;
-           }
+           ret_val = absolutUndoneCount == 0;
        }
+       return ret_val;
     }
     public Integer getProgressStatusImageResourceId(){
         if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM))
@@ -185,13 +190,6 @@ public class NutzerTodoModel extends Basemodel{
 
 
 
-//    public Integer getAblesungImageResourceId(){
-//        if (isCompleted("GER")) {
-//            return R.drawable.icon_ablesung_complete;
-//        }else {
-//            return R.drawable.icon_ablesung;
-//        }
-//    }
 
 
 
@@ -205,9 +203,7 @@ public class NutzerTodoModel extends Basemodel{
     // region properties
 
 
-//    public Nutzer getNutzer() {
-//        return getBean().getNutzer();
-//    }
+
 
     public Liegenschaft getLiegenschaft() {
         return getBean().getLiegenschaft();

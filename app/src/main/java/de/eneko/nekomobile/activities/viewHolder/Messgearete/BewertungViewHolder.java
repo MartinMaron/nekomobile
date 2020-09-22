@@ -27,6 +27,7 @@ import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
+import de.eneko.nekomobile.controllers.FileHandler;
 
 //
 public class BewertungViewHolder extends BaseViewHolder implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -1323,6 +1324,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
     public void save() {
         setDataToModel();
         getBasemodel().save();
+        FileHandler.getInstance().saveFile();
     }
 
     protected void loadData(){

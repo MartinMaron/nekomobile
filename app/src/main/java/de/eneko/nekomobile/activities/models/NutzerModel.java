@@ -135,7 +135,16 @@ public class NutzerModel extends Basemodel {
     }
 
     public Boolean isCompleted(){
-        return false;
+        return isCompleted("RWM") && isCompleted("GER");
+    }
+
+
+    public Boolean isCompleted(String pArt){
+        // falls der Nutzer abwesend ist oder alle Todos erledigt sind
+        if (getBean().getAbwesend()) return true;
+        return getBean().getToDos().stream()
+                .filter(r -> ! r.getBaseModel().isCompleted(pArt))
+                .collect(Collectors.toList()).isEmpty();
     }
 
     public Integer getStatusImageResourceId() {

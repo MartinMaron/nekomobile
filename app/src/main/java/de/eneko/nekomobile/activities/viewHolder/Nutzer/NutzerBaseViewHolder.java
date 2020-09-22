@@ -47,10 +47,12 @@ public class NutzerBaseViewHolder extends BaseViewHolder {
         getIvStatus().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!getBasemodel().isCompleted()){
+                if (getBasemodel().isCompleted()){
+                    getBasemodel().setAbwesend(false);
+                }else{
                     getBasemodel().setAbwesend(!getBasemodel().getAbwesend());
-                    getBasemodel().save();
                 }
+                getBasemodel().save();
                 getIvStatus().setImageResource(getBasemodel().getStatusImageResourceId());
             }
         });

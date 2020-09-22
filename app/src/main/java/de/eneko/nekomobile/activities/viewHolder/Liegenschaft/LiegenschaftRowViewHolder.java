@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.activities.viewHolder.Liegenschaft;
 
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import de.eneko.nekomobile.R;
@@ -44,19 +45,39 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
             getTxtvBemerkungen().setVisibility(View.GONE);
         }
 
-        // sichtbarkei der Icons
-        getTodoRow().getIvAblesung().setVisibility(getBasemodel().hasAblesung() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);
-        getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE: View.GONE);
+        if (getBasemodel().isCompleted("RWM") && getBasemodel().isCompleted("GER")){
+            getTodoRow().getIvAblesung().setVisibility(View.GONE);
+            getTodoRow().getIvMontage().setVisibility(View.GONE);
+            getTodoRow().getIvRwmMontage().setVisibility(View.GONE);
+            getTodoRow().getIvRwmWartung().setVisibility(View.GONE);
+            getTodoRow().getIvFunkCheck().setVisibility(View.GONE);
 
-       if (getTodoRow().getIvAblesung().getVisibility() == View.VISIBLE) {
+            getTxtvLiegenschaft().setTextColor(ContextCompat.getColor(mView.getContext(), R.color.dark_green));
+
+        } else {
+            // sichtbarkei der Icons
+            getTodoRow().getIvAblesung().setVisibility(getBasemodel().hasAblesung() ? View.VISIBLE : View.GONE);
+            getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE : View.GONE);
+            getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE : View.GONE);
+            getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE : View.GONE);
+            getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE : View.GONE);
+        }
+
+//        if (getTodoRow().getIvRwmMontage().getVisibility() == View.VISIBLE || getTodoRow().getIvRwmWartung().getVisibility() == View.VISIBLE ||) {
+//            if (getBasemodel().isCompleted("RWM")) {
+//                getTodoRow().getIvRwmMontage().setImageResource(R.drawable.icon_smoke_detector_green_ok);
+//                getTodoRow().getIvRwmWartung().setImageResource(R.drawable.icon_smoke_detector_green_ok);
+//            }else {
+//                getTodoRow().getIvRwmMontage().setImageResource(R.drawable.icon_smoke_detector_b);
+//                getTodoRow().getIvRwmWartung().setImageResource(R.drawable.icon_smoke_detector_b);
+//            }
+//       }
 
 
 
 
-       }
+
+
 
 
     }
