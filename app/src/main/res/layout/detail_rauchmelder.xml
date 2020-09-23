@@ -23,7 +23,7 @@
         android:layout_below="@id/lbModel"
         android:button="@drawable/drawable_selector"
         android:paddingLeft="@dimen/dp_faktor_2"
-        android:text="@string/Fremdgeraet" />
+        android:text="@string/Datenaufnahme" />
 
     <Spinner
         android:id="@+id/spModel"

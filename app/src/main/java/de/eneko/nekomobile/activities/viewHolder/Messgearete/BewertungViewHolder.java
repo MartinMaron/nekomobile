@@ -609,7 +609,51 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
                 // endregion code
                 break;
-            case "21": case "22": case "23": case "24":
+            case "21": case "22": case "24":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.VISIBLE);
+                getActvReihenanordnung().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("PD - Platendicke in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.GONE);
+                getActvBewertungsfaktor07().setVisibility(View.GONE);
+
+                getLbBewertungsfaktor08().setVisibility(View.GONE);
+                getActvBewertungsfaktor08().setVisibility(View.GONE);
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("LT - Lamellentiefe in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("LH - Lamellenhöhe in mm");
+
+                getLbBewertungsfaktor11().setVisibility(View.GONE);
+                getActvBewertungsfaktor11().setVisibility(View.GONE);
+                // endregion code
+                break;
+            case "23":
                 // region code
 
                 getLbReihenanordnung().setVisibility(View.VISIBLE);
@@ -810,8 +854,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
 
-                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
-                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
 
                 getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
@@ -824,7 +868,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
-                getLbBewertungsfaktor08().setText("HV - Höhe des Verteilskanals in mm");
+                getLbBewertungsfaktor08().setText("BV - Breite des Verteilskanals in mm");
 
                 getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
