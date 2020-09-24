@@ -1,7 +1,10 @@
 package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -59,6 +62,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
     private AutoCompleteTextView actvBewertungsfaktor11 = null;
     private ListView listView = null;
     private BewertungListViewAdapter bewertungListViewAdapter = null;
+    private Boolean mBLParamChanged = false;
+
 
     public BewertungViewHolder(View pView, MessgeraetModel pMessgeraet, Activity pActivity){
         super(pView, pMessgeraet, pActivity );
@@ -90,6 +95,15 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
     }
 
+//    private View.OnFocusChangeListener focusListener = new View.OnFocusChangeListener() {
+//        public void onFocusChange(View v, boolean hasFocus) {
+//            if (hasFocus){
+//                focusedView = v;
+//            } else {
+//                focusedView  = null;
+//            }
+//        }
+//    }
 
 
     @Override
@@ -235,6 +249,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
             }
         });
 
+
         TextWatcher textWatcher = new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
                 if(!s.equals("") ) {
@@ -246,9 +261,76 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
             }
             public void afterTextChanged(Editable s) {
                 updateListView();
+                if (getActvBewertungsfaktor05().hasFocus() || getActvBewertungsfaktor09().hasFocus()){
+                    if ( getEtGrundparameter().getText().toString().equals("12") &&  ! getActvBewertungsfaktor05().getText().toString().isEmpty() && ! getActvBewertungsfaktor09().getText().toString().isEmpty())
+                    {
+                        mBLParamChanged = true;
+                   }
+                }
             }
         };
 
+
+        View.OnFocusChangeListener mOnFocusChangeListener= new View.OnFocusChangeListener() {
+            String ret_val = "";
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && mBLParamChanged) {
+                   if (getEtGrundparameter().getText().toString().equals("12") && !getActvBewertungsfaktor05().getText().toString().isEmpty() && !getActvBewertungsfaktor09().getText().toString().isEmpty()) {
+                        Integer p1 = Integer.valueOf(getActvBewertungsfaktor05().getText().toString()).intValue();
+                        Integer p2 = Integer.valueOf(getActvBewertungsfaktor09().getText().toString()).intValue();
+                        ret_val = Integer.toString(p1 * p2);
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
+                        AlertDialog dialog = builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+
+                           }
+                        }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                getActvBewertungsfaktor03().setText(ret_val);
+                            }
+                        }).create();
+
+                        //2. now setup to change color of the button
+                       dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                           @Override
+                           public void onShow(DialogInterface arg0) {
+                               dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(mActivity, R.color.black));
+                               dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+                           }
+                       });
+                       dialog.setTitle("Soll die Baulänge geändert werden?");
+                       dialog.show();
+                       mBLParamChanged = false;
+                    }
+                }
+            }
+//            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    switch (which){
+//                        case DialogInterface.BUTTON_POSITIVE:
+//                            getActvBewertungsfaktor03().setText(ret_val);
+//                            break;
+//
+//                        case DialogInterface.BUTTON_NEGATIVE:
+//                            //No button clicked
+//                            break;
+//                    }
+//                }
+//            };
+
+        };
+
+
+
+
+
+        getActvBewertungsfaktor05().setOnFocusChangeListener(mOnFocusChangeListener);
+        getActvBewertungsfaktor09().setOnFocusChangeListener(mOnFocusChangeListener);
 
         getActvBewertungsfaktor01().setOnClickListener(this);
         getActvBewertungsfaktor02().setOnClickListener(this);
