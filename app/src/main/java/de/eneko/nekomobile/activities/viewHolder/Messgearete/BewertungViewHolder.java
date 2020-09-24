@@ -282,12 +282,12 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                         ret_val = Integer.toString(p1 * p2);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
-                        AlertDialog dialog = builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        AlertDialog dialog = builder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
                            @Override
                            public void onClick(DialogInterface dialogInterface, int i) {
 
                            }
-                        }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        }).setPositiveButton("Ja", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 getActvBewertungsfaktor03().setText(ret_val);
@@ -308,21 +308,6 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                     }
                 }
             }
-//            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    switch (which){
-//                        case DialogInterface.BUTTON_POSITIVE:
-//                            getActvBewertungsfaktor03().setText(ret_val);
-//                            break;
-//
-//                        case DialogInterface.BUTTON_NEGATIVE:
-//                            //No button clicked
-//                            break;
-//                    }
-//                }
-//            };
-
         };
 
 
