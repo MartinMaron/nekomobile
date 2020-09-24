@@ -86,12 +86,6 @@ public class RauchmelderWartungListActivity extends AppCompatActivity implements
         exit();
     }
 
-//    @Override
-//    public boolean OnItemLongClick(View v) {
-//        return false;
-//    }
-
-
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         //Falls der Rauchmelder neu hinzugefügt wurde so können wir nach einer Frage den rwm löschen
