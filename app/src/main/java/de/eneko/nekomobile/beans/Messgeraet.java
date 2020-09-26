@@ -48,7 +48,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
     private Liegenschaft mLiegenschaft = null;
     private Boolean mNew = false;
     private Double mStartWert = -1.0;
-
+    private Double mProcent = -1.0;
 
 
     private String mGrundparameter = "";
@@ -247,6 +247,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
                     case "startWert":
                         mStartWert = getDouble(propElement);
                         break;
+                    case "procent":
+                        mProcent = getDouble(propElement);
+                        break;
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -312,6 +315,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
             CreateIntegerNode(ret_val,"bewertungsfaktor_10" ,mBewertungsfaktor_10);
             CreateTextNode(ret_val,"reihenanordnung" ,mReihenanordnung);
             CreateDoubleNode(ret_val,"startWert" ,mStartWert);
+            CreateDoubleNode(ret_val,"procent" ,mProcent);
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }
@@ -752,5 +756,12 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         mStartWert = startWert;
     }
 
-// endregion "Properties"
+    public Double getProcent() {
+        return mProcent;
+    }
+
+    public void setProcent(Double procent) {
+        mProcent = procent;
+    }
+    // endregion "Properties"
 }

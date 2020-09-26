@@ -6,14 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.framework.NumberCustomKeyboard;
 
 public abstract class MessgeraetBaseActivity extends AppCompatActivity{
 
-
+    protected NumberCustomKeyboard mCustomKeyboard;
 
     protected DetailViewHolder viewHolder = null;
     public DetailViewHolder getViewHolder() {
@@ -25,8 +26,14 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_messgeraet);
+        mCustomKeyboard= new NumberCustomKeyboard(this, R.id.keyboardview, R.xml.keyboard );
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         createViewHolder();
     }
+
+
+
+
 
     protected abstract void createViewHolder();
 
@@ -59,6 +66,7 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity{
     }
 
     public void onBackPressed(){
+        if( mCustomKeyboard.isCustomKeyboardVisible() ) mCustomKeyboard.hideCustomKeyboard(); else this.finish();
         exit();
     }
 

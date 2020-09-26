@@ -51,7 +51,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_list_view);
 
-                NutzerTodoModel nutzerTodoModel = CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
+                NutzerTodoModel nutzerTodoModel = (NutzerTodoModel) CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
                 nutzerTodoModel.load();
                 getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
 

@@ -75,8 +75,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         setIvSpechToText(getActivity().findViewById(R.id.ivSpechToText));
         setIbBewertung(findViewById(R.id.ibBewertung));
 
-
-
+        setLbStartwert(getActivity().findViewById(R.id.lbStartwert));
+        setLbProcente(getActivity().findViewById(R.id.lbProcente));
+        setTvStartwert(getActivity().findViewById(R.id.tvStartwert));
+        setTvProcente(getActivity().findViewById(R.id.tvProcente));
 
         if (getActvRaum() != null) getActvRaum().setAdapter(
                 new ArrayAdapter<String>(mActivity,android.R.layout.simple_list_item_1,
@@ -196,6 +198,9 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         if (getLbStichtag() != null) getLbStichtag().setText("stichtag");
         if (getTvAktuell() != null) getTvAktuell().setText(getBasemodel().getAktuellValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getAktuellValue()));
         if (getTvStichtag() != null) getTvStichtag().setText(getBasemodel().getStichtagValue() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getStichtagValue()));
+        if (getTvStartwert() != null) getTvStartwert().setText(getBasemodel().getStartWert() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getStartWert()));
+        if (getTvProcente() != null) getTvProcente().setText(getBasemodel().getProcent() == -1.0 ? "" : FormatHelper.formatDisplayDouble(getBasemodel().getProcent()));
+
         if (getCbDefekt() != null) getCbDefekt().setChecked(getBasemodel().getDefekt());
 
         if (getSpNewModel() != null && getBasemodel().getZielmodel() > 0) {
@@ -359,6 +364,10 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         getBasemodel().setDefekt(getCbDefekt().isChecked());
         getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
         getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
+//        getBasemodel().setProcent(Double.parseDouble(getTvNewNummer().getText().toString()));
+//        getBasemodel().setStartWert(Double.parseDouble(getTvStartwert().getText().toString()));
+
+
 
         // Übergabe convertierter Werte
         ZaehlerModel zaehlerModel = (ZaehlerModel) getSpNewModel().getSelectedItem();

@@ -80,6 +80,12 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private TextView lbUnDoneGrund = null;
     private AutoCompleteTextView acUnDoneGrund = null;
     private ImageButton ibBewertung = null;
+    private TextView lbStartwert = null;
+    private EditText tvStartwert = null;
+    private TextView lbProcente = null;
+    private EditText tvProcente = null;
+
+
 
 
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean) {
@@ -204,7 +210,6 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     public void setDataToModel() {
 
     }
-
 
 
     protected void loadData(){
@@ -561,6 +566,39 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     public void setIbBewertung(ImageButton ibBewertung) {
         this.ibBewertung = ibBewertung;
     }
+
+    public EditText getTvStartwert() {
+        return tvStartwert;
+    }
+
+    public void setTvStartwert(EditText tvStartwert) {
+        this.tvStartwert = tvStartwert;
+    }
+
+    public EditText getTvProcente() {
+        return tvProcente;
+    }
+
+    public void setTvProcente(EditText tvProcente) {
+        this.tvProcente = tvProcente;
+    }
+
+    public TextView getLbStartwert() {
+        return lbStartwert;
+    }
+
+    public void setLbStartwert(TextView lbStartwert) {
+        this.lbStartwert = lbStartwert;
+    }
+
+    public TextView getLbProcente() {
+        return lbProcente;
+    }
+
+    public void setLbProcente(TextView lbProcente) {
+        this.lbProcente = lbProcente;
+    }
+
 
     // endregion properties
 

@@ -24,6 +24,7 @@ public class InputDialogClass {
     private EditText etAktuell;
     private TextView tvNummer;
     private TextView tvPreviousStan;
+    protected View alertLayout;
 
 
     public InputDialogClass(Activity activity, MessgeraetModel messgeraetModel) {
@@ -35,7 +36,7 @@ public class InputDialogClass {
     public void show() {
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View alertLayout = inflater.inflate(R.layout.dialog_input_value, null);
+        alertLayout = inflater.inflate(R.layout.dialog_input_value, null);
         etAktuell = alertLayout.findViewById(R.id.etInputAktuell);
         etStichtag = alertLayout.findViewById(R.id.etInputStichtag);
 
@@ -45,8 +46,8 @@ public class InputDialogClass {
         tvPreviousStan = alertLayout.findViewById(R.id.lbPrevStan);
         tvPreviousStan.setText(mMessgeraetModel.getLetzterWertText());
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
 
+         AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setView(alertLayout);
         alert.setCancelable(false);
         alert.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
@@ -81,17 +82,9 @@ public class InputDialogClass {
 
         etAktuell.setText(mMessgeraetModel.getAktuellValue() == -1.0 ? "" : FormatHelper.formatInputDouble(mMessgeraetModel.getAktuellValue()));
         etStichtag.setText(mMessgeraetModel.getStichtagValue() == -1.0 ? "" : FormatHelper.formatInputDouble(mMessgeraetModel.getStichtagValue()));
-
-        //etAktuell.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
-        //etStichtag.setBackgroundColor(activity.getResources().getColor(R.color._light_green));
-
         tvNummer.setBackgroundResource(mMessgeraetModel.getArtColor());
 
 
-
-
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 
         if(mMessgeraetModel.getArt().equals("HKV") || mMessgeraetModel.getArt().equals("WMZ")) {
@@ -103,6 +96,7 @@ public class InputDialogClass {
             etAktuell.setFocusableInTouchMode(true);
             etAktuell.requestFocus();
         }
+
 
 
 

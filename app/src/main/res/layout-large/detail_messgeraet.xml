@@ -105,6 +105,55 @@
         android:textColor="@color/black"
         android:textSize="@dimen/sp_faktor_12" />
 
+
+
+    <TextView
+        android:id="@+id/lbStartwert"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/tvAktuell"
+        android:contentDescription="@string/empty"
+        android:text="@string/Startwert"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_08" />
+
+    <TextView
+        android:id="@+id/lbProcente"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/tvStichtag"
+        android:layout_toRightOf="@id/lbStartwert"
+        android:contentDescription="@string/empty"
+        android:text="@string/Procente"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_08" />
+    <EditText
+        android:id="@+id/tvStartwert"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:layout_below="@id/lbStartwert"
+        android:background="@drawable/textview_border"
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:inputType="numberDecimal"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/dark_slate_gray"
+        android:textSize="@dimen/sp_faktor_12" />
+    <EditText
+        android:id="@+id/tvProcente"
+        android:layout_width="@dimen/dp_faktor_80"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:layout_below="@id/lbProcente"
+        android:layout_toRightOf="@id/tvStartwert"
+        android:background="@drawable/textview_border"
+        android:paddingLeft="@dimen/dp_faktor_2"
+        android:inputType="numberDecimal"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_12" />
     <TextView
         android:id="@+id/lbNewModel"
         android:layout_width="@dimen/dp_faktor_140"
@@ -259,7 +308,7 @@
         android:id="@+id/lbUnDoneGrund"
         android:layout_width="@dimen/dp_faktor_140"
         android:layout_height="@dimen/dp_faktor_8"
-        android:layout_below="@id/tvStichtag"
+        android:layout_below="@id/tvProcente"
         android:text="Grund warum kein Tausch erfolgt"
         android:textSize="@dimen/sp_faktor_08" />
 
@@ -283,7 +332,7 @@
         android:id="@+id/ivPhoto"
         android:layout_width="@dimen/dp_faktor_14"
         android:layout_height="@dimen/dp_faktor_20"
-        android:layout_below="@id/tvStichtag"
+        android:layout_below="@id/tvProcente"
         android:layout_toRightOf="@id/acUnDoneGrund"
         app:srcCompat="@drawable/icon_camera" />
 

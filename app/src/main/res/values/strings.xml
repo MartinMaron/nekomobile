@@ -47,4 +47,8 @@
     <string name="WebesSaeulenzahl">SZ - Säulenzahl</string>
     <string name="WebesSaeulendicke">SD - Säulendicke in mm</string>
     <string name="WebesGliederzahl">GZ - Gliederzahl</string>
+    <string name="Startwert">Startwert</string>
+    <string name="Procente">Procente</string>
+    <string name="aktuell">aktuell</string>
+    <string name="Stichtag">Stichtag</string>
 </resources>

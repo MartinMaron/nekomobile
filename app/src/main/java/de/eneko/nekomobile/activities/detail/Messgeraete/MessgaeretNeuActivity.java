@@ -23,28 +23,33 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
             @Override
             public void save() {
                 getBasemodel().setRaum(getActvRaum().getText().toString());
-                Object zm = getSpNewModel().getSelectedItem();
+                if (obj.getArt().equals("HKV")){
+                    if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
+                    getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
+                    getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
+                    getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
+                    getBasemodel().setProcent(Double.parseDouble(getTvNewNummer().getText().toString()));
+                    getBasemodel().setStartWert(Double.parseDouble(getTvStartwert().getText().toString()));
+                }else{
+                    if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
+                    getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
+                    getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
+                    getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
+                    getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
+                    getBasemodel().setDefekt(getCbDefekt().isChecked());
+                        getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
+                    getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
 
-                if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
-                getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
-                getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
-                getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
-                getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
-                getBasemodel().setDefekt(getCbDefekt().isChecked());
-                getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
-                getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
-
-                String convertedValue = getTvStichtag().getText().toString().replace(" ","");
-                if (InputDialogClass.isDouble(convertedValue)) {
-                    getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    String convertedValue = getTvStichtag().getText().toString().replace(" ","");
+                    if (InputDialogClass.isDouble(convertedValue)) {
+                        getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    }
+                    convertedValue = getTvAktuell().getText().toString().replace(" ","");
+                    if (InputDialogClass.isDouble(convertedValue)) {
+                        getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
+                    }
+                    getBasemodel().setDefekt(getCbDefekt().isChecked());
                 }
-                convertedValue = getTvAktuell().getText().toString().replace(" ","");
-                if (InputDialogClass.isDouble(convertedValue)) {
-                    getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
-                }
-
-                getBasemodel().setDefekt(getCbDefekt().isChecked());
-
                 getBasemodel().save();
             }
 
@@ -65,7 +70,9 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getLbNewModel().setVisibility(View.GONE);
                         getSpNewModel().setVisibility(View.GONE);
                         getIvBarcodeNewModel().setVisibility(View.GONE);
-
+                        getTvProcente().setVisibility(View.VISIBLE);
+                        getLbStartwert().setVisibility(View.GONE);
+                        getTvStartwert().setVisibility(View.GONE);
                         getLbNewFunkModel().setVisibility(View.GONE);
                         getSpNewFunkModel().setVisibility(View.GONE);
                         getIvBarcodeNewFunkModel().setVisibility(View.GONE);
@@ -77,8 +84,9 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                     }else{
                         getLbNewModel().setVisibility(View.GONE);
                         getSpNewModel().setVisibility(View.GONE);
+                        getTvProcente().setVisibility(View.GONE);
+                        getTvStartwert().setVisibility(View.VISIBLE);
                         getIvBarcodeNewModel().setVisibility(View.GONE);
-
                     }
                 }
 
@@ -90,6 +98,10 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getSpNewModel().setVisibility(View.VISIBLE);
                         getIvBarcodeNewModel().setVisibility(View.GONE);
 
+                        getTvProcente().setVisibility(View.VISIBLE);
+                        getTvStartwert().setVisibility(View.GONE);
+                        getLbStartwert().setVisibility(View.GONE);
+
                         getLbNewFunkModel().setVisibility(View.GONE);
                         getSpNewFunkModel().setVisibility(View.GONE);
                         getIvBarcodeNewFunkModel().setVisibility(View.GONE);
@@ -99,16 +111,28 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getIvBarcodeNewFunkNummer().setVisibility(View.GONE);
                         getCbDefekt().setVisibility(View.GONE);
                     }
+
+                    if (getBasemodel().getBean().isNew()) {
+                        getTvNummer().setEnabled(true);
+                        getTvNummer().setFocusable(true);
+                        getLbStichtag().setVisibility(View.GONE);
+                        getTvStichtag().setVisibility(View.GONE);
+                        getTvAktuell().setVisibility(View.GONE);
+                        getLbAktuell().setVisibility(View.GONE);
+                   }
+                }else{
+                    if (getBasemodel().getBean().isNew()) {
+                        getTvNummer().setEnabled(true);
+                        getTvNummer().setFocusable(true);
+                        getLbStichtag().setVisibility(View.GONE);
+                        getTvStichtag().setVisibility(View.GONE);
+                        getTvAktuell().setVisibility(View.GONE);
+                        getLbAktuell().setVisibility(View.GONE);
+                        getTvProcente().setVisibility(View.GONE);
+                  }
                 }
 
-                  if (getBasemodel().getBean().isNew()) {
-                    getTvNummer().setEnabled(true);
-                    getTvNummer().setFocusable(true);
-                    getLbStichtag().setVisibility(View.GONE);
-                    getTvStichtag().setVisibility(View.GONE);
-                    getTvAktuell().setVisibility(View.GONE);
-                    getLbAktuell().setVisibility(View.GONE);
-                }
+
 
 
             }

@@ -143,7 +143,7 @@ public class NutzerModel extends Basemodel {
         // falls der Nutzer abwesend ist oder alle Todos erledigt sind
         if (getBean().getAbwesend()) return true;
         return getBean().getToDos().stream()
-                .filter(r -> ! r.getBaseModel().isCompleted(pArt))
+                .filter(r -> ! ((NutzerTodoModel) r.getBaseModel()).isCompleted(pArt))
                 .collect(Collectors.toList()).isEmpty();
     }
 

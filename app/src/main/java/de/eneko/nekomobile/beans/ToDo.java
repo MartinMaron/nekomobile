@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
+import de.eneko.nekomobile.activities.models.LiegenschaftModel;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
 
 public class ToDo extends BaseObject implements ItoXmlElement {
@@ -40,13 +41,19 @@ public class ToDo extends BaseObject implements ItoXmlElement {
 
     @Override
     protected Basemodel createBaseObject() {
-        return new NutzerTodoModel(this);
+       if(mLiegenschaft != null){
+           return new LiegenschaftModel(this);
+       }
+        if(mNutzer != null){
+            return new NutzerTodoModel(this);
+        }
+        return null;
     }
 
     @Override
-    public NutzerTodoModel getBaseModel() {
+    public Basemodel getBaseModel() {
         if(super.getBaseModel() == null) baseModel = createBaseObject();
-        return (NutzerTodoModel) super.getBaseModel();
+        return super.getBaseModel();
     }
 
     //

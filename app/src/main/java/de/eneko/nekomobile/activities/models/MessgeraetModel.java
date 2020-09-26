@@ -24,7 +24,7 @@ public class MessgeraetModel extends Basemodel {
     private Date mStichtagsdatum = null;
     private String mUnDoneGrundGrund = "";
     private Double mStartWert = -1.0;
-
+    private Double mProcent = -1.0;
     private String mGrundparameter = "";
     private String mFormparameter = "";
     private Integer mBewertungsfaktor_01 = -1;
@@ -53,7 +53,8 @@ public class MessgeraetModel extends Basemodel {
         getBean().setZielmodel(getZielmodel());
         getBean().setAktuellValue(getAktuellValue());
         getBean().setStichtagValue(getStichtagValue());
-        getBean().setStartWert(getStichtagValue());
+        getBean().setStartWert(getStartWert());
+        getBean().setProcent(getProcent());
         if (getDatum() == null) {getBean().setDatum(new Date());} else { getBean().setDatum(getDatum());}
         getBean().setDefekt(getDefekt());
         getBean().setBemerkung(getBemerkung());
@@ -86,6 +87,8 @@ public class MessgeraetModel extends Basemodel {
         setZielmodel ( getBean().getZielmodel());
         setAktuellValue ( getBean().getAktuellValue());
         setStichtagValue ( getBean().getStichtagValue());
+        setStartWert(getBean().getStartWert());
+        setProcent(getBean().getProcent());
         setDatum ( getBean().getDatum());
         setDefekt ( getBean().getDefekt());
         setBemerkung ( getBean().getBemerkung());
@@ -464,6 +467,14 @@ public class MessgeraetModel extends Basemodel {
 
     public void setStartWert(Double startWert) {
         mStartWert = startWert;
+    }
+
+    public Double getProcent() {
+        return mProcent;
+    }
+
+    public void setProcent(Double procent) {
+        mProcent = procent;
     }
 
     //endregion

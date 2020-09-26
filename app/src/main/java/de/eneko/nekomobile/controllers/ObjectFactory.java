@@ -32,6 +32,7 @@ public class ObjectFactory {
         ret_val.setArt(pToDo.getArt().replace("MON_",""));
         ret_val.setNew(true);
         ret_val.setNekoId("new_" + pToDo.getMessgeraete().size());
+        ret_val.setNummer(ret_val.getNekoId());
         return ret_val;
     }
 
