@@ -9,7 +9,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import de.eneko.nekomobile.InputDialogClass;
-import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.MessgeraetMontageListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
@@ -27,9 +26,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        mCustomKeyboard.registerEditText(R.id.tvStartwert);
-        mCustomKeyboard.registerEditText(R.id.tvProcente);
-    }
+  }
 
 
 
@@ -37,11 +34,12 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
     @Override
     protected void createViewHolder(){
        Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
+
+
         viewHolder = new DetailViewHolder( null,obj.getBaseModel(), this){
             @Override
             public void save() {
                 getBasemodel().setRaum(getActvRaum().getText().toString());
-                Object zm = getSpNewModel().getSelectedItem();
 
                 if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
                 getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
@@ -84,16 +82,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
             }
 
 
-            public boolean isDouble(String s)
-            {
-                try {
-                    double d = Double.parseDouble(s.replace(",","."));
-                    return true;
 
-                } catch (NumberFormatException e) {
-                    return false;
-                }
-            }
 
 
 
@@ -107,6 +96,10 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
             protected void createLayout() {
 
                 if (getTvNummer() != null) getTvNummer().setFocusable(false);
+
+                if (getTvProcente() != null) ((MessgaeretAustauschActivity) getActivity()).getCustomKeyboard().registerEditText(getTvProcente());
+                if (getTvStartwert() != null) ((MessgaeretAustauschActivity) getActivity()).getCustomKeyboard().registerEditText(getTvStartwert());
+
 
                 if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_FUNK_CHECK))
                 {

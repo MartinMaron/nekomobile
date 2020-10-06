@@ -10,9 +10,10 @@ import android.view.WindowManager;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.framework.ISaveAndExit;
 import de.eneko.nekomobile.framework.NumberCustomKeyboard;
 
-public abstract class MessgeraetBaseActivity extends AppCompatActivity{
+public abstract class MessgeraetBaseActivity extends AppCompatActivity implements ISaveAndExit {
 
     protected NumberCustomKeyboard mCustomKeyboard;
 
@@ -32,8 +33,11 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity{
     }
 
 
-
-
+    @Override
+    public void saveAndExit() {
+        if (viewHolder != null) viewHolder.save();
+        exit();
+    }
 
     protected abstract void createViewHolder();
 
@@ -74,5 +78,13 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
          if (viewHolder != null) viewHolder.updateView();
+    }
+
+    public NumberCustomKeyboard getCustomKeyboard() {
+        return mCustomKeyboard;
+    }
+
+    public void setCustomKeyboard(NumberCustomKeyboard customKeyboard) {
+        mCustomKeyboard = customKeyboard;
     }
 }

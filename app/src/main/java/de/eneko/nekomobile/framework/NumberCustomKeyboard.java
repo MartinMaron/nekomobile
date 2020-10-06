@@ -20,6 +20,7 @@
 package de.eneko.nekomobile.framework;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
@@ -36,6 +37,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.util.List;
+
 import de.eneko.nekomobile.R;
 
 /**
@@ -45,16 +48,18 @@ import de.eneko.nekomobile.R;
  * @date   2012 December 23
  */
 public class NumberCustomKeyboard {
+    private static final String TAG = NumberCustomKeyboard.class.getName();
 
     /** A link to the KeyboardView that is used to render this CustomKeyboard. */
     private KeyboardView mKeyboardView;
     /** A link to the activity that hosts the {@link #mKeyboardView}. */
-    private Activity     mHostActivity;
-
+    private Activity mHostActivity;
+    private View focusCurrent;
     /** The key (code) handler. */
     private OnKeyboardActionListener mOnKeyboardActionListener = new OnKeyboardActionListener() {
 
         public final static int CodeDelete   = -5; // Keyboard.KEYCODE_DELETE
+        public final static int CodeDone   = -4; // Keyboard.KEYCODE_DELETE
         public final static int CodeCancel   = -3; // Keyboard.KEYCODE_CANCEL
         public final static int CodePrev     = 55000;
         public final static int CodeAllLeft  = 55001;
@@ -67,7 +72,7 @@ public class NumberCustomKeyboard {
         @Override public void onKey(int primaryCode, int[] keyCodes) {
             // NOTE We can say '<Key android:codes="49,50" ... >' in the xml file; all codes come in keyCodes, the first in this list in primaryCode
             // Get the EditText and its Editable
-            View focusCurrent = mHostActivity.getWindow().getCurrentFocus();
+
             if( focusCurrent==null || focusCurrent.getClass()!= AppCompatEditText.class ) return;
             EditText edittext = (EditText) focusCurrent;
             Editable editable = edittext.getText();
@@ -87,12 +92,10 @@ public class NumberCustomKeyboard {
                 edittext.setSelection(0);
             } else if( primaryCode==CodeAllRight ) {
                 edittext.setSelection(edittext.length());
-            } else if( primaryCode==CodePrev ) {
-                View focusNew= edittext.focusSearch(View.FOCUS_LEFT);
-                if( focusNew!=null ) focusNew.requestFocus();
-            } else if( primaryCode==CodeNext ) {
-                View focusNew= edittext.focusSearch(View.FOCUS_RIGHT);
-                if( focusNew!=null ) focusNew.requestFocus();
+            } else if( primaryCode== CodeDone ) {
+                if (mHostActivity instanceof ISaveAndExit) {
+                    ((ISaveAndExit) mHostActivity).saveAndExit();
+                }
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
             }
@@ -120,6 +123,14 @@ public class NumberCustomKeyboard {
         }
     };
 
+    private void save(){
+
+    }
+
+
+
+
+
     /**
      * Create a custom keyboard, that uses the KeyboardView (with resource id <var>viewid</var>) of the <var>host</var> activity,
      * and load the keyboard layout from xml file <var>layoutid</var> (see {@link Keyboard} for description).
@@ -141,50 +152,91 @@ public class NumberCustomKeyboard {
         mHostActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
+    public NumberCustomKeyboard(Activity host, KeyboardView keyboardView) {
+        mHostActivity= host;
+        mKeyboardView= keyboardView;
+        mKeyboardView.setPreviewEnabled(false); // NOTE Do not show the preview balloons
+        mKeyboardView.setOnKeyboardActionListener(mOnKeyboardActionListener);
+        // Hide the standard keyboard initially
+        mHostActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+
     /** Returns whether the CustomKeyboard is visible. */
     public boolean isCustomKeyboardVisible() {
         return mKeyboardView.getVisibility() == View.VISIBLE;
     }
 
     /** Make the CustomKeyboard visible, and hide the system keyboard for view v. */
-    public void showCustomKeyboard( View v ) {
-        v.setBackgroundColor(ContextCompat.getColor(mHostActivity, R.color.blue));
+    public void showCustomKeyboard(View v) {
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
+        focusCurrent = v;
         if( v!=null ) ((InputMethodManager)mHostActivity.getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
+    private Keyboard.Key getKeyByKeyCode(int primaryCode) {
+        if(null != mKeyboardView.getKeyboard()){
+            List<Keyboard.Key> keyList = mKeyboardView.getKeyboard().getKeys();
+            for (int i =0,size= keyList.size(); i < size; i++) {
+                Keyboard.Key key = keyList.get(i);
+                int codes[] = key.codes;
+                if(codes[0] == primaryCode){
+                    return key;
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+
     /** Make the CustomKeyboard invisible. */
     public void hideCustomKeyboard( View v ) {
-        v.setBackgroundColor(ContextCompat.getColor(mHostActivity, R.color.white));
         mKeyboardView.setVisibility(View.GONE);
         mKeyboardView.setEnabled(false);
-
+        focusCurrent = null;
     }
+
     /** Make the CustomKeyboard invisible. */
     public void hideCustomKeyboard() {
         mKeyboardView.setVisibility(View.GONE);
         mKeyboardView.setEnabled(false);
+        focusCurrent = null;
     }
 
-    /**
-     * Register <var>EditText<var> with resource id <var>resid</var> (on the hosting activity) for using this custom keyboard.
-     *
-     * @param resid The resource id of the EditText that registers to the custom keyboard.
-     */
-    public void registerEditText(int resid, int prevLayoutid, int nextLayoutid, int highlightedColour) {
-        // Find the EditText 'resid'
-        EditText edittext= (EditText)mHostActivity.findViewById(resid);
+    public void registerEditText(EditText pEdittext) {
+        EditText edittext= pEdittext;
+
         // Make the custom keyboard appear
         edittext.setOnFocusChangeListener(new OnFocusChangeListener() {
+            Drawable originalBackgroundDrawable;
+
             // NOTE By setting the on focus listener, we can show the custom keyboard when the edit box gets focus, but also hide it when the edit box loses focus
             @Override public void onFocusChange(View v, boolean hasFocus) {
-                if( hasFocus ) showCustomKeyboard(v); else hideCustomKeyboard(v);
+                if( hasFocus ) {
+                    originalBackgroundDrawable = v.getBackground();
+                    v.setBackgroundColor(ContextCompat.getColor(mHostActivity, R.color.gainsboro));
+                    EditText et = (EditText) v;
+                    et.setSelection(et.getText().length());
+                    et.append("");
+                    showCustomKeyboard(v);
+                } else {
+                    v.setBackground(originalBackgroundDrawable);
+                    hideCustomKeyboard(v);
+                }
             }
         });
         edittext.setOnClickListener(new OnClickListener() {
+            Drawable originalBackgroundDrawable;
             // NOTE By setting the on click listener, we can show the custom keyboard again, by tapping on an edit box that already had focus (but that had the keyboard hidden).
             @Override public void onClick(View v) {
+                originalBackgroundDrawable = v.getBackground();
+                v.setBackgroundColor(ContextCompat.getColor(mHostActivity, R.color.gainsboro));
+                EditText et = (EditText) v;
+                et.setSelection(et.getText().length());
+                et.append("");
                 showCustomKeyboard(v);
             }
         });

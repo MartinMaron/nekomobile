@@ -47,4 +47,6 @@
         android:divider="@color/black"
         android:dividerHeight="@dimen/dp_faktor_1"
         android:choiceMode="singleChoice" />
+
+    c
 </RelativeLayout>
