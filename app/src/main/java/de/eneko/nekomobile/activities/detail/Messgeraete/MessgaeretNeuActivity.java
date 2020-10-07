@@ -3,7 +3,9 @@ package de.eneko.nekomobile.activities.detail.Messgeraete;
 import android.content.Intent;
 import android.view.View;
 
-import de.eneko.nekomobile.InputDialogClass;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import de.eneko.nekomobile.activities.list.MessgeraetMontageListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
@@ -14,6 +16,7 @@ import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
+    protected static final String TAG = MessgaeretNeuActivity.class.getSimpleName();
 
 
     @Override
@@ -28,29 +31,22 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                     getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
                     getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
                     getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
-                    getBasemodel().setProcent(Double.parseDouble(getTvNewNummer().getText().toString()));
-                    getBasemodel().setStartWert(Double.parseDouble(getTvStartwert().getText().toString()));
+                    try{getBasemodel().setProcent(NumberFormat.getInstance(Locale.GERMANY).parse(getTvProcente().getText().toString()).doubleValue());
+                    }catch (Exception e){}
+
                 }else{
                     if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
                     getBasemodel().setAustauschGrund(((FunkCheck_Austauschgrund) getSpAustauschgrund().getSelectedItem()).getId());
                     getBasemodel().setNeueNummer(getTvNewNummer().getText().toString());
                     getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
                     getBasemodel().setNeuesFunkModel(((FunkModel) getSpNewFunkModel().getSelectedItem()).getId());
-                    getBasemodel().setDefekt(getCbDefekt().isChecked());
-                        getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
+                    getBasemodel().setBemerkung(getEtBemerkung().getText().toString());
                     getBasemodel().setUnDoneGrundGrund(getAcUnDoneGrund().getText().toString());
-
-                    String convertedValue = getTvStichtag().getText().toString().replace(" ","");
-                    if (InputDialogClass.isDouble(convertedValue)) {
-                        getBasemodel().setStichtagValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    }
-                    convertedValue = getTvAktuell().getText().toString().replace(" ","");
-                    if (InputDialogClass.isDouble(convertedValue)) {
-                        getBasemodel().setAktuellValue(Double.parseDouble(convertedValue.replace(",",".")));
-                    }
-                    getBasemodel().setDefekt(getCbDefekt().isChecked());
+                    try{getBasemodel().setStartWert(NumberFormat.getInstance(Locale.GERMANY).parse(getTvStartwert().getText().toString()).doubleValue());
+                    }catch (Exception e){}
                 }
                 getBasemodel().save();
+
             }
 
             @Override
@@ -62,6 +58,9 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
             @Override
             protected void createLayout() {
                 if (getTvNummer() != null) getTvNummer().setFocusable(false);
+
+                if (getTvProcente() != null) ((MessgaeretNeuActivity) getActivity()).getCustomKeyboard().registerEditText(getTvProcente());
+                if (getTvStartwert() != null) ((MessgaeretNeuActivity) getActivity()).getCustomKeyboard().registerEditText(getTvStartwert());
 
                 if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_FUNK_CHECK))
                 {
@@ -131,11 +130,7 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getTvProcente().setVisibility(View.GONE);
                   }
                 }
-
-
-
-
-            }
+          }
         };
         viewHolder.updateView();
     }

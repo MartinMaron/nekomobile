@@ -33,12 +33,13 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
     @Override
     protected void createViewHolder(){
-       Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
-
+        Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
 
         viewHolder = new DetailViewHolder( null,obj.getBaseModel(), this){
             @Override
             public void save() {
+                try{
+
                 getBasemodel().setRaum(getActvRaum().getText().toString());
 
                 if (getSpNewModel().getSelectedItem() != null)  getBasemodel().setZielmodel(((ZaehlerModel) getSpNewModel().getSelectedItem()).getId());
@@ -47,18 +48,15 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                 getBasemodel().setNeueFunkNummer(getTvNewFunkNummer().getText().toString());
 
                 if (getBasemodel().getArt().equals("HKV") && getTvProcente() != null)  {
-                    try{
-                        getBasemodel().setProcent(NumberFormat.getInstance(Locale.GERMANY).parse(getTvProcente().getText().toString()).doubleValue());
+                    try{getBasemodel().setProcent(NumberFormat.getInstance(Locale.GERMANY).parse(getTvProcente().getText().toString()).doubleValue());
                     }catch (Exception e)
-                    {
-                        Log.e(TAG,"keine convertierung vom Procente: " + getTvProcente().getText().toString() + " zu Double möglich");
-                    }
+                    {}
                 };
 
                 if (!getBasemodel().getArt().equals("HKV") && getTvStartwert() != null) {
                     try{getBasemodel().setProcent(NumberFormat.getInstance(Locale.GERMANY).parse(getTvProcente().getText().toString()).doubleValue());
                     }catch (Exception e)
-                    {Log.e(TAG,"keine convertierung vom Startwert: " + getTvStartwert().getText().toString() + " zu Double möglich");}
+                    {}
                 }
 
                 if (getSpNewFunkModel().getSelectedItem() != null) {
@@ -79,6 +77,12 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
 
                 getBasemodel().save();
+
+                }catch (Exception e){
+                    Exception mE = e;
+                    Log.e(TAG,"Fehler: " + e.toString());
+                    throw e;
+                }
             }
 
 
