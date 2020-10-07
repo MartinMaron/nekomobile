@@ -651,10 +651,10 @@
     </array>
     <array name="rwm_Austauschgrund">
         <item>XX;kein Austausch </item>
-        <item>ST;standardowa zmiana</item>
-        <item>RE;zabrudzony</item>
-        <item>NV;nie ma a powinien byc</item>
-        <item>ZE;zniszczony</item>
-        <item>DE;zepsuty</item>
+        <item>ST;Standardtausch</item>
+        <item>RE;verschmuzt</item>
+        <item>NV;nicht vorhanden</item>
+        <item>ZE;beschädigt</item>
+        <item>DE;defekt</item>
     </array>
 </resources>
