@@ -33,7 +33,6 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity implement
         createViewHolder();
     }
 
-
     @Override
     public void saveAndExit() {
         if (viewHolder != null) viewHolder.save();

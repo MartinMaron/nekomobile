@@ -563,7 +563,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
-                getLbBewertungsfaktor05().setText("GK - Gliedbaulänge in mm");
+                getLbBewertungsfaktor05().setText("GL - Gliedbaulänge in mm");
 
                 getLbBewertungsfaktor06().setVisibility(View.INVISIBLE);
                 getActvBewertungsfaktor06().setVisibility(View.INVISIBLE);

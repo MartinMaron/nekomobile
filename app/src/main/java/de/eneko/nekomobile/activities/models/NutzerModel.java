@@ -135,7 +135,7 @@ public class NutzerModel extends Basemodel {
     }
 
     public Boolean isCompleted(){
-        return isCompleted("RWM") && isCompleted("GER");
+        return  isCompleted("RWM") && isCompleted("GER");
     }
 
 
@@ -168,22 +168,32 @@ public class NutzerModel extends Basemodel {
     }
     public Integer getProgressStatusImageMontageResourceId() {
 
-        List<ToDo> todoList = getBean().getToDos().stream()
-                .filter(item -> item.getArt().equals("MON_WMZ") || item.getArt().equals("MON_WWZ") || item.getArt().equals("MON_KWZ") || item.getArt().equals("MON_HKV"))
-                .collect(Collectors.toList());
-        for (ToDo t : todoList)
-        {
+//        List<ToDo> todoList = getBean().getToDos().stream()
+//                .filter(item -> item.getArt().equals("MON_WMZ") || item.getArt().equals("MON_WWZ") || item.getArt().equals("MON_KWZ") || item.getArt().equals("MON_HKV"))
+//                .collect(Collectors.toList());
+//        for (ToDo t : todoList)
+//        {
+//
+//            List<Messgeraet> messList = t.getMessgeraete().stream()
+//                    .filter(item -> item.isUnDone())
+//                    .collect(Collectors.toList());
+//
+//            if (messList.size() > 0)
+//            {
+//                return R.drawable.icon_montage;
+//            }
+//        };
+//        return R.drawable.ok_16;
 
-            List<Messgeraet> messList = t.getMessgeraete().stream()
-                    .filter(item -> item.isUnDone())
-                    .collect(Collectors.toList());
 
-            if (messList.size() > 0)
-            {
-                return R.drawable.icon_montage;
-            }
-        };
-        return R.drawable.icon_montage_ok;
+       return (isCompleted()) ? R.drawable.ok_16 :  R.drawable.icon_montage;
+
+
+
+
+
+
+
 
     }
 

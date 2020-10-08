@@ -56,19 +56,25 @@ public class NutzerTodoModel extends Basemodel{
         boolean ret_val = false;
         if (getBean().getArt().contains("INF")) return true;
 
-
-       if(pArt.equals("RWM")){
-           if (getNewCount("RWM") > 0) {ret_val = true;}
-           if (getToDoCount(pArt)== 0) {ret_val = false;}
-           ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
-       }
+        if (getBean().getArt().contains("RWM")){
+            if(pArt.equals("RWM")){
+                ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
+                if (getNewCount("RWM") > 0) {ret_val = true;}
+                if (getToDoCount(pArt)== 0) {ret_val = false;}
+            } else {
+                ret_val = true;;
+            }
+        }
 
        if(pArt.equals("GER")){
+           Integer absoluteCount = getBean().getMessgeraete().stream()
+                   .collect(Collectors.toList()).size();
+
            Integer absolutUndoneCount = getBean().getMessgeraete().stream()
                    .filter(r -> r.isUnDone())
                    .collect(Collectors.toList()).size();
 
-           ret_val = absolutUndoneCount == 0;
+           ret_val = absolutUndoneCount == 0 && absoluteCount !=0;
        }
        return ret_val;
     }
