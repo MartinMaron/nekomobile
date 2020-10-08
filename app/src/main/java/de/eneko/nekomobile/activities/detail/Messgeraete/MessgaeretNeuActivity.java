@@ -21,7 +21,7 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
 
     @Override
     protected void createViewHolder(){
-       Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
+        Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();
         viewHolder = new DetailViewHolder( null,obj.getBaseModel(), this){
             @Override
             public void save() {
@@ -46,7 +46,6 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                     }catch (Exception e){}
                 }
                 getBasemodel().save();
-
             }
 
             @Override
