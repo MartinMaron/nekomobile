@@ -28,6 +28,7 @@ import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
+import de.eneko.nekomobile.framework.TouchListView;
 
 
 public abstract class MessgeraetListActivity extends AppCompatActivity
@@ -38,7 +39,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected MessgeraetListViewAdapter mCurrentAdapter = null;
             protected ArrayList<Messgeraet> datasource = new ArrayList<>();
 
-            protected ListView mListView = null;
+            protected TouchListView mListView = null;
             protected MenuItem searchMenuItem = null;
             protected MenuItem modeMenuItem = null;
             protected MenuItem newMenuItem = null;
@@ -49,17 +50,26 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected void onCreate(Bundle savedInstanceState)
             {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_list_view);
+                setContentView(R.layout.activity_touchlist_view);
 
                 NutzerTodoModel nutzerTodoModel = (NutzerTodoModel) CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
                 nutzerTodoModel.load();
                 getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
 
                 // init listview
-                mListView = findViewById(R.id.listView);
+                mListView = findViewById(R.id.touch_listview);
                 mListView.setOnItemClickListener(this);
                 loadDatasourceCore();
             }
+
+            private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
+                @Override
+                public void drop(int from, int to) {
+                    Messgeraet item= mCurrentAdapter.getItem(from);
+                    mCurrentAdapter.remove(item);
+                    mCurrentAdapter.insert(item, to);
+                }
+            };
 
             @Override
             protected void onResume() {
@@ -79,6 +89,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected void setCurrentAdapter(MessgeraetListViewAdapter currentAdapter) {
                 mCurrentAdapter = currentAdapter;
                 mListView.setAdapter(mCurrentAdapter);
+                mListView.setDropListener(onDrop);
                 mCurrentAdapter.notifyDataSetChanged();
                 if(CurrentObjectNavigation.getInstance().getMessgeraet() != null) { mListView.setSelection(mCurrentAdapter.getPosition(CurrentObjectNavigation.getInstance().getMessgeraet()));}
             }

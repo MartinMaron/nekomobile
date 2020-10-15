@@ -6,12 +6,23 @@
     android:orientation="horizontal"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/listView"
+    <!--<ListView-->
+        <!--android:id="@+id/listView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:choiceMode="singleChoice" />-->
+    <de.eneko.nekomobile.framework.TouchListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tlv="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/touch_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:choiceMode="singleChoice" />
-
+        android:drawSelectorOnTop="false"
+        android:choiceMode="singleChoice"
+        tlv:expanded_height="64dp"
+        tlv:normal_height="128dp"
+        tlv:grabber="@+id/relLayout"
+        tlv:remove_mode="slideRight" />
 
     <android.inputmethodservice.KeyboardView
         android:id="@+id/keyboardview"

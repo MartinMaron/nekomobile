@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/textview_border"
     android:padding="@dimen/dp_faktor_1">
-
 
 
     <TextView
@@ -18,13 +18,14 @@
         android:contentDescription="@string/empty"
         android:textColor="@color/navy"
         android:textSize="@dimen/sp_faktor_10" />
+
     <ImageView
         android:id="@+id/ivStatus"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_toRightOf="@id/tvNummer"
         android:clickable="true"
-        android:contentDescription="@string/empty"/>
+        android:contentDescription="@string/empty" />
 
     <TextView
         android:id="@+id/tvNummer"
@@ -106,8 +107,8 @@
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/ivPhoto"
         android:layout_toRightOf="@id/tvStichtag"
-        android:contentDescription="@string/empty"
         android:clickable="true"
+        android:contentDescription="@string/empty"
         android:src="@drawable/icon_montage"
         app:srcCompat="@drawable/icon_montage" />
 
