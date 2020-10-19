@@ -176,7 +176,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
                         mStichtagValue = getDouble(propElement);
                         break;
                     case "datum":
-                        mDatum = getSipleDate(propElement);
+                        mDatum = getSipleLongDate(propElement);
                         break;
                     case "defekt":
                         mDefekt = getBoolean(propElement);

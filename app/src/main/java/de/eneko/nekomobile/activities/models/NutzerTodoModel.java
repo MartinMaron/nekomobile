@@ -55,9 +55,8 @@ public class NutzerTodoModel extends Basemodel{
     public Boolean isCompleted(String pArt){
         boolean ret_val = false;
         if (getBean().getArt().contains("INF")) return true;
-
-        if (getBean().getArt().contains("RWM")){
-            if(pArt.equals("RWM")){
+        if(pArt.equals("RWM")){
+            if (getBean().getArt().contains("RWM")){
                 ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
                 if (getNewCount("RWM") > 0) {ret_val = true;}
                 if (getToDoCount(pArt)== 0) {ret_val = false;}
