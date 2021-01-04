@@ -107,8 +107,6 @@ public class InputDialogClass {
         tvNummer.setBackgroundResource(mMessgeraetModel.getArtColor());
 
 
-
-
         if(mMessgeraetModel.getArt().equals("HKV") || mMessgeraetModel.getArt().equals("WMZ")) {
             etStichtag.setFocusable(true);
             etStichtag.setFocusableInTouchMode(true);

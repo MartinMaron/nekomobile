@@ -33,6 +33,7 @@ public class ObjectFactory {
         ret_val.setNew(true);
         ret_val.setNekoId("new_" + pToDo.getMessgeraete().size());
         ret_val.setNummer(ret_val.getNekoId());
+        ret_val.setSortNo(pToDo.getMessgeraete().size());
         ret_val.setStartWert(0.0);
         ret_val.setProcent(100.0);
         return ret_val;

@@ -115,8 +115,8 @@ public class MessgeraetMontageListActivity extends MessgeraetListActivity {
     }
 
 
-    // endregion
 
 
 
+     // endregion
 }

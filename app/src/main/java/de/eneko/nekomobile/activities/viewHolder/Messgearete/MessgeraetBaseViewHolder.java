@@ -3,6 +3,7 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
@@ -22,7 +23,9 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
+import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 
@@ -47,6 +50,11 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private TextView tvLetzterWertDatum = null;
     private TextView tvModel = null;
     private TextView lbStichtag = null;
+    private TextView lbDisplayBewertung = null;
+    private TextView lbDisplayBewertungHKArt = null;
+
+    private TextView lbDisplayBesonderheiten = null;
+
     private TextView lbAktuell = null;
     private TextView tvAktuell = null;
     private TextView tvStichtag = null;
@@ -84,17 +92,13 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private EditText tvStartwert = null;
     private TextView lbProcente = null;
     private EditText tvProcente = null;
-
-
-
-
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean) {
         this(pView, pBean,null);
     }
-
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean, Activity pActivity) {
         super(pView, pBean, pActivity);
     }
+
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean, Activity pActivity, Boolean reload) {
         super(pView, pBean, pActivity,reload);
     }
@@ -103,7 +107,6 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     public Activity getActivity() {
         return mActivity;
     }
-
     public Messgeraet getBean() {
         return (Messgeraet) super.getBasemodel().getBean();
     }
@@ -124,6 +127,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         setIvPhoto(findViewById(R.id.ivPhoto));
         setLbUnDoneGrund(findViewById(R.id.lbUnDoneGrund));
         setAcUnDoneGrund(findViewById(R.id.acUnDoneGrund));
+        setLbDisplayBewertung(findViewById(R.id.lbDisplayBewertung));
+        setLbDisplayBewertungHKArt(findViewById(R.id.lbDisplayBewertungHKArt));
+        setLbDisplayBesonderheiten(findViewById(R.id.lbDisplayBesonderheiten));
 
         if(getIvPhoto() != null) {
             getIvPhoto().setOnClickListener(new View.OnClickListener() {
@@ -204,7 +210,35 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                 }
             });
         }
+             if(getLbDisplayBewertung() != null) {
+            getLbDisplayBewertung().setText(getBasemodel().getDisplayBewertung());
+            if (getBasemodel().getDisplayBewertung().contains("-1")){
+                getLbDisplayBewertung().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));
+                if(getLbDisplayBewertungHKArt() != null) { getLbDisplayBewertungHKArt().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));}
+            }
+        }
 
+
+        if(getLbDisplayBewertungHKArt() != null) {
+            Webes_Grundparameter param = Dict.getInstance().getWebesGrundparameter(getBasemodel().getGrundparameter());
+            if (param != null)
+            {
+                getLbDisplayBewertungHKArt().setText(param.getId().toString() + " - " +  param.getBezeichnung());
+            }else
+            {
+                getLbDisplayBewertungHKArt().setText("");
+            }
+
+        }
+
+
+        if(getLbDisplayBesonderheiten() != null) {
+            String procenteString = "";
+            if (getBasemodel().getProcent() !=100){
+                procenteString =  getBasemodel().getProcent().toString() + " % - ";
+            }
+            getLbDisplayBesonderheiten().setText(procenteString + getBasemodel().getBemerkung());
+        }
     }
 
     public void setDataToModel() {
@@ -215,8 +249,8 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     protected void loadData(){
 
     }
-    protected abstract void createLayout();
 
+    protected abstract void createLayout();
 
     public void showInputDialog(){
         new InputDialogClass(getActivity(), getBasemodel()){
@@ -244,9 +278,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     }
 
 
+
+
     // region properties
-
-
     public TextView getTvRaum() {
         return tvRaum;
     }
@@ -599,7 +633,29 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         this.lbProcente = lbProcente;
     }
 
+    public TextView getLbDisplayBewertung() {
+        return lbDisplayBewertung;
+    }
 
+    public void setLbDisplayBewertung(TextView lbDisplayBewertung) {
+        this.lbDisplayBewertung = lbDisplayBewertung;
+    }
+
+    public TextView getLbDisplayBewertungHKArt() {
+        return lbDisplayBewertungHKArt;
+    }
+
+    public void setLbDisplayBewertungHKArt(TextView lbDisplayBewertungHKArt) {
+        this.lbDisplayBewertungHKArt = lbDisplayBewertungHKArt;
+    }
+
+
+    public TextView getLbDisplayBesonderheiten() {
+        return lbDisplayBesonderheiten;
+    }
+
+    public void setLbDisplayBesonderheiten(TextView lbDisplayBesonderheiten) {
+        this.lbDisplayBesonderheiten = lbDisplayBesonderheiten;
+    }
     // endregion properties
-
 }

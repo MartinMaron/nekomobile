@@ -11,17 +11,23 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:choiceMode="singleChoice" />-->
-    <de.eneko.nekomobile.framework.TouchListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <de.eneko.nekomobile.framework.TouchListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tlv="http://schemas.android.com/apk/res-auto"
         android:id="@+id/touch_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawSelectorOnTop="false"
+        android:background="@drawable/textview_border"
         android:choiceMode="singleChoice"
+        android:divider="@drawable/textview_border"
+        android:dividerHeight="2px"
+        android:drawSelectorOnTop="false"
+        android:fastScrollAlwaysVisible="true"
+        android:fastScrollEnabled="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:transcriptMode="normal"
         tlv:expanded_height="64dp"
-        tlv:normal_height="128dp"
         tlv:grabber="@+id/relLayout"
+        tlv:normal_height="128dp"
         tlv:remove_mode="slideRight" />
 
     <android.inputmethodservice.KeyboardView

@@ -313,6 +313,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
             CreateIntegerNode(ret_val,"bewertungsfaktor_08" ,mBewertungsfaktor_08);
             CreateIntegerNode(ret_val,"bewertungsfaktor_09" ,mBewertungsfaktor_09);
             CreateIntegerNode(ret_val,"bewertungsfaktor_10" ,mBewertungsfaktor_10);
+            CreateIntegerNode(ret_val,"bewertungsfaktor_11" ,mBewertungsfaktor_11);
             CreateTextNode(ret_val,"reihenanordnung" ,mReihenanordnung);
             CreateDoubleNode(ret_val,"startWert" ,mStartWert);
             CreateDoubleNode(ret_val,"procent" ,mProcent);

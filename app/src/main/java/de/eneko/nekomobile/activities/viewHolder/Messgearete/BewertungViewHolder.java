@@ -467,27 +467,27 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                     public void onClick(View v) {
                         Ibewertung bewertung = bewertungListViewAdapter.getItem(index);
                         if(bewertung != null){
-                            if (getActvBewertungsfaktor01().getText().length() == 0)
+                            if (getActvBewertungsfaktor01().getText().length() == 0 && bewertung.getBewertungsfaktor_01() > 0)
                             {getActvBewertungsfaktor01().setText(bewertung.getBewertungsfaktor_01().toString());            }
-                            if (getActvBewertungsfaktor02().getText().length() == 0)
+                            if (getActvBewertungsfaktor02().getText().length() == 0 && bewertung.getBewertungsfaktor_02() > 0)
                             {getActvBewertungsfaktor02().setText(bewertung.getBewertungsfaktor_02().toString());            }
-                            if (getActvBewertungsfaktor03().getText().length() == 0)
+                            if (getActvBewertungsfaktor03().getText().length() == 0 && bewertung.getBewertungsfaktor_03() > 0)
                             {getActvBewertungsfaktor03().setText(bewertung.getBewertungsfaktor_03().toString());            }
-                            if (getActvBewertungsfaktor04().getText().length() == 0)
+                            if (getActvBewertungsfaktor04().getText().length() == 0 && bewertung.getBewertungsfaktor_04() > 0)
                             {getActvBewertungsfaktor04().setText(bewertung.getBewertungsfaktor_04().toString());            }
-                            if (getActvBewertungsfaktor05().getText().length() == 0)
+                            if (getActvBewertungsfaktor05().getText().length() == 0 && bewertung.getBewertungsfaktor_05() > 0)
                             {getActvBewertungsfaktor05().setText(bewertung.getBewertungsfaktor_05().toString());            }
-                            if (getActvBewertungsfaktor06().getText().length() == 0)
+                            if (getActvBewertungsfaktor06().getText().length() == 0 && bewertung.getBewertungsfaktor_06() > 0)
                             {getActvBewertungsfaktor06().setText(bewertung.getBewertungsfaktor_06().toString());            }
-                            if (getActvBewertungsfaktor07().getText().length() == 0)
+                            if (getActvBewertungsfaktor07().getText().length() == 0 && bewertung.getBewertungsfaktor_07() > 0)
                             {getActvBewertungsfaktor07().setText(bewertung.getBewertungsfaktor_07().toString());            }
-                            if (getActvBewertungsfaktor08().getText().length() == 0)
+                            if (getActvBewertungsfaktor08().getText().length() == 0 && bewertung.getBewertungsfaktor_08() > 0)
                             {getActvBewertungsfaktor08().setText(bewertung.getBewertungsfaktor_08().toString());            }
-                            if (getActvBewertungsfaktor09().getText().length() == 0)
+                            if (getActvBewertungsfaktor09().getText().length() == 0 && bewertung.getBewertungsfaktor_09() > 0)
                             {getActvBewertungsfaktor09().setText(bewertung.getBewertungsfaktor_09().toString());            }
-                            if (getActvBewertungsfaktor10().getText().length() == 0)
+                            if (getActvBewertungsfaktor10().getText().length() == 0 && bewertung.getBewertungsfaktor_10() > 0)
                             {getActvBewertungsfaktor10().setText(bewertung.getBewertungsfaktor_10().toString());            }
-                            if (getActvBewertungsfaktor11().getText().length() == 0)
+                            if (getActvBewertungsfaktor11().getText().length() == 0 && bewertung.getBewertungsfaktor_11() > 0)
                             {getActvBewertungsfaktor11().setText(bewertung.getBewertungsfaktor_11().toString());            }
                         }
 
@@ -591,6 +591,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbReihenanordnung().setVisibility(View.INVISIBLE);
                 getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
                 getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
 
@@ -828,8 +829,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
 
-                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
-                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor05().setText("LA - Lammelenabstand (10 mal) in mm");
 
                 getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
@@ -857,7 +858,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
 // endregion code
                 break;
-            case "41": case "42":
+            case "41":
                 // region code
 
                 getLbReihenanordnung().setVisibility(View.INVISIBLE);
@@ -903,11 +904,59 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor11().setVisibility(View.INVISIBLE);
 // endregion code
                 break;
+            case "42":
+                // region code
+
+                getLbReihenanordnung().setVisibility(View.INVISIBLE);
+                getActvReihenanordnung().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);
+                getActvBewertungsfaktor02().setVisibility(View.INVISIBLE);
+
+                getLbBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor03().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor03().setText("BL - Baulänge in mm");
+
+                getLbBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
+
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
+
+                getLbBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor06().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor06().setText("DR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor07().setText("dR - Max. Abmessung des Rohres in mm");
+
+                getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor08().setText("BV - Breite des Verteilskanals in mm");
+
+                getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor09().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor09().setText("TV - Tiefe des Verteilskanals in mm");
+
+                getLbBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor10().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor10().setText("RZ - Rohrregisterzahl");
+
+                getLbBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor11().setVisibility(View.VISIBLE);
+                getLbBewertungsfaktor11().setText("ZR - Zahl der Rohre");
+// endregion code
+                break;
             case "43":
                 // region code
 
                 getLbReihenanordnung().setVisibility(View.INVISIBLE);
                 getActvReihenanordnung().setVisibility(View.INVISIBLE);
+
                 getLbBewertungsfaktor01().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor01().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor02().setVisibility(View.INVISIBLE);

@@ -14,6 +14,8 @@
         <item>Esszimmer</item>
         <item>Treppenhaus</item>
         <item>Hobbyraum</item>
+        <item>Küche</item>
+        <item>Lager</item>
     </array>
     <array name="kein_austausch_grund">
         <item>keine Absperrung</item>

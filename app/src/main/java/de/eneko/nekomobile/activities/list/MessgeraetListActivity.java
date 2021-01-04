@@ -1,10 +1,13 @@
 package de.eneko.nekomobile.activities.list;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +19,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
@@ -32,7 +36,7 @@ import de.eneko.nekomobile.framework.TouchListView;
 
 
 public abstract class MessgeraetListActivity extends AppCompatActivity
-        implements View.OnClickListener,
+        implements View.OnClickListener, AdapterView.OnItemLongClickListener,
         SearchView.OnQueryTextListener,
         AdapterView.OnItemClickListener
         {
@@ -43,6 +47,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected MenuItem searchMenuItem = null;
             protected MenuItem modeMenuItem = null;
             protected MenuItem newMenuItem = null;
+            protected MenuItem recalculateReihenfolgeMenuItem = null;
             protected SearchView searchView = null;
 
 
@@ -59,6 +64,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 // init listview
                 mListView = findViewById(R.id.touch_listview);
                 mListView.setOnItemClickListener(this);
+                mListView.setOnItemLongClickListener(this);
                 loadDatasourceCore();
             }
 
@@ -68,6 +74,11 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                     Messgeraet item= mCurrentAdapter.getItem(from);
                     mCurrentAdapter.remove(item);
                     mCurrentAdapter.insert(item, to);
+                    if (!isOriginalReihenfolge()) {
+                        getSupportActionBar().setTitle("andere Reihenfolge, anpassen?");
+                    }else{
+                        getSupportActionBar().setTitle("");
+                    }
                 }
             };
 
@@ -77,8 +88,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                 loadDatasourceCore();
             }
 
-
-// region Data-Management
+            // region Data-Management
             protected void loadDatasourceCore(){
 
             }
@@ -98,6 +108,80 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
 
 // region Exit
 
+
+            // region Reihenfolge neu sortieren
+            protected boolean isOriginalReihenfolge() {
+                boolean isOk = true;
+                for (de.eneko.nekomobile.beans.Messgeraet el : getDatasource().stream() //.sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList())){
+                    int pos =  mCurrentAdapter.getPosition(el);
+                    if (pos + 1 != el.getSortNo()) {
+                        // wenn es noch keine sortierreihenfolge gibt (SortNo = 0) dann wird die reihenfolge übernommen
+                        if (el.getSortNo() == 0) {
+                            el.setSortNo(pos +1);
+                        }else {
+                            isOk = false;
+                        }
+                    }
+                };
+                return isOk;
+            }
+
+
+            protected void Frage(){
+                // Fragen und ggf die Reihenfolge übernemhmen
+                AlertDialog ad = new AlertDialog.Builder(this).setTitle("Änderung der Reihenfolge?")
+                        .setMessage("die Reihenfolge weicht von der ursprunglichen Reihenfolge ab?")
+                        .setPositiveButton("Ja",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Perform Action & Dismiss dialog
+                                        dialog.dismiss();
+                                        neuSortieren();
+                                        mListView.ddAllowed = false;
+                                        recalculateReihenfolgeMenuItem.setIcon(R.drawable.ic_format_sort_az_32_disabled);
+                                    }
+                                })
+                        .setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                                mListView.ddAllowed = false;
+                                recalculateReihenfolgeMenuItem.setIcon(R.drawable.ic_format_sort_az_32_disabled);
+                            }
+                        }).create();
+
+                ad.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        ad.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(getBaseContext(), R.color.black));
+                        ad.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(getBaseContext(), R.color.black));
+                    }
+                });
+
+                ad.show();
+
+            }
+            protected void neuSortieren() {
+                for (de.eneko.nekomobile.beans.Messgeraet el : getDatasource().stream() //.sorted(Comparator.comparing(Messgeraet::getSortNo))
+                        .collect(Collectors.toList())) {
+                    int pos = mCurrentAdapter.getPosition(el);
+                    if (pos + 1 != el.getSortNo()) {
+                        el.setSortNo(pos + 1);
+                    };
+                    mCurrentAdapter.notifyDataSetChanged();
+                }
+                if (isOriginalReihenfolge()) {
+                    getSupportActionBar().setTitle("");
+                }
+            }
+
+
+            // endregion
+
+
+
             protected void exit(){
                 FileHandler.getInstance().saveFile();
                 Intent intent = new Intent(this, NutzerTodosListActivity.class);
@@ -106,7 +190,6 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
 
             @Override
             public void onBackPressed() {
-                super.onBackPressed();
                 exit();
             }
             // endregion
@@ -143,6 +226,30 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         AddNeuMessgaeret();
+                        return true;
+                    }
+                });
+
+                recalculateReihenfolgeMenuItem = menu.findItem(R.id.mi_recalculateReihenfolge);
+                recalculateReihenfolgeMenuItem.setIcon(R.drawable.ic_format_sort_az_32_disabled);
+                recalculateReihenfolgeMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                       if(!mListView.ddAllowed){
+                           mListView.ddAllowed = true;
+                           recalculateReihenfolgeMenuItem.setIcon(R.drawable.ic_format_sort_az_32);
+                       }else
+                       {
+                           if(!isOriginalReihenfolge()){
+                               Frage();
+                           }else {
+                               mListView.ddAllowed = false;
+                               recalculateReihenfolgeMenuItem.setIcon(R.drawable.ic_format_sort_az_32_disabled);
+                           }
+
+                       }
+
+//                        Frage();
                         return true;
                     }
                 });
@@ -190,6 +297,12 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                         }
                 }
                 view.getContext().startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mListView.ddAllowed = !mListView.ddAllowed;
+                return true;
             }
 
             @Override

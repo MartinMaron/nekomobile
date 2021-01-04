@@ -66,10 +66,13 @@ public class MessgeraetRowViewHolder extends MessgeraetBaseViewHolder{
 
     @Override
     protected void loadData(){
+
+
+
         if (getBasemodel().getBean().isNew()){
             getTvNummer().setText("N:" + getBasemodel().getBean().getNeueNummer());
         } else {
-            getTvNummer().setText(getBasemodel().getBean().getNummer());
+            getTvNummer().setText(getBasemodel().getBean().getNummer() );
         }
         getTvRaum().setText(getBasemodel().getRaum());
         getTvLetzterWert().setText(getBasemodel().getLetzterWertText());

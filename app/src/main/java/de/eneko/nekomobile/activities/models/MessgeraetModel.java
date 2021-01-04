@@ -146,7 +146,7 @@ public class MessgeraetModel extends Basemodel {
                             + "   GL:" + getBewertungsfaktor_05().toString()
                             + "   SZ:" + getBewertungsfaktor_08().toString()
                             + "   GZ:" + getBewertungsfaktor_09().toString();
-                case "21":
+                case "21": case "22": case "24":
                     return "BH:" + getBewertungsfaktor_01().toString()
                             + "   BL:" + getBewertungsfaktor_03().toString()
                             + "   BT:" + getBewertungsfaktor_04().toString()
@@ -155,6 +155,58 @@ public class MessgeraetModel extends Basemodel {
                             + "   LT:" + getBewertungsfaktor_09().toString()
                             + "   LH:" + getBewertungsfaktor_10().toString()
                             + "   " + getReihenanordnung();
+                case "23":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T3:" + getBewertungsfaktor_05().toString()
+                            + "   PD:" + getBewertungsfaktor_06().toString()
+                            + "   LT:" + getBewertungsfaktor_09().toString()
+                            + "   LH:" + getBewertungsfaktor_10().toString()
+                            + "   " + getReihenanordnung();
+                case "32":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   LA:" + getBewertungsfaktor_05().toString()
+                            + "   VT:" + getBewertungsfaktor_06().toString()
+                            + "   RH:" + getBewertungsfaktor_07().toString()
+                            + "   RT:" + getBewertungsfaktor_08().toString()
+                            + "   LT:" + getBewertungsfaktor_09().toString()
+                            + "   LH:" + getBewertungsfaktor_10().toString()
+                            + "   ZR:" + getBewertungsfaktor_11().toString()
+                            + "   " + getReihenanordnung();
+                case "33":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   VT:" + getBewertungsfaktor_06().toString()
+                            + "   RH:" + getBewertungsfaktor_07().toString()
+                            + "   RT:" + getBewertungsfaktor_08().toString()
+                            + "   LT:" + getBewertungsfaktor_09().toString()
+                            + "   LH:" + getBewertungsfaktor_10().toString()
+                            + "   ZR:" + getBewertungsfaktor_11().toString()
+                            + "   " + getReihenanordnung();
+                case "41":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T3:" + getBewertungsfaktor_05().toString()
+                            + "   DR:" + getBewertungsfaktor_06().toString()
+                            + "   dR:" + getBewertungsfaktor_07().toString()
+                            + "   HV:" + getBewertungsfaktor_08().toString()
+                            + "   TV:" + getBewertungsfaktor_09().toString()
+                            + "   RZ:" + getBewertungsfaktor_10().toString();
+                case "42":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T3:" + getBewertungsfaktor_05().toString()
+                            + "   DR:" + getBewertungsfaktor_06().toString()
+                            + "   dR:" + getBewertungsfaktor_07().toString()
+                            + "   BV:" + getBewertungsfaktor_08().toString()
+                            + "   TV:" + getBewertungsfaktor_09().toString()
+                            + "   RZ:" + getBewertungsfaktor_10().toString();
                 case "43":
                     return "BH:" + getBewertungsfaktor_01().toString()
                             + "   BL:" + getBewertungsfaktor_03().toString()
@@ -165,8 +217,105 @@ public class MessgeraetModel extends Basemodel {
                             + "   TV:" + getBewertungsfaktor_09().toString()
                             + "   RZ:" + getBewertungsfaktor_10().toString()
                             + "   ZR:" + getBewertungsfaktor_11().toString();
+                case "51":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   NA:" + getBewertungsfaktor_02().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T1:" + getBewertungsfaktor_05().toString();
+
+                case "52":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   NA:" + getBewertungsfaktor_02().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T1:" + getBewertungsfaktor_05().toString()
+                            + "   RZ:" + getBewertungsfaktor_06().toString()
+                            + "   SZ:" + getBewertungsfaktor_07().toString();
+                case "61":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   NA:" + getBewertungsfaktor_02().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   BT:" + getBewertungsfaktor_04().toString()
+                            + "   T3:" + getBewertungsfaktor_05().toString()
+                            + "   T10:" + getBewertungsfaktor_10().toString();
+                case "71":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString();
+                case "72":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString()
+                            + "   S2:" + getBewertungsfaktor_06().toString()
+                            + "   S3:" + getBewertungsfaktor_07().toString()
+                            + "   SK:" + getBewertungsfaktor_09().toString()
+                            + "   S4:" + getBewertungsfaktor_10().toString()
+                            + "   ST:" + getBewertungsfaktor_11().toString();
+                case "73":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString()
+                            + "   S2:" + getBewertungsfaktor_06().toString()
+                            + "   S3:" + getBewertungsfaktor_07().toString()
+                            + "   S4:" + getBewertungsfaktor_08().toString()
+                            + "   VBH:" + getBewertungsfaktor_09().toString()
+                            + "   VBL:" + getBewertungsfaktor_10().toString()
+                            + "   VBT" + getBewertungsfaktor_11().toString();
+                case "74":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString()
+                            + "   KH:" + getBewertungsfaktor_07().toString()
+                            + "   KB:" + getBewertungsfaktor_08().toString()
+                            + "   SK:" + getBewertungsfaktor_09().toString()
+                            + "   S4:" + getBewertungsfaktor_10().toString()
+                            + "   ST" + getBewertungsfaktor_11().toString();
+                case "75":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString()
+                            + "   S2:" + getBewertungsfaktor_06().toString()
+                            + "   S3:" + getBewertungsfaktor_07().toString()
+                            + "   SK:" + getBewertungsfaktor_09().toString()
+                            + "   S4:" + getBewertungsfaktor_10().toString()
+                            + "   ST" + getBewertungsfaktor_11().toString();
+                case "76":
+                    return "BH:" + getBewertungsfaktor_01().toString()
+                            + "   BLR:" + getBewertungsfaktor_02().toString()
+                            + "   BT:" + getBewertungsfaktor_03().toString()
+                            + "   ZR:" + getBewertungsfaktor_04().toString()
+                            + "   T10:" + getBewertungsfaktor_05().toString()
+                            + "   S2:" + getBewertungsfaktor_06().toString()
+                            + "   S3:" + getBewertungsfaktor_07().toString()
+                            + "   S4:" + getBewertungsfaktor_08().toString()
+                            + "   VBH:" + getBewertungsfaktor_09().toString()
+                            + "   SK:" + getBewertungsfaktor_10().toString()
+                            + "   VBT" + getBewertungsfaktor_11().toString();
+                case "81":
+                    return "RL:" + getBewertungsfaktor_02().toString()
+                            + "   BL:" + getBewertungsfaktor_03().toString()
+                            + "   KD:" + getBewertungsfaktor_06().toString()
+                            + "   RS:" + getBewertungsfaktor_07().toString()
+                            + "   dR:" + getBewertungsfaktor_08().toString()
+                            + "   DR:" + getBewertungsfaktor_09().toString()
+                            + "   HW:" + getBewertungsfaktor_10().toString()
+                            + "   RT" + getBewertungsfaktor_11().toString();
                 default:
                     return "";
+
+
+
             }
         }
 
