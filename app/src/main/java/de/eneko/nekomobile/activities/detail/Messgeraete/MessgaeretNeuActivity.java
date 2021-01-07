@@ -86,9 +86,10 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getTvStartwert().setVisibility(View.VISIBLE);
                         getIvBarcodeNewModel().setVisibility(View.GONE);
                     }
-                }
+                }else {
 
-                if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV))
+                if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV) ||
+                        getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_ABLESUNG))
                 {
                     if (getBasemodel().getBean().getArt().equals("HKV"))
                     {
@@ -118,7 +119,7 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getTvAktuell().setVisibility(View.GONE);
                         getLbAktuell().setVisibility(View.GONE);
                    }
-                }else{
+                }else {
                     if (getBasemodel().getBean().isNew()) {
                         getTvNummer().setEnabled(true);
                         getTvNummer().setFocusable(true);
@@ -127,7 +128,9 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getTvAktuell().setVisibility(View.GONE);
                         getLbAktuell().setVisibility(View.GONE);
                         getTvProcente().setVisibility(View.GONE);
-                  }
+                    }
+                }
+
                 }
           }
         };

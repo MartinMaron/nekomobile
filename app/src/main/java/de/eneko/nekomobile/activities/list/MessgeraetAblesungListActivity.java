@@ -1,13 +1,18 @@
 package de.eneko.nekomobile.activities.list;
 
+import android.content.Intent;
+
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.InputDialogChoiceListModeClass;
+import de.eneko.nekomobile.InputDialogChoiceZaehlerArtClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.MessgeraetListViewAdapter;
+import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretNeuActivity;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
+import de.eneko.nekomobile.controllers.ObjectFactory;
 
 public class MessgeraetAblesungListActivity extends MessgeraetListActivity {
 
@@ -76,6 +81,26 @@ public class MessgeraetAblesungListActivity extends MessgeraetListActivity {
         if (modeMenuItem!= null) {modeMenuItem.setIcon(getDrawable(R.drawable.ic_list_info));}
 
     }
+
+    @Override
+    protected void AddNeuMessgaeret() {
+//        Zählerart auswählen
+        new InputDialogChoiceZaehlerArtClass(this){
+            @Override
+            protected void OnDialogSubmit(String selItem) {AddNewByArt(selItem);}
+        }.show();
+
+    }
+
+    protected void AddNewByArt(String pArt){
+        Messgeraet new_obj = ObjectFactory.getInstance().createNewMessgaeret(CurrentObjectNavigation.getInstance().getNutzerTodo());
+        CurrentObjectNavigation.getInstance().setMessgeraet(new_obj);
+        new_obj.setArt(pArt);
+        Intent intent = new Intent(this, MessgaeretNeuActivity.class);
+        startActivity(intent);
+    }
+
+
 
 
 }
