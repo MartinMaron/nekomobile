@@ -60,7 +60,7 @@ public class NekoDropBox {
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
         Intent i = new Intent(mMainActivity, DropBoxService.class);
-       // mMainActivity.startService(i);
+        mMainActivity.startService(i);
     }
 
 
@@ -80,7 +80,7 @@ public class NekoDropBox {
                 //aktuell heruntergeladene Datein sollen nicht wieder synchroniziert werden
                 currentlyDownloadedFiles = new ArrayList<Metadata>();
 
-               // Toast.makeText(mMainActivity,"Verbindung zu Dropbox erfogreich",Toast.LENGTH_LONG).show();
+                // Toast.makeText(mMainActivity,"Verbindung zu Dropbox erfogreich",Toast.LENGTH_LONG).show();
                 syncDownloadPath(NEKOMOBILE_PATH, GlobalConst.PATH_NEKOMOBILE);
                 syncDownloadPath(SONTEX_PATH, GlobalConst.PATH_SONTEX);
                 syncDownloadPath(EXIM_PATH, GlobalConst.PATH_EXIM);

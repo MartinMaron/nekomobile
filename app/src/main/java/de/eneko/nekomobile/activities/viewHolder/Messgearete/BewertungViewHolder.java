@@ -262,7 +262,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
             public void afterTextChanged(Editable s) {
                 updateListView();
                 if (getActvBewertungsfaktor05().hasFocus() || getActvBewertungsfaktor09().hasFocus()){
-                    if ( getEtGrundparameter().getText().toString().equals("12") &&  ! getActvBewertungsfaktor05().getText().toString().isEmpty() && ! getActvBewertungsfaktor09().getText().toString().isEmpty())
+                    if ( (getEtGrundparameter().getText().toString().equals("11") || getEtGrundparameter().getText().toString().equals("12") || getEtGrundparameter().getText().toString().equals("13"))&&  ! getActvBewertungsfaktor05().getText().toString().isEmpty() && ! getActvBewertungsfaktor09().getText().toString().isEmpty())
                     {
                         mBLParamChanged = true;
                    }
@@ -839,11 +839,11 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
 
                 getLbBewertungsfaktor07().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor07().setVisibility(View.VISIBLE);
-                getLbBewertungsfaktor07().setText("RB - Rohrbreite in mm");
+                getLbBewertungsfaktor07().setText("RH - Rohrhöhr in mm");
 
                 getLbBewertungsfaktor08().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor08().setVisibility(View.VISIBLE);
-                getLbBewertungsfaktor08().setText("RH - Rohrtiefe in mm");
+                getLbBewertungsfaktor08().setText("RT - Rohrtiefe in mm");
 
                 getLbBewertungsfaktor09().setVisibility(View.VISIBLE);
                 getActvBewertungsfaktor09().setVisibility(View.VISIBLE);

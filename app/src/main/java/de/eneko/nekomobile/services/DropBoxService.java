@@ -28,7 +28,7 @@ public class DropBoxService extends Service {
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
     private NekoDropBox nekoDropBox = null;
-
+    private boolean firstStart = true;
 
     // Handler that receives messages from the thread
     private final class ServiceHandler extends Handler {
@@ -43,17 +43,22 @@ public class DropBoxService extends Service {
                 wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
-                if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED)
-                {
-                    Calendar kalender = Calendar.getInstance();
-                    SimpleDateFormat zeitformat = new SimpleDateFormat("HH");
-                    int uhr = Integer.parseInt(zeitformat.format(kalender.getTime()));
-                    if(uhr >= 22 || uhr <=6){
-                        nekoDropBox.synchronize(true);
+                if (firstStart == true) {
+                    firstStart = false;
+                    Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
+                } else {
+
+                    if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) {
+                        Calendar kalender = Calendar.getInstance();
+                        SimpleDateFormat zeitformat = new SimpleDateFormat("HH");
+//                        int uhr = Integer.parseInt(zeitformat.format(kalender.getTime()));
+//                        if (uhr >= 22 || uhr <= 6) {
+                            nekoDropBox.synchronize(true);
+//                        }
                     }
+                    Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
                 }
 
-                Thread.sleep(GlobalConst.DROPBOX_SERVICE_INTERVALL);
             }   catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

@@ -2,6 +2,7 @@ package de.eneko.nekomobile.controllers;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -114,11 +115,18 @@ public class FileHandler
             if (list != null) {
                 for (String file : list) {
                     if (file.endsWith("neko.xml")) {
-                        Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true);
-                        Calendar validDate = Calendar.getInstance();
-                        validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);
-                        if (route.getDatum().after(validDate.getTime())){
-                            tmpAllRoutes.add(route);
+                        try {
+
+
+                            Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true);
+                            Calendar validDate = Calendar.getInstance();
+                            validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);
+                            if (route.getDatum().after(validDate.getTime())){
+                                tmpAllRoutes.add(route);
+                            }
+                        }catch (Exception e)
+                        {
+                            Log.e(TAG, e.getMessage(),e);
                         }
                     }
                 }
