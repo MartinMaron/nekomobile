@@ -87,7 +87,6 @@ public class MessgaeretNeuActivity extends MessgeraetBaseActivity {
                         getIvBarcodeNewModel().setVisibility(View.GONE);
                     }
                 }else {
-
                 if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV) ||
                         getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_ABLESUNG))
                 {
