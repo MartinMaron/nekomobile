@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,9 +19,7 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.RauchmelderWartungListViewAdapter;
-import de.eneko.nekomobile.activities.detail.Nutzer.NutzerActivity;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity_New;
-import de.eneko.nekomobile.activities.models.RauchmelderModel;
 import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.ToDo;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
@@ -75,7 +72,7 @@ public class RauchmelderWartungListActivity extends AppCompatActivity implements
 
 
     protected void exit() {
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(this);
         Intent intent = new Intent(this, NutzerTodosListActivity.class);
         startActivity(intent);
     }

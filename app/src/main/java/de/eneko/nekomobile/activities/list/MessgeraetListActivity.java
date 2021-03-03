@@ -183,7 +183,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
 
 
             protected void exit(){
-                FileHandler.getInstance().saveFile();
+                FileHandler.getInstance().saveFile(this);
                 Intent intent = new Intent(this, NutzerTodosListActivity.class);
                 startActivity(intent);
             }

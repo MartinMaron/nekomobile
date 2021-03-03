@@ -1,6 +1,7 @@
 package de.eneko.nekomobile.controllers;
 
 
+import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -67,7 +68,7 @@ public class FileHandler
         return this.allRoutes;
     }
 
-    public void saveFile()
+    public void saveFile(Activity sourceActivity)
     {
         Route route = CurrentObjectNavigation.getInstance().getRoute();
 
@@ -96,29 +97,28 @@ public class FileHandler
             transformer.transform(domSource, streamResult);
 
         } catch (Exception e) {
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
-    public void preLoadAllRoutes()
+    public void preLoadAllRoutes(Activity sourceActivity)
     {
         ArrayList<Route> tmpAllRoutes = new ArrayList<>();
         try {
             File dir = new File(GlobalConst.PATH_NEKOMOBILE);
             if (!dir.exists()) {
-                Log.e(TAG, dir.getAbsolutePath() + " existiert nicht");
+                Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " existiert nicht.", Toast.LENGTH_SHORT).show();
             }
             if (!dir.canRead()) {
-                Log.e(TAG, dir.getAbsolutePath() + " kann nicht gelesen werden");
+                Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " kann nicht gelesen werden.", Toast.LENGTH_SHORT).show();
             }
             String[] list = dir.list();
             if (list != null) {
                 for (String file : list) {
                     if (file.endsWith("neko.xml")) {
                         try {
-
-
-                            Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true);
+                            Route route = loadFile(GlobalConst.PATH_NEKOMOBILE + "/" + file,true, sourceActivity);
                             Calendar validDate = Calendar.getInstance();
                             validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);
                             if (route.getDatum().after(validDate.getTime())){
@@ -126,6 +126,7 @@ public class FileHandler
                             }
                         }catch (Exception e)
                         {
+                            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
                             Log.e(TAG, e.getMessage(),e);
                         }
                     }
@@ -134,7 +135,7 @@ public class FileHandler
         }
         catch (Exception e)
         {
-            Log.e(TAG, e.getMessage(),e);
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
         }
         finally
         {
@@ -143,7 +144,7 @@ public class FileHandler
         }
     }
 
-    public Route loadFile(String pfileName, Boolean withSubElements)
+    public Route loadFile(String pfileName, Boolean withSubElements, Activity sourceActivity)
     {
         Route route = null;
         try {
@@ -160,6 +161,7 @@ public class FileHandler
             route.updateRouteFromXmlElement(element, withSubElements);
             route.setAndroidFileName(file.getName());
         } catch (Exception e) {
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         return route;

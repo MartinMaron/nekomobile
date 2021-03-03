@@ -98,7 +98,7 @@ public class NutzerTodosListActivity extends AppCompatActivity implements Adapte
         mAdapter.notifyDataSetChanged();
     }
     protected void exit(){
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(this);
         Intent intent = new Intent(this, NutzerListActivity.class);
         startActivity(intent);
     }

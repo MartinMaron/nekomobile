@@ -35,7 +35,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        FileHandler.getInstance().preLoadAllRoutes();
+        FileHandler.getInstance().preLoadAllRoutes(this);
         try {
             ArrayList<Route> datasoure = new ArrayList<Route>();
             datasoure.addAll(
@@ -70,7 +70,7 @@ public class FileListActivity extends ListActivity implements AdapterView.OnItem
     }
 
     protected void exit(){
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
