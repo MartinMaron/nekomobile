@@ -42,6 +42,7 @@ public class ListFolderTask extends AsyncTask<String, Void, ListFolderResult> {
     @Override
     protected ListFolderResult doInBackground(String... params) {
         try {
+            ListFolderResult myListFolderResult = mDbxClient.files().listFolder(mFolderPath);
             return mDbxClient.files().listFolder(mFolderPath);
         } catch (DbxException e) {
             mException = e;

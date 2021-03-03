@@ -1484,7 +1484,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
     public void save() {
         setDataToModel();
         getBasemodel().save();
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(getActivity());
     }
 
     protected void loadData(){

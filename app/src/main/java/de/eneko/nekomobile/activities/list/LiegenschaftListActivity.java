@@ -106,7 +106,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
 
 
     protected void exit(){
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(this);
         Intent intent = new Intent(this, FileListActivity.class);
         startActivity(intent);
     }
@@ -114,7 +114,7 @@ public class LiegenschaftListActivity extends ListActivity implements AdapterVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(this);
         exit();
     }
 }

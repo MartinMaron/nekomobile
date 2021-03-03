@@ -391,7 +391,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     public void save() {
         setDataToModel();
         getBasemodel().save();
-        FileHandler.getInstance().saveFile();
+        FileHandler.getInstance().saveFile(getActivity());
     }
 
 
