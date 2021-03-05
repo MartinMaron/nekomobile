@@ -82,6 +82,7 @@
         <item>1086@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
         <item>1085@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
         <item>1087@Absperrgriff Warmwasser@False@ZUB@ @730701@</item>
+        <item>1349@ABUS - Rauchmelder@False@RWM@ @ @</item>
         <item>57@APZ-A-ETW-1,5-110mm-1/2"-1 l/Imp@False@WWZ@ @106120@</item>
         <item>54@APZ-We-ETW-2,5-130mm-3/4"-1 l/Imp@False@WWZ@ @106060@</item>
         <item>55@APZ-We-ETW-2,5-130mm-3/4"-10 l/Imp@False@WWZ@ @106070@</item>
@@ -220,6 +221,7 @@
         <item>1251@Funk -Unterputz-Messkapsel Warmwasser e-wireless @False@WWZ@ @ @</item>
         <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @False@WMZ@ @RN141R11 @</item>
         <item>1309@Funk Wärmemengenzähler 739 Qn 1,5 Baulänge 130mm@True@WMZ@ @0739RN141R11E00@</item>
+        <item>1352@Funk Wärmezähler 739 Qn 1,5 Techem @False@WMZ@ @0739UL241R11@</item>
         <item>1316@Funk Wärmezähler SC739 - Qn 0,6 - Allmess- Sontex@True@WMZ@ @0739SJ841R11E00@</item>
         <item>1312@Funk Wärmezähler SC739 - Qn 0,6 - KOAX ista@True@WMZ@ @0739TJ141R11E00@</item>
         <item>1314@Funk Wärmezähler SC739 - Qn1.5 - Allmess- Sontex@True@WMZ@ @0739SL841R11E00@</item>
@@ -268,8 +270,10 @@
         <item>797@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @120030@</item>
         <item>833@Kaltwasserzähler Qn 2.5 m3/h, waagrecht@False@KWZ@ @121032@</item>
         <item>831@Kaltwasserzähler Qn 6 m3/h@False@KWZ@ @120061@</item>
+        <item>1350@Kaltwasserzähler Qn 6 m3/h, Steig 150mm Modularis Funk 581@True@KWZ@581@99999@</item>
         <item>827@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @122060@</item>
         <item>837@Kaltwasserzähler Qn 6 m3/h, Steigrohr@False@KWZ@ @123062@</item>
+        <item>1351@Kaltwasserzähler Qn 6 m3/h, Steigrohr Standard@False@KWZ@ @ @</item>
         <item>820@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @120060@</item>
         <item>836@Kaltwasserzähler Qn 6 m3/h, waagrecht@False@KWZ@ @121062@</item>
         <item>864@Kompaktwärmezähler SC 539 - Qn 0.6@False@WMZ@ @200010@</item>
@@ -373,6 +377,7 @@
         <item>1028@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@</item>
         <item>1027@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
         <item>1029@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@</item>
+        <item>1353@Rauchwarnmelder- Funk  Ei6500 Typ C Ferninspektion nach DIN 14676@False@RWM@ @EI6500SA2RRE001@</item>
         <item>878@Rechenwerk SensoStar2C@False@WMZ@ @301200@</item>
         <item>879@Rechenwerk SensoStar2C@False@WMZ@ @301210@</item>
         <item>880@Rechenwerk SensoStar2C@False@WMZ@ @301220@</item>
