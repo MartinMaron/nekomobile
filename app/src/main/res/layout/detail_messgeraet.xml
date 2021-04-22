@@ -9,9 +9,10 @@
     <TextView
         android:id="@+id/tvModel"
         android:layout_width="@dimen/dp_faktor_80"
-        android:layout_height="@dimen/dp_faktor_6"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/sp_faktor_08"
         android:gravity="bottom|left"
+        android:singleLine="false"
         android:textAlignment="gravity" />
 
     <TextView
@@ -70,7 +71,7 @@
         android:contentDescription="@string/empty"
         android:text="@string/aktuell"
         android:textColor="@color/navy"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <TextView
         android:id="@+id/lbStichtag"
@@ -81,7 +82,7 @@
         android:contentDescription="@string/empty"
         android:text="@string/Stichtag"
         android:textColor="@color/navy"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_06" />
     <TextView
         android:id="@+id/tvAktuell"
         android:layout_width="@dimen/dp_faktor_40"
@@ -116,7 +117,7 @@
         android:contentDescription="@string/empty"
         android:text="@string/Startwert"
         android:textColor="@color/navy"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <TextView
         android:id="@+id/lbProcente"
@@ -127,7 +128,7 @@
         android:contentDescription="@string/empty"
         android:text="@string/Procente"
         android:textColor="@color/navy"
-        android:textSize="@dimen/sp_faktor_04" />
+        android:textSize="@dimen/sp_faktor_06" />
     <EditText
         android:id="@+id/tvStartwert"
         android:layout_width="@dimen/dp_faktor_40"
@@ -160,17 +161,23 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/spAustauschgrund"
         android:text="@string/neuerZaehler"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <Spinner
         android:id="@+id/spNewModel"
         android:layout_width="@dimen/dp_faktor_70"
         android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/lbNewModel"
+        android:dropDownWidth="match_parent"
         android:gravity="bottom|left"
+        android:spinnerMode="dialog"
+        android:inputType="textImeMultiLine"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
         android:text="@string/empty"
         android:textAlignment="gravity"
         android:textSize="@dimen/sp_faktor_08" />
+
     <ImageView
         android:id="@+id/ivBarcodeNewModel"
         android:layout_width="@dimen/dp_faktor_14"
@@ -185,7 +192,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/acUnDoneGrund"
         android:text="@string/austauschgrund"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <Spinner
         android:id="@+id/spAustauschgrund"
@@ -204,7 +211,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/spNewModel"
         android:text="@string/rwm_detail_lb_NewNummer"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <EditText
         android:id="@+id/etNewNummer"
@@ -230,7 +237,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/etNewNummer"
         android:text="@string/neuer_funk_modul"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <Spinner
         android:id="@+id/spNewFunkModel"
@@ -256,7 +263,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/spNewFunkModel"
         android:text="@string/neue_funknummer"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <EditText
         android:id="@+id/etNewFunkNummer"
@@ -291,7 +298,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/etNewFunkNummer"
         android:text="@string/rwm_detail_lb_Bemerkung"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
 
     <EditText
         android:id="@+id/etBemerkung"
@@ -310,7 +317,7 @@
         android:layout_height="@dimen/dp_faktor_4"
         android:layout_below="@id/tvProcente"
         android:text="Grund warum kein Tausch erfolgt"
-        android:textSize="@dimen/sp_faktor_05" />
+        android:textSize="@dimen/sp_faktor_06" />
     <AutoCompleteTextView
         android:id="@+id/acUnDoneGrund"
         android:layout_width="@dimen/dp_faktor_70"

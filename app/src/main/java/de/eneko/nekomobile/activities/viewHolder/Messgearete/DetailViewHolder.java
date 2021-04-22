@@ -1,13 +1,19 @@
 package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.barcode.Barcode;
@@ -96,13 +102,51 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
         if (getSpNewModel() != null) {
             spNewModelAdapter = new ArrayAdapter<ZaehlerModel>(mActivity,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_textview,
                     Dict.getInstance().getZaehlerModels().stream()
                             .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBasemodel().getBean().getArt()) || r.getArt().equals("ALL") ) )
                             .sorted(Comparator.comparing(ZaehlerModel::getBezeichnung))
                             .collect(Collectors.toList())
 
-                    );
+                    ) {
+                @Override
+                public View getDropDownView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = new TextView(mActivity);
+                    }
+                    ZaehlerModel obj = getItem(position);
+                    TextView item = (TextView) convertView;
+                    item.setTextSize(18);
+                    item.setBackgroundResource(R.drawable.textview_border);
+                    item.setText(obj.getBezeichnung());
+                    final TextView finalItem = item;
+                    item.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            finalItem.setSingleLine(false);
+                        }
+                    });
+                    return item;
+                }
+
+
+
+                @NonNull
+                @Override
+                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    //Extrahieren der NoteBean zum nutzen der Werte
+                    ZaehlerModel obj = getItem(position);
+                    if(convertView == null) {
+                        LayoutInflater inflater = (LayoutInflater) mActivity
+                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        convertView = inflater.inflate(R.layout.spinner_textview, parent, false);
+                        TextView tv = convertView.findViewById(R.id.multulineSpinnerTextview);
+                        tv.setText(obj.getBezeichnung());
+                    }
+                    convertView.setTag(obj);
+                    return convertView;
+                }
+            };
             spNewModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             getSpNewModel().setAdapter(spNewModelAdapter);
         }
