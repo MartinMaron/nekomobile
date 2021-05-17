@@ -150,6 +150,8 @@ public class NutzerModel extends Basemodel {
     public Integer getStatusImageResourceId() {
         if (mAbwesend) {
             return R.drawable.nutzer_abwesend;
+        }else if (getBean().getRwmSelbst()){
+            return R.drawable.icon_smoke_detector_denied;
         } else if (isCompleted()) {
             return R.drawable.icon_ok_48;
         } else {

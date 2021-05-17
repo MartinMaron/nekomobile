@@ -78,12 +78,26 @@ public class NutzerTodoModel extends Basemodel{
        return ret_val;
     }
     public Integer getProgressStatusImageResourceId(){
-        if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM))
-        {
-            if (isCompleted("RWM")) {
-                return R.drawable.icon_smoke_detector_green_ok;
-            }else {
-                return R.drawable.icon_smoke_detector_b;
+        if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM)) {
+            if (this.getBean().getNutzer().getRwmSelbst()) {
+                return R.drawable.icon_smoke_detector_denied;
+            } else {
+                if (isCompleted("RWM")) {
+                    return R.drawable.icon_smoke_detector_green_ok;
+                } else {
+                    return R.drawable.icon_smoke_detector_b;
+                }
+            }
+        }
+        if (getBean().getArt().equals(Dict.TODO_MONTAGE_RWM)) {
+            if (this.getBean().getNutzer().getRwmSelbst()) {
+                return R.drawable.icon_smoke_detector_denied;
+            } else {
+                if (isCompleted("RWM")) {
+                    return R.drawable.icon_rwm_montage_done;
+                } else {
+                    return R.drawable.icon_rwm_montage;
+                }
             }
         }
         if (getBean().getArt().equals(Dict.TODO_ABLESUNG))
