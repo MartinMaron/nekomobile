@@ -110,14 +110,14 @@ public class NekoDropBox {
         if (dir != null && dir.listFiles() != null && dir.listFiles().length > 0) {
             for (File loopfile : Arrays.stream(dir.listFiles()).collect(Collectors.toList())) {
                 if (loopfile.isFile() && loopfile.exists()) {
-                    moveFile(archivePath, loopfile);
+                    moveFile(archivePath, loopfile,false);
                 }
             }
         }
 
     }
 
-    private void moveFile(String archivePath, File file) {
+    private void moveFile(String archivePath, File file, boolean force) {
         Date lastModified = new Date(file.lastModified());
         Calendar validDate = Calendar.getInstance();
         validDate.add(Calendar.DATE, GlobalConst.DAYS_TO_ARCHIVE);

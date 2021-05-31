@@ -50,10 +50,15 @@ public class NutzerListRowViewHolder extends NutzerBaseViewHolder {
         getTodoRow().getIvMontage().setImageResource(getBasemodel().getProgressStatusImageMontageResourceId());
         getTodoRow().getIvMontage().setVisibility(getBasemodel().hasMontage() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmMontage().setVisibility(getBasemodel().hasRwmMontage() ? View.VISIBLE: View.GONE);
+        getTodoRow().getIvRwmMontage().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_MONTAGE_RWM));
+
         getTodoRow().getIvRwmWartung().setVisibility(getBasemodel().hasRwmWartung() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvRwmWartung().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_WARTUNG_RWM));
+
         getTodoRow().getIvFunkCheck().setVisibility(getBasemodel().hasFunkcheck() ? View.VISIBLE: View.GONE);
         getTodoRow().getIvFunkCheck().setImageResource(getBasemodel().getProgressStatusImageResourceId(Dict.TODO_FUNK_CHECK));
+
+
 
     }
 

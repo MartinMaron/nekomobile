@@ -38,6 +38,17 @@
             android:textColor="@color/dark_red"
             android:textSize="@dimen/sp_faktor_08" />
 
+    <ImageView
+        android:id="@+id/ivListItemButtonRight"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/google_maps_redirect"
+        android:clickable="true"
+        android:contentDescription="@string/empty"
+        android:padding="@dimen/dp_faktor_0_5"
+        android:text="@string/empty" />
+
     <include
         android:id="@+id/todorow"
         layout="@layout/row_todos"

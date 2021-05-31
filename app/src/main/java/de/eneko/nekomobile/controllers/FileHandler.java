@@ -11,8 +11,12 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -165,6 +169,37 @@ public class FileHandler
             e.printStackTrace();
         }
         return route;
+    }
+
+    public void archiveAllFiles() {
+        moveFilesToArchive(GlobalConst.PATH_NEKOMOBILE);
+        moveFilesToArchive(GlobalConst.PATH_SONTEX);
+        moveFilesToArchive(GlobalConst.PATH_EXIM);
+    }
+
+    // region moveFiles
+    private void moveFilesToArchive(String pHomeDevicePath)
+    {
+        //new java.util.Date(result.lastModified())
+        String archivePath = pHomeDevicePath + "/archive";
+        File dir = new File(pHomeDevicePath);
+        if (dir != null && dir.listFiles() != null && dir.listFiles().length > 0) {
+            for (File loopfile : Arrays.stream(dir.listFiles()).collect(Collectors.toList())) {
+                if (loopfile.isFile() && loopfile.exists()) {
+                    archiveFile(archivePath, loopfile);
+                }
+            }
+        }
+
+    }
+
+    private void archiveFile(String archivePath, File file) {
+        File folder = new File(archivePath);
+        if (!folder.exists()) {folder.mkdir();}
+        SimpleDateFormat zeitformat = new SimpleDateFormat("dd.MM.yyyy_HH");
+        String lastModifiedString = zeitformat.format(new Date(file.lastModified()));
+        file.renameTo(new File(archivePath,lastModifiedString + "_" + file.getName()));
+        file.delete();
     }
 
     public NekoDropBox getNekoDropBox() {

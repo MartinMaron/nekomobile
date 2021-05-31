@@ -97,7 +97,20 @@ public class NutzerToDoRowViewHolder extends BaseViewHolder{
 //                getSvRwmAbsoluts().setVisibility(View.VISIBLE);
 //                break;
             case Dict.TODO_MONTAGE_RWM:
-                getIvImage().setImageResource(R.drawable.icon_rwm_montage);
+               // getIvImage().setImageResource(R.drawable.icon_rwm_montage);
+
+                vhRwmAbsoluts = new NutzerToDoRowViewHolder_RwmWartung_Absoluts();
+                vhRwmAbsoluts.setTxtvUndone(svRwmAbsoluts.findViewById(R.id.txtvUndone));
+                vhRwmAbsoluts.setTxtvDone(svRwmAbsoluts.findViewById(R.id.txtvDone));
+                vhRwmAbsoluts.setTxtvWithError(svRwmAbsoluts.findViewById(R.id.txtvWithError));
+                vhRwmAbsoluts.setTxtvNew(svRwmAbsoluts.findViewById(R.id.txtvNew));
+                vhRwmAbsoluts.getTxtvUndone().setText("nicht geprüft: " + getBasemodel().getUndoneCount("RWM"));
+                vhRwmAbsoluts.getTxtvDone().setText("geprüft: " + getBasemodel().getDoneCount("RWM"));
+                vhRwmAbsoluts.getTxtvWithError().setText("mit fehler: " + getBasemodel().getWithErrorCount("RWM"));
+                vhRwmAbsoluts.getTxtvNew().setText("neu installiert: " + getBasemodel().getNewCount("RWM"));
+                getSvRwmAbsoluts().setVisibility(View.VISIBLE);
+
+
                 break;
             default:
         }

@@ -1,13 +1,18 @@
 package de.eneko.nekomobile.activities.viewHolder.Liegenschaft;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+
+import java.util.Locale;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
 import de.eneko.nekomobile.activities.viewHolder.TodoRowItemViewHolder;
+import de.eneko.nekomobile.beans.Liegenschaft;
 
 public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
 
@@ -27,6 +32,7 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
         setTxtvLiegenschaft(mView.findViewById(R.id.tvDisplay));
         setTxtvTermin(mView.findViewById(R.id.tvLastPlace_1));
         setTxtvBemerkungen(mView.findViewById(R.id.txtvBemerkung));
+        setIvListItemButtonRight(mView.findViewById(R.id.ivListItemButtonRight));
         View svToDoRow = (View) mView.findViewById(R.id.todorow);
 
         setTodoRow(new TodoRowItemViewHolder(svToDoRow,getBasemodel()));
@@ -44,6 +50,7 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
         }else {
             getTxtvBemerkungen().setVisibility(View.GONE);
         }
+
 
         if (getBasemodel().isCompleted("RWM") && getBasemodel().isCompleted("GER")){
             getTodoRow().getIvAblesung().setVisibility(View.GONE);
@@ -74,7 +81,26 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
 //       }
 
 
+        getIvListItemButtonRight().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Liegenschaft lieg =  (Liegenschaft) getBasemodel().getBean();
+                String lat = String.valueOf(lieg.getLatitude());
+                String lng = String.valueOf(lieg.getLongitude());
+
+//                String uri = String.format(Locale.GERMANY, "geo:" + lat + "," + lng);
+                String uri = String.format(Locale.GERMANY, "google.navigation:q=" + lat + "," + lng);
+
+
+
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                mapIntent.setPackage("com.google.android.apps.maps");
+                //   if (mapIntent.resolveActivity(mActivity.getPackageManager()) != null) {
+                mView.getContext().startActivity(mapIntent);
+                //    }
+}
+        });
 
 
 

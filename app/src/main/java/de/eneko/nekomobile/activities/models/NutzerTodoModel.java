@@ -54,18 +54,20 @@ public class NutzerTodoModel extends Basemodel{
 
     public Boolean isCompleted(String pArt){
         boolean ret_val = false;
-        if (getBean().getArt().contains("INF")) return true;
         if(pArt.equals("RWM")){
-            if (getBean().getArt().contains("RWM")){
+            if (getBean().getArt().equals("WAR_RWM")){
                 ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
                 if (getNewCount("RWM") > 0) {ret_val = true;}
                 if (getToDoCount(pArt)== 0) {ret_val = false;}
-            } else {
-                ret_val = true;;
+                if (getBean().getNutzer().getRwmSelbst()) {ret_val = true;}
+            }
+            if (getBean().getArt().equals("MON_RWM")){
+                ret_val = false;
+                if (getNewCount("RWM") > 0) {ret_val = true;}
             }
         }
 
-       if(pArt.equals("GER")){
+        if(pArt.equals("GER")){
            Integer absoluteCount = getBean().getMessgeraete().stream()
                    .collect(Collectors.toList()).size();
 
@@ -73,9 +75,11 @@ public class NutzerTodoModel extends Basemodel{
                    .filter(r -> r.isUnDone())
                    .collect(Collectors.toList()).size();
 
-           ret_val = absolutUndoneCount == 0 && absoluteCount !=0;
-       }
-       return ret_val;
+           ret_val = (absolutUndoneCount == 0 && absoluteCount !=0) || absoluteCount == 0;
+        }
+        if (getBean().getArt().contains("INF")) ret_val = true;
+
+        return ret_val;
     }
     public Integer getProgressStatusImageResourceId(){
         if (getBean().getArt().equals(Dict.TODO_WARTUNG_RWM)) {

@@ -23,6 +23,11 @@ public class LiegenschaftBaseViewHolder extends BaseViewHolder {
     private ImageView ivPhoto = null;
     private EditText etNotizMitarbeiter = null;
 
+
+
+    private ImageView ivListItemButtonRight = null;
+
+
     public LiegenschaftBaseViewHolder(View pView, Basemodel pModel) {
         super(pView, pModel);
     }
@@ -89,6 +94,14 @@ public class LiegenschaftBaseViewHolder extends BaseViewHolder {
 
     public void setEtNotizMitarbeiter(EditText etNotizMitarbeiter) {
         this.etNotizMitarbeiter = etNotizMitarbeiter;
+    }
+
+    public ImageView getIvListItemButtonRight() {
+        return ivListItemButtonRight;
+    }
+
+    public void setIvListItemButtonRight(ImageView ivListItemButtonRight) {
+        this.ivListItemButtonRight = ivListItemButtonRight;
     }
 
 // endregion properties

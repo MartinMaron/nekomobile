@@ -1,10 +1,13 @@
 package de.eneko.nekomobile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -77,11 +80,38 @@ public class MainActivity extends AppCompatActivity
                FileHandler.getInstance().getNekoDropBox().synchronize(true);
             }
         });
-       //registerNetworkCallback();
+
+        Button btCmdArchiviere = findViewById(R.id.btCmdArchiviere);
+        btCmdArchiviere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext(),R.style.AlertDialogTheme);
+                AlertDialog dialog = builder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FileHandler.getInstance().archiveAllFiles();
+                    }
+                }).create();
+
+                //2. now setup to change color of the button
+                dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(getBaseContext(), R.color.black));
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(getBaseContext(), R.color.black));
+                    }
+                });
+                dialog.setTitle("Sollen alle Daten archiviert werden? Die Daten sind dann nicht mehr sichtbar");
+                dialog.show();
+            };
+        });
+        //registerNetworkCallback();
         initializeHlptas();
     }
-
-
 
 
     private void initializeHlptas(){
