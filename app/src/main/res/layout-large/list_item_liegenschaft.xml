@@ -34,11 +34,23 @@
         <TextView
             android:id="@+id/txtvBemerkung"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/dp_faktor_10"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tvDisplay"
             android:text="@string/empty"
             android:textColor="@color/dark_red"
             android:textSize="@dimen/sp_faktor_08" />
+    <ImageView
+        android:id="@+id/ivListItemButtonRight"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/todorow"
+        android:background="@drawable/google_maps_redirect"
+        android:clickable="true"
+        android:contentDescription="@string/empty"
+        android:padding="@dimen/dp_faktor_0_5"
+        android:text="@string/empty" />
+
     <include
         android:id="@+id/todorow"
         layout="@layout/row_todos"
