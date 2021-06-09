@@ -20,25 +20,28 @@
     <array name="kein_austausch_grund">
         <item>keine Absperrung</item>
         <item>Messstelle nicht mehr da</item>
+        <item>Heizkörper nicht mehr da</item>
         <item>kein passender Zähler dabei</item>
         <item>altgerät kann nicht ausgebaut werden</item>
     </array>
     <array name="rwm_modele">
-        <item>1264;ei Elektronics i650</item>
-        <item>1336;ei Elektronics i650 (Fremdgerät)</item>
+        <item>1264;i650 ei Elektronics</item>
+        <item>1336;i650 ei Elektronics (Fremdgerät)</item>
         <item>1277;Heckatron Rauchmelder</item>
         <item>1278;Mertens Rauchmelder</item>
         <item>1337;GIRA Fremdgerät</item>
+        <item>1349;ABUS - Rauchmelder</item>
+        <item>1353;Ei6500 Typ C Ferninspektion nach DIN 14676</item>
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>
-        <item>STA;Standardtausch(standardowa zmiana)</item>
+        <item>STA;Standardtausch</item>
         <item>DEF;display defekt</item>
-        <item>HKF;kein Heizkörper (brak kaloryfera)</item>
+        <item>HKF;kein Heizkörper</item>
         <item>FFE;kein Funk</item>
-        <item>NVO;nicht mehr vorhanden (nie ma a powinien byc)</item>
-        <item>VER;beschädigt o. zerstört (uszkodzony lub zniszczony)</item>
-        <item>KTM;das neue Gerät kann nicht angebracht werdne (jest ale nie mozna zalozyc)</item>
+        <item>NVO;nicht mehr vorhanden</item>
+        <item>VER;beschädigt o. zerstört)</item>
+        <item>KTM;das neue Gerät kann nicht angebracht werden</item>
     </array>
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>
