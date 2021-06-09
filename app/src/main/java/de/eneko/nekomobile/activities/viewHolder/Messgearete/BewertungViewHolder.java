@@ -276,7 +276,7 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && mBLParamChanged) {
-                   if (getEtGrundparameter().getText().toString().equals("12") && !getActvBewertungsfaktor05().getText().toString().isEmpty() && !getActvBewertungsfaktor09().getText().toString().isEmpty()) {
+                   if ((getEtGrundparameter().getText().toString().equals("11") || getEtGrundparameter().getText().toString().equals("12"))  && !getActvBewertungsfaktor05().getText().toString().isEmpty() && !getActvBewertungsfaktor09().getText().toString().isEmpty()) {
                         Integer p1 = Integer.valueOf(getActvBewertungsfaktor05().getText().toString()).intValue();
                         Integer p2 = Integer.valueOf(getActvBewertungsfaktor09().getText().toString()).intValue();
                         ret_val = Integer.toString(p1 * p2);

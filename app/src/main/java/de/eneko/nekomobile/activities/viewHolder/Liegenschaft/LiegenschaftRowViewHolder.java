@@ -86,19 +86,12 @@ public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {
             public void onClick(View v) {
 
                 Liegenschaft lieg =  (Liegenschaft) getBasemodel().getBean();
-                String lat = String.valueOf(lieg.getLatitude());
-                String lng = String.valueOf(lieg.getLongitude());
-
-//                String uri = String.format(Locale.GERMANY, "geo:" + lat + "," + lng);
-                String uri = String.format(Locale.GERMANY, "google.navigation:q=" + lat + "," + lng);
-
-
-
+                String uri = String.format(Locale.GERMANY, "google.navigation:q=" + lieg.getAdresseOneLine());
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 mapIntent.setPackage("com.google.android.apps.maps");
-                //   if (mapIntent.resolveActivity(mActivity.getPackageManager()) != null) {
-                mView.getContext().startActivity(mapIntent);
-                //    }
+                if (mapIntent.resolveActivity(mView.getContext().getPackageManager()) != null) {
+                    mView.getContext().startActivity(mapIntent);
+                }
 }
         });
 
