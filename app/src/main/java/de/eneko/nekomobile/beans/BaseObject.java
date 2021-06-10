@@ -57,6 +57,13 @@ public abstract class BaseObject {
         pXmlElement.appendChild(_Element);
     }
 
+    public void CreateSontexDateTimeNode(Element pXmlElement , String elementName , Date pValue ){
+        if (pValue == null) return;
+        Element _Element = pXmlElement.getOwnerDocument().createElement(elementName);
+        _Element.appendChild(pXmlElement.getOwnerDocument().createTextNode(new SimpleDateFormat(GlobalConst.SONTEX_longDateTimeFormat).format(pValue)));
+        pXmlElement.appendChild(_Element);
+    }
+
 //    new SimpleDateFormat(GlobalConst.dateFormat).format(getBean().getLetzter_wert_datum())
 
 
@@ -66,6 +73,20 @@ public abstract class BaseObject {
         try {
             if (propElement.hasChildNodes()) {
                 retval =  new SimpleDateFormat(GlobalConst.longDateTimeFormat).parse(propElement.getFirstChild().getNodeValue());
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return  retval;
+    }
+
+    static Date getSontexSipleLongDate(Element propElement)
+    {
+        Date retval = null;
+        try {
+            if (propElement.hasChildNodes()) {
+                retval =  new SimpleDateFormat(GlobalConst.SONTEX_longDateTimeFormat).parse(propElement.getFirstChild().getNodeValue());
             }
         } catch (ParseException e) {
             e.printStackTrace();

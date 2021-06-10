@@ -8,12 +8,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
+import de.eneko.nekomobile.controllers.SontexFileHandler;
 
 public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private static final String TAG = Liegenschaft.class.getName();
@@ -36,7 +39,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private String mPlZ;
     private final Route route;
     private Date mStichtag = new Date();
-
+    private String mSontexFileName;
 
 
     public Route getRoute() {
@@ -89,7 +92,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateTextNode(ret_val,"plZ",mPlZ);
             CreateTextNode(ret_val,"notizMitarbeiter",mNotizMitarbeiter);
             CreateDateTextNode(ret_val, "stichtag", mStichtag);
-
+            CreateTextNode(ret_val,"sontexFileName",mSontexFileName);
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -155,6 +158,9 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
                     case "notizMitarbeiter":
                         mNotizMitarbeiter = getString(propElement);
+                        break;
+                    case "sontexFileName":
+                        //mSontexFileName = getString(propElement);
                         break;
                     case "stichtag":
                         mStichtag = getSipleDate(propElement);
@@ -346,7 +352,34 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         mNotizMitarbeiter = notizMitarbeiter;
     }
 
-    // endregion properties
+    public File getSontexFile() {
+         try {
+            if (mSontexFileName == null) {
+                String fileName = SontexFileHandler.getInstance().safeFileNameConverter(getAdresseOneLine());
+                String imageFileName = fileName + "_";
+                File storageDir = new File(GlobalConst.PATH_SONTEX);
+                storageDir.mkdirs();
+                File file = File.createTempFile(
+                        imageFileName,  /* prefix */
+                        ".xml",         /* suffix */
+                        storageDir      /* directory */
+                );
+                mSontexFileName = file.toString();
+                return file;
+            } else
+            {
+                File file = new File(mSontexFileName);
+                return file;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+     // endregion properties
 
 
 

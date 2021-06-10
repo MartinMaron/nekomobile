@@ -26,6 +26,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btCmdDropbox"
-        android:layout_marginTop="404dp"
+        android:layout_marginTop="350dp"
         android:text="@string/dateien_archivieren" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvWelcome"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:foregroundGravity="center"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Cos tam"-->
+<!--        android:textAlignment="gravity"-->
+<!--        android:textColor="?android:attr/colorSecondary" />-->
 </RelativeLayout>

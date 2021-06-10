@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity
 
         // init Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Hallo " + GlobalConst.NEKOMOBILE_USER);
         setSupportActionBar(toolbar);
+
         // init FloatingActionButton
         FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setVisibility(NavigationView.VISIBLE);
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity
         // init NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        // init welcomeText
+//        TextView tvWelcome = findViewById(R.id.tvWelcome);
+//        tvWelcome.setText("Hallo " + GlobalConst.NEKOMOBILE_USER);
 
         // init Buttons
         Button btCmdGetRoutes = findViewById(R.id.btCmdGetRoutes);

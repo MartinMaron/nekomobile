@@ -2,15 +2,18 @@ package de.eneko.nekomobile.activities.detail.Messgeraete;
 
 
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.SontexFileHandler;
 import de.eneko.nekomobile.framework.ISaveAndExit;
 import de.eneko.nekomobile.framework.NumberCustomKeyboard;
 
@@ -58,6 +61,18 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity implement
         switch (item.getItemId()) {
             case R.id.menu_item_save:
                 viewHolder.save();
+                exit();
+                return true;
+            case R.id.menu_item_bewertung:
+                viewHolder.save();
+                Intent intent = new Intent(viewHolder.getActivity(), MessgaeretBewertungActivity.class);
+                viewHolder.getActivity().startActivity(intent);
+                return true;
+            case R.id.menu_item_parametrieren:
+                viewHolder.save();
+                ArrayList<Messgeraet> messg = new ArrayList<Messgeraet>();
+                messg.add(viewHolder.getBean());
+                SontexFileHandler.getInstance().upsertSontexParam(viewHolder.getActivity(),messg);
                 exit();
                 return true;
         }

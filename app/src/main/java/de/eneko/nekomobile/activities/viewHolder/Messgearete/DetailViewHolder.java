@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretAustauschActivity;
-import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
@@ -79,7 +78,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
         setLbBemerkung(getActivity().findViewById(R.id.lbBemerkung));
         setEtBemerkung(getActivity().findViewById(R.id.etBemerkung));
         setIvSpechToText(getActivity().findViewById(R.id.ivSpechToText));
-        setIbBewertung(findViewById(R.id.ibBewertung));
 
         setLbStartwert(getActivity().findViewById(R.id.lbStartwert));
         setLbProcente(getActivity().findViewById(R.id.lbProcente));
@@ -206,17 +204,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                 }
             }
         });
-
-        getIbBewertung().setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                save();
-                Intent intent = new Intent(getActivity(), MessgaeretBewertungActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-
-        loadData();
+       loadData();
     }
 
 
@@ -321,8 +309,9 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
     @Override
     protected void createLayout() {
+}
 
-    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 

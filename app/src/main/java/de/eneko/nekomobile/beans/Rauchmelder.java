@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.File;
 import java.util.Date;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
@@ -130,7 +131,12 @@ public class Rauchmelder extends BaseObject implements InekoId, ItoXmlElement {
     }
 
   // endregion Xml
-
+      public File getSontexFileName() {
+          if (mTodo != null) {
+              return mTodo.getSontexFile();
+          }
+          return null;
+      }
     // region properties
 
     @Override

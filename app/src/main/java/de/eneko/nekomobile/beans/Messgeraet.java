@@ -7,7 +7,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.io.File;
 import java.util.Date;
+
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
 import de.eneko.nekomobile.controllers.Dict;
@@ -96,6 +99,17 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
     public Messgeraet(Liegenschaft pLiegenschaft) {
         super();
         mLiegenschaft = pLiegenschaft;
+    }
+
+
+    public File getSontexFile() {
+        if (mTodo != null) {
+            return mTodo.getSontexFile();
+        }
+        if (mLiegenschaft != null) {
+            return mLiegenschaft.getSontexFile();
+        }
+        return null;
     }
 
     @Override

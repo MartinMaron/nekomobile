@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -87,7 +86,6 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private ImageView ivSpechToText = null;
     private TextView lbUnDoneGrund = null;
     private AutoCompleteTextView acUnDoneGrund = null;
-    private ImageButton ibBewertung = null;
     private TextView lbStartwert = null;
     private EditText tvStartwert = null;
     private TextView lbProcente = null;
@@ -593,13 +591,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         this.acUnDoneGrund = acKeinAustauschGrund;
     }
 
-    public ImageButton getIbBewertung() {
-        return ibBewertung;
-    }
 
-    public void setIbBewertung(ImageButton ibBewertung) {
-        this.ibBewertung = ibBewertung;
-    }
 
     public EditText getTvStartwert() {
         return tvStartwert;

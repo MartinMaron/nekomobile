@@ -3,9 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_item_bewertung"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:iconTintMode="add"
+        android:title="@string/speichern"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_parametrieren"
+        android:icon="@drawable/icon_ablesung_sontex_funk"
+        android:iconTintMode="add"
+        android:title="@string/speichern"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_item_save"
         android:icon="@drawable/icon_save"
         android:iconTintMode="add"
         android:title="@string/speichern"
         app:showAsAction="always" />
+
 </menu>
