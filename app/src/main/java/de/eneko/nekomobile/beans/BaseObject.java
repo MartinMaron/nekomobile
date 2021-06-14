@@ -126,7 +126,7 @@ public abstract class BaseObject {
         return retval;
     }
 
-    static String getString(Element propElement)
+    protected static String getString(Element propElement)
     {
         String retval = "";
         if (propElement.hasChildNodes()) {
