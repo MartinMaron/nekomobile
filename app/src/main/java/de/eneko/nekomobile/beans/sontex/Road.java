@@ -20,6 +20,11 @@ public class Road extends BaseObject implements ItoXmlElement {
     private String mVersion;
     private Date mSaveDate;
     private SavedBy mSavedBy;
+    private Element mElement;
+
+    public Road(Element element){
+        mElement = element;
+    }
 
     public Road() {
         super();
@@ -46,7 +51,6 @@ public class Road extends BaseObject implements ItoXmlElement {
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
         }
-
         return ret_val;
     }
 
@@ -76,7 +80,12 @@ public class Road extends BaseObject implements ItoXmlElement {
 
 
     // region properties
-  // endregion properties
+
+    public Element getElement() {
+        return mElement;
+    }
+
+    // endregion properties
 
 
 

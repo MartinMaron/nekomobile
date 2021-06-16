@@ -22,7 +22,7 @@ public abstract class BaseObject {
         return baseModel;
     }
 
-    public void CreateTextNode(Element pXmlElement , String elementName , String pValue ){
+    public static void CreateTextNode(Element pXmlElement , String elementName , String pValue ){
         if (pValue == null) return;
         Element _Element = pXmlElement.getOwnerDocument().createElement(elementName);
         _Element.appendChild(pXmlElement.getOwnerDocument().createTextNode(pValue));

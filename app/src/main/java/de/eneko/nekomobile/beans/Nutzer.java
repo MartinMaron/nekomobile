@@ -178,7 +178,12 @@ public class Nutzer extends BaseObject implements InekoId, ItoXmlElement {
     public File getSontexFile() {
         return mLiegenschaft.getSontexFile();
     }
-
+    public String getSontexInfoUser() {
+        return String.format("%03d", getWohnungsnummer());
+    }
+    public String getSontexGroupCaption() {
+        return getNutzerName();
+    }
         // region properties
 
     public Boolean isInfo (){

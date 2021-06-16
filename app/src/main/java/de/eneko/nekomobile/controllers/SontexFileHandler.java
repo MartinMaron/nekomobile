@@ -4,8 +4,11 @@ package de.eneko.nekomobile.controllers;
 import android.app.Activity;
 import android.widget.Toast;
 
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +23,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import de.eneko.nekomobile.GlobalConst;
+import de.eneko.nekomobile.beans.BaseObject;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.sontex.Group;
 import de.eneko.nekomobile.beans.sontex.Road;
 
 
@@ -70,23 +75,65 @@ public class SontexFileHandler
             return;
         }
 
+        Element roadElement = null;
         File fi = messgeraete.get(0).getSontexFile();
-//        if(fi.exists()) {
-//            road = loadFile(fi.getName(),sourceActivity);
-//        }else {
-//            road = new Road();
-//        }
+        if(!fi.exists()) {
+            CreateNewSontexFile(fi);
+        }
 
-        road = new Road();
+        road = loadFile(fi,sourceActivity);
+        roadElement = road.getElement();
+
         //finden des Nutzers bzw. neuanlage
+
+        NodeList nl =  roadElement.getChildNodes();
+        Node targetgroupNode = null;
+        for (int j = 0; j < nl.getLength(); j++)
+        {
+            Node groupNode = nl.item(j);
+            if (groupNode.getNodeType() == Node.ELEMENT_NODE)
+            {
+                Element nutzerPropElement = (Element) groupNode;
+                // TargetgroupNode belegen
+            }
+        }
+        if (targetgroupNode == null ){
+            targetgroupNode = new Group(messgeraete.get(0).getSontexGroupCaption(),messgeraete.get(0).getSontexInfoUser()).toXmlElement(roadElement.getOwnerDocument());
+         }
+        for (int j = 0; j < messgeraete.size(); j++)
+        {
+            // stwprzyc Task
+          //  targetgroupNode.appendChild(CreateTaskElement(messgeraete.get(j),roadElement.getOwnerDocument()));
+        }
+        //roadElement.appendChild(targetgroupNode);
 
         //neuanlage der Aufgabe
 
-        saveFile(sourceActivity, road, messgeraete.get(0).getSontexFile());
+        saveFile(sourceActivity, roadElement, messgeraete.get(0).getSontexFile());
+    }
+
+    public Road loadFile(File file, Activity sourceActivity)
+    {
+        Road route = null;
+        try {
+            InputStream fileInputStream = new FileInputStream(file);
+
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fileInputStream);
+
+            Element element = doc.getDocumentElement();
+            element.normalize();
+            route = new Road(element);
+        } catch (Exception e) {
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        return route;
     }
 
 
-    public void saveFile(Activity sourceActivity, Road road, File file)
+    public void saveFile(Activity sourceActivity, Element element, File file)
     {
         try
         {
@@ -95,7 +142,43 @@ public class SontexFileHandler
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document document = dBuilder.newDocument();
-            document.appendChild(road.toXmlElement(document));
+            document.appendChild(element);
+
+
+            // create the xml file
+            //transform the DOM Object to an XML File
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(file);
+
+            // If you use
+            // StreamResult result = new StreamResult(System.out);
+            // the output will be pushed to the standard output ...
+            // You can use that for debugging
+            transformer.transform(domSource, streamResult);
+
+        } catch (DOMException e) {
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        } catch (Exception e) {
+            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void CreateNewSontexFile(File file)
+    {
+        try
+        {
+
+            InputStream fileInputStream = new FileInputStream(file);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document document = dBuilder.newDocument();
+            document.appendChild(new Road().toXmlElement(document));
 
 
             // create the xml file
@@ -112,36 +195,9 @@ public class SontexFileHandler
             transformer.transform(domSource, streamResult);
 
         } catch (Exception e) {
-            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
-
-
-
-
-    public Road loadFile(String pfileName, Activity sourceActivity)
-    {
-        Road road= null;
-        try {
-            File file = new File(pfileName);
-            InputStream fileInputStream = new FileInputStream(file);
-
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fileInputStream);
-
-            Element element = doc.getDocumentElement();
-            element.normalize();
-            road = new Road();
-            road.updateFromXmlElement(element);
-        } catch (Exception e) {
-            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        return road;
-    }
-
 
     public String safeFileNameConverter(String pFileName) {
         String mFilename = pFileName;
@@ -160,4 +216,90 @@ public class SontexFileHandler
         mFilename = mFilename.replaceAll("\\|", "_");
         return mFilename;
     }
+
+    Element CreateTaskElement(Messgeraet messgeraet, Document document){
+        Element _TaskElement = document.createElement("Task");
+        Element _InfoElement = document.createElement("Info");
+        Element _ParamElement = document.createElement("Param");
+        Element _LastActionDateElement = document.createElement("LastActionDate");
+        Element _DataElement = document.createElement("Data");
+        Element _EncryptedDataElement = document.createElement("EncryptedData");
+
+        String SontexAgent = "http://www.sontex.com/";
+
+
+
+
+        //Attribute
+        _TaskElement.setAttribute("Agent", "http://www.sontex.com/Son566-param");
+        _TaskElement.setAttribute("Status", "ToDo");
+        _TaskElement.setAttribute("Caption", "Parametrieren 566");
+
+        BaseObject.CreateTextNode(_InfoElement,"Hint","");
+        BaseObject.CreateTextNode(_InfoElement,"User","");
+
+        //ParamElement
+        BaseObject.CreateTextNode(_ParamElement,"RadioAddr",messgeraet.getNeueNummer());
+        BaseObject.CreateTextNode(_ParamElement,"DataToRead","0");
+
+
+        //MBusElement: AdjustDeviceClock
+        Element AdjustDeviceClock_MBusElement = document.createElement("MbusRecord");
+        Element AdjustDeviceClock_Key = document.createElement("Key");
+        Element AdjustDeviceClock_Value = document.createElement("Value");
+        AdjustDeviceClock_Key.setAttribute("AccessKey", "AdjustDeviceClock-0-0-0-0");
+        AdjustDeviceClock_Key.setAttribute("Name", "AdjustDeviceClock");
+        AdjustDeviceClock_Key.setAttribute("Subunit", "0");
+        AdjustDeviceClock_Key.setAttribute("Tariff", "0");
+        AdjustDeviceClock_Key.setAttribute("Storage", "0");
+        AdjustDeviceClock_Key.setAttribute("Function", "0");
+        AdjustDeviceClock_Value.setAttribute("PhysicalUnit", "");
+
+
+        //MBusElement: Date_FutureValue
+        Element Date_FutureValue_MBusElement = document.createElement("MbusRecord");
+        Element Date_FutureValue_Key = document.createElement("Key");
+        Element Date_FutureValue_Value = document.createElement("Value");
+        Date_FutureValue_Key.setAttribute("AccessKey", "Date-0-0-1-0");
+        Date_FutureValue_Key.setAttribute("Name", "Date");
+        Date_FutureValue_Key.setAttribute("Subunit", "0");
+        Date_FutureValue_Key.setAttribute("Tariff", "0");
+        Date_FutureValue_Key.setAttribute("Storage", "1");
+        Date_FutureValue_Key.setAttribute("Function", "0");
+        Date_FutureValue_Value.setAttribute("PhysicalUnit", "");
+        Date_FutureValue_Value.appendChild(document.createTextNode("07-01"));
+
+
+        //'MBusElement: AccessCodeOperator
+        Element AccessCodeOperator_MBusElement = document.createElement("MbusRecord");
+        Element AccessCodeOperator_Key = document.createElement("Key");
+        Element AccessCodeOperator_Value = document.createElement("Value");
+        AccessCodeOperator_Key.setAttribute("AccessKey", "AccessCodeOperator-0-0-0-0");
+        AccessCodeOperator_Key.setAttribute( "Name", "AccessCodeOperator");
+        AccessCodeOperator_Key.setAttribute( "Subunit", "0");
+        AccessCodeOperator_Key.setAttribute("Tariff", "0");
+        AccessCodeOperator_Key.setAttribute("Storage", "0");
+        AccessCodeOperator_Key.setAttribute("Function", "0");
+        AccessCodeOperator_Value.setAttribute( "PhysicalUnit", "");
+        AccessCodeOperator_Value.appendChild(document.createTextNode("1234"));
+
+
+        _DataElement.appendChild(AccessCodeOperator_MBusElement);
+        AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Key);
+        AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Value);
+
+        _DataElement.appendChild(AdjustDeviceClock_MBusElement);
+        AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Key);
+        AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Value);
+
+        _DataElement.appendChild(Date_FutureValue_MBusElement);
+        Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Key);
+        Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Value);
+
+        _TaskElement.appendChild(_InfoElement);
+        _TaskElement.appendChild(_ParamElement);
+        _TaskElement.appendChild(_DataElement);
+        return _TaskElement;
+    }
+
 }

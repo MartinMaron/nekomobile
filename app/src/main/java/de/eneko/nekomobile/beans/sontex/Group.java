@@ -37,7 +37,7 @@ public class Group extends BaseObject implements ItoXmlElement {
 
     @Override
     public Element toXmlElement(Document document) {
-        Element ret_val = document.createElement("Info");
+        Element ret_val = document.createElement("Group");
         try {
             CreateTextNode(ret_val,"Caption", mCaption.toString());
             ret_val.appendChild(mInfo.toXmlElement(document));

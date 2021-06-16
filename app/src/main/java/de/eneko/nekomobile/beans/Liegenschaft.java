@@ -364,6 +364,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         ".xml",         /* suffix */
                         storageDir      /* directory */
                 );
+
+                SontexFileHandler.getInstance().CreateNewSontexFile(file);
                 mSontexFileName = file.toString();
                 return file;
             } else
@@ -376,6 +378,13 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getSontexGroupCaption() {
+        return "Gesamtzähler";
+    }
+    public String getSontexInfoUser() {
+        return "000";
     }
 
 

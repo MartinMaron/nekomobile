@@ -127,6 +127,25 @@ public class ToDo extends BaseObject implements ItoXmlElement {
         }
         return null;
     }
+    public String getSontexGroupCaption() {
+        if (mLiegenschaft != null) {
+            return mLiegenschaft.getSontexGroupCaption();
+        }
+        if (mNutzer != null) {
+            return mNutzer.getSontexGroupCaption();
+        }
+        return null;
+    }
+    public String getSontexInfoUser() {
+        if (mLiegenschaft != null) {
+            return mLiegenschaft.getSontexInfoUser();
+        }
+        if (mNutzer != null) {
+            return mNutzer.getSontexInfoUser();
+        }
+        return null;
+    }
+
 
     public String getBezeichnung() {
         return bezeichnung;

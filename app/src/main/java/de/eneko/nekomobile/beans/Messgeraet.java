@@ -112,6 +112,27 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         return null;
     }
 
+    public String getSontexGroupCaption() {
+        if (mTodo != null) {
+            return mTodo.getSontexGroupCaption();
+        }
+        if (mLiegenschaft != null) {
+            return mLiegenschaft.getSontexGroupCaption();
+        }
+        return null;
+    }
+
+    public String getSontexInfoUser() {
+        if (mTodo != null) {
+            return mTodo.getSontexInfoUser();
+        }
+        if (mLiegenschaft != null) {
+            return mLiegenschaft.getSontexInfoUser();
+        }
+        return null;
+    }
+
+
     @Override
     protected Basemodel createBaseObject() {
         return new MessgeraetModel(this);
