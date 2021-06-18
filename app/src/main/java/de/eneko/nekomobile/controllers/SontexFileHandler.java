@@ -4,20 +4,30 @@ package de.eneko.nekomobile.controllers;
 import android.app.Activity;
 import android.widget.Toast;
 
+import org.w3c.dom.CDATASection;
+import org.w3c.dom.Comment;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -84,6 +94,177 @@ public class SontexFileHandler
         road = loadFile(fi,sourceActivity);
         roadElement = road.getElement();
 
+
+        for (int i = 0; i < messgeraete.size(); i++)
+        {
+            //finden des Nutzers bzw. neuanlage
+            NodeList nl =  roadElement.getElementsByTagName("Group");
+            Node targetgroupNode = null;
+            for (int j = 0; j < nl.getLength(); j++)
+            {
+                Node groupNode = nl.item(j);
+                Node CaptionAttr =  groupNode.getAttributes().getNamedItem("Caption");
+                if (CaptionAttr.getNodeValue().contains(messgeraete.get(j).getSontexInfoUser()))
+                {
+                    targetgroupNode = groupNode;
+                    break;
+                };
+            }
+
+            if (targetgroupNode == null ){
+                targetgroupNode = new Group(messgeraete.get(i).getSontexGroupCaption(),messgeraete.get(i).getSontexInfoUser()).toXmlElement(roadElement.getOwnerDocument());
+            }
+            // stwprzyc Task
+            targetgroupNode.appendChild(CreateTaskElement(messgeraete.get(i),roadElement.getOwnerDocument()));
+            roadElement.appendChild(targetgroupNode);
+        }
+
+        //neuanlage der Aufgabe
+
+        saveFile(sourceActivity, roadElement, messgeraete.get(0).getSontexFile());
+    }
+
+
+    public void upsertSontexParameter(Activity sourceActivity, ArrayList<Messgeraet> messgeraete){
+        //finden der Datei und laden in Road-Objekt
+        Road road = null;
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        //region 'create or load Sontexfile
+        File dir = new File(GlobalConst.PATH_SONTEX);
+        if (!dir.exists()) {
+            Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " existiert nicht.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!dir.canRead()) {
+            Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " kann nicht gelesen werden.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Element roadElement = null;
+        File fi = messgeraete.get(0).getSontexFile();
+        if(!fi.exists()) {
+            CreateNewSontexFile(fi);
+        }
+
+
+
+        try (InputStream is = new FileInputStream(fi.getName())) {
+
+            DocumentBuilder db = dbf.newDocumentBuilder();
+
+            Document doc = db.parse(is);
+
+            NodeList listOfStaff = doc.getElementsByTagName("staff");
+            //System.out.println(listOfStaff.getLength()); // 2
+
+            for (int i = 0; i < listOfStaff.getLength(); i++) {
+                // get first staff
+                Node staff = listOfStaff.item(i);
+                if (staff.getNodeType() == Node.ELEMENT_NODE) {
+                    String id = staff.getAttributes().getNamedItem("id").getTextContent();
+                    if ("1001".equals(id.trim())) {
+
+                        NodeList childNodes = staff.getChildNodes();
+
+                        for (int j = 0; j < childNodes.getLength(); j++) {
+                            Node item = childNodes.item(j);
+                            if (item.getNodeType() == Node.ELEMENT_NODE) {
+
+                                if ("role".equalsIgnoreCase(item.getNodeName())) {
+                                    // update xml element `role` text
+                                    item.setTextContent("founder");
+                                }
+                                if ("name".equalsIgnoreCase(item.getNodeName())) {
+                                    // remove xml element `name`
+                                    staff.removeChild(item);
+                                }
+                            }
+
+                        }
+
+                        // add a new xml element, address
+                        Element address = doc.createElement("address");
+                        // add a new xml CDATA
+                        CDATASection cdataSection =
+                                doc.createCDATASection("HTML tag <code>testing</code>");
+
+                        address.appendChild(cdataSection);
+
+                        staff.appendChild(address);
+
+                    }
+
+                    if ("1002".equals(id.trim())) {
+
+                        // update xml attribute, from 1002 to 2222
+                        staff.getAttributes().getNamedItem("id").setTextContent("2222");
+
+                        // add a new xml element, salary
+                        Element salary = doc.createElement("salary");
+                        salary.setAttribute("currency", "USD");
+                        salary.appendChild(doc.createTextNode("1000"));
+                        staff.appendChild(salary);
+
+                        // rename a xml element from `name` to `n`
+                        // sorry, no API for this, we need to remove and create
+                        NodeList childNodes = staff.getChildNodes();
+
+                        for (int j = 0; j < childNodes.getLength(); j++) {
+                            Node item = childNodes.item(j);
+                            if (item.getNodeType() == Node.ELEMENT_NODE) {
+
+                                if ("name".equalsIgnoreCase(item.getNodeName())) {
+
+                                    // Get the text of element `name`
+                                    String name = item.getTextContent();
+
+                                    // remove xml element `name`
+                                    staff.removeChild(item);
+
+                                    // add a new xml element, n
+                                    Element n = doc.createElement("n");
+                                    n.appendChild(doc.createTextNode(name));
+
+                                    // add a new comment
+                                    Comment comment = doc.createComment("from name to n");
+                                    staff.appendChild(comment);
+
+                                    staff.appendChild(n);
+
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            // output to console
+            // writeXml(doc, System.out);
+
+            try (FileOutputStream output =
+                         new FileOutputStream("c:\\test\\staff-modified.xml")) {
+                writeXml(doc, output);
+            }
+
+        } catch (ParserConfigurationException | SAXException
+                | IOException | TransformerException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+        road = loadFile(fi,sourceActivity);
+        roadElement = road.getElement();
+
         //finden des Nutzers bzw. neuanlage
 
         NodeList nl =  roadElement.getChildNodes();
@@ -99,11 +280,11 @@ public class SontexFileHandler
         }
         if (targetgroupNode == null ){
             targetgroupNode = new Group(messgeraete.get(0).getSontexGroupCaption(),messgeraete.get(0).getSontexInfoUser()).toXmlElement(roadElement.getOwnerDocument());
-         }
+        }
         for (int j = 0; j < messgeraete.size(); j++)
         {
             // stwprzyc Task
-          //  targetgroupNode.appendChild(CreateTaskElement(messgeraete.get(j),roadElement.getOwnerDocument()));
+            //  targetgroupNode.appendChild(CreateTaskElement(messgeraete.get(j),roadElement.getOwnerDocument()));
         }
         //roadElement.appendChild(targetgroupNode);
 
@@ -111,6 +292,34 @@ public class SontexFileHandler
 
         saveFile(sourceActivity, roadElement, messgeraete.get(0).getSontexFile());
     }
+
+    // write doc to output stream
+    private static void writeXml(Document doc,
+                                 OutputStream output)
+            throws TransformerException, UnsupportedEncodingException {
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
+        // The default add many empty new line, not sure why?
+        // https://mkyong.com/java/pretty-print-xml-with-java-dom-and-xslt/
+        // Transformer transformer = transformerFactory.newTransformer();
+
+        // add a xslt to remove the extra newlines
+        TransformerFactory transformerFactoryN = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactoryN.newTransformer();
+
+        // pretty print
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.STANDALONE, "no");
+
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(output);
+
+        transformer.transform(source, result);
+
+    }
+
+
 
     public Road loadFile(File file, Activity sourceActivity)
     {
@@ -139,10 +348,10 @@ public class SontexFileHandler
         {
 
             InputStream fileInputStream = new FileInputStream(file);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document document = dBuilder.newDocument();
-            document.appendChild(element);
+//            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document document = element.getOwnerDocument();
+            //document.appendChild(element);
 
 
             // create the xml file
@@ -267,7 +476,7 @@ public class SontexFileHandler
         Date_FutureValue_Key.setAttribute("Storage", "1");
         Date_FutureValue_Key.setAttribute("Function", "0");
         Date_FutureValue_Value.setAttribute("PhysicalUnit", "");
-        Date_FutureValue_Value.appendChild(document.createTextNode("07-01"));
+        Date_FutureValue_Value.appendChild(document.createTextNode("2021-07-01"));
 
 
         //'MBusElement: AccessCodeOperator

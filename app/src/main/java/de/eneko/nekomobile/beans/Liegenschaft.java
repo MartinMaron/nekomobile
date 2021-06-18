@@ -160,7 +160,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         mNotizMitarbeiter = getString(propElement);
                         break;
                     case "sontexFileName":
-                        //mSontexFileName = getString(propElement);
+                        mSontexFileName = getString(propElement);
                         break;
                     case "stichtag":
                         mStichtag = getSipleDate(propElement);

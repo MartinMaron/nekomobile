@@ -2,6 +2,7 @@ package de.eneko.nekomobile.beans.sontex;
 
 import android.util.Log;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,7 +40,9 @@ public class Group extends BaseObject implements ItoXmlElement {
     public Element toXmlElement(Document document) {
         Element ret_val = document.createElement("Group");
         try {
-            CreateTextNode(ret_val,"Caption", mCaption.toString());
+            Attr attr = document.createAttribute("Caption");
+            attr.setValue(mInfo.getUser().toString() + " - "  + mCaption);
+            ret_val.setAttributeNode(attr);
             ret_val.appendChild(mInfo.toXmlElement(document));
         } catch (Exception e) {
             Log.e(TAG, "export error.", e);
