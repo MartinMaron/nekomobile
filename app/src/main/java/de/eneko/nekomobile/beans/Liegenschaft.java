@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
 import de.eneko.nekomobile.controllers.SontexFileHandler;
@@ -356,22 +355,20 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
          try {
             if (mSontexFileName == null) {
                 String fileName = SontexFileHandler.getInstance().safeFileNameConverter(getAdresseOneLine());
-                String imageFileName = fileName + "_";
-                File storageDir = new File(GlobalConst.PATH_SONTEX);
-                storageDir.mkdirs();
-                File file = File.createTempFile(
-                        imageFileName,  /* prefix */
-                        ".xml",         /* suffix */
-                        storageDir      /* directory */
-                );
-
-                SontexFileHandler.getInstance().CreateNewSontexFile(file);
+                File file = SontexFileHandler.getInstance().CreateNewSontexFile(fileName);
                 mSontexFileName = file.toString();
                 return file;
             } else
             {
-                File file = new File(mSontexFileName);
-                return file;
+                File sfile = new File(mSontexFileName);
+                if (!sfile.exists())
+                {
+                    String fileName = SontexFileHandler.getInstance().safeFileNameConverter(getAdresseOneLine());
+                    File file = SontexFileHandler.getInstance().CreateNewSontexFile(fileName);
+                    mSontexFileName = file.toString();
+                    return file;
+                }
+                return sfile;
             }
 
         } catch (Exception e) {

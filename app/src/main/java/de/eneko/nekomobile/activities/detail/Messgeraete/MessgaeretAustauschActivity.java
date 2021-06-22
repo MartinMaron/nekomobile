@@ -125,7 +125,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                         getLbNewFunkNummer().setVisibility(View.GONE);
                         getTvNewFunkNummer().setVisibility(View.GONE);
                         getIvBarcodeNewFunkNummer().setVisibility(View.GONE);
-                        getCbDefekt().setVisibility(View.GONE);
+                        getCbDefekt().setVisibility(View.VISIBLE);
                     }else{
                         getLbNewModel().setVisibility(View.GONE);
                         getSpNewModel().setVisibility(View.GONE);
@@ -151,7 +151,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                     getLbNewFunkNummer().setVisibility(View.GONE);
                     getTvNewFunkNummer().setVisibility(View.GONE);
                     getIvBarcodeNewFunkNummer().setVisibility(View.GONE);
-                    getCbDefekt().setVisibility(View.GONE);
+                    getCbDefekt().setVisibility(View.VISIBLE);
                 }
             if (getBasemodel().getBean().getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ))
                 {
@@ -161,6 +161,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
                     getLbProcente().setVisibility(View.INVISIBLE);
                     getTvProcente().setVisibility(View.INVISIBLE);
 
+                    getCbDefekt().setVisibility(View.VISIBLE);
                 }
             }
         };
