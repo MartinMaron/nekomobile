@@ -15,7 +15,21 @@ public class BarcodeHelper {
 
     public ReturnCode getReturnCode(){
         ReturnCode ret_val = new ReturnCode("","");
-        ret_val.setGeraetenummer(mBarcode);
+        if (mBarcode.startsWith("NEKONEKO")) {
+            int nekoID =  Integer.parseInt(mBarcode.replaceAll("NEKO", ""));
+
+            List<ZaehlerModel> q = Dict.getInstance().getZaehlerModels()
+                    .stream()
+                    .filter(r -> r.getId() == nekoID)
+                    .collect(Collectors.toList());
+                    if (q.size() > 0 ) {
+                        ret_val.setArtikelnummer(q.get(0).getArtikelnummer());
+                    }
+        }else
+        {
+            ret_val.setGeraetenummer(mBarcode);
+        }
+
         if (mBarcode.trim().startsWith("http://qr.tefm.ch/")){
             String[] retString = mBarcode.split("&");
             for (String _line : retString){
@@ -23,6 +37,7 @@ public class BarcodeHelper {
               _line = _line.trim().replace("http://qr.tefm.ch/","");
               if (_line.startsWith("rub="))ret_val.setArtikelnummer(_line.replace("rub=",""));
               if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
+
             }
          }
         return  ret_val;
