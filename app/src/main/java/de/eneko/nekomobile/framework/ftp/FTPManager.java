@@ -36,7 +36,7 @@ public class FTPManager {
     protected List<PathPair> downloadPaths = null;
     protected FTPClientFunctions ftpHelper = new FTPClientFunctions();;
 
-    private String ftpHost = "91.42.236.106";
+    private String ftpHost = "neko.dyndns-remote.com"; //"91.42.236.106";
     private String uname = "nekoadmin";
     private String haslo = "neko2008";
     private int port = 21;
@@ -115,10 +115,8 @@ public class FTPManager {
             this.uiHandler=uiHandler;
         }
         public void run(){
-           // TODO: dokonczyc
             try {
                 boolean status = false;
-
                 for(int j = 0; j < downloadPaths.size(); j++){
                     if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
                         File dir = new File(downloadPaths.get(j).getAndroidTargetPath());
@@ -149,11 +147,20 @@ public class FTPManager {
                                     //wenn die Datei vorhanden ist wird geprüft ob die Datei bereits in neko eingelesen wurde
                                     //ansonsten wird neue Datei erzeugt
                                     //Mehr als eine Datei dürfte es nicht geben
+
                                     if (l.size()==1) {
                                         if (! l.get(0).getName().contains("XXX_DONE_XXX_")){
+                                            Message msg = new Message();
+                                            msg.obj = l.get(0).getName().replace("File :: ","") + " wird hochgeladen";
+                                            /* Send result back to UI Thread Handler */
+                                            uiHandler.sendMessage(msg);
                                             tryUploadFile(androidfile,l.get(0).getName());
                                         }
                                     }else if (l.size()==0) {
+                                        Message msg = new Message();
+                                        msg.obj = ftpFileName.replace("File :: ","") + " wird hochgeladen";
+                                        /* Send result back to UI Thread Handler */
+                                        uiHandler.sendMessage(msg);
                                         tryUploadFile(androidfile,ftpFileName);
                                     }
                                 }
@@ -268,14 +275,6 @@ public class FTPManager {
         private void tryDownloadFile(String filename, File pAndroidTargetPath) throws IOException {
             if(ftpHelper.ftpDownload(filename, pAndroidTargetPath.getAbsolutePath())){
                 currentlyDownloadedFiles.add(filename);
-                //      String ftpDate = ftpHelper.mFTPClient.getModificationTime(filename);
-                //   Date nDate = new java.util.Date(ftpDate);
-
-                //      ftpHelper.mFTPClient.setModificationTime(nDate.getTime()-60000*60*24*15))
-//            Date nDate = ((FileMetadata) file).getServerModified();
-//        result.setLastModified(nDate.getTime()-60000*60*24*15);
-//        Log.e(TAG, new java.util.Date(result.lastModified()).toString());
-
             }
         }
     }

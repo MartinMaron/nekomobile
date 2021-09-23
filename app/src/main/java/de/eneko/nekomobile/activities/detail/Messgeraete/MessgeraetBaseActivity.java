@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.PhotoHandler;
 import de.eneko.nekomobile.controllers.SontexFileHandler;
 import de.eneko.nekomobile.framework.ISaveAndExit;
 import de.eneko.nekomobile.framework.NumberCustomKeyboard;
@@ -39,6 +40,7 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity implement
     @Override
     public void saveAndExit() {
         if (viewHolder != null) viewHolder.save();
+        PhotoHandler.getInstance().compressFiles();
         exit();
     }
 

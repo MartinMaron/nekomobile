@@ -32,6 +32,7 @@ import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.controllers.MessgeraeteConroller;
+import de.eneko.nekomobile.controllers.PhotoHandler;
 import de.eneko.nekomobile.framework.TouchListView;
 
 
@@ -184,6 +185,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
 
             protected void exit(){
                 FileHandler.getInstance().saveFile(this);
+                PhotoHandler.getInstance().compressFiles();
                 Intent intent = new Intent(this, NutzerTodosListActivity.class);
                 startActivity(intent);
             }

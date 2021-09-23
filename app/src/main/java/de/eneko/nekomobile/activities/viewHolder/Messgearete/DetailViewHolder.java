@@ -33,6 +33,7 @@ import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
+import de.eneko.nekomobile.controllers.PhotoHandler;
 import de.eneko.nekomobile.framework.BarcodeHelper;
 import de.eneko.nekomobile.framework.FormatHelper;
 
@@ -314,7 +315,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         boolean safe = false ;
 
         if (resultCode != Activity.RESULT_OK) {
@@ -424,6 +424,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     public void save() {
         setDataToModel();
         getBasemodel().save();
+        PhotoHandler.getInstance().compressFiles();
         FileHandler.getInstance().saveFile(getActivity());
     }
 

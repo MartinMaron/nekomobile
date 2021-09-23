@@ -2,7 +2,6 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -263,17 +261,7 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     }
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
-            if (resultCode != Activity.RESULT_OK) {
-            Toast.makeText(mActivity, "error", Toast.LENGTH_SHORT).show();
-            return;
-            }
-        } catch (Exception e){
-            System.out.println (e.toString());
-        }
 
-    }
 
 
 
