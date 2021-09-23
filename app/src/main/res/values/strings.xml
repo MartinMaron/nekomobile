@@ -51,4 +51,7 @@
     <string name="Procente">Procente</string>
     <string name="aktuell">aktuell</string>
     <string name="Stichtag">Stichtag</string>
+    <string name="dateien_herunterladen">Dateien herunterladen</string>
+    <string name="dateien_uload">Dateien absenden</string>
+    <string name="bilder_upload">Bilder Hochladen</string>
 </resources>

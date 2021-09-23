@@ -5,6 +5,9 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -18,10 +21,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
+import de.eneko.nekomobile.framework.ftp.FTPManager;
 import de.eneko.nekomobile.listener.MainActivityOnClickListener;
 
 
@@ -29,7 +34,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getName();
-
+    HandlerThread handlerThread = null;
+    Handler requestHandler = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +89,50 @@ public class MainActivity extends AppCompatActivity
         btCmdDropbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               FileHandler.getInstance().getNekoDropBox().synchronize(true);
+                FileHandler.getInstance().getNekoDropBox().synchronize(true);
             }
+        });
+
+        /* Create HandlerThread to run Network or IO operations */
+        handlerThread = new HandlerThread("FTP_Operation");
+        handlerThread.start();
+        /* Create a Handler for HandlerThread to post Runnable object */
+        requestHandler = new Handler(handlerThread.getLooper()){
+            @Override
+            public void handleMessage(Message msg) {
+                //txtView.setText((String) msg.obj);
+                Toast.makeText(MainActivity.this,
+                        (String)msg.obj,
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        };
+
+        Button btCmdFtpDownload = findViewById(R.id.btCmdFtpDownload);
+        btCmdFtpDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FileHandler.getInstance().getFTPManager().download(requestHandler);
+            }
+        });
+
+
+        Button btCmdFtpUpload = findViewById(R.id.btCmdFtpUpload);
+        btCmdFtpUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FileHandler.getInstance().getFTPManager().upload(requestHandler);
+            }
+
+        });
+
+        Button btCmdFtpUploadPhotos = findViewById(R.id.btCmdFtpPhotoUpload);
+        btCmdFtpUploadPhotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FileHandler.getInstance().getFTPManager().uploadFiles(requestHandler);
+            }
+
         });
 
         Button btCmdArchiviere = findViewById(R.id.btCmdArchiviere);
@@ -122,6 +170,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initializeHlptas(){
         FileHandler.getInstance().setNekoDropBox(new NekoDropBox(this));
+        FileHandler.getInstance().setFTPManager(new FTPManager(this));
         Dict.getInstance().initializeHelpers(this);
     }
 

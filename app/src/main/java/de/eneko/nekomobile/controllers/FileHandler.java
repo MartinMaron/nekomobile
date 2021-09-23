@@ -28,6 +28,7 @@ import javax.xml.transform.stream.StreamResult;
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
+import de.eneko.nekomobile.framework.ftp.FTPManager;
 
 
 /**
@@ -51,8 +52,9 @@ public class FileHandler
     private ArrayList<Route> allRoutes = new ArrayList<>();
     private NekoDropBox mNekoDropBox = null;
 
-    private FileHandler(){}
+    private FTPManager mFTPManager = null;
 
+    private FileHandler(){}
     public static synchronized FileHandler getInstance()
     {
         //Wenn die Instanz null ist wurde Sie noch nicht generiert.
@@ -178,6 +180,7 @@ public class FileHandler
     }
 
     // region moveFiles
+
     private void moveFilesToArchive(String pHomeDevicePath)
     {
         //new java.util.Date(result.lastModified())
@@ -192,7 +195,6 @@ public class FileHandler
         }
 
     }
-
     private void archiveFile(String archivePath, File file) {
         File folder = new File(archivePath);
         if (!folder.exists()) {folder.mkdir();}
@@ -208,6 +210,14 @@ public class FileHandler
 
     public void setNekoDropBox(NekoDropBox nekoDropBox) {
         mNekoDropBox = nekoDropBox;
+    }
+
+    public FTPManager getFTPManager() {
+        return mFTPManager;
+    }
+
+    public void setFTPManager(FTPManager FTPManager) {
+        mFTPManager = FTPManager;
     }
 
 

@@ -12,6 +12,7 @@
         android:id="@+id/btCmdGetRoutes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_menu_manage"
         android:text="@string/routen_oeffnen" />
 
     <Button
@@ -19,17 +20,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btCmdGetRoutes"
+        android:layout_marginTop="@dimen/dp_faktor_10"
+        android:backgroundTint="@color/dark_blue"
+        android:drawableLeft="@drawable/ic_dropbox_mini"
         android:text="@string/datenaustausch_mit_dropbox" />
+
+    <Button
+        android:id="@+id/btCmdFtpDownload"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_faktor_12"
+        android:layout_below="@id/btCmdDropbox"
+        android:layout_marginTop="@dimen/dp_faktor_20"
+        android:backgroundTint="@color/colorPrimary"
+        android:drawableLeft="@android:drawable/stat_sys_download"
+        android:text="@string/dateien_herunterladen" />
+
+
+    <Button
+        android:id="@+id/btCmdFtpUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btCmdFtpDownload"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:drawableLeft="@android:drawable/stat_sys_upload"
+        android:text="@string/dateien_uload" />
+
+    <Button
+        android:id="@+id/btCmdFtpPhotoUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btCmdFtpUpload"
+        android:backgroundTint="@color/indigo"
+        android:drawableLeft="@drawable/ic_menu_camera"
+        android:text="@string/bilder_upload" />
 
     <Button
         android:id="@+id/btCmdArchiviere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btCmdDropbox"
-        android:layout_marginTop="350dp"
+        android:layout_below="@id/btCmdFtpPhotoUpload"
+        android:layout_marginTop="125dp"
+        android:drawableLeft="@android:drawable/ic_notification_clear_all"
         android:text="@string/dateien_archivieren" />
 
-<!--    <TextView-->
+    <!--    <TextView-->
 <!--        android:id="@+id/tvWelcome"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="60dp"-->

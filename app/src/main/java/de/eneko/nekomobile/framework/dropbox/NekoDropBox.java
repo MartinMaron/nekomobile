@@ -3,7 +3,6 @@ package de.eneko.nekomobile.framework.dropbox;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -29,7 +28,6 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
-import de.eneko.nekomobile.services.DropBoxService;
 
 
 public class NekoDropBox {
@@ -59,8 +57,8 @@ public class NekoDropBox {
         PicassoClient.init(mainActivity.getApplicationContext(), DropboxClientFactory.getClient());
 
         //TODO: einschalten wenn produktiv (so alnge nur störend)
-        Intent i = new Intent(mMainActivity, DropBoxService.class);
-        mMainActivity.startService(i);
+//        Intent i = new Intent(mMainActivity, DropBoxService.class);
+//        mMainActivity.startService(i);
     }
 
 
