@@ -20,8 +20,9 @@
     <array name="kein_austausch_grund">
         <item>keine Absperrung</item>
         <item>Messstelle nicht mehr da</item>
-        <item>Heizkörper nicht mehr da</item>
+        <item>Messstelle nicht zugängig</item>
         <item>kein passender Zähler dabei</item>
+        <item>Heizkörper nicht mehr da</item>
         <item>altgerät kann nicht ausgebaut werden</item>
     </array>
     <array name="rwm_modele">

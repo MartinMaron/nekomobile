@@ -17,6 +17,7 @@ import java.util.Locale;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Rwm.RwmActivity;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
+import de.eneko.nekomobile.framework.BarcodeHelper;
 import de.eneko.nekomobile.framework.KeyedValue;
 
 public class DetailViewHolder extends RwmBaseViewHolder {
@@ -152,15 +153,19 @@ public class DetailViewHolder extends RwmBaseViewHolder {
         }
 
         if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_1 && data != null ) {
+            //Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
-            Toast.makeText(mActivity, barcode.rawValue, Toast.LENGTH_SHORT).show();
-            getEtNummer().setText(barcode.rawValue);
+            BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
+            getEtNummer().setText(returnCode.getGeraetenummer());
         }
 
         if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_2 && data != null ) {
+//            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
+//            Toast.makeText(mActivity, barcode.rawValue, Toast.LENGTH_SHORT).show();
+//            getEtNeueNummer().setText(barcode.rawValue);
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
-            Toast.makeText(mActivity, barcode.rawValue, Toast.LENGTH_SHORT).show();
-            getEtNeueNummer().setText(barcode.rawValue);
+            BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
+            getEtNeueNummer().setText(returnCode.getGeraetenummer());
         }
 
         if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_3 && data != null ) {

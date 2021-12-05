@@ -15,6 +15,9 @@ public class BarcodeHelper {
 
     public ReturnCode getReturnCode(){
         ReturnCode ret_val = new ReturnCode("","");
+        ret_val.setGeraetenummer(mBarcode);
+
+        //eigene Aufkleber
         if (mBarcode.startsWith("NEKONEKO")) {
             int nekoID =  Integer.parseInt(mBarcode.replaceAll("NEKO", ""));
 
@@ -25,11 +28,9 @@ public class BarcodeHelper {
                     if (q.size() > 0 ) {
                         ret_val.setArtikelnummer(q.get(0).getArtikelnummer());
                     }
-        }else
-        {
-            ret_val.setGeraetenummer(mBarcode);
         }
 
+        //3D Barcode vom Sontex
         if (mBarcode.trim().startsWith("http://qr.tefm.ch/")){
             String[] retString = mBarcode.split("&");
             for (String _line : retString){
@@ -39,7 +40,13 @@ public class BarcodeHelper {
               if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
 
             }
-         }
+        }
+
+        if (mBarcode.trim().startsWith("SON;")){
+            String[] retString = mBarcode.split(";");
+            ret_val.setGeraetenummer(retString[1]);
+            ret_val.setArtikelnummer("1353");  //Ei6500 Typ C Ferninspektion nach DIN 14676
+        }
         return  ret_val;
     }
 

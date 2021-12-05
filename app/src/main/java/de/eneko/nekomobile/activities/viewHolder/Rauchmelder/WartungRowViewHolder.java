@@ -45,6 +45,9 @@ public class WartungRowViewHolder extends RwmBaseViewHolder {
             @Override
             public void onClick(View v) {
                 getBasemodel().setDone(!getBasemodel().getDone());
+                if(getBasemodel().getNeueNummer()!=null && !getBasemodel().getNeueNummer().equals("")){
+                    getBasemodel().setDone(false);
+                }
                 getBasemodel().save();
                 setRwmImage(getIvRwm());
                 getIvAustausch().setVisibility( getBean().getDone() || getBean().getNekoId().contains("new")? View.INVISIBLE:View.VISIBLE);

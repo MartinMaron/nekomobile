@@ -13,7 +13,11 @@ import org.w3c.dom.NodeList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -153,8 +157,6 @@ public class SontexFileHandler
         }
     }
 
-
-
     public File CreateNewSontexFile(String pFileName)
     {
         try
@@ -211,6 +213,77 @@ public class SontexFileHandler
     }
 
     Element CreateTaskElement(Messgeraet messgeraet, Document document){
+        String _SontexAgent = "http://www.sontex.com/Son";
+        String _TaskParam = "";
+        String AccessCode = "1234";
+        String DateFutureValue= "";
+        Boolean _CreateAccessCodeOperator = false;
+        Boolean _AdjustDeviceClock = false;
+        Boolean _Date_FutureValue = false;
+        Boolean _CreateVolumeElement = false;
+        Boolean _CreateDateAndTimeElement = false;
+        Boolean _CreateDateFuture20_Element = false;
+        String _Funknummer = "";
+        String _Volume = "0.0";
+
+        // Setzen der Parameter für 566
+        if(messgeraet.getArt().toString().equals("HKV")){
+            _TaskParam = "566";
+            _Funknummer = messgeraet.getNeueNummer();
+            _CreateAccessCodeOperator = true;
+            _AdjustDeviceClock = true;
+            _Date_FutureValue = true;
+            if(messgeraet.getTodo().getLiegenschaft() != null){
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(addDays(messgeraet.getTodo().getLiegenschaft().getStichtag(),1));
+                DateFutureValue = s;
+            }
+            if(messgeraet.getTodo().getNutzer() != null){
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(addDays(messgeraet.getTodo().getNutzer().getLiegenschaft().getStichtag(),1));
+                DateFutureValue = s;
+            }
+        }
+
+        // Setzen der Parameter für 581
+        if(messgeraet.getNeuesFunkModel().contains("581")){
+            _TaskParam = "581";
+            _AdjustDeviceClock = true;
+            _CreateVolumeElement = true;
+            _Volume = messgeraet.getAktuellValue().toString();
+            _Funknummer = messgeraet.getNeueFunkNummer();
+        }
+
+        // Setzen der Parameter für 583
+        if(messgeraet.getNeuesFunkModel().contains("583")){
+            _TaskParam = "583";
+            _AdjustDeviceClock = true;
+            _CreateVolumeElement = true;
+            _CreateAccessCodeOperator = true;
+            _Volume = messgeraet.getStartWert().toString();
+            _Funknummer = messgeraet.getNeueFunkNummer();
+        }
+
+        // Setzen der Parameter für 7x9
+        if(messgeraet.getArt().toString().equals("WMZ")){
+            _TaskParam = "7x9";
+            _CreateAccessCodeOperator = true;
+            _CreateDateAndTimeElement = true;
+            _CreateDateFuture20_Element = true;
+            _Funknummer = messgeraet.getNeueNummer();
+            if(messgeraet.getTodo().getLiegenschaft() != null){
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(addDays(messgeraet.getTodo().getLiegenschaft().getStichtag(),1));
+                DateFutureValue = s;
+            }
+            if(messgeraet.getTodo().getNutzer() != null){
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(addDays(messgeraet.getTodo().getNutzer().getLiegenschaft().getStichtag(),1));
+                DateFutureValue = s;
+            }
+        }
+
+        //Standardstruktur wird angelegt
         Element _TaskElement = document.createElement("Task");
         Element _InfoElement = document.createElement("Info");
         Element _ParamElement = document.createElement("Param");
@@ -218,81 +291,137 @@ public class SontexFileHandler
         Element _DataElement = document.createElement("Data");
         Element _EncryptedDataElement = document.createElement("EncryptedData");
 
-        String SontexAgent = "http://www.sontex.com/";
-
-
-
-
         //Attribute
-        _TaskElement.setAttribute("Agent", "http://www.sontex.com/Son566-param");
+        _TaskElement.setAttribute("Agent", _SontexAgent + _TaskParam + "-param");
         _TaskElement.setAttribute("Status", "ToDo");
-        _TaskElement.setAttribute("Caption", "Parametrieren 566");
+        _TaskElement.setAttribute("Caption", "Parametrieren " + _TaskParam);
 
         BaseObject.CreateTextNode(_InfoElement,"Hint","");
         BaseObject.CreateTextNode(_InfoElement,"User","");
 
         //ParamElement
-        BaseObject.CreateTextNode(_ParamElement,"RadioAddr",messgeraet.getNeueNummer());
+        BaseObject.CreateTextNode(_ParamElement,"RadioAddr",_Funknummer);
         BaseObject.CreateTextNode(_ParamElement,"DataToRead","0");
 
+if (_AdjustDeviceClock) {
+    //MBusElement: AdjustDeviceClock
+    Element AdjustDeviceClock_MBusElement = document.createElement("MbusRecord");
+    Element AdjustDeviceClock_Key = document.createElement("Key");
+    Element AdjustDeviceClock_Value = document.createElement("Value");
+    AdjustDeviceClock_Key.setAttribute("AccessKey", "AdjustDeviceClock-0-0-0-0");
+    AdjustDeviceClock_Key.setAttribute("Name", "AdjustDeviceClock");
+    AdjustDeviceClock_Key.setAttribute("Subunit", "0");
+    AdjustDeviceClock_Key.setAttribute("Tariff", "0");
+    AdjustDeviceClock_Key.setAttribute("Storage", "0");
+    AdjustDeviceClock_Key.setAttribute("Function", "0");
+    AdjustDeviceClock_Value.setAttribute("PhysicalUnit", "");
+    _DataElement.appendChild(AdjustDeviceClock_MBusElement);
+    AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Key);
+    AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Value);
+}
 
-        //MBusElement: AdjustDeviceClock
-        Element AdjustDeviceClock_MBusElement = document.createElement("MbusRecord");
-        Element AdjustDeviceClock_Key = document.createElement("Key");
-        Element AdjustDeviceClock_Value = document.createElement("Value");
-        AdjustDeviceClock_Key.setAttribute("AccessKey", "AdjustDeviceClock-0-0-0-0");
-        AdjustDeviceClock_Key.setAttribute("Name", "AdjustDeviceClock");
-        AdjustDeviceClock_Key.setAttribute("Subunit", "0");
-        AdjustDeviceClock_Key.setAttribute("Tariff", "0");
-        AdjustDeviceClock_Key.setAttribute("Storage", "0");
-        AdjustDeviceClock_Key.setAttribute("Function", "0");
-        AdjustDeviceClock_Value.setAttribute("PhysicalUnit", "");
+if(_Date_FutureValue) {
+    //MBusElement: Date_FutureValue
+    Element Date_FutureValue_MBusElement = document.createElement("MbusRecord");
+    Element Date_FutureValue_Key = document.createElement("Key");
+    Element Date_FutureValue_Value = document.createElement("Value");
+    Date_FutureValue_Key.setAttribute("AccessKey", "Date-0-0-1-0");
+    Date_FutureValue_Key.setAttribute("Name", "Date");
+    Date_FutureValue_Key.setAttribute("Subunit", "0");
+    Date_FutureValue_Key.setAttribute("Tariff", "0");
+    Date_FutureValue_Key.setAttribute("Storage", "1");
+    Date_FutureValue_Key.setAttribute("Function", "0");
+    Date_FutureValue_Value.setAttribute("PhysicalUnit", "");
+    Date_FutureValue_Value.appendChild(document.createTextNode(DateFutureValue));
+    _DataElement.appendChild(Date_FutureValue_MBusElement);
+    Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Key);
+    Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Value);
+}
 
+if (_CreateAccessCodeOperator) {
+    //'MBusElement: AccessCodeOperator
+    Element AccessCodeOperator_MBusElement = document.createElement("MbusRecord");
+    Element AccessCodeOperator_Key = document.createElement("Key");
+    Element AccessCodeOperator_Value = document.createElement("Value");
+    AccessCodeOperator_Key.setAttribute("AccessKey", "AccessCodeOperator-0-0-0-0");
+    AccessCodeOperator_Key.setAttribute("Name", "AccessCodeOperator");
+    AccessCodeOperator_Key.setAttribute("Subunit", "0");
+    AccessCodeOperator_Key.setAttribute("Tariff", "0");
+    AccessCodeOperator_Key.setAttribute("Storage", "0");
+    AccessCodeOperator_Key.setAttribute("Function", "0");
+    AccessCodeOperator_Value.setAttribute("PhysicalUnit", "");
+    AccessCodeOperator_Value.appendChild(document.createTextNode(AccessCode));
+    _DataElement.appendChild(AccessCodeOperator_MBusElement);
+    AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Key);
+    AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Value);
+}
 
-        //MBusElement: Date_FutureValue
-        Element Date_FutureValue_MBusElement = document.createElement("MbusRecord");
-        Element Date_FutureValue_Key = document.createElement("Key");
-        Element Date_FutureValue_Value = document.createElement("Value");
-        Date_FutureValue_Key.setAttribute("AccessKey", "Date-0-0-1-0");
-        Date_FutureValue_Key.setAttribute("Name", "Date");
-        Date_FutureValue_Key.setAttribute("Subunit", "0");
-        Date_FutureValue_Key.setAttribute("Tariff", "0");
-        Date_FutureValue_Key.setAttribute("Storage", "1");
-        Date_FutureValue_Key.setAttribute("Function", "0");
-        Date_FutureValue_Value.setAttribute("PhysicalUnit", "");
-        Date_FutureValue_Value.appendChild(document.createTextNode("2021-07-01"));
+if (_CreateVolumeElement) {
+            //'MBusElement: AccessCodeOperator
+            Element _MBusElement = document.createElement("MbusRecord");
+            Element _Key = document.createElement("Key");
+            Element _Value = document.createElement("Value");
+            _Key.setAttribute("AccessKey", "Volume-0-0-0-0");
+            _Key.setAttribute("Name", "Volume");
+            _Key.setAttribute("Subunit", "0");
+            _Key.setAttribute("Tariff", "0");
+            _Key.setAttribute("Storage", "0");
+            _Key.setAttribute("Function", "0");
+            _Value.setAttribute("PhysicalUnit", "m3");
+            _Value.appendChild(document.createTextNode(_Volume));
+            _DataElement.appendChild(_MBusElement);
+            _MBusElement.appendChild(_Key);
+            _MBusElement.appendChild(_Value);
+}
 
+if (_CreateDateAndTimeElement) {
+            //'MBusElement: AccessCodeOperator
+            Element _MBusElement = document.createElement("MbusRecord");
+            Element _Key = document.createElement("Key");
+            Element _Value = document.createElement("Value");
+            _Key.setAttribute("AccessKey", "DateAndTime-0-0-0-0");
+            _Key.setAttribute("Name", "DateAndTime");
+            _Key.setAttribute("Subunit", "0");
+            _Key.setAttribute("Tariff", "0");
+            _Key.setAttribute("Storage", "0");
+            _Key.setAttribute("Function", "0");
+            _Value.setAttribute("PhysicalUnit", "");
+            _DataElement.appendChild(_MBusElement);
+            _MBusElement.appendChild(_Key);
+            _MBusElement.appendChild(_Value);
+        }
 
-        //'MBusElement: AccessCodeOperator
-        Element AccessCodeOperator_MBusElement = document.createElement("MbusRecord");
-        Element AccessCodeOperator_Key = document.createElement("Key");
-        Element AccessCodeOperator_Value = document.createElement("Value");
-        AccessCodeOperator_Key.setAttribute("AccessKey", "AccessCodeOperator-0-0-0-0");
-        AccessCodeOperator_Key.setAttribute( "Name", "AccessCodeOperator");
-        AccessCodeOperator_Key.setAttribute( "Subunit", "0");
-        AccessCodeOperator_Key.setAttribute("Tariff", "0");
-        AccessCodeOperator_Key.setAttribute("Storage", "0");
-        AccessCodeOperator_Key.setAttribute("Function", "0");
-        AccessCodeOperator_Value.setAttribute( "PhysicalUnit", "");
-        AccessCodeOperator_Value.appendChild(document.createTextNode("1234"));
+if (_CreateDateFuture20_Element) {
+            //'MBusElement: AccessCodeOperator
+            Element _MBusElement = document.createElement("MbusRecord");
+            Element _Key = document.createElement("Key");
+            Element _Value = document.createElement("Value");
+            _Key.setAttribute("AccessKey", "Date-0-0-20-0");
+            _Key.setAttribute("Name", "Date");
+            _Key.setAttribute("Subunit", "0");
+            _Key.setAttribute("Tariff", "0");
+            _Key.setAttribute("Storage", "20");
+            _Key.setAttribute("Function", "0");
+            _Value.setAttribute("PhysicalUnit", "");
+            _Value.appendChild(document.createTextNode(DateFutureValue));
+            _DataElement.appendChild(_MBusElement);
+            _MBusElement.appendChild(_Key);
+            _MBusElement.appendChild(_Value);
+        }
 
-
-        _DataElement.appendChild(AccessCodeOperator_MBusElement);
-        AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Key);
-        AccessCodeOperator_MBusElement.appendChild(AccessCodeOperator_Value);
-
-        _DataElement.appendChild(AdjustDeviceClock_MBusElement);
-        AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Key);
-        AdjustDeviceClock_MBusElement.appendChild(AdjustDeviceClock_Value);
-
-        _DataElement.appendChild(Date_FutureValue_MBusElement);
-        Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Key);
-        Date_FutureValue_MBusElement.appendChild(Date_FutureValue_Value);
 
         _TaskElement.appendChild(_InfoElement);
         _TaskElement.appendChild(_ParamElement);
         _TaskElement.appendChild(_DataElement);
         return _TaskElement;
+    }
+
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 
 }

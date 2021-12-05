@@ -384,8 +384,11 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         return "000";
     }
 
+    public Date getStichtag() {
+        return mStichtag;
+    }
 
-     // endregion properties
+    // endregion properties
 
 
 
