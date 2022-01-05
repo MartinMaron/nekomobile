@@ -77,34 +77,35 @@ public class FileHandler
     public void saveFile(Activity sourceActivity)
     {
         Route route = CurrentObjectNavigation.getInstance().getRoute();
+        if(route != null) {
+            try {
+                File nFile = FileFactory.getInstance().createXmlFile(route.getAndroidFileName());
+                File file = new File(GlobalConst.PATH_NEKOMOBILE + "/" + route.getAndroidFileName());
+                nFile.renameTo(file);
 
-        try {
-            File nFile = FileFactory.getInstance().createXmlFile(route.getAndroidFileName());
-            File file = new File(GlobalConst.PATH_NEKOMOBILE + "/" + route.getAndroidFileName());
-            nFile.renameTo(file);
+                InputStream fileInputStream = new FileInputStream(file);
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document document = dBuilder.newDocument();
+                document.appendChild(route.toXmlElement(document));
 
-            InputStream fileInputStream = new FileInputStream(file);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document document = dBuilder.newDocument();
-            document.appendChild(route.toXmlElement(document));
+                // create the xml file
+                //transform the DOM Object to an XML File
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource domSource = new DOMSource(document);
+                StreamResult streamResult = new StreamResult(file);
 
-            // create the xml file
-            //transform the DOM Object to an XML File
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(file);
+                // If you use
+                // StreamResult result = new StreamResult(System.out);
+                // the output will be pushed to the standard output ...
+                // You can use that for debugging
+                transformer.transform(domSource, streamResult);
 
-            // If you use
-            // StreamResult result = new StreamResult(System.out);
-            // the output will be pushed to the standard output ...
-            // You can use that for debugging
-            transformer.transform(domSource, streamResult);
-
-        } catch (Exception e) {
-            Toast.makeText(sourceActivity, TAG + ":" + e.getMessage() , Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+            } catch (Exception e) {
+                Toast.makeText(sourceActivity, TAG + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
         }
     }
 

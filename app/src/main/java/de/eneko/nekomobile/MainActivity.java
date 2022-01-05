@@ -21,7 +21,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import de.eneko.nekomobile.controllers.Dict;
 import de.eneko.nekomobile.controllers.FileHandler;
@@ -36,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = MainActivity.class.getName();
     HandlerThread handlerThread = null;
     Handler requestHandler = null;
+    private EditText etFtpip = null;
+    public static final String FTP_FILE = "FTP_IP.txt";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +121,7 @@ public class MainActivity extends AppCompatActivity
         btCmdFtpDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WriteFtpData();
                 FileHandler.getInstance().getFTPManager().download(requestHandler);
             }
         });
@@ -121,6 +131,7 @@ public class MainActivity extends AppCompatActivity
         btCmdFtpUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WriteFtpData();
                 FileHandler.getInstance().getFTPManager().upload(requestHandler);
             }
 
@@ -130,6 +141,7 @@ public class MainActivity extends AppCompatActivity
         btCmdFtpUploadPhotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WriteFtpData();
                 FileHandler.getInstance().getFTPManager().uploadFiles(requestHandler);
             }
 
@@ -164,6 +176,10 @@ public class MainActivity extends AppCompatActivity
             };
         });
         //registerNetworkCallback();
+
+        etFtpip = findViewById(R.id.etFTP_IP);
+        ReadFtp();
+
         initializeHlptas();
     }
 
@@ -174,6 +190,39 @@ public class MainActivity extends AppCompatActivity
         Dict.getInstance().initializeHelpers(this);
     }
 
+
+    public void WriteFtpData() {
+        // add-write text into file
+        try {
+            FileOutputStream fileout=openFileOutput(FTP_FILE, MODE_PRIVATE);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+            outputWriter.write(etFtpip.getText().toString());
+            outputWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void ReadFtp() {
+        //reading text from file
+        try {
+            FileInputStream fileIn=openFileInput(FTP_FILE);
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[256];
+            String s="";
+            int charRead;
+
+            while ((charRead=InputRead.read(inputBuffer))>0) {
+                // char to string conversion
+                String readstring=String.copyValueOf(inputBuffer,0,charRead);
+                etFtpip.setText(readstring);
+            }
+            InputRead.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override

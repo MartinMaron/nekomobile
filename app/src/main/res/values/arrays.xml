@@ -38,11 +38,9 @@
         <item>X; ;</item>
         <item>STA;Standardtausch</item>
         <item>DEF;display defekt</item>
-        <item>HKF;kein Heizkörper</item>
         <item>FFE;kein Funk</item>
         <item>NVO;nicht mehr vorhanden</item>
         <item>VER;beschädigt o. zerstört)</item>
-        <item>KTM;das neue Gerät kann nicht angebracht werden</item>
     </array>
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>

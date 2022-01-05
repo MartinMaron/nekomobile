@@ -36,7 +36,7 @@ public class FTPManager {
     protected List<PathPair> downloadPaths = null;
     protected FTPClientFunctions ftpHelper = new FTPClientFunctions();;
 
-    private String ftpHost = "91.42.236.106"; // "neko.dyndns-remote.com";
+    private String ftpHost = "91.13.160.64"; //"neko.dyndns-remote.com"; //"91.42.236.106";
     private String uname = "nekoadmin";
     private String haslo = "neko2008";
     private int port = 21;
