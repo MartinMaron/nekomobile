@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity
             OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
             outputWriter.write(etFtpip.getText().toString());
             outputWriter.close();
+            FileHandler.getInstance().getFTPManager().setFtpHost(etFtpip.getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -216,7 +217,7 @@ public class MainActivity extends AppCompatActivity
                 // char to string conversion
                 String readstring=String.copyValueOf(inputBuffer,0,charRead);
                 etFtpip.setText(readstring);
-            }
+           }
             InputRead.close();
 
         } catch (Exception e) {

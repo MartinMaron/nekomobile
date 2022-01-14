@@ -143,7 +143,7 @@
         <item>1107@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
         <item>308@EHKV ECOTRON1@False@HKV@ @610010@</item>
         <item>1280@EHKV Typ Exim (ohne Funk)@False@HKV@ @ @</item>
-        <item>324@EHKV Typ Exim V1-R@False@HKV@ @610250@</item>
+        <item>324@EHKV Typ Exim V1-R@True@HKV@ @610250@</item>
         <item>309@EHKV Typ Sontex 555@False@HKV@ @610511@</item>
         <item>311@EHKV Typ Sontex 556 Funksystem@False@HKV@ @640511@</item>
         <item>1285@EHKV Typ Sontex 556 Funksystem 7,00@False@HKV@ @ @</item>

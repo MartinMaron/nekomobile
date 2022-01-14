@@ -13,13 +13,16 @@ import org.apache.commons.net.ftp.FTPFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
+import de.eneko.nekomobile.controllers.FileHandler;
 
 
 public class FTPManager {
@@ -42,6 +45,8 @@ public class FTPManager {
     private int port = 21;
     private Handler responseHandler;
     private DownloadRunnable dr;
+
+
 
     public FTPManager(MainActivity mainActivity) {
         mMainActivity = mainActivity;
@@ -273,9 +278,26 @@ public class FTPManager {
             }
         }
         private void tryDownloadFile(String filename, File pAndroidTargetPath) throws IOException {
+            if (filename.startsWith("X_XX_DONE_XXX")) {
+                File fi = new File(pAndroidTargetPath.getAbsolutePath() + "/" + filename);
+                if (fi.exists()) {
+                    archiveFile(pAndroidTargetPath.getAbsolutePath() + "/archive",fi);
+                }
+                return;
+            }
+
             if(ftpHelper.ftpDownload(filename, pAndroidTargetPath.getAbsolutePath())){
                 currentlyDownloadedFiles.add(filename);
             }
+        }
+
+        private void archiveFile(String archivePath, File file) {
+            File folder = new File(archivePath);
+            if (!folder.exists()) {folder.mkdir();}
+            SimpleDateFormat zeitformat = new SimpleDateFormat("dd.MM.yyyy_HH");
+            String lastModifiedString = zeitformat.format(new Date(file.lastModified()));
+            file.renameTo(new File(archivePath,lastModifiedString + "_" + file.getName()));
+            file.delete();
         }
     }
 
@@ -364,7 +386,9 @@ public class FTPManager {
         }
     }
     // endregion
-
+    public void setFtpHost(String ftpHost) {
+        this.ftpHost = ftpHost;
+    }
 }
 
 
