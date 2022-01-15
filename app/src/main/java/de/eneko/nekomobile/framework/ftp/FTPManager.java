@@ -248,7 +248,7 @@ public class FTPManager {
 
                         {
                             String loopfile = fileList[i];
-                            if (loopfile.startsWith("XXX_DONE_XXX")) continue;
+                            if (loopfile.contains("XXX_DONE_XXX")) continue;
                             if (loopfile.startsWith("Directory")) continue;
 
                             //falls die Datei nicht existiert dann wird sie heruntergeladen
@@ -278,7 +278,7 @@ public class FTPManager {
             }
         }
         private void tryDownloadFile(String filename, File pAndroidTargetPath) throws IOException {
-            if (filename.startsWith("X_XX_DONE_XXX")) {
+            if (filename.contains("XXX_DONE_XXX")) {
                 File fi = new File(pAndroidTargetPath.getAbsolutePath() + "/" + filename);
                 if (fi.exists()) {
                     archiveFile(pAndroidTargetPath.getAbsolutePath() + "/archive",fi);
