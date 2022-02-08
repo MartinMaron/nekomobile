@@ -427,7 +427,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
     };
 
     public Boolean isForFunkCheck (){
-        return !getFunkfehler_ignorieren () && (getFunkfehler_offen() || getFunkfehler_unerreichbar());
+        return !getFunkfehler_ignorieren () && (getFunkfehler_offen() || getFunkfehler_unerreichbar() || getTodo().getArt().equals("FUN_CHK"));
     }
     public Boolean isInfo (){
         return getTodo().getArt().equals("INF_RWM") || getTodo().getArt().equals("INF_GER");

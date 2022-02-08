@@ -45,6 +45,7 @@
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>
         <item>581;581 - Funkmodul Wasserzähler;0581R911</item>
+        <item>583;583 - Funkmodul Wasserzähler;0583R911</item>
         <item>541;541 - Funkmodul Wärmezähler;0</item>
         <item>531;531 - Funkmodul Wärmezähler;1</item>
     </array>
