@@ -41,6 +41,7 @@
         <item>FFE;kein Funk</item>
         <item>NVO;nicht mehr vorhanden</item>
         <item>VER;beschädigt o. zerstört)</item>
+        <item>NHK;neuer Heizkörper)</item>
     </array>
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>
@@ -80,7 +81,6 @@
         </array>
     <array name="zaehler_modele">
         <item>-1@empty@True@ALL@ @ @</item>
-
         <item>1046@Abdeckhaube blau für Zapfhahnzähler@False@ZUB@ @700005-2@</item>
         <item>1084@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
         <item>1086@Absperrgriff Kaltwasser@False@ZUB@ @730700@</item>
@@ -143,7 +143,7 @@
         <item>1105@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
         <item>1107@Distanzstück MBZ, 65mm@False@ZUB@ @700251@</item>
         <item>308@EHKV ECOTRON1@False@HKV@ @610010@</item>
-        <item>1280@EHKV Typ Exim (ohne Funk)@False@HKV@ @ @</item>
+        <item>1280@EHKV Typ Exim (ohne Funk)@True@HKV@ @ @</item>
         <item>324@EHKV Typ Exim V1-R@True@HKV@ @610250@</item>
         <item>309@EHKV Typ Sontex 555@False@HKV@ @610511@</item>
         <item>311@EHKV Typ Sontex 556 Funksystem@False@HKV@ @640511@</item>
@@ -212,18 +212,32 @@
         <item>1306@Funk 581 Aufputz Warmwasserzähler 110mm@True@WWZ@581@25603@</item>
         <item>1308@Funk 581 Aufputz Warmwasserzähler 130mm@True@WWZ@581@25605@</item>
         <item>1307@Funk 581 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@581@25602@</item>
-        <item>1355@Funk 581- UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@ @110065@</item>
+        <item>1355@Funk 581- UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@581@110065@</item>
         <item>1267@Funk 581 Up. Kaltwasserzähler-  KOAX ista@True@KWZ@581@50030@</item>
         <item>1271@Funk 581 Up. Kaltwasserzähler 581  Allmess @True@KWZ@581@60050@</item>
-        <item>1358@Funk 581 Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@ @60510@</item>
+        <item>1358@Funk 581 Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@581@60510@</item>
         <item>1302@Funk 581 Up. Messkapsel Kaltwasserzähler ABB@True@KWZ@581@60010@</item>
-        <item>1357@Funk 581 Up. Messkapsel Kaltwasserzähler Techem@True@KWZ@ @60240@</item>
+        <item>1357@Funk 581 Up. Messkapsel Kaltwasserzähler Techem@True@KWZ@581@60240@</item>
         <item>1301@Funk 581 Up. Messkapsel Warmwasserzähler ABB@True@WWZ@581@60020@</item>
-        <item>1356@Funk 581 Up. Messkapsel Warmwasserzähler Techem@True@WWZ@ @60230@</item>
+        <item>1356@Funk 581 Up. Messkapsel Warmwasserzähler Techem@True@WWZ@581@60230@</item>
         <item>1272@Funk 581 Up. Warmwasserzähler 581  Allmess@True@WWZ@581@60060@</item>
-        <item>1359@Funk 581 Up. Warmwasserzähler SPX Pollux Qn 1,5 @False@WWZ@ @60520@</item>
-        <item>1341@Funk 583 - Up. Kaltwasserzähler Allmess @True@KWZ@ @ @</item>
-        <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@True@WWZ@ @ @</item>
+        <item>1359@Funk 581 Up. Warmwasserzähler SPX Pollux Qn 1,5 @False@WWZ@581@60520@</item>
+        <item>1372@Funk 583 - AP 110mm Kaltwasserzähler@True@KWZ@583@ @</item>
+        <item>1371@Funk 583 - AP 110mm Warmwasserzähler@True@WWZ@583@ @</item>
+        <item>1379@Funk 583 - AP 130mm Kaltwasserzähler@True@KWZ@583@ @</item>
+        <item>1380@Funk 583 - AP 130mm Warmwasserzähler@True@WWZ@583@ @</item>
+        <item>1373@Funk 583 - AP 80mm Kaltwasserzähler@True@KWZ@583@ @</item>
+        <item>1374@Funk 583 - AP 80mm Warmwasserzähler@True@WWZ@583@ @</item>
+        <item>1376@Funk 583 - Kaltwasserzähler Brunata 307/2 K3@True@KWZ@583@ @</item>
+        <item>1341@Funk 583 - Up. Kaltwasserzähler Allmess @True@KWZ@583@ @</item>
+        <item>1369@Funk 583 - Up. Kaltwasserzähler Koax@True@KWZ@583@ @</item>
+        <item>1370@Funk 583 - Up. Warmwasserzähler Koax@True@WWZ@583@ @</item>
+        <item>1375@Funk 583 - Warmwasserzähler Brunata 307/2 W3 @True@WWZ@583@ @</item>
+        <item>1377@Funk 583 Up.  Kaltwasserzähler ABB - MOC@True@KWZ@583@ @</item>
+        <item>1378@Funk 583 Up.  Warmwasserzähler ABB - MOC@True@WWZ@583@ @</item>
+        <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@True@WWZ@583@ @</item>
+        <item>1382@Funk 583 Up. Kaltwasserzähler Techem@True@KWZ@583@ @</item>
+        <item>1381@Funk 583 Up. Warmwasserzähler Techem@True@WWZ@583@ @</item>
         <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @</item>
         <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @</item>
         <item>1250@Funk -Unterputz-Messkapsel Kaltwasser e-wireless @False@KWZ@ @110025@</item>
@@ -247,7 +261,7 @@
         <item>1363@Funk Wärmezähler SC739 Qn 1,5 Baulänge 130mm 5,2mm Fühler@False@WMZ@ @0739RM241R11E00@</item>
         <item>1352@Funk Wärmezähler SC739 Qn 1,5 Techem @True@WMZ@ @0739UL241R11E00@</item>
         <item>1354@Funk Wärmezähler SC739 Qn 1,5 Vorlauf Prog.@True@WMZ@ @0739RL141R12E00@</item>
-        <item>1364@Funk Wärmezähler SC739 Qn 2,5 Techem @False@WMZ@ @0739UN241R11E00@</item>
+        <item>1364@Funk Wärmezähler SC739 Qn 2,5 Techem @True@WMZ@ @0739UN241R11E00@</item>
         <item>1339@Funk Wärmezähler SC789 Qn 1,5 Baulänge 110mm@True@WMZ@ @0789RL141R5EE01@</item>
         <item>1254@Funk -Zapfhahn- Kaltwasserzähler e-wireless @False@KWZ@ @ @</item>
         <item>1266@Funk-581 Warmwasserzähler UP - KOAX ista@True@WWZ@581@50040@</item>
@@ -556,10 +570,13 @@
         <item>980@VZ/MBZ-Meßblock Warmwasser@False@WWZ@ @700019-04@</item>
         <item>976@VZ/MBZ-Meßblock Warmwasser (A)@False@WWZ@ @700019@</item>
         <item>963@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 @False@WWZ@ @700019-02@</item>
-        <item>1343@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 Sontex 581@True@WWZ@ @700019-02@</item>
+        <item>1343@VZ/MBZ-Meßblock Warmwasserzähler Qn 1,5 Sontex 581@True@WWZ@581@700019-02@</item>
         <item>319@Wärmemengenzähler@False@WMZ@ @000000@</item>
         <item>1262@Wärmemengenzähler für Kälte@False@WMZ@ @ @</item>
         <item>1258@Wärmezähler Delta Mess Qn 1,5 @False@WMZ@ @ @</item>
+        <item>1368@Wärmezähler Funk 531 Qn 3.5 , 135mm Fallrohr@False@WMZ@ @184036@</item>
+        <item>1367@Wärmezähler Funk 531 Qn 6, 135mm Fallrohr@False@WMZ@ @184047@</item>
+        <item>1366@Wärmezähler Funk 531 Qn 6, 135mm Steigrohr@False@WMZ@ @183043@</item>
         <item>1275@Wärmezähler mit Sontex Funkmodul 531@False@WMZ@ @ @</item>
         <item>1268@Wärmezähler mit Sontex Funkmodul 541@True@WMZ@ @0541R 000@</item>
         <item>1257@Wärmezähler ProSelect2 Qn 1,5@False@WMZ@ @ @</item>
