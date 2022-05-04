@@ -15,22 +15,26 @@
         android:drawableLeft="@drawable/ic_menu_manage"
         android:text="@string/routen_oeffnen" />
 
-    <Button
-        android:id="@+id/btCmdDropbox"
+    <EditText
+        android:id="@+id/etFTP_IP"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_faktor_10"
         android:layout_below="@id/btCmdGetRoutes"
-        android:layout_marginTop="@dimen/dp_faktor_10"
-        android:backgroundTint="@color/dark_blue"
-        android:drawableLeft="@drawable/ic_dropbox_mini"
-        android:text="@string/datenaustausch_mit_dropbox" />
+        android:layout_marginTop="@dimen/dp_faktor_5"
+        android:layout_marginBottom="@dimen/dp_faktor_5"
+        android:background="@color/_light_green"
+        android:gravity="center"
+        android:hint="1.1.1.1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_faktor_15" />
+
 
     <Button
         android:id="@+id/btCmdFtpDownload"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_faktor_12"
-        android:layout_below="@id/btCmdDropbox"
-        android:layout_marginTop="@dimen/dp_faktor_20"
+        android:layout_below="@id/etFTP_IP"
+        android:layout_marginTop="@dimen/dp_faktor_4"
         android:backgroundTint="@color/colorPrimary"
         android:drawableLeft="@android:drawable/stat_sys_download"
         android:text="@string/dateien_herunterladen" />
@@ -63,18 +67,7 @@
         android:drawableLeft="@android:drawable/ic_notification_clear_all"
         android:text="@string/dateien_archivieren" />
 
-    <EditText
-        android:id="@+id/etFTP_IP"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_faktor_10"
-        android:layout_below="@id/btCmdDropbox"
-        android:layout_marginTop="@dimen/dp_faktor_5"
-        android:layout_marginBottom="@dimen/dp_faktor_5"
-        android:background="@color/_light_green"
-        android:gravity="center"
-        android:hint="1.1.1.1"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_faktor_15" />
+
 
 
     <!--    <TextView-->

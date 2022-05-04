@@ -221,7 +221,7 @@
         <item>1301@Funk 581 Up. Messkapsel Warmwasserzähler ABB@True@WWZ@581@60020@</item>
         <item>1356@Funk 581 Up. Messkapsel Warmwasserzähler Techem@True@WWZ@581@60230@</item>
         <item>1272@Funk 581 Up. Warmwasserzähler 581  Allmess@True@WWZ@581@60060@</item>
-        <item>1359@Funk 581 Up. Warmwasserzähler SPX Pollux Qn 1,5 @False@WWZ@581@60520@</item>
+        <item>1359@Funk 581 Up. Warmwasserzähler SPX Pollux Qn 1,5 @True@WWZ@581@60520@</item>
         <item>1372@Funk 583 - AP 110mm Kaltwasserzähler@True@KWZ@583@ @</item>
         <item>1371@Funk 583 - AP 110mm Warmwasserzähler@True@WWZ@583@ @</item>
         <item>1379@Funk 583 - AP 130mm Kaltwasserzähler@True@KWZ@583@ @</item>
@@ -236,7 +236,9 @@
         <item>1377@Funk 583 Up.  Kaltwasserzähler ABB - MOC@True@KWZ@583@ @</item>
         <item>1378@Funk 583 Up.  Warmwasserzähler ABB - MOC@True@WWZ@583@ @</item>
         <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@True@WWZ@583@ @</item>
+        <item>1383@Funk 583 Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@583@ @</item>
         <item>1382@Funk 583 Up. Kaltwasserzähler Techem@True@KWZ@583@ @</item>
+        <item>1384@Funk 583 Up. Warmwasserzähler SPX Pollux Qn 1,5 @True@WWZ@583@ @</item>
         <item>1381@Funk 583 Up. Warmwasserzähler Techem@True@WWZ@583@ @</item>
         <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @</item>
         <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @</item>
@@ -252,7 +254,7 @@
         <item>1310@Funk Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141R11E00@</item>
         <item>1269@Funk Wärmezähler SC739 - Qn1.5 - Sontex@True@WMZ@ @ @</item>
         <item>1315@Funk Wärmezähler SC739 - Qn2.5 - Allmess@True@WMZ@ @0739SN841R11E00@</item>
-        <item>1270@Funk Wärmezähler SC739 - Qn2.5 - Funk- 130mm @True@WMZ@ @739RN141R11E00@</item>
+        <item>1270@Funk Wärmezähler SC739 - Qn2.5 - Funk- 130mm @True@WMZ@ @0739RN141R11E00@</item>
         <item>1311@Funk Wärmezähler SC739 - Qn2.5 - KOAX ista@True@WMZ@ @0739TN141R11E00@</item>
         <item>1360@Funk Wärmezähler SC739 Qn 0,6 Baulänge 110mm@True@WMZ@ @0739RJ141R11E00@</item>
         <item>1261@Funk Wärmezähler SC739 Qn 1,5 Baulänge 110mm@True@WMZ@ @0739RL141R11E00@</item>
