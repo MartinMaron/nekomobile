@@ -94,14 +94,6 @@ public class MainActivity extends AppCompatActivity
         Button btCmdGetRoutes = findViewById(R.id.btCmdGetRoutes);
         btCmdGetRoutes.setOnClickListener(mainActivityOnClickListener);
 
-        Button btCmdDropbox = findViewById(R.id.btCmdDropbox);
-        btCmdDropbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FileHandler.getInstance().getNekoDropBox().synchronize(true);
-            }
-        });
-
         /* Create HandlerThread to run Network or IO operations */
         handlerThread = new HandlerThread("FTP_Operation");
         handlerThread.start();
