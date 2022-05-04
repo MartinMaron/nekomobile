@@ -248,7 +248,7 @@ public class FTPManager {
 
                         {
                             String loopfile = fileList[i];
-                            if (loopfile.contains("XXX_DONE_XXX")) continue;
+//                            if (loopfile.contains("XXX_DONE_XXX")) continue;
                             if (loopfile.startsWith("Directory")) continue;
 
                             //falls die Datei nicht existiert dann wird sie heruntergeladen

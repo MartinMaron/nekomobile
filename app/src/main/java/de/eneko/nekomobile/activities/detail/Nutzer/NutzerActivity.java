@@ -61,9 +61,11 @@ public class NutzerActivity extends AppCompatActivity{
     protected void exit(){
         Intent intent = new Intent(this, NutzerListActivity.class);
         startActivity(intent);
+
     }
 
     public void onBackPressed(){
+        viewHolder.save();
         exit();
     }
 

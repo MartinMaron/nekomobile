@@ -435,10 +435,21 @@
         <item>1323@Standard Wärmezähler SC739 - Qn1.5 - 110mm@True@WMZ@ @0739RL141S11E00@</item>
         <item>1317@Standard Wärmezähler SC739 - Qn1.5 - Allmess@True@WMZ@ @0739SL841S11E00@</item>
         <item>1324@Standard Wärmezähler SC739 - Qn1.5 - KOAX ista@True@WMZ@ @0739TL141S11E00@</item>
-        <item>1287@Standard Wärmezähler SC739 - Qn2,5 - 130mm@True@WMZ@ @0739RN141S11E00@</item>
         <item>1318@Standard Wärmezähler SC739 - Qn2.5 - Allmess@True@WMZ@ @0739SN841S11E00@</item>
         <item>1326@Standard Warmwasserzähler UP Qn 1,5 Allmess 6000@True@WWZ@ @60060@</item>
         <item>318@Stromzähler@False@STZ@ @000000@</item>
+        <item>1388@Superaqua AP 100mm Kaltwasser@True@KWZ@ @SQ1S212W2@</item>
+        <item>1387@Superaqua AP 100mm Warmwasser@True@WWZ@ @SQ1S222W2@</item>
+        <item>1390@Superaqua AP 130mm Kaltwasser@True@KWZ@ @SQ1S612W2@</item>
+        <item>1389@Superaqua AP 130mm Warmwasser@True@WWZ@ @SQ1S622W2@</item>
+        <item>1385@Superaqua AP 80mm Kaltwasser@True@KWZ@ @SQ1S112R2@</item>
+        <item>1386@Superaqua AP 80mm Warmwasser@True@WWZ@ @SQ1S122W2@</item>
+        <item>1394@Superaqua Kaltwasserzähler ABB - MOC@True@KWZ@ @SQ1M212R2@</item>
+        <item>1392@Superaqua Kaltwasserzähler UP - KOAX ista@True@KWZ@ @SQ1M112R2@</item>
+        <item>1395@Superaqua Up. Kaltwasserzähler Allmess @True@KWZ@ @SQ1M312R2@</item>
+        <item>1396@Superaqua Up. Warmwasserzähler Allmess @True@WWZ@ @SQ1M322R2@</item>
+        <item>1393@Superaqua Warmwasserzähler ABB - MOC@True@WWZ@ @SQ1M222R2@</item>
+        <item>1391@Superaqua Warmwasserzähler UP - KOAX ista@True@WWZ@ @SQ1M122R2@</item>
         <item>1064@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
         <item>1068@Tauchhülse 1/2", D5mm, 35mm@False@ZUB@ @710012@</item>
         <item>1148@Tauchhülse 1/2", D6mm, 134mm, Edelstahl@False@ZUB@ @710030@</item>
@@ -676,6 +687,7 @@
         <item>848@Woltman-Kaltwasserzähler@False@KWZ@ @154040@</item>
         <item>849@Woltman-Kaltwasserzähler@False@KWZ@ @150050@</item>
         <item>850@Woltman-Kaltwasserzähler@False@KWZ@ @154050@</item>
+        <item>1287@XXXXX - Standard Wärmezähler SC739 - Qn2,5 - 130mm@True@WMZ@ @0739RN141S11E00@</item>
         <item>1037@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
         <item>1039@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740202@</item>
         <item>1057@Zählerersatzstück 110 mm, AG 3/4"@False@ZUB@ @740203@</item>
