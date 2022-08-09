@@ -235,20 +235,24 @@ public class FTPManager {
         public void run(){
             try {
                 boolean status = false;
-
+//              alle verzeichnispaare werden durchlaufen
                 for(int j = 0; j < downloadPaths.size(); j++){
-                   if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
+//                  verbinden mit FTP Laufwerk
+                    if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
+//                      Pfad auf dem android-Gerät
                         File androidPath = new File(downloadPaths.get(j).getAndroidTargetPath());
 
+//                      Liste der Dateien auf dem entsprechenden FTP-Pfad
                         String[] fileList = null;
                         Boolean b = ftpHelper.ftpChangeDirectory("/" + downloadPaths.get(j).getFTPPath());
                         fileList = ftpHelper.ftpPrintFilesList(ftpHelper.ftpGetCurrentWorkingDirectory());
 
+//                      alle Dateien auf dem FTP-Laufwerk werden überprüft
                         for (int i = 0; i< fileList.length; i++)
 
                         {
+//                          Datei auf dem FTP-Laufwerk
                             String loopfile = fileList[i];
-//                            if (loopfile.contains("XXX_DONE_XXX")) continue;
                             if (loopfile.startsWith("Directory")) continue;
 
                             //falls die Datei nicht existiert dann wird sie heruntergeladen
@@ -257,11 +261,12 @@ public class FTPManager {
                             {
                                 try {
                                     if (!androidPath.exists()) {androidPath.mkdir();}
-                                    tryDownloadFile(loopfile.replace("File :: ",""), androidPath);
-                                    Message msg = new Message();
-                                    msg.obj = loopfile.replace("File :: ","") + " wurde heruntergeladen";
-                                    /* Send result back to UI Thread Handler */
-                                    uiHandler.sendMessage(msg);
+                                    if (tryDownloadFile(loopfile.replace("File :: ",""), androidPath)){
+                                        Message msg = new Message();
+                                        msg.obj = loopfile.replace("File :: ","") + " wurde heruntergeladen";
+                                        /* Send result back to UI Thread Handler */
+                                        uiHandler.sendMessage(msg);
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -277,18 +282,19 @@ public class FTPManager {
                 err.printStackTrace();
             }
         }
-        private void tryDownloadFile(String filename, File pAndroidTargetPath) throws IOException {
+        private boolean tryDownloadFile(String filename, File pAndroidTargetPath) throws IOException {
             if (filename.contains("XXX_DONE_XXX")) {
-                File fi = new File(pAndroidTargetPath.getAbsolutePath() + "/" + filename);
+                File fi = new File(pAndroidTargetPath.getAbsolutePath() + "/" + filename.replace("XXX_DONE_XXX_",""));
                 if (fi.exists()) {
                     archiveFile(pAndroidTargetPath.getAbsolutePath() + "/archive",fi);
                 }
-                return;
+                return false;
             }
 
             if(ftpHelper.ftpDownload(filename, pAndroidTargetPath.getAbsolutePath())){
                 currentlyDownloadedFiles.add(filename);
             }
+            return true;
         }
 
         private void archiveFile(String archivePath, File file) {
