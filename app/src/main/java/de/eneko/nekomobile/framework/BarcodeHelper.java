@@ -20,7 +20,6 @@ public class BarcodeHelper {
         //eigene Aufkleber
         if (mBarcode.startsWith("NEKONEKO")) {
             int nekoID =  Integer.parseInt(mBarcode.replaceAll("NEKO", ""));
-
             List<ZaehlerModel> q = Dict.getInstance().getZaehlerModels()
                     .stream()
                     .filter(r -> r.getId() == nekoID)
@@ -34,11 +33,14 @@ public class BarcodeHelper {
         if (mBarcode.trim().startsWith("http://qr.tefm.ch/")){
             String[] retString = mBarcode.split("&");
             for (String _line : retString){
-              _line = _line.trim().replace("?","");
-              _line = _line.trim().replace("http://qr.tefm.ch/","");
-              if (_line.startsWith("rub="))ret_val.setArtikelnummer(_line.replace("rub=",""));
-              if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
-
+                _line = _line.trim().replace("http://qr.tefm.ch/","");
+                _line = _line.trim().replace("?","");
+                _line = _line.trim().replace("http://qr.tefm.ch/","");
+                if (_line.startsWith("rub="))ret_val.setArtikelnummer(_line.replace("rub=",""));
+                    if (_line.contains("NS=")){
+                        _line = _line.substring(_line.indexOf("NS="));
+                    }
+                if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
             }
         }
 

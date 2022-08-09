@@ -40,8 +40,8 @@
         <item>DEF;display defekt</item>
         <item>FFE;kein Funk</item>
         <item>NVO;nicht mehr vorhanden</item>
-        <item>VER;beschädigt o. zerstört)</item>
-        <item>NHK;neuer Heizkörper)</item>
+        <item>VER;beschädigt o. zerstört</item>
+        <item>NHK;neuer Heizkörper</item>
     </array>
     <array name="funk_modele">
         <item>X;kein Funkmodul;-1</item>
