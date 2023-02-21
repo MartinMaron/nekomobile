@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.Date;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -29,6 +31,7 @@ import javax.xml.transform.stream.StreamResult;
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.beans.BaseObject;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.beans.sontex.Group;
 import de.eneko.nekomobile.beans.sontex.Road;
 
@@ -65,7 +68,7 @@ public class SontexFileHandler
         return this.allRoutes;
     }
 
-    public void upsertSontexParam(Activity sourceActivity, ArrayList<Messgeraet> messgeraete){
+    public void upsertSontexParamRoad(Activity sourceActivity, ArrayList<Messgeraet> messgeraete){
         //finden der Datei und laden in Road-Objekt
         Road road = null;
 
@@ -107,13 +110,66 @@ public class SontexFileHandler
                 roadElement.appendChild(targetgroupNode);
             }
             // stwprzyc Task
-            targetgroupNode.appendChild(CreateTaskElement(messgeraete.get(i),roadElement.getOwnerDocument()));
+            targetgroupNode.appendChild(CreateParamTaskElement(messgeraete.get(i),roadElement.getOwnerDocument()));
         }
 
         //neuanlage der Aufgabe
 
         saveFile(sourceActivity, roadElement, fi);
     }
+
+
+    public String createSonexaRoad(Activity sourceActivity, ArrayList<Messgeraet> messgeraete){
+        //finden der Datei und laden in Road-Objekt
+        Road road = null;
+
+        File dir = new File(GlobalConst.PATH_SONTEX);
+        if (!dir.exists()) {
+            Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " existiert nicht.", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+        if (!dir.canRead()) {
+            Toast.makeText(sourceActivity, TAG + ":" + dir.getAbsolutePath() + " kann nicht gelesen werden.", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+
+        Element roadElement = null;
+        File fi = messgeraete.get(0).getSontexFile();
+
+        road = loadFile(fi,sourceActivity);
+        roadElement = road.getElement();
+
+
+        for (int i = 0; i < messgeraete.size(); i++)
+        {
+            // stworzyc Task
+            roadElement.appendChild(CreateReadTaskElement(messgeraete.get(i),roadElement.getOwnerDocument()));
+        }
+
+        //neuanlage der Aufgabe
+
+        saveFile(sourceActivity, roadElement, fi);
+        return convertDocumentToString(roadElement.getOwnerDocument());
+    }
+
+    private static String convertDocumentToString(Document doc) {
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer;
+        try {
+            transformer = tf.newTransformer();
+            // below code to remove XML declaration
+            // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            StringWriter writer = new StringWriter();
+            transformer.transform(new DOMSource(doc), new StreamResult(writer));
+            String output = writer.getBuffer().toString();
+            return output;
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     public Road loadFile(File file, Activity sourceActivity)
     {
@@ -140,7 +196,6 @@ public class SontexFileHandler
     {
         try
         {
-            InputStream fileInputStream = new FileInputStream(file);
             Document document = element.getOwnerDocument();
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -212,7 +267,7 @@ public class SontexFileHandler
         return mFilename;
     }
 
-    Element CreateTaskElement(Messgeraet messgeraet, Document document){
+    Element CreateParamTaskElement(Messgeraet messgeraet, Document document){
         String _SontexAgent = "http://www.sontex.com/Son";
         String _TaskParam = "";
         String AccessCode = "1234";
@@ -415,6 +470,42 @@ if (_CreateDateFuture20_Element) {
         _TaskElement.appendChild(_DataElement);
         return _TaskElement;
     }
+
+
+    Element CreateReadTaskElement(Messgeraet messgeraet, Document document){
+
+        ZaehlerModel zaehlerModel = Dict.getInstance().getZaehlerModel(messgeraet.getZielmodel());
+        String funknummer = (messgeraet.getNeueFunkNummer().isEmpty()) ? messgeraet.getNeueNummer() : messgeraet.getNeueFunkNummer();
+
+
+
+//Standardstruktur wird angelegt
+        Element _TaskElement = document.createElement("Task");
+        Element _InfoElement = document.createElement("Info");
+        Element _ParamElement = document.createElement("Param");
+     //   Element _LastActionDateElement = document.createElement("LastActionDate");
+    //    Element _DataElement = document.createElement("Data");
+      //  Element _EncryptedDataElement = document.createElement("EncryptedData");
+
+        //Attribute
+        _TaskElement.setAttribute("Agent", zaehlerModel.getSontexAgent());
+        _TaskElement.setAttribute("Status", "ToDo");
+        _TaskElement.setAttribute("Caption", zaehlerModel.getSontexCaption());
+
+        BaseObject.CreateTextNode(_InfoElement,"Hint","");
+        BaseObject.CreateTextNode(_InfoElement,"User","");
+
+        //ParamElement
+        BaseObject.CreateTextNode(_ParamElement,"RadioAddr",funknummer);
+        BaseObject.CreateTextNode(_ParamElement,"DataToRead", zaehlerModel.getSontexDataToRead());
+
+        _TaskElement.appendChild(_InfoElement);
+        _TaskElement.appendChild(_ParamElement);
+    //    _TaskElement.appendChild(_DataElement);
+        return _TaskElement;
+    }
+
+
 
     public static Date addDays(Date date, int days)
     {

@@ -8,8 +8,15 @@ public class ZaehlerModel {
     private final Boolean mFunkintegriert;
     private final String mArtikelnummer;
     private final String mFunkadapter;
+    private final String mSontexAgent;
+    private final String mSontexCaption;
+    private final String mSontexDataToRead;
 
-    public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt,String pFunkadapter, String pArtikelnummer){
+
+
+    public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt,String pFunkadapter, String pArtikelnummer,
+                         String pSontexAgent, String pSontexCaption, String pSontexDataToRead
+    ){
         mId = Integer.parseInt(pId);
         mBezeichnung = pBezeichnung;
         mAustauschmodel = pAustauschmodel.equals("True");
@@ -17,6 +24,9 @@ public class ZaehlerModel {
         mFunkintegriert = !pFunkadapter.equals("");
         mArtikelnummer = pArtikelnummer;
         mFunkadapter = pFunkadapter;
+        mSontexAgent = pSontexAgent;
+        mSontexCaption = pSontexCaption;
+        mSontexDataToRead = pSontexDataToRead;
     }
 
 
@@ -51,5 +61,17 @@ public class ZaehlerModel {
 
     public String getFunkadapter() {
         return mFunkadapter;
+    }
+
+    public String getSontexAgent() {
+        return mSontexAgent;
+    }
+
+    public String getSontexCaption() {
+        return mSontexCaption;
+    }
+
+    public String getSontexDataToRead() {
+        return mSontexDataToRead;
     }
 }

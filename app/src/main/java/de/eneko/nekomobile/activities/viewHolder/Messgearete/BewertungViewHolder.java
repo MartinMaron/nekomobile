@@ -876,8 +876,8 @@ public class BewertungViewHolder extends BaseViewHolder implements View.OnClickL
                 getActvBewertungsfaktor04().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor04().setText("BT - Bautiefe in mm");
 
-                getLbBewertungsfaktor05().setVisibility(View.INVISIBLE);
-                getActvBewertungsfaktor05().setVisibility(View.INVISIBLE);
+                getLbBewertungsfaktor05().setVisibility(View.VISIBLE);
+                getActvBewertungsfaktor05().setVisibility(View.VISIBLE);
                 getLbBewertungsfaktor05().setText("T3 - Maß über 3 Teilungen in mm");
 
                 getLbBewertungsfaktor06().setVisibility(View.VISIBLE);

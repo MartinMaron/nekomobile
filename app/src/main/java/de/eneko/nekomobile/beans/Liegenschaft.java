@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
@@ -40,6 +41,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     private Date mStichtag = new Date();
     private String mSontexFileName;
 
+    private String mSonexaProjectHash;
+    private String mSonexaProjectId;
 
     public Route getRoute() {
         return route;
@@ -92,6 +95,8 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateTextNode(ret_val,"notizMitarbeiter",mNotizMitarbeiter);
             CreateDateTextNode(ret_val, "stichtag", mStichtag);
             CreateTextNode(ret_val,"sontexFileName",mSontexFileName);
+            CreateTextNode(ret_val,"sonexaProjectHash",mSonexaProjectHash);
+            CreateTextNode(ret_val,"sonexaProjectId",mSonexaProjectId);
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -160,6 +165,12 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
                     case "sontexFileName":
                         mSontexFileName = getString(propElement);
+                        break;
+                    case "sonexaProjectHash":
+                        mSonexaProjectHash = getString(propElement);
+                        break;
+                    case "sonexaProjectId":
+                        mSonexaProjectId = getString(propElement);
                         break;
                     case "stichtag":
                         mStichtag = getSipleDate(propElement);
@@ -249,6 +260,31 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
     public List<Nutzer> getNutzers() {
         return mNutzers;
     }
+
+    public List<Messgeraet> getMessgeraets(){
+        ArrayList<Messgeraet> ret_val = new ArrayList<>();
+        getNutzers().forEach((n) ->
+                        n.getToDos().stream()
+                                .filter(td -> !td.getArt().contains("INF"))
+                                .collect(Collectors.toList())
+                                .forEach((t) ->
+                                        ret_val.addAll(t.getMessgeraete())
+                                    )
+                        );
+        return ret_val;
+    }
+
+    public List<Messgeraet> getDoneMessgeraets(){
+        ArrayList<Messgeraet> ret_val = new ArrayList<>();
+        ret_val.addAll(
+                getMessgeraets().stream()
+                .filter(m -> m.isDone())
+                .collect(Collectors.toList())
+        );
+        return ret_val;
+    }
+
+
 
     public void setNutzers(List<Nutzer> nutzers) {
         mNutzers = nutzers;
@@ -386,6 +422,22 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
 
     public Date getStichtag() {
         return mStichtag;
+    }
+
+    public String getSonexaProjectHash() {
+        return mSonexaProjectHash;
+    }
+
+    public void setSonexaProjectHash(String mSonexaProjectHash) {
+        this.mSonexaProjectHash = mSonexaProjectHash;
+    }
+
+    public String getSonexaProjectId() {
+        return mSonexaProjectId;
+    }
+
+    public void setSonexaProjectId(String mSonexaProjectId) {
+        this.mSonexaProjectId = mSonexaProjectId;
     }
 
     // endregion properties

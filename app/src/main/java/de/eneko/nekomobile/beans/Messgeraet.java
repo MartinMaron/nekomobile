@@ -52,7 +52,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
     private Boolean mNew = false;
     private Double mStartWert = -1.0;
     private Double mProcent = -1.0;
-
+    private Integer mSonexaId = -1;
+    private String mSonexaState = "";
+    private Integer mSonexaRSSI = -1;
 
     private String mGrundparameter = "";
     private String mFormparameter = "";
@@ -285,6 +287,15 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
                     case "procent":
                         mProcent = getDouble(propElement);
                         break;
+                    case "sonexaId":
+                        mSonexaId = getInteger(propElement);
+                        break;
+                    case "sonexaRSSI":
+                        mSonexaRSSI = getInteger(propElement);
+                        break;
+                    case "sonexaState":
+                        mSonexaState = getString(propElement);
+                        break;
                     default:
                         Log.e(TAG, propElement.getNodeName() + ": keine bekannte Property");
                 }
@@ -338,6 +349,9 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
             CreateTextNode(ret_val,"new" , mNew.toString());
             CreateTextNode(ret_val,"grundparameter" ,mGrundparameter);
             CreateTextNode(ret_val,"formparameter" ,mFormparameter);
+            CreateIntegerNode(ret_val,"sonexaId" , mSonexaId);
+            CreateIntegerNode(ret_val,"sonexaRSSI" , mSonexaRSSI);
+            CreateTextNode(ret_val,"sonexaState" ,mSonexaState);
             CreateIntegerNode(ret_val,"bewertungsfaktor_01" ,mBewertungsfaktor_01);
             CreateIntegerNode(ret_val,"bewertungsfaktor_02" ,mBewertungsfaktor_02);
             CreateIntegerNode(ret_val,"bewertungsfaktor_03" ,mBewertungsfaktor_03);
@@ -798,6 +812,30 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
 
     public void setProcent(Double procent) {
         mProcent = procent;
+    }
+
+    public Integer getSonexaId() {
+        return mSonexaId;
+    }
+
+    public void setSonexaId(Integer mSonexaId) {
+        this.mSonexaId = mSonexaId;
+    }
+
+    public String getSonexaState() {
+        return mSonexaState;
+    }
+
+    public void setSonexaState(String mSonexaState) {
+        this.mSonexaState = mSonexaState;
+    }
+
+    public Integer getSonexaRSSI() {
+        return mSonexaRSSI;
+    }
+
+    public void setSonexaRSSI(Integer mSonexaRSSI) {
+        this.mSonexaRSSI = mSonexaRSSI;
     }
     // endregion "Properties"
 }

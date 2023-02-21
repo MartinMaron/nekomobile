@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -34,6 +35,11 @@ import de.eneko.nekomobile.controllers.FileHandler;
 import de.eneko.nekomobile.framework.dropbox.NekoDropBox;
 import de.eneko.nekomobile.framework.ftp.FTPManager;
 import de.eneko.nekomobile.listener.MainActivityOnClickListener;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity
@@ -272,6 +278,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+
 
         }
 

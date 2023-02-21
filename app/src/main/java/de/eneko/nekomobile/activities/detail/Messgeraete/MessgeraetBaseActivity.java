@@ -74,7 +74,7 @@ public abstract class MessgeraetBaseActivity extends AppCompatActivity implement
                 viewHolder.save();
                 ArrayList<Messgeraet> messg = new ArrayList<Messgeraet>();
                 messg.add(viewHolder.getBean());
-                SontexFileHandler.getInstance().upsertSontexParam(viewHolder.getActivity(),messg);
+                SontexFileHandler.getInstance().upsertSontexParamRoad(viewHolder.getActivity(),messg);
                 exit();
                 return true;
         }
