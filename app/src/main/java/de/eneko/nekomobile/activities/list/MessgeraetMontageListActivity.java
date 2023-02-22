@@ -19,7 +19,9 @@ public class MessgeraetMontageListActivity extends MessgeraetListActivity {
     protected void onResume() {
         super.onResume();
         loadTodoDatasource();
+        onBackPressedIntent = new Intent(this, MessgeraetMontageListActivity.class);
     }
+
 
     // nur die zu verarbeitenden Tätigkeiten
     protected void loadTodoDatasource() {

@@ -8,13 +8,19 @@
     android:background="@drawable/textview_border"
     android:padding="@dimen/dp_faktor_1">
 
+    <TextView
+        android:id="@+id/tvOrt"
+        android:layout_width="@dimen/dp_faktor_60"
+        android:layout_height="@dimen/dp_faktor_6"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/navy"
+        android:textSize="@dimen/sp_faktor_08" />
 
     <TextView
         android:id="@+id/tvRaum"
         android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_8"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tvOrt"
         android:contentDescription="@string/empty"
         android:textColor="@color/navy"
         android:textSize="@dimen/sp_faktor_10" />
@@ -23,6 +29,7 @@
         android:id="@+id/ivStatus"
         android:layout_width="@dimen/dp_faktor_15"
         android:layout_height="@dimen/dp_faktor_10"
+        android:layout_below="@id/tvOrt"
         android:layout_toRightOf="@id/tvNummer"
         android:clickable="true"
         android:contentDescription="@string/empty" />
@@ -31,6 +38,7 @@
         android:id="@+id/tvNummer"
         android:layout_width="@dimen/dp_faktor_30"
         android:layout_height="@dimen/dp_faktor_8"
+        android:layout_below="@id/tvOrt"
         android:layout_toRightOf="@id/tvRaum"
         android:contentDescription="@string/empty"
         android:textColor="@color/navy"
@@ -111,5 +119,26 @@
         android:contentDescription="@string/empty"
         android:src="@drawable/icon_montage"
         app:srcCompat="@drawable/icon_montage" />
+
+
+    <TextView
+        android:id="@+id/tvSontexNeueFunknummer"
+        android:layout_width="@dimen/dp_faktor_27"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_toRightOf="@id/tvOrt"
+        android:layout_below="@id/tvOrt"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/orange_red"
+        android:textSize="@dimen/sp_faktor_10" />
+    <TextView
+        android:id="@+id/tvSontexRssi"
+        android:layout_width="@dimen/dp_faktor_30"
+        android:layout_height="@dimen/dp_faktor_8"
+        android:layout_toRightOf="@id/tvSontexNeueFunknummer"
+        android:layout_below="@id/tvOrt"
+        android:contentDescription="@string/empty"
+        android:textColor="@color/orange_red"
+        android:textSize="@dimen/sp_faktor_10" />
+
 
 </RelativeLayout>

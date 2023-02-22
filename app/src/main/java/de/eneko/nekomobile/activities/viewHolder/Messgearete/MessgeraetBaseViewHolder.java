@@ -88,6 +88,11 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
     private EditText tvStartwert = null;
     private TextView lbProcente = null;
     private EditText tvProcente = null;
+    private TextView tvOrt = null;
+    private TextView tvSontexNeueFunknummer = null;
+    private TextView tvSontexRssi = null;
+
+
     public MessgeraetBaseViewHolder(View pView, MessgeraetModel pBean) {
         this(pView, pBean,null);
     }
@@ -126,6 +131,9 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
         setLbDisplayBewertung(findViewById(R.id.lbDisplayBewertung));
         setLbDisplayBewertungHKArt(findViewById(R.id.lbDisplayBewertungHKArt));
         setLbDisplayBesonderheiten(findViewById(R.id.lbDisplayBesonderheiten));
+        setTvOrt(findViewById(R.id.tvOrt));
+        setTvSontexNeueFunknummer(findViewById(R.id.tvSontexNeueFunknummer));
+        setTvSontexRssi(findViewById(R.id.tvSontexRssi));
 
         if(getIvPhoto() != null) {
             getIvPhoto().setOnClickListener(new View.OnClickListener() {
@@ -213,6 +221,27 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
                 if(getLbDisplayBewertungHKArt() != null) { getLbDisplayBewertungHKArt().setTextColor(ContextCompat.getColor(getActivity(), R.color.red));}
             }
         }
+
+        if(getTvSontexRssi() != null ) getTvSontexRssi().setText(getBean().getSonexaRSSI().toString());
+        if(getTvSontexNeueFunknummer() != null )
+        {
+            if (!getBean().getNeueFunkNummer().equals("")) getTvSontexNeueFunknummer().setText(getBean().getNeueFunkNummer());
+            if (!getBean().getNeueNummer().equals("")) getTvSontexNeueFunknummer().setText(getBean().getNeueNummer());
+        }
+        if(getTvOrt() != null ) {
+            if (getBean().getTodo().getNutzer() != null)
+            {
+                getTvOrt().setText("Whg: " + getBean().getTodo().getNutzer().getWohnungsnummer()
+                                    + " (" + getBean().getTodo().getNutzer().getLage() + ")"
+                                    + " " + getBean().getTodo().getNutzer().getNutzerName());
+            }
+            if (getBean().getTodo().getLiegenschaft() != null)
+            {
+                getTvOrt().setText("Gesamtzähler");
+            }
+        }
+
+
 
 
         if(getLbDisplayBewertungHKArt() != null) {
@@ -636,6 +665,30 @@ public abstract class MessgeraetBaseViewHolder extends BaseViewHolder {
 
     public void setLbDisplayBesonderheiten(TextView lbDisplayBesonderheiten) {
         this.lbDisplayBesonderheiten = lbDisplayBesonderheiten;
+    }
+
+    public TextView getTvOrt() {
+        return tvOrt;
+    }
+
+    public void setTvOrt(TextView tvOrt) {
+        this.tvOrt = tvOrt;
+    }
+
+    public TextView getTvSontexNeueFunknummer() {
+        return tvSontexNeueFunknummer;
+    }
+
+    public void setTvSontexNeueFunknummer(TextView tvSontexNeueFunknummer) {
+        this.tvSontexNeueFunknummer = tvSontexNeueFunknummer;
+    }
+
+    public TextView getTvSontexRssi() {
+        return tvSontexRssi;
+    }
+
+    public void setTvSontexRssi(TextView tvSontexRssi) {
+        this.tvSontexRssi = tvSontexRssi;
     }
     // endregion properties
 }

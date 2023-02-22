@@ -1,5 +1,6 @@
 package de.eneko.nekomobile.controllers;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import de.eneko.nekomobile.MainActivity;
@@ -19,6 +20,7 @@ public class CurrentObjectNavigation {
     private Rauchmelder mRauchmelder = null;
     private Messgeraet messgeraet = null;
     private MainActivity mainActivity = null;
+    private Intent onBackPressedIntent = null;
     SharedPreferences sharedPreferences = null;
     private CurrentObjectNavigation(){}
 
@@ -100,5 +102,14 @@ public class CurrentObjectNavigation {
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+    }
+
+
+    public Intent getOnBackPressedIntent() {
+        return onBackPressedIntent;
+    }
+
+    public void setOnBackPressedIntent(Intent onBackPressedIntent) {
+        this.onBackPressedIntent = onBackPressedIntent;
     }
 }

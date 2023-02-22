@@ -450,6 +450,10 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         return !isInfo();
     }
 
+    public Boolean isSonexaInstall(){
+        return isDone() && getSonexaId() > -1;
+    }
+
     // region "Properties"
 
 

@@ -20,6 +20,7 @@ public class MessgeraetAblesungListActivity extends MessgeraetListActivity {
     protected void onResume() {
         super.onResume();
         loadTodoDatasource();
+        onBackPressedIntent = new Intent(this, MessgeraetAblesungListActivity.class);
     }
 
     @Override

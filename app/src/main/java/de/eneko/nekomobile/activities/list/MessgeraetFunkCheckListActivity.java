@@ -1,5 +1,6 @@
 package de.eneko.nekomobile.activities.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.Comparator;
@@ -22,6 +23,7 @@ public class MessgeraetFunkCheckListActivity extends MessgeraetListActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        onBackPressedIntent = new Intent(this, MessgeraetFunkCheckListActivity.class);
     }
 
     @Override

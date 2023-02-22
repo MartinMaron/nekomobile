@@ -20,9 +20,11 @@ import java.util.stream.Collectors;
 
 import org.json.*;
 
+import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.LiegenschaftListActivity;
+import de.eneko.nekomobile.activities.list.MessgeraetSonexaListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Liegenschaft.LiegenschaftDetailViewHolder;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
@@ -39,11 +41,14 @@ import okhttp3.Response;
 
 public class LiegenschaftActivity extends AppCompatActivity{
 
-
+    protected Liegenschaft liegenschaft = null;
 
     protected LiegenschaftDetailViewHolder viewHolder = null;
 
     protected ArrayList<Messgeraet> Liste = new ArrayList<>();
+
+    protected MenuItem menuItemSonexaImport = null;
+    protected MenuItem menuItemSonexaExport = null;
 
 
     @Override
@@ -51,7 +56,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_liegenschaft);
-        Liegenschaft liegenschaft = CurrentObjectNavigation.getInstance().getLiegenschaft();
+        liegenschaft = CurrentObjectNavigation.getInstance().getLiegenschaft();
         viewHolder = new LiegenschaftDetailViewHolder( null,liegenschaft.getBaseModel(), this);
         viewHolder.updateView();
     }
@@ -59,7 +64,9 @@ public class LiegenschaftActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail_base_menu, menu);
+        getMenuInflater().inflate(R.menu.detail_liegenschaft_menu, menu);
+        menuItemSonexaImport = menu.findItem(R.id.menu_item_sonexaImport);
+        menuItemSonexaExport = menu.findItem(R.id.menu_item_sonexaExport);
         return true;
     }
 
@@ -69,17 +76,21 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 viewHolder.save();
                 exit();
                 return true;
-            case R.id.menu_item_bewertung:
+            case R.id.menu_item_sonexaImport:
                 viewHolder.save();
 
                 String myResponse = "";
 
                 OkHttpClient client = new OkHttpClient();
-                String url = "https://exchange-platform.app/api/project/v1.0/project/391";
+                // Project Id
+
+                String url = "https://exchange-platform.app/api/measurements/v1.0//project/" + liegenschaft.getSonexaProjectHash() +".json";
+
+
 
                 Request request = new Request.Builder()
                         .url(url)
-                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJkZjJkMmE0Zi0yZGJmLTQwYjMtODljZi05MWRlYzI3ZTViZDkifQ.eyJpYXQiOjE2Njk5Njc4ODMsImp0aSI6IjVmY2M1YjdiLTA5NWEtNGRlMy1hNWI2LTgwOTlmMjIxZDU4MCIsImlzcyI6Imh0dHBzOi8vc3NvLmV4Y2hhbmdlLXBsYXRmb3JtLmFwcC9hdXRoL3JlYWxtcy9zb25leGEiLCJhdWQiOiJodHRwczovL3Nzby5leGNoYW5nZS1wbGF0Zm9ybS5hcHAvYXV0aC9yZWFsbXMvc29uZXhhIiwic3ViIjoiOTJmMzM3MTQtNzEyMS00OTZjLWEwNTMtZjE5NzhiZGJjY2ZiIiwidHlwIjoiT2ZmbGluZSIsImF6cCI6Im5naW54LWFwaSIsInNlc3Npb25fc3RhdGUiOiIxNDczMzRkNy1hMzU3LTRmZjctODhkOC1mM2UxNGU1MGViYTIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUgb2ZmbGluZV9hY2Nlc3MiLCJzaWQiOiIxNDczMzRkNy1hMzU3LTRmZjctODhkOC1mM2UxNGU1MGViYTIifQ.Uoe_GI38sAucGSpMCt0H3g-x5dNPFeDKcmAZ6HSTIGU")
+                        .header("Authorization", GlobalConst.SONTEX_TOKEN)
                         .build();
                 client.newCall(request).enqueue(new Callback() {
                     @Override
@@ -91,17 +102,47 @@ public class LiegenschaftActivity extends AppCompatActivity{
                     public void onResponse(Call call, Response response) throws IOException {
 
                         final String myResponse = response.body().string();
+                        liegenschaft.setSonexaReadOut(myResponse);
 
+                        String jsonString = myResponse ;
+                        try {
+                            JSONObject obj = new JSONObject(jsonString);
+
+                            JSONArray arrMessgeraete = obj.getJSONArray("devices");
+                            for (int i = 0; i < arrMessgeraete.length(); i++)
+                            {
+
+                                String funknummer = arrMessgeraete.getJSONObject(i).getString("identifier");
+
+                                //suchen des Messgeräts: neueNnummer oder neueFunkNummer muss mit dem identifier übereinstimmen
+                                List<Messgeraet> importedMessgeraete = liegenschaft.getMessgeraets() .stream()
+                                        .filter(m -> m.getNeueFunkNummer().equals(funknummer) || m.getNeueNummer().equals(funknummer))
+                                        .collect(Collectors.toList());
+
+                                // setzen des Sonexa rssi zu Messgerät
+                                if (importedMessgeraete.size() > 0){
+                                    Messgeraet mg = importedMessgeraete.get(0);
+                                    JSONObject device = arrMessgeraete.getJSONObject(i);
+                                    JSONArray arrMeasurments = arrMessgeraete.getJSONObject(i).getJSONArray("measurements");
+                                   if (arrMeasurments.length() > 0){
+                                        JSONObject   records = arrMeasurments.getJSONObject(0).getJSONObject("records");
+                                        Integer rssi = -1;
+                                        rssi = records.getInt("APP_RSSI-0-0-0-0");
+                                        mg.setSonexaRSSI(java.lang.Math.abs(rssi));
+                                   }
+                            }
+
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
 
 
                         LiegenschaftActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run()    {
-
-
-
-
-                                viewHolder.getEtNotizMitarbeiter().setText(myResponse);
+                                menuItemSonexaExport.setIcon(R.drawable.icon_export_sonexa_ok);
+                                showSontexNewReadout();
                             }
                         });
 
@@ -112,7 +153,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
 
 
                 return true;
-            case R.id.menu_item_parametrieren:
+            case R.id.menu_item_sonexaExport:
                 // anlegen der geräte
                 Liste = new ArrayList<>();
                 Liste.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getDoneMessgeraets().stream()
@@ -130,13 +171,11 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 RequestBody body = RequestBody.create(MediaType.parse("application/xml"),xmlContent);
 
                 // Project Id
-                Liegenschaft liegenschaft = CurrentObjectNavigation.getInstance().getLiegenschaft();
                 url = "https://exchange-platform.app/api/project/v1.0/project/" + liegenschaft.getSonexaProjectId() + "/import";
-
 
                 request = new Request.Builder()
                         .url(url)
-                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJkZjJkMmE0Zi0yZGJmLTQwYjMtODljZi05MWRlYzI3ZTViZDkifQ.eyJpYXQiOjE2Njk5Njc4ODMsImp0aSI6IjVmY2M1YjdiLTA5NWEtNGRlMy1hNWI2LTgwOTlmMjIxZDU4MCIsImlzcyI6Imh0dHBzOi8vc3NvLmV4Y2hhbmdlLXBsYXRmb3JtLmFwcC9hdXRoL3JlYWxtcy9zb25leGEiLCJhdWQiOiJodHRwczovL3Nzby5leGNoYW5nZS1wbGF0Zm9ybS5hcHAvYXV0aC9yZWFsbXMvc29uZXhhIiwic3ViIjoiOTJmMzM3MTQtNzEyMS00OTZjLWEwNTMtZjE5NzhiZGJjY2ZiIiwidHlwIjoiT2ZmbGluZSIsImF6cCI6Im5naW54LWFwaSIsInNlc3Npb25fc3RhdGUiOiIxNDczMzRkNy1hMzU3LTRmZjctODhkOC1mM2UxNGU1MGViYTIiLCJzY29wZSI6ImVtYWlsIHByb2ZpbGUgb2ZmbGluZV9hY2Nlc3MiLCJzaWQiOiIxNDczMzRkNy1hMzU3LTRmZjctODhkOC1mM2UxNGU1MGViYTIifQ.Uoe_GI38sAucGSpMCt0H3g-x5dNPFeDKcmAZ6HSTIGU")
+                        .header("Authorization", GlobalConst.SONTEX_TOKEN)
                         .post(body)
                         .build();
                 client.newCall(request).enqueue(new Callback() {
@@ -167,8 +206,10 @@ public class LiegenschaftActivity extends AppCompatActivity{
                                         .collect(Collectors.toList());
 
                                 // setzen des Sonexa Id zu Messgerät
-                                Messgeraet mg = iList.get(0);
-                                mg.setSonexaId(Integer.parseInt(id));
+                                if(iList.size() > 0){
+                                    Messgeraet mg = iList.get(0);
+                                    mg.setSonexaId(Integer.parseInt(id));
+                                }
 
                             }
                         } catch (JSONException e) {
@@ -178,7 +219,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
                         LiegenschaftActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run()    {
-                                // viewHolder.getEtNotizMitarbeiter().setText(myResponse);
+                                menuItemSonexaExport.setIcon(R.drawable.icon_export_sonexa_ok);
                             }
                         });
                     }
@@ -193,6 +234,12 @@ public class LiegenschaftActivity extends AppCompatActivity{
         Intent intent = new Intent(this, LiegenschaftListActivity.class);
         startActivity(intent);
     }
+
+    protected void showSontexNewReadout(){
+        Intent intent = new Intent(this, MessgeraetSonexaListActivity.class);
+        startActivity(intent);
+    }
+
 
     public void onBackPressed(){
         exit();

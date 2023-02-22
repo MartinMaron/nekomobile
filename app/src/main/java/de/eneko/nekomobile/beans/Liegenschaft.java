@@ -43,6 +43,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
 
     private String mSonexaProjectHash;
     private String mSonexaProjectId;
+    private String mSonexaReadOut;
 
     public Route getRoute() {
         return route;
@@ -97,6 +98,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateTextNode(ret_val,"sontexFileName",mSontexFileName);
             CreateTextNode(ret_val,"sonexaProjectHash",mSonexaProjectHash);
             CreateTextNode(ret_val,"sonexaProjectId",mSonexaProjectId);
+            CreateTextNode(ret_val,"sonexaReadOut",mSonexaReadOut);
 
             Element element = document.createElement("todos");
             mToDos.forEach(item -> element.appendChild(item.toXmlElement(document)));
@@ -174,6 +176,9 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                         break;
                     case "stichtag":
                         mStichtag = getSipleDate(propElement);
+                        break;
+                    case "sonexaReadOut":
+                        mSonexaReadOut = getString(propElement);
                         break;
                     case "Nutzerliste":
                         NodeList nutzernodeList = propElement.getChildNodes();
@@ -438,6 +443,14 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
 
     public void setSonexaProjectId(String mSonexaProjectId) {
         this.mSonexaProjectId = mSonexaProjectId;
+    }
+
+    public String getSonexaReadOut() {
+        return mSonexaReadOut;
+    }
+
+    public void setSonexaReadOut(String mSonexaReadOut) {
+        this.mSonexaReadOut = mSonexaReadOut;
     }
 
     // endregion properties

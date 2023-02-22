@@ -170,8 +170,7 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
 
     @Override
     protected void exit() {
-        Intent intent = new Intent(this, MessgeraetMontageListActivity.class);
-        startActivity(intent);
+        startActivity(CurrentObjectNavigation.getInstance().getOnBackPressedIntent());
     }
 
 }

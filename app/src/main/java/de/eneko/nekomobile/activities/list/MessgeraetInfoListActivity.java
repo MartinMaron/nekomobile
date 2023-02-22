@@ -1,5 +1,8 @@
 package de.eneko.nekomobile.activities.list;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -15,6 +18,8 @@ public class MessgeraetInfoListActivity extends MessgeraetListActivity {
     protected void onResume() {
         super.onResume();
         loadTodoDatasource();
+        onBackPressedIntent = new Intent(this, MessgeraetFunkCheckListActivity.class);
+
     }
 
     protected void loadTodoDatasource() {

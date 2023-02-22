@@ -30,7 +30,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
 
     public enum ViewHolderType
     {
-        WORK, WORK_WITH_NAME, INFO, INFO_WITH_NAME
+        WORK, WORK_WITH_NAME, INFO, INFO_WITH_NAME, SONEXA
     }
 
     public MessgeraetListViewAdapter(Context context, ArrayList<Messgeraet> values, ViewHolderType viewHolderType) {
@@ -76,6 +76,23 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
         MessgeraetBaseViewHolder viewHolder = new MessgeraetRowViewHolder(currentView, obj.getBaseModel(), activity);
         viewHolder.updateView();
 
+        if (vhType == ViewHolderType.WORK) {
+            viewHolder.getTvOrt().setVisibility(View.GONE);
+            viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);
+            viewHolder.getTvSontexRssi().setVisibility(View.GONE);
+        }
+
+        if (vhType == ViewHolderType.SONEXA) {
+            viewHolder.getLbStichtag().setVisibility(View.GONE);
+            viewHolder.getLbAktuell().setVisibility(View.GONE);
+            viewHolder.getTvAktuell().setVisibility(View.GONE);
+            viewHolder.getTvStichtag().setVisibility(View.GONE);
+            viewHolder.getTvLetzterWert().setVisibility(View.GONE);
+            viewHolder.getIvDetail().setVisibility(View.GONE);
+            viewHolder.getIvStatus().setVisibility(View.GONE);
+            viewHolder.getIvPhoto().setVisibility(View.GONE);
+        }
+
         if (vhType == ViewHolderType.INFO) {
            viewHolder.getLbStichtag().setVisibility(View.GONE);
            viewHolder.getLbAktuell().setVisibility(View.GONE);
@@ -83,6 +100,10 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
            viewHolder.getTvStichtag().setVisibility(View.GONE);
            viewHolder.getIvDetail().setVisibility(View.GONE);
            viewHolder.getIvStatus().setVisibility(View.GONE);
+           viewHolder.getTvOrt().setVisibility(View.GONE);
+           viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);
+           viewHolder.getTvSontexRssi().setVisibility(View.GONE);
+
         }
 
         if (vhType == ViewHolderType.INFO_WITH_NAME) {
@@ -92,6 +113,10 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
             viewHolder.getTvStichtag().setVisibility(View.GONE);
             viewHolder.getIvDetail().setVisibility(View.GONE);
             viewHolder.getIvStatus().setVisibility(View.GONE);
+            viewHolder.getTvOrt().setVisibility(View.GONE);
+            viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);
+            viewHolder.getTvSontexRssi().setVisibility(View.GONE);
+
             if (obj.getTodo().getNutzer() != null ) { viewHolder.getTvLetzterWert().setText(obj.getTodo().getNutzer().getBaseModel().getDisplay());}else {viewHolder.getTvLetzterWert().setText("DDD");}
         }
         if (vhType == ViewHolderType.WORK_WITH_NAME) {
@@ -101,15 +126,7 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
         currentView.setTag(viewHolder);
         return currentView;
     }
-
-
-
-
-
-
-
-
-    // region filter
+  // region filter
 
 
     private class customFilter extends Filter {
@@ -123,7 +140,14 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
                 for (Messgeraet messgeraet : values) {
                     if (messgeraet.getNummer().toLowerCase().contains(constraint.toString().toLowerCase())) {
                         tempList.add(messgeraet);
+                        continue;
                     }
+                    if (messgeraet.getNeueFunkNummer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(messgeraet);
+                        continue;}
+                    if (messgeraet.getNeueNummer().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        tempList.add(messgeraet);
+                        continue;                    }
                 }
                 filterResults.count = tempList.size();
                 filterResults.values = tempList;
@@ -156,13 +180,6 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
     }
 
     // endregion filter
-
-
-
-
-
-
-
 
 }
 

@@ -44,6 +44,8 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             protected MessgeraetListViewAdapter mCurrentAdapter = null;
             protected ArrayList<Messgeraet> datasource = new ArrayList<>();
 
+            protected Intent onBackPressedIntent = null;
+
             protected TouchListView mListView = null;
             protected MenuItem searchMenuItem = null;
             protected MenuItem modeMenuItem = null;
@@ -57,16 +59,18 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
             {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_touchlist_view);
-
-                NutzerTodoModel nutzerTodoModel = (NutzerTodoModel) CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
-                nutzerTodoModel.load();
-                getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
-
+                setTitle();
                 // init listview
                 mListView = findViewById(R.id.touch_listview);
                 mListView.setOnItemClickListener(this);
                 mListView.setOnItemLongClickListener(this);
                 loadDatasourceCore();
+            }
+
+            protected void setTitle(){
+                NutzerTodoModel nutzerTodoModel = (NutzerTodoModel) CurrentObjectNavigation.getInstance().getNutzerTodo().getBaseModel();
+                nutzerTodoModel.load();
+                getSupportActionBar().setTitle(nutzerTodoModel.getBean().getNutzer().getBaseModel().getDisplay());
             }
 
             private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
@@ -292,6 +296,7 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
                         intent = new Intent(view.getContext(), MessgaeretAblesungActivity.class);
                         break;
                     default:
+                        if (onBackPressedIntent != null ){ CurrentObjectNavigation.getInstance().setOnBackPressedIntent(onBackPressedIntent); }
                         if (item.isNew()) {
                             intent = new Intent(view.getContext(), MessgaeretNeuActivity.class);
                         }else{
