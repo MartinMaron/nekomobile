@@ -3,16 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_item_QundisPltExport"
+        android:icon="@drawable/ic_qundis"
+        android:iconTintMode="add"
+        android:title="QundisPltEport"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_item_sonexaExport"
         android:icon="@drawable/icon_ablesung_sontex_funk"
         android:iconTintMode="add"
-        android:title="@string/speichern"
+        android:title="Export zu Sonexa"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_sonexaImport"
         android:icon="@drawable/icon_ablesung_sontex"
         android:iconTintMode="add"
-        android:title="@string/speichern"
+        android:title="Import der Ablesung aus Sonexa"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_save"

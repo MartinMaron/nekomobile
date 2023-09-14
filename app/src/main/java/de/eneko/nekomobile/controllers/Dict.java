@@ -35,14 +35,12 @@ public class Dict {
         return instance;
     }
 
-
-
     public void initializeHelpers(MainActivity mainActivity) {
         String[] _zaehlermodele = mainActivity.getResources().getStringArray(R.array.zaehler_modele);
         mZaehlerModels.clear();
         for (String strTemp : _zaehlermodele){
             String[] _line = strTemp.split("@");
-            mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3],_line[4],_line[5],_line[6],_line[7],_line[8],_line[9],_line[10]));
+            mZaehlerModels.add(new ZaehlerModel(_line[0],_line[1],_line[2], _line[3],_line[4],_line[5],_line[6],_line[7],_line[8],_line[9],_line[10],_line[11],_line[12]));
         }
 
         String[] _funkmodele = mainActivity.getResources().getStringArray(R.array.funk_modele);

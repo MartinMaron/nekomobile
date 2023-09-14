@@ -1,8 +1,8 @@
 package de.eneko.nekomobile.beans.hlpta;
 
 public class ZaehlerModel {
-    private Integer mId = 0;
-    private String mBezeichnung = "";
+    private final Integer mId;
+    private String mBezeichnung;
     private String mArt = "";
     private final Boolean mAustauschmodel;
     private final Boolean mFunkintegriert;
@@ -13,9 +13,12 @@ public class ZaehlerModel {
     private final String mSontexDataToRead;
     private final Boolean mIsQundisSimpleBarcode;
     private final Boolean mIsQundisFunkSimpleBarcode;
+    private final Boolean mIsQundisFunk;
+    private final String mQundisGeraeteArt;
 
     public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt,String pFunkadapter, String pArtikelnummer,
-                         String pSontexAgent, String pSontexCaption, String pSontexDataToRead, String pIsQundisSimpleBarcode, String pIsQundisFunkSimpleBarcode
+                         String pSontexAgent, String pSontexCaption, String pSontexDataToRead,
+                         String pIsQundisSimpleBarcode, String pIsQundisFunkSimpleBarcode, String pIsQundisFunk, String pQundisGeraeteArt
     ){
         mId = Integer.parseInt(pId);
         mBezeichnung = pBezeichnung;
@@ -29,6 +32,8 @@ public class ZaehlerModel {
         mSontexDataToRead = pSontexDataToRead;
         mIsQundisSimpleBarcode = pIsQundisSimpleBarcode.equals("True");
         mIsQundisFunkSimpleBarcode = pIsQundisFunkSimpleBarcode.equals("True");
+        mIsQundisFunk = pIsQundisFunk.equals("True");
+        mQundisGeraeteArt = pQundisGeraeteArt;
     }
 
 

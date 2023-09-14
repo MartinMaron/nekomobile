@@ -77,16 +77,10 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 return true;
             case R.id.menu_item_sonexaImport:
                 viewHolder.save();
-
                 String myResponse = "";
-
                 OkHttpClient client = new OkHttpClient();
                 // Project Id
-
                 String url = "https://exchange-platform.app/api/measurements/v1.0//project/" + liegenschaft.getSonexaProjectHash() +".json";
-
-
-
                 Request request = new Request.Builder()
                         .url(url)
                         .header("Authorization", GlobalConst.SONTEX_TOKEN)
@@ -147,10 +141,6 @@ public class LiegenschaftActivity extends AppCompatActivity{
 
                     }
                 });
-
-
-
-
                 return true;
             case R.id.menu_item_sonexaExport:
                 // anlegen der geräte
@@ -224,6 +214,15 @@ public class LiegenschaftActivity extends AppCompatActivity{
                     }
                 });
           return true;
+
+
+        case R.id.menu_item_QundisPltExport:
+            viewHolder.save();
+            ArrayList<Messgeraet> messg = new ArrayList<Messgeraet>();
+            //messg.add(viewHolder.getBean());
+            SontexFileHandler.getInstance().upsertSontexParamRoad(viewHolder.getActivity(),messg);
+
+            exit();
         }
         return false;
     }

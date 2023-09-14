@@ -28,9 +28,6 @@ public class MessgaeretAustauschActivity extends MessgeraetBaseActivity {
         super.onCreate(savedInstanceState);
   }
 
-
-
-
     @Override
     protected void createViewHolder(){
         Messgeraet obj = CurrentObjectNavigation.getInstance().getMessgeraet();

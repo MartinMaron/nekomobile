@@ -11,6 +11,7 @@ public class GlobalConst {
     public static final String PATH_NEKOMOBILE = "//storage/emulated/0/nekomobile";
     public static final String PATH_NEKOMOBILE_PICTURES = "//storage/emulated/0/nekomobile/bilder";
     public static final String PATH_SONTEX = "//storage/emulated/0/Supercom/roads";
+    public static final String PATH_QUNDIS = "//storage/emulated/0/qundis";
     public static final String PATH_SONTEX_OLD = "//storage/emulated/0/Supercom/roads";
     public static final String PATH_EXIM = "//storage/emulated/0/Exim";
 

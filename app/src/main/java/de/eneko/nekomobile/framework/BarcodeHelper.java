@@ -36,7 +36,7 @@ public class BarcodeHelper {
                 _line = _line.trim().replace("http://qr.tefm.ch/","");
                 _line = _line.trim().replace("?","");
                 _line = _line.trim().replace("http://qr.tefm.ch/","");
-                if (_line.startsWith("rub="))ret_val.setArtikelnummer(_line.replace("rub=",""));
+                if (_line.startsWith("rub=")) ret_val.setArtikelnummer(_line.replace("rub=",""));
                     if (_line.contains("NS=")){
                         _line = _line.substring(_line.indexOf("NS="));
                     }
@@ -49,31 +49,14 @@ public class BarcodeHelper {
             String[] retString = mBarcode.split("\\+");
             ret_val.setArtikelnummer(retString[0].substring(1));
             ret_val.setGeraetenummer(retString[6].substring(1));
-
-
-//            for (String _line : retString){
-//                _line = _line.trim().replace("http://qr.tefm.ch/","");
-//                _line = _line.trim().replace("?","");
-//                _line = _line.trim().replace("http://qr.tefm.ch/","");
-//               if (_line.startsWith("rub=")) ret_val.setArtikelnummer(_line.replace("rub=",""));
-//                if (_line.contains("NS=")){
-//                    _line = _line.substring(_line.indexOf("NS="));
-//                }
-//                if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
-//            }
         }
 
-
-
-
-        //2D Barcode vom Sontex
+        //2D Barcode vom Sontex Rauchmelder
         if (mBarcode.trim().startsWith("SON;")){
             String[] retString = mBarcode.split(";");
             ret_val.setGeraetenummer(retString[1]);
             ret_val.setArtikelnummer("1353");  //Ei6500 Typ C Ferninspektion nach DIN 14676
         }
-
-
         return  ret_val;
     }
 
