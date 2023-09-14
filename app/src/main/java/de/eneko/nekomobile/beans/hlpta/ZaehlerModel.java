@@ -11,11 +11,11 @@ public class ZaehlerModel {
     private final String mSontexAgent;
     private final String mSontexCaption;
     private final String mSontexDataToRead;
-
-
+    private final Boolean mIsQundisSimpleBarcode;
+    private final Boolean mIsQundisFunkSimpleBarcode;
 
     public  ZaehlerModel(String pId, String pBezeichnung, String pAustauschmodel, String pArt,String pFunkadapter, String pArtikelnummer,
-                         String pSontexAgent, String pSontexCaption, String pSontexDataToRead
+                         String pSontexAgent, String pSontexCaption, String pSontexDataToRead, String pIsQundisSimpleBarcode, String pIsQundisFunkSimpleBarcode
     ){
         mId = Integer.parseInt(pId);
         mBezeichnung = pBezeichnung;
@@ -27,6 +27,8 @@ public class ZaehlerModel {
         mSontexAgent = pSontexAgent;
         mSontexCaption = pSontexCaption;
         mSontexDataToRead = pSontexDataToRead;
+        mIsQundisSimpleBarcode = pIsQundisSimpleBarcode.equals("True");
+        mIsQundisFunkSimpleBarcode = pIsQundisFunkSimpleBarcode.equals("True");
     }
 
 
@@ -73,5 +75,12 @@ public class ZaehlerModel {
 
     public String getSontexDataToRead() {
         return mSontexDataToRead;
+    }
+
+    public Boolean getmIsQundisSimpleBarcode() {
+        return mIsQundisSimpleBarcode;
+    }
+    public Boolean getmIsQundisFunkSimpleBarcode() {
+        return mIsQundisFunkSimpleBarcode;
     }
 }

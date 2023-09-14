@@ -21,6 +21,7 @@ import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
@@ -312,6 +313,14 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
     protected void createLayout() {
 }
 
+    public ZaehlerModel getZaehlerModelById(Integer pId){
+        List<ZaehlerModel> q = Dict.getInstance().getZaehlerModels()
+                .stream()
+                .filter(r -> r.getId().equals(pId))
+                .collect(Collectors.toList());
+        return q.size() > 0 ? q.get(0): null ;
+    }
+
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -341,7 +350,13 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getTvNewNummer().setText(returnCode.getGeraetenummer());
+                ZaehlerModel zielmodel = this.getZaehlerModelById(this.getBasemodel().getZielmodel());
+                if (zielmodel != null && zielmodel.getmIsQundisSimpleBarcode() && returnCode.getGeraetenummer().length() == 10)
+                {
+                    getTvNewNummer().setText(returnCode.getGeraetenummer().substring(1,9));
+                }else{
+                    getTvNewNummer().setText(returnCode.getGeraetenummer());
+                }
                 safe = true;
             }
         }
@@ -367,7 +382,13 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
-                getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                ZaehlerModel zielmodel = this.getZaehlerModelById(this.getBasemodel().getZielmodel());
+                if (zielmodel != null && zielmodel.getmIsQundisFunkSimpleBarcode() && returnCode.getGeraetenummer().length() == 10)
+                {
+                    getTvNewFunkNummer().setText(returnCode.getGeraetenummer().substring(1,9));
+                }else{
+                    getTvNewFunkNummer().setText(returnCode.getGeraetenummer());
+                }
                 safe = true;
             }
         }

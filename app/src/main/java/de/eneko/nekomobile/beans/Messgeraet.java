@@ -400,10 +400,10 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         if (getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV)){
             // hier ist der Zähler auf jeden Fall ausgetauscht
             if (!getAustauschGrund().equals("X")) {return true;}
-            if (!getNeueNummer().equals("")) {return true;}
+            if (!getNeueNummer().equals("")) return true;
         }
         return false;
-    };
+    }
 
     public Boolean isUnDone(){
         if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){
