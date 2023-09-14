@@ -50,7 +50,6 @@ public class LiegenschaftActivity extends AppCompatActivity{
     protected MenuItem menuItemSonexaImport = null;
     protected MenuItem menuItemSonexaExport = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

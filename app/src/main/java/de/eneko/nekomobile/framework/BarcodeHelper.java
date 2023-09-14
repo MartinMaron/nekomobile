@@ -44,11 +44,17 @@ public class BarcodeHelper {
             }
         }
 
+        //3D Barcode vom Sontex
         if (mBarcode.trim().startsWith("SON;")){
             String[] retString = mBarcode.split(";");
             ret_val.setGeraetenummer(retString[1]);
             ret_val.setArtikelnummer("1353");  //Ei6500 Typ C Ferninspektion nach DIN 14676
         }
+
+
+
+
+
         return  ret_val;
     }
 

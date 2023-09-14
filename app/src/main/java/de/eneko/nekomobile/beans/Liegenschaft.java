@@ -97,7 +97,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateDateTextNode(ret_val, "stichtag", mStichtag);
             CreateTextNode(ret_val,"sontexFileName",mSontexFileName);
             CreateTextNode(ret_val,"sonexaProjectHash",mSonexaProjectHash);
-            CreateTextNode(ret_val,"sonexaProjectId",mSonexaProjectId);
+            CreateTextNode(ret_val,"sonexaProjectID",mSonexaProjectId);
             CreateTextNode(ret_val,"sonexaReadOut",mSonexaReadOut);
 
             Element element = document.createElement("todos");
@@ -171,7 +171,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                     case "sonexaProjectHash":
                         mSonexaProjectHash = getString(propElement);
                         break;
-                    case "sonexaProjectId":
+                    case "sonexaProjectID":
                         mSonexaProjectId = getString(propElement);
                         break;
                     case "stichtag":

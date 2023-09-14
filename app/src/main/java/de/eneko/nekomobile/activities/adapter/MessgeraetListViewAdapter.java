@@ -16,6 +16,7 @@ import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
 import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetRowViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 
 
 public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implements Filterable
@@ -65,21 +66,22 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
     public View getView(int index, View currentView, ViewGroup parent)
     {
 
+     CurrentObjectNavigation.getInstance().setOnBackPressedIntent( activity.getOnBackPressedIntent());
+
         //Extrahieren der NoteBean zum nutzen der Werte
         Messgeraet obj = getItem(index);
         if(currentView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             currentView = inflater.inflate(R.layout.list_item_messgeraet, parent, false);
-
         }
         MessgeraetBaseViewHolder viewHolder = new MessgeraetRowViewHolder(currentView, obj.getBaseModel(), activity);
         viewHolder.updateView();
 
         if (vhType == ViewHolderType.WORK) {
-            viewHolder.getTvOrt().setVisibility(View.GONE);
-            viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);
-            viewHolder.getTvSontexRssi().setVisibility(View.GONE);
+            if(viewHolder.getTvOrt() != null) {viewHolder.getTvOrt().setVisibility(View.GONE);}
+            if(viewHolder.getTvSontexNeueFunknummer() != null) {viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);}
+            if(viewHolder.getTvSontexRssi() != null) {viewHolder.getTvSontexRssi().setVisibility(View.GONE);}
         }
 
         if (vhType == ViewHolderType.SONEXA) {
@@ -103,7 +105,6 @@ public class MessgeraetListViewAdapter extends ArrayAdapter<Messgeraet> implemen
            viewHolder.getTvOrt().setVisibility(View.GONE);
            viewHolder.getTvSontexNeueFunknummer().setVisibility(View.GONE);
            viewHolder.getTvSontexRssi().setVisibility(View.GONE);
-
         }
 
         if (vhType == ViewHolderType.INFO_WITH_NAME) {

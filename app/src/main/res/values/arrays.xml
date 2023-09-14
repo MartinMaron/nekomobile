@@ -49,6 +49,8 @@
         <item>583;583 - Funkmodul Wasserzähler;0583R911</item>
         <item>541;541 - Funkmodul Wärmezähler;0</item>
         <item>531;531 - Funkmodul Wärmezähler;1</item>
+        <item>MOD;MOD - Modularis Wasserzähler;1</item>
+        <item>ALL;ALL - Allmess Wasserzähler;1</item>
     </array>
     <array name="webes_grundparameter">
         <item>11;Gliederheizkörper aus Stahlblech</item>
@@ -203,25 +205,28 @@
         <item>1294@Funk 281 Up.-Messkapsel Warmwasserzähler ABB@True@WWZ@ @0281RA0E0@http://www.sontex.com/Son281-read@Auslesen 281@1@</item>
         <item>1345@Funk 281 Up.-Messkapsel Warmwasserzähler Techem@True@WWZ@ @0281RB0E0@http://www.sontex.com/Son281-read@Auslesen 281@1@</item>
         <item>856@Funk 539 Wärmezähler QN 0,6  -KOAX - ista@True@WMZ@ @0539TL141R11@ @ @1@</item>
+        <item>1403@Funk 541 SensoStar U, QN 3,5 BL150mmm Ultraschall@False@WMZ@ @200954A50@http://www.sontex.com/Son541-read@Auslesen 541@1@</item>
         <item>1335@Funk 541 Wärmezähler SensoStar Ultraschall Qn 3.5 BL 150mm @False@WMZ@ @200954A50@http://www.sontex.com/Son541-read@Auslesen 541@1@</item>
-        <item>1329@Funk 581 - Kaltwasserzähler Brunata 307/2 K3 @True@KWZ@581@110037@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1328@Funk 581 - Warmwasserzähler Brunata 307/2 W3 @True@WWZ@581@114037@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1303@Funk 581 Aufputz Kaltwasserzähler 110mm@True@KWZ@581@25103@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1305@Funk 581 Aufputz Kaltwasserzähler 130mm@True@KWZ@581@25105@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1304@Funk 581 Aufputz Kaltwasserzähler Qn 1,5 80mm@True@KWZ@581@25102@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1304@Funk 581 Aufputz Kaltwasserzähler 80mm@True@KWZ@581@25102@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1306@Funk 581 Aufputz Warmwasserzähler 110mm@True@WWZ@581@25603@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1308@Funk 581 Aufputz Warmwasserzähler 130mm@True@WWZ@581@25605@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1307@Funk 581 Aufputz Warmwasserzähler Qn 1,5 80mm@True@WWZ@581@25602@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1307@Funk 581 Aufputz Warmwasserzähler 80mm@True@WWZ@581@25602@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1355@Funk 581- UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@581@110065@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1400@Funk 581- UP Warmwasserzähler Deltamess Qn 1,5 @True@WWZ@581@ @http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1267@Funk 581 Up. Kaltwasserzähler-  KOAX ista@True@KWZ@581@50030@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1271@Funk 581 Up. Kaltwasserzähler 581  Allmess @True@KWZ@581@60050@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1302@Funk 581 Up. Kaltwasserzähler ABB@True@KWZ@581@60010@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1329@Funk 581 Up. Kaltwasserzähler Brunata 307/2 K3 @True@KWZ@581@110037@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1358@Funk 581 Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@581@60510@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1302@Funk 581 Up. Messkapsel Kaltwasserzähler ABB@True@KWZ@581@60010@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1357@Funk 581 Up. Messkapsel Kaltwasserzähler Techem@True@KWZ@581@60240@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1301@Funk 581 Up. Messkapsel Warmwasserzähler ABB@True@WWZ@581@60020@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
-        <item>1356@Funk 581 Up. Messkapsel Warmwasserzähler Techem@True@WWZ@581@60230@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1357@Funk 581 Up. Kaltwasserzähler Techem@True@KWZ@581@60240@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1266@Funk 581 Up. Warmwasserzähler  KOAX ista@True@WWZ@581@50040@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1272@Funk 581 Up. Warmwasserzähler 581  Allmess@True@WWZ@581@60060@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1301@Funk 581 Up. Warmwasserzähler ABB@True@WWZ@581@60020@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1328@Funk 581 Up. Warmwasserzähler Brunata 307/2 W3 @True@WWZ@581@114037@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1359@Funk 581 Up. Warmwasserzähler SPX Pollux Qn 1,5 @True@WWZ@581@60520@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
+        <item>1356@Funk 581 Up. Warmwasserzähler Techem@True@WWZ@581@60230@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1397@Funk 581 VZ/MBZ-Kaltwasserzähler Qn 1,5 @True@KWZ@581@ @http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1343@Funk 581 VZ/MBZ-Warmwasserzähler Qn 1,5 @True@WWZ@581@700019-02@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1372@Funk 583 - AP 110mm Kaltwasserzähler@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
@@ -230,22 +235,26 @@
         <item>1380@Funk 583 - AP 130mm Warmwasserzähler@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1373@Funk 583 - AP 80mm Kaltwasserzähler@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1374@Funk 583 - AP 80mm Warmwasserzähler@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1376@Funk 583 - Kaltwasserzähler Brunata 307/2 K3@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1377@Funk 583 - Up. Kaltwasserzähler ABB - MOC@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1341@Funk 583 - Up. Kaltwasserzähler Allmess @True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1376@Funk 583 - Up. Kaltwasserzähler Brunata 307/2 K3@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1369@Funk 583 - Up. Kaltwasserzähler Koax@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1383@Funk 583 - Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1382@Funk 583 - Up. Kaltwasserzähler Techem@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1378@Funk 583 - Up. Warmwasserzähler ABB - MOC@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1340@Funk 583 - Up. Warmwasserzähler Allmess@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1375@Funk 583 - Up. Warmwasserzähler Brunata 307/2 W3 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1370@Funk 583 - Up. Warmwasserzähler Koax@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1375@Funk 583 - Warmwasserzähler Brunata 307/2 W3 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1377@Funk 583 Up.  Kaltwasserzähler ABB - MOC@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1378@Funk 583 Up.  Warmwasserzähler ABB - MOC@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1340@Funk 583 Up.  Warmwasserzähler Allmess@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1383@Funk 583 Up. Kaltwasserzähler SPX Pollux Qn 1,5 @True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1382@Funk 583 Up. Kaltwasserzähler Techem@True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1384@Funk 583 Up. Warmwasserzähler SPX Pollux Qn 1,5 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
-        <item>1381@Funk 583 Up. Warmwasserzähler Techem@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1384@Funk 583 - Up. Warmwasserzähler SPX Pollux Qn 1,5 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1381@Funk 583 - Up. Warmwasserzähler Techem@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1402@Funk 583- UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
+        <item>1401@Funk 583- UP Warmwasserzähler Deltamess Qn 1,5 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1399@Funk 583 VZ/MBZ-Kaltwasserzähler Qn 1,5 @True@KWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1398@Funk 583 VZ/MBZ-Warmwasserzähler Qn 1,5 @True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@</item>
         <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @ @ @1@</item>
         <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @ @ @1@</item>
+        <item>1406@Funk Modularis - AP 110mm Kaltwasserzähler@True@KWZ@MOD@ @ @ @1@</item>
+        <item>1405@Funk Modularis - UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@MOD@ @ @ @1@</item>
         <item>1250@Funk -Unterputz-Messkapsel Kaltwasser e-wireless @False@KWZ@ @110025@ @ @1@</item>
         <item>1251@Funk -Unterputz-Messkapsel Warmwasser e-wireless @False@WWZ@ @ @ @ @1@</item>
         <item>1361@Funk Wärme - Kältezähler SC789  Qn2.5 - Funk- 130mm@True@WMZ@ @0789RN141R5EE01@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@</item>
@@ -270,7 +279,6 @@
         <item>1364@Funk Wärmezähler SC739 Qn 2,5 Techem @True@WMZ@ @0739UN241R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@</item>
         <item>1339@Funk Wärmezähler SC789 Qn 1,5 Baulänge 110mm@True@WMZ@ @0789RL141R5EE01@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@</item>
         <item>1254@Funk -Zapfhahn- Kaltwasserzähler e-wireless @False@KWZ@ @ @ @ @1@</item>
-        <item>1266@Funk-581 Warmwasserzähler UP - KOAX ista@True@WWZ@581@50040@http://www.sontex.com/Son581-read@Auslesen 581@1@</item>
         <item>1244@Funkmodem SONTEX 545@False@GAS@ @750050@ @ @1@</item>
         <item>1245@Funkmodem SONTEX 545@False@GAS@ @750050@ @ @1@</item>
         <item>1224@Funkmodul 540-2@False@GAS@ @750100@ @ @1@</item>
@@ -413,6 +421,7 @@
         <item>1028@Plombierschelle R1/2", für Qn 0.6/1.5@False@ZUB@ @700300@ @ @1@</item>
         <item>1027@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@ @ @1@</item>
         <item>1029@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@ @ @1@</item>
+        <item>1404@Qundis EHKV Caloric 5.5@True@HKV@ @HCA 50008B3C000000@ @ @1@</item>
         <item>1353@Rauchwarnmelder- Funk  Ei6500 Typ C Ferninspektion nach DIN 14676@True@RWM@ @EI6500SA2RRE001@http://www.sontex.com/SonSacSonSA2-read@Auslesen SA2-R@1@</item>
         <item>878@Rechenwerk SensoStar2C@False@WMZ@ @301200@ @ @1@</item>
         <item>879@Rechenwerk SensoStar2C@False@WMZ@ @301210@ @ @1@</item>

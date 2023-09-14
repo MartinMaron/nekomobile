@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private void initializeHlptas(){
-        FileHandler.getInstance().setNekoDropBox(new NekoDropBox(this));
+//        FileHandler.getInstance().setNekoDropBox(new NekoDropBox(this));
         FileHandler.getInstance().setFTPManager(new FTPManager(this));
         Dict.getInstance().initializeHelpers(this);
     }

@@ -10,7 +10,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_sonexaImport"
-        android:icon="@drawable/icon_sonexa_import"
+        android:icon="@drawable/icon_ablesung_sontex"
         android:iconTintMode="add"
         android:title="@string/speichern"
         app:showAsAction="always" />

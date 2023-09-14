@@ -354,6 +354,16 @@ public abstract class MessgeraetListActivity extends AppCompatActivity
     public ListView getListView() {
         return mListView;
     }
+
+    public Intent getOnBackPressedIntent() {
+        return onBackPressedIntent;
+    }
+
+    public void setOnBackPressedIntent(Intent onBackPressedIntent) {
+        this.onBackPressedIntent = onBackPressedIntent;
+    }
+
+
 // endregion
 
 
