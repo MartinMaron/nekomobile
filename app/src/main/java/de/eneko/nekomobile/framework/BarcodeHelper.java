@@ -47,8 +47,13 @@ public class BarcodeHelper {
         //3D Barcode vom Qundis
         if (mBarcode.trim().startsWith("P") && mBarcode.length() > 50 ){
             String[] retString = mBarcode.split("\\+");
-            ret_val.setArtikelnummer(retString[0].substring(1));
-            ret_val.setGeraetenummer(retString[6].substring(1));
+            for (String _line : retString){
+                if (_line.startsWith("P")) ret_val.setArtikelnummer(_line.replace("P",""));
+                if (_line.startsWith("S")) ret_val.setGeraetenummer(_line.replace("S",""));
+            }
+
+//            ret_val.setArtikelnummer(retString[0].substring(1));
+//            ret_val.setGeraetenummer(retString[6].substring(1));
         }
 
         //2D Barcode vom Sontex Rauchmelder
