@@ -9,10 +9,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
+import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ibewertung {
@@ -420,6 +424,16 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         }
         return false;
     };
+
+    public Boolean isZielmodelQundis(){
+        Boolean ret_val = false;
+        if (getZielmodel() != null){
+            ZaehlerModel zm = Dict.getInstance().getZaehlerModel(getZielmodel());
+            ret_val = zm.getmIsQundisFunk();
+        }
+        return ret_val;
+    }
+
 
     public Boolean isWithError(){
         if (getTodo().getArt().equals(Dict.TODO_ABLESUNG)){

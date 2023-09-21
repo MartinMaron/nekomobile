@@ -92,7 +92,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
             CreateDoubleNode(ret_val,"latitude",mLatitude);
             CreateDoubleNode(ret_val,"longitude",mLongitude);
             CreateTextNode(ret_val,"adresse",mAdresse);
-            CreateTextNode(ret_val,"plZ",mPlZ);
+            CreateTextNode(ret_val,"plz",mPlZ);
             CreateTextNode(ret_val,"notizMitarbeiter",mNotizMitarbeiter);
             CreateDateTextNode(ret_val, "stichtag", mStichtag);
             CreateTextNode(ret_val,"sontexFileName",mSontexFileName);
@@ -285,6 +285,15 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
                 getMessgeraets().stream()
                 .filter(m -> m.isDone())
                 .collect(Collectors.toList())
+        );
+        return ret_val;
+    }
+    public ArrayList<Messgeraet> getNewQundisMessgeraets(){
+        ArrayList<Messgeraet> ret_val = new ArrayList<Messgeraet>();
+        ret_val.addAll(
+                getMessgeraets().stream()
+                        .filter(m -> m.isDone() && m.getZielmodel() != null && m.isZielmodelQundis())
+                        .collect(Collectors.toList())
         );
         return ret_val;
     }

@@ -29,6 +29,7 @@ import de.eneko.nekomobile.activities.viewHolder.Liegenschaft.LiegenschaftDetail
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
+import de.eneko.nekomobile.controllers.QundisFileHandler;
 import de.eneko.nekomobile.controllers.SontexFileHandler;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -219,9 +220,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
         case R.id.menu_item_QundisPltExport:
             viewHolder.save();
             ArrayList<Messgeraet> messg = new ArrayList<Messgeraet>();
-            //messg.add(viewHolder.getBean());
-            SontexFileHandler.getInstance().upsertSontexParamRoad(viewHolder.getActivity(),messg);
-
+            QundisFileHandler.getInstance().exportQundisPltFile(viewHolder.getActivity(),viewHolder.getBasemodel().getBean());
             exit();
         }
         return false;

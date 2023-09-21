@@ -88,4 +88,12 @@ public class ZaehlerModel {
     public Boolean getmIsQundisFunkSimpleBarcode() {
         return mIsQundisFunkSimpleBarcode;
     }
+
+    public Boolean getmIsQundisFunk() {
+        return mIsQundisFunk;
+    }
+
+    public String getmQundisGeraeteArt() {
+        return mQundisGeraeteArt;
+    }
 }

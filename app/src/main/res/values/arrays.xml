@@ -80,7 +80,7 @@
         <item>82;Rohrregister</item>
         <item>83;Rohre aus Verbindungsleitungen</item>
         <item>91;Fensterbankradiatoren aus Stahlrohren</item>
-        </array>
+    </array>
     <array name="zaehler_modele">
         <item>-1@empty@True@ALL@ @ @ @ @ @ false@false@ @ @</item>
         <item>1046@Abdeckhaube blau für Zapfhahnzähler@False@ZUB@ @700005-2@ @ @1@False@False@False@ @</item>
