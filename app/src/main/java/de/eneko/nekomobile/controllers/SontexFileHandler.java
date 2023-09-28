@@ -263,6 +263,7 @@ public class SontexFileHandler
         mFilename = mFilename.replaceAll("ö", "oe");
         mFilename = mFilename.replaceAll("ü", "ue");
         mFilename = mFilename.replaceAll("ä", "ae");
+        mFilename = mFilename.replaceAll("ß", "ss");
         mFilename = mFilename.replaceAll("\\|", "_");
         return mFilename;
     }

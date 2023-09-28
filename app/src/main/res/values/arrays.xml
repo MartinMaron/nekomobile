@@ -243,17 +243,37 @@
         <item>1252@Funk -Aufputz- Kaltwasser e-wireless @False@KWZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1253@Funk -Aufputz- Warmwasserzähler e-wireless @False@WWZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1406@Funk Modularis - AP 110mm Kaltwasserzähler@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
-        <item>1410@Funk Modularis UP Kaltwasserzähler Minol MB 3 qn 1,5@True@KWZ@ALL@WMM40000J001 00V00@ @ @1@False@True@True@7@</item>
+        <item>1414@Funk Modularis - AP 110mm Warmwasserzähler@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1421@Funk Modularis - AP 130mm Kaltwasserzähler@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1422@Funk Modularis - AP 130mm Warmwasserzähler@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1415@Funk Modularis - AP 80mm Kaltwasserzähler@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1416@Funk Modularis - AP 80mm Warmwasserzähler@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1424@Funk Modularis UP Kaltwasserzähler Allmess qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1419@Funk Modularis UP Kaltwasserzähler Brunata HT3 qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1417@Funk Modularis UP Kaltwasserzähler Koax qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1410@Funk Modularis UP Kaltwasserzähler Minol MB 3 qn 1,5@True@KWZ@MOD@WMM40000J001 00V00@ @ @1@False@True@True@7@</item>
         <item>1407@Funk Modularis UP Kaltwasserzähler MOE qn 1,5@True@KWZ@MOD@WMM40000A001 00V00@ @ @1@False@True@True@7@</item>
+        <item>1428@Funk Modularis UP Kaltwasserzähler SPX Pollux Qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1426@Funk Modularis UP Kaltwasserzähler Techem qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1423@Funk Modularis UP Warmwasserzähler Allmess qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1420@Funk Modularis UP Warmwasserzähler Brunata HT3 qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1418@Funk Modularis UP Warmwasserzähler Koax qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1412@Funk Modularis UP Warmwasserzähler Minol MB 3 qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
         <item>1408@Funk Modularis UP Warmwasserzähler MOE qn 1,5@True@WWZ@MOD@WMM40010A001 00V00@ @ @1@False@True@True@7@</item>
+        <item>1429@Funk Modularis UP Warmwasserzähler SPX Pollux Qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1427@Funk Modularis UP Warmwasserzähler Techem qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
+        <item>1430@Funk Modularis VZ/MBZ Kaltwasserzähler Qn 1,5@True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1431@Funk Modularis VZ/MBZ Warmwasserzähler Qn 1,5@True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
         <item>1405@Funk Moularis - UP Kaltwasserzähler Deltamess Qn 1,5 @True@KWZ@MOD@ @ @ @1@False@True@True@7@</item>
+        <item>1413@Funk Moularis - UP Warmwasserzähler Deltamess Qn 1,5 @True@WWZ@MOD@ @ @ @1@False@True@True@6@</item>
         <item>1250@Funk -Unterputz-Messkapsel Kaltwasser e-wireless @False@KWZ@ @110025@ @ @1@False@False@False@ @</item>
         <item>1251@Funk -Unterputz-Messkapsel Warmwasser e-wireless @False@WWZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1361@Funk Wärme - Kältezähler SC789  Qn2.5 - Funk- 130mm@True@WMZ@ @0789RN141R5EE01@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1362@Funk Wärme- Kältezähler SC 789 Qn 1,5 Baulänge 130mm@True@WMZ@ @0789RM141R5EE01@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @True@WMZ@ @RN141R11 @http://www.sontex.com/Son539-read@Auslesen 539@1@False@False@False@ @</item>
-        <item>1409@Funk Wärmezähler Qundis - Qn1.5 - Allmess@False@WMZ@ @HMR5-000G-8820 00010@ @ @1@False@False@True@4@</item>
-        <item>1411@Funk Wärmezähler Qundis - Qn1.5 - AP 110mm@False@WMZ@ @HMR5-000G-1020 00010@ @ @1@False@False@True@4@</item>
+        <item>1409@Funk Wärmezähler Qundis - Qn1.5 - Allmess@True@WMZ@ @HMR5-000G-8820 00010@ @ @1@False@False@True@4@</item>
+        <item>1411@Funk Wärmezähler Qundis - Qn1.5 - AP 110mm@True@WMZ@ @HMR5-000G-1020 00010@ @ @1@False@False@True@4@</item>
+        <item>1425@Funk Wärmezähler Qundis - Qn2.5 - AP 130mm@True@WMZ@ @ @ @ @1@False@False@True@4@</item>
         <item>1316@Funk Wärmezähler SC739 - Qn 0,6 - Allmess@True@WMZ@ @0739SJ841R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1312@Funk Wärmezähler SC739 - Qn 0,6 - KOAX ista@True@WMZ@ @0739TJ141R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1314@Funk Wärmezähler SC739 - Qn1.5 - Allmess@True@WMZ@ @0739SL841R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
