@@ -688,6 +688,7 @@
         <item>1050@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@ @ @1@False@False@False@ @</item>
         <item>801@Zapfhahn-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @410010@ @ @1@False@False@False@ @</item>
         <item>955@Zapfhahn-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @410050@ @ @1@False@False@False@ @</item>
+        <item>1432@EHKV Typ Sontex OMS@True@HKV@ @ @http://www.sontex.com/SonOMS-read@Auslesen OMS@1@False@False@False@ @</item>
     </array>
     <array name="rwm_Austauschgrund">
         <item>XX;kein Austausch </item>
