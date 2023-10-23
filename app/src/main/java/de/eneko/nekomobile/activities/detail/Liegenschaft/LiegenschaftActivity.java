@@ -150,14 +150,20 @@ public class LiegenschaftActivity extends AppCompatActivity{
                         .filter(m -> m.getSonexaId() == -1)
                         .collect(Collectors.toList())
                 );
+                Liste = new ArrayList<>();
 
-                if (Liste.stream().count() == 0){
+                ArrayList Liste_RWM = new ArrayList<>();
+                Liste_RWM.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getRauchmelder().stream()
+                        .collect(Collectors.toList())
+                );
+
+                if (Liste.stream().count() == 0 && Liste_RWM.stream().count() == 0 ){
                     return false;
                 }
 
                 client = new OkHttpClient();
                 //Auslesedatei format xml
-                String xmlContent = SontexFileHandler.getInstance().createSonexaRoad(viewHolder.getActivity(),Liste);
+                String xmlContent = SontexFileHandler.getInstance().createSonexaRoad(viewHolder.getActivity(),Liste, Liste_RWM);
                 RequestBody body = RequestBody.create(MediaType.parse("application/xml"),xmlContent);
 
                 // Project Id

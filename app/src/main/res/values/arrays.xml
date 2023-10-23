@@ -26,13 +26,14 @@
         <item>altgerät kann nicht ausgebaut werden</item>
     </array>
     <array name="rwm_modele">
+        <item>1353;Ei6500 (Sontexfunk) Typ C Ferninspektion nach DIN 14676</item>
+        <item>1433;Ei6500 (OMS) Typ C Ferninspektion nach DIN 14676</item>
         <item>1264;i650 ei Elektronics</item>
         <item>1336;i650 ei Elektronics (Fremdgerät)</item>
         <item>1277;Heckatron Rauchmelder</item>
         <item>1278;Mertens Rauchmelder</item>
         <item>1337;GIRA Fremdgerät</item>
         <item>1349;ABUS - Rauchmelder</item>
-        <item>1353;Ei6500 Typ C Ferninspektion nach DIN 14676</item>
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>
@@ -143,6 +144,7 @@
         <item>1292@EHKV Typ Sontex 565@False@HKV@ @EHKV Typ Sontex 565@ @ @1@False@False@False@ @</item>
         <item>1273@EHKV Typ Sontex 566 Funksystem@True@HKV@ @ @http://www.sontex.com/Son566-read@Auslesen 566@1@False@False@False@ @</item>
         <item>1274@EHKV Typ Sontex 566 Funksystem mit Fernfühler@True@HKV@ @ @http://www.sontex.com/Son566-read@Auslesen 566@1@False@False@False@ @</item>
+        <item>1432@EHKV Typ Sontex 868 OMS@True@HKV@ @0878R22E004@http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
         <item>1264@ei Elektronics i650@False@RWM@ @ @ @ @1@False@False@False@ @</item>
         <item>1336@ei Elektronics i650 (Fremdgerät)@False@RWM@ @ @ @ @1@False@False@False@ @</item>
         <item>1158@Einbaubügel senkrecht Qn2,5, 1" x 1"@False@ZUB@ @700216@ @ @1@False@False@False@ @</item>
@@ -273,7 +275,7 @@
         <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @True@WMZ@ @RN141R11 @http://www.sontex.com/Son539-read@Auslesen 539@1@False@False@False@ @</item>
         <item>1409@Funk Wärmezähler Qundis - Qn1.5 - Allmess@True@WMZ@ @HMR5-000G-8820 00010@ @ @1@False@False@True@4@</item>
         <item>1411@Funk Wärmezähler Qundis - Qn1.5 - AP 110mm@True@WMZ@ @HMR5-000G-1020 00010@ @ @1@False@False@True@4@</item>
-        <item>1425@Funk Wärmezähler Qundis - Qn2.5 - AP 130mm@True@WMZ@ @ @ @ @1@False@False@True@4@</item>
+        <item>1425@Funk Wärmezähler Qundis - Qn2.5 - AP 130mm@True@WMZ@ @HMR5000G2020001@ @ @1@False@False@True@4@</item>
         <item>1316@Funk Wärmezähler SC739 - Qn 0,6 - Allmess@True@WMZ@ @0739SJ841R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1312@Funk Wärmezähler SC739 - Qn 0,6 - KOAX ista@True@WMZ@ @0739TJ141R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
         <item>1314@Funk Wärmezähler SC739 - Qn1.5 - Allmess@True@WMZ@ @0739SL841R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
@@ -417,7 +419,8 @@
         <item>1027@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@ @ @1@False@False@False@ @</item>
         <item>1029@Plombierschelle R3/4", für Qn 2.5@False@ZUB@ @700305@ @ @1@False@False@False@ @</item>
         <item>1404@Qundis EHKV Caloric 5.5@True@HKV@ @HCA 50008B3C000000@ @ @1@True@False@True@8@</item>
-        <item>1353@Rauchwarnmelder- Funk  Ei6500 Typ C Ferninspektion nach DIN 14676@True@RWM@ @EI6500SA2RRE001@http://www.sontex.com/SonSacSonSA2-read@Auslesen SA2-R@1@False@False@False@ @</item>
+        <item>1353@Rauchwarnmelder- Funk Sontex  Ei6500 Typ C Ferninspektion nach DIN 14676@True@RWM@ @EI6500SA2RRE001@http://www.sontex.com/SonSac-read@Auslesen SA2-R@1@False@False@False@ @</item>
+        <item>1433@Rauchwarnmelder- OMS Ei6500 Typ C Ferninspektion nach DIN 14676@True@RWM@ @EI6500SA2ORE001 @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
         <item>878@Rechenwerk SensoStar2C@False@WMZ@ @301200@ @ @1@False@False@False@ @</item>
         <item>879@Rechenwerk SensoStar2C@False@WMZ@ @301210@ @ @1@False@False@False@ @</item>
         <item>880@Rechenwerk SensoStar2C@False@WMZ@ @301220@ @ @1@False@False@False@ @</item>
@@ -688,7 +691,6 @@
         <item>1050@Zählerersatzstück 80 mm, AG 3/4"@False@ZUB@ @740201@ @ @1@False@False@False@ @</item>
         <item>801@Zapfhahn-Kaltwasserzähler Qn 1.5 m3/h@False@KWZ@ @410010@ @ @1@False@False@False@ @</item>
         <item>955@Zapfhahn-Warmwasserzähler Qn 1.5 m3/h@False@WWZ@ @410050@ @ @1@False@False@False@ @</item>
-        <item>1432@EHKV Typ Sontex OMS@True@HKV@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen OMS@1@False@False@False@ @</item>
     </array>
     <array name="rwm_Austauschgrund">
         <item>XX;kein Austausch </item>

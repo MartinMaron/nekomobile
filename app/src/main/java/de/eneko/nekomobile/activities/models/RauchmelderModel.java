@@ -59,6 +59,16 @@ public class RauchmelderModel extends Basemodel {
         return !getWithError() && !getDone() && !getBean().getNekoId().contains("new");
     }
 
+
+    public String getSonexaFunkadress(){
+        if (!getNeueNummer().equals("")) {
+            return getNeueNummer();
+        }else{
+            return  getNummer();
+        }
+    }
+
+
     //region properties
     public String getNummer() {
         return mNummer;

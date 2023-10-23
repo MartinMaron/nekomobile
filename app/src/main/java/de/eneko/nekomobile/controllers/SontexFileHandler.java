@@ -31,6 +31,7 @@ import javax.xml.transform.stream.StreamResult;
 import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.beans.BaseObject;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.beans.sontex.Group;
 import de.eneko.nekomobile.beans.sontex.Road;
@@ -119,7 +120,7 @@ public class SontexFileHandler
     }
 
 
-    public String createSonexaRoad(Activity sourceActivity, ArrayList<Messgeraet> messgeraete){
+    public String createSonexaRoad(Activity sourceActivity, ArrayList<Messgeraet> messgeraete, ArrayList<Rauchmelder> rauchmelder){
         //finden der Datei und laden in Road-Objekt
         Road road = null;
 
@@ -134,17 +135,33 @@ public class SontexFileHandler
         }
 
         Element roadElement = null;
-        File fi = messgeraete.get(0).getSontexFile();
+        File fi = null;
+
+        if (messgeraete.size() > 0){
+            fi = messgeraete.get(0).getSontexFile();
+        }
+        if (rauchmelder.size() > 0){
+             fi = rauchmelder.get(0).getSontexFileName();
+        }
 
         road = loadFile(fi,sourceActivity);
         roadElement = road.getElement();
-
 
         for (int i = 0; i < messgeraete.size(); i++)
         {
             // stworzyc Task
             roadElement.appendChild(CreateReadTaskElement(messgeraete.get(i),roadElement.getOwnerDocument()));
         }
+        for (int i = 0; i < rauchmelder.size(); i++)
+        {
+            Element el = CreateReadTaskElement(rauchmelder.get(i),roadElement.getOwnerDocument());
+            // stworzyc Task
+            if(el != null){
+                roadElement.appendChild(el);
+            }
+        }
+
+
 
         //neuanlage der Aufgabe
 
@@ -505,6 +522,41 @@ if (_CreateDateFuture20_Element) {
     //    _TaskElement.appendChild(_DataElement);
         return _TaskElement;
     }
+
+    Element CreateReadTaskElement(Rauchmelder rauchmelder, Document document){
+
+        ZaehlerModel zaehlerModel = Dict.getInstance().getZaehlerModel(rauchmelder.getModel());
+        String funknummer = rauchmelder.getBaseModel().getSonexaFunkadress();
+
+        if(zaehlerModel.getSontexAgent().equals("")){return null;};
+
+//Standardstruktur wird angelegt
+        Element _TaskElement = document.createElement("Task");
+        Element _InfoElement = document.createElement("Info");
+        Element _ParamElement = document.createElement("Param");
+        //   Element _LastActionDateElement = document.createElement("LastActionDate");
+        //    Element _DataElement = document.createElement("Data");
+        //  Element _EncryptedDataElement = document.createElement("EncryptedData");
+
+        //Attribute
+        _TaskElement.setAttribute("Agent", zaehlerModel.getSontexAgent());
+        _TaskElement.setAttribute("Status", "ToDo");
+        _TaskElement.setAttribute("Caption", zaehlerModel.getSontexCaption());
+
+        BaseObject.CreateTextNode(_InfoElement,"Hint","");
+        BaseObject.CreateTextNode(_InfoElement,"User","");
+
+        //ParamElement
+        BaseObject.CreateTextNode(_ParamElement,"RadioAddr",funknummer);
+        BaseObject.CreateTextNode(_ParamElement,"DataToRead", zaehlerModel.getSontexDataToRead());
+
+        _TaskElement.appendChild(_InfoElement);
+        _TaskElement.appendChild(_ParamElement);
+        //    _TaskElement.appendChild(_DataElement);
+        return _TaskElement;
+    }
+
+
 
 
 

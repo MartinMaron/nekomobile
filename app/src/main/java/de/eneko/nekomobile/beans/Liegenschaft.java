@@ -298,6 +298,19 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         return ret_val;
     }
 
+    public List<Rauchmelder> getRauchmelder(){
+        ArrayList<Rauchmelder> ret_val = new ArrayList<>();
+        getNutzers().forEach((n) ->
+                n.getToDos().stream()
+                        .filter(td -> !td.getArt().contains("INF"))
+                        .collect(Collectors.toList())
+                        .forEach((t) ->
+                                ret_val.addAll(t.getRauchmelder())
+                        )
+        );
+        return ret_val;
+    }
+
 
 
     public void setNutzers(List<Nutzer> nutzers) {
