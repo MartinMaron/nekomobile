@@ -61,7 +61,7 @@ public class RauchmelderModel extends Basemodel {
 
 
     public String getSonexaFunkadress(){
-        if (!getNeueNummer().equals("")) {
+        if ( getNeueNummer() != null && !getNeueNummer().equals("")) {
             return getNeueNummer();
         }else{
             return  getNummer();

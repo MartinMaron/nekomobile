@@ -28,6 +28,7 @@ import de.eneko.nekomobile.controllers.FileHandler;
 public class FTPManager {
     private static final String TAG = FTPManager.class.getName();
     public static final String NEKOMOBILE_PATH = GlobalConst.NEKOMOBILE_USER + "/nekomobile";
+    public static final String QUNDIS_PATH = GlobalConst.NEKOMOBILE_USER + "/qundis";
     public static final String SONTEX_PATH = GlobalConst.NEKOMOBILE_USER + "/sontex";
     public static final String EXIM_PATH = GlobalConst.NEKOMOBILE_USER + "/exim";
     public static final String BILDER_PATH = GlobalConst.NEKOMOBILE_USER + "/bilder";
@@ -58,6 +59,7 @@ public class FTPManager {
         downloadPaths.add(new PathPair(NEKOMOBILE_PATH,GlobalConst.PATH_NEKOMOBILE));
         downloadPaths.add(new PathPair(SONTEX_PATH,GlobalConst.PATH_SONTEX));
         downloadPaths.add(new PathPair(EXIM_PATH,GlobalConst.PATH_EXIM));
+        downloadPaths.add(new PathPair(QUNDIS_PATH,GlobalConst.PATH_QUNDIS));
         responseHandler = pResponseHandler;
         currentlyDownloadedFiles = new ArrayList<String>();
         performDownloadWithSetPermissions();
@@ -67,6 +69,7 @@ public class FTPManager {
         downloadPaths.add(new PathPair(NEKOMOBILE_PATH,GlobalConst.PATH_NEKOMOBILE));
         downloadPaths.add(new PathPair(SONTEX_PATH,GlobalConst.PATH_SONTEX));
         downloadPaths.add(new PathPair(EXIM_PATH,GlobalConst.PATH_EXIM));
+        downloadPaths.add(new PathPair(QUNDIS_PATH,GlobalConst.PATH_QUNDIS));
         responseHandler = pResponseHandler;
         performUploadWithSetPermissions();
     }

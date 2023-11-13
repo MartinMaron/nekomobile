@@ -28,6 +28,7 @@ import de.eneko.nekomobile.activities.list.MessgeraetSonexaListActivity;
 import de.eneko.nekomobile.activities.viewHolder.Liegenschaft.LiegenschaftDetailViewHolder;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.QundisFileHandler;
 import de.eneko.nekomobile.controllers.SontexFileHandler;
@@ -47,6 +48,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
     protected LiegenschaftDetailViewHolder viewHolder = null;
 
     protected ArrayList<Messgeraet> Liste = new ArrayList<>();
+    protected ArrayList<Rauchmelder> Liste_RWM = new ArrayList<>();
 
     protected MenuItem menuItemSonexaImport = null;
     protected MenuItem menuItemSonexaExport = null;
@@ -150,14 +152,13 @@ public class LiegenschaftActivity extends AppCompatActivity{
                         .filter(m -> m.getSonexaId() == -1)
                         .collect(Collectors.toList())
                 );
-                Liste = new ArrayList<>();
 
-                ArrayList Liste_RWM = new ArrayList<>();
+                Liste_RWM = new ArrayList<>();
                 Liste_RWM.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getRauchmelder().stream()
                         .collect(Collectors.toList())
                 );
 
-                if (Liste.stream().count() == 0 && Liste_RWM.stream().count() == 0 ){
+                if (Liste.size() == 0 && Liste_RWM.size() == 0 ){
                     return false;
                 }
 
