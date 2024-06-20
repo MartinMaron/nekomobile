@@ -4,38 +4,16 @@ package de.eneko.nekomobile.controllers;
 import android.app.Activity;
 import android.widget.Toast;
 
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import java.io.*;
-
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.stream.Collectors;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.beans.BaseObject;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
-import de.eneko.nekomobile.beans.sontex.Group;
 import de.eneko.nekomobile.beans.sontex.Road;
 
 
@@ -87,7 +65,9 @@ public class QundisFileHandler
 
         ArrayList<Messgeraet> messgeraete = pLiegenschaft.getNewQundisMessgeraets();
         String data = null;
-        String fileName  = GlobalConst.PATH_QUNDIS + "/" + SontexFileHandler.getInstance().safeFileNameConverter(pLiegenschaft.getAdresseOneLine() + ".plt");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        String fileName  = GlobalConst.PATH_QUNDIS + "/" + SontexFileHandler.getInstance().safeFileNameConverter(pLiegenschaft.getAdresseOneLine()+ " " + timestamp.getTime() + ".neko.plt");
         data = "[PLANT]" + System.getProperty("line.separator");
         data += "Nummer	Hersteller	Geräte ID	Fabrikations-Nr.	Version	Gerätetyp " + System.getProperty("line.separator");
 
@@ -96,11 +76,11 @@ public class QundisFileHandler
             ZaehlerModel zm = Dict.getInstance().getZaehlerModel(messgeraete.get(i).getZielmodel());
             String nummer = messgeraete.get(i).getNeueFunkNummer().equals("") ? messgeraete.get(i).getNeueNummer(): messgeraete.get(i).getNeueFunkNummer();
             data += (i+1) + "\t"
-                    + "QDS" + "   "
+                    + "QDS" + "\t"
                     + nummer + "\t"
-                    + nummer + "   "
-                    + "*" + "   "
-                    + zm.getmQundisGeraeteArt() + System.getProperty("line.separator");
+                    + nummer + "\t"
+                    + "*" + "\t"
+                    + "*" + System.getProperty("line.separator");
         }
         writeUsingFileWriter(data,fileName);
     }

@@ -351,12 +351,33 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             if (!returnCode.getGeraetenummer().equals("")){
                 ZaehlerModel zielmodel = this.getZaehlerModelById(this.getBasemodel().getZielmodel());
-                if (zielmodel != null && zielmodel.getmIsQundisSimpleBarcode() && returnCode.getGeraetenummer().length() == 10)
-                {
-                    getTvNewNummer().setText(returnCode.getGeraetenummer().substring(1,9));
-                }else{
-                    getTvNewNummer().setText(returnCode.getGeraetenummer());
-                }
+                if (zielmodel != null && zielmodel.getmIsQundisSimpleBarcode())
+                    { if (returnCode.getGeraetenummer().length() == 10)
+                        {
+                            //validate interleaved2of5
+                            char[] chars = returnCode.getGeraetenummer().toCharArray();
+                            int tempVal = Character.getNumericValue(chars[0])*3;
+                                tempVal   += Character.getNumericValue(chars[1])*1;
+                                tempVal   += Character.getNumericValue(chars[2])*3;
+                                tempVal   += Character.getNumericValue(chars[3])*1;
+                                tempVal   += Character.getNumericValue(chars[4])*3;
+                                tempVal   += Character.getNumericValue(chars[5])*1;
+                                tempVal   += Character.getNumericValue(chars[6])*3;
+                                tempVal   += Character.getNumericValue(chars[7])*1;
+                                tempVal   += Character.getNumericValue(chars[8])*3;
+                            tempVal = 10-tempVal % 10;
+                            if (tempVal == Character.getNumericValue(chars[9]))
+                            {
+                                getTvNewNummer().setText(returnCode.getGeraetenummer().substring(1,9));
+                            }else
+                            {
+                                getTvNewNummer().setText("");
+                            }
+
+                        }
+                    }else{
+                        getTvNewNummer().setText(returnCode.getGeraetenummer());
+                    }
                 safe = true;
             }
         }

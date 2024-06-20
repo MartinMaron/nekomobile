@@ -178,6 +178,7 @@ public class FileHandler
         moveFilesToArchive(GlobalConst.PATH_NEKOMOBILE);
         moveFilesToArchive(GlobalConst.PATH_SONTEX);
         moveFilesToArchive(GlobalConst.PATH_EXIM);
+        moveFilesToArchive(GlobalConst.PATH_QUNDIS);
     }
 
     // region moveFiles

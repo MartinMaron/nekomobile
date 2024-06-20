@@ -128,7 +128,7 @@ public class FTPManager {
                 for(int j = 0; j < downloadPaths.size(); j++){
                     if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
                         File dir = new File(downloadPaths.get(j).getAndroidTargetPath());
-                        if (dir.listFiles().length > 0){
+                        if (dir!=null && dir.listFiles() != null && dir.listFiles().length > 0){
                             String[] fileList = null;
                             for(File androidfile: Arrays.stream(dir.listFiles()).filter(r -> r.isFile()).collect(Collectors.toList()))
                             {

@@ -154,9 +154,9 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 );
 
                 Liste_RWM = new ArrayList<>();
-//                Liste_RWM.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getRauchmelder().stream()
-//                        .collect(Collectors.toList())
-//                );
+                Liste_RWM.addAll(CurrentObjectNavigation.getInstance().getLiegenschaft().getRauchmelder().stream()
+                        .collect(Collectors.toList())
+                );
 
                 if (Liste.size() == 0 && Liste_RWM.size() == 0 ){
                     return false;

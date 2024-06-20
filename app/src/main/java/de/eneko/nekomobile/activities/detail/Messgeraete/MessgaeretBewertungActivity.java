@@ -112,7 +112,7 @@ public class MessgaeretBewertungActivity extends AppCompatActivity implements Me
                 case "31":pictureId = R.drawable.webesfront31;pictureId2 = R.drawable.abmessung31;break;
                 case "32":pictureId = R.drawable.webesfront32;pictureId2 = R.drawable.abmessung32;break;
                 case "33":pictureId = R.drawable.webesfront33;pictureId2 = R.drawable.abmessung33;break;
-                case "41":pictureId = R.drawable.webesfront41;pictureId2 = R.drawable.abmessung42;break;
+                case "41":pictureId = R.drawable.webesfront41;pictureId2 = R.drawable.abmessung41;break;
                 case "42":pictureId = R.drawable.webesfront42;pictureId2 = R.drawable.abmessung42;break;
                 case "43":pictureId = R.drawable.webesfront43;pictureId2 = R.drawable.abmessung43;break;
                 case "51":pictureId = R.drawable.webesfront51;pictureId2 = R.drawable.abmessung51;break;
