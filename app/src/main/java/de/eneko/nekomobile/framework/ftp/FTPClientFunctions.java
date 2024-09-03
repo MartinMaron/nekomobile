@@ -9,7 +9,13 @@ import org.apache.commons.net.ftp.FTPReply;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
+import java.net.*;
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 public class FTPClientFunctions {
 
     // Now, declare a public FTP client object.
@@ -23,7 +29,9 @@ public class FTPClientFunctions {
         try {
             mFTPClient = new FTPClient();
             // connecting to the host
-            mFTPClient.connect(host, port);
+            String ip =  Ip(host);
+
+            mFTPClient.connect(ip, port);
 
             // now check the reply code, if positive mean connection success
             if (FTPReply.isPositiveCompletion(mFTPClient.getReplyCode())) {
@@ -49,6 +57,43 @@ public class FTPClientFunctions {
 
         return false;
     }
+
+    public String Ip(String hostname) {
+        try {
+            InetAddress ipaddress = InetAddress.getByName(hostname);
+            return ipaddress.getHostAddress().toString();
+        } catch ( UnknownHostException e ) {
+           return "0.0.0.0";
+        }
+    }
+
+        public static String getIP() {
+            String line = "";
+            BufferedReader in = null;
+            int i = 0;
+            try {
+                URL getyouripurl = new URL( "ftp://nekoadmin@neko.dyndns-remote.com/" );
+                in = new BufferedReader( new InputStreamReader( getyouripurl
+                        .openStream() ) );
+            } catch( MalformedURLException e ) {
+                System.err.println( e );
+            } catch( IOException e ) {
+                System.err.println( e );
+            }
+            try {
+                while( ( line = in.readLine() ) != null ) {
+                    if( line.startsWith( "<h1>Your IP is " ) ) {
+                        return line.substring( 15, ( line.length() - 10 ) );
+                    }
+                    i++ ;
+                }
+            } catch( IOException e ) {
+                System.err.println( e );
+            }
+            return "Fehler";
+        }
+
+
 
     // Method to disconnect from FTP server:
 
