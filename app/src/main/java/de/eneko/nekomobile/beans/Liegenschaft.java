@@ -298,6 +298,16 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         return ret_val;
     }
 
+    public ArrayList<Messgeraet> getSontexOMSMessgeraets(){
+        ArrayList<Messgeraet> ret_val = new ArrayList<Messgeraet>();
+        ret_val.addAll(
+                getMessgeraets().stream()
+                        .filter(m -> m.isDone() && m.getZielmodel() != null && m.isZielmodelSontexOMS())
+                        .collect(Collectors.toList())
+        );
+        return ret_val;
+    }
+
     public List<Rauchmelder> getRauchmelder(){
         ArrayList<Rauchmelder> ret_val = new ArrayList<>();
         getNutzers().forEach((n) ->

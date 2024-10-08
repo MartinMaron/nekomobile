@@ -63,7 +63,6 @@ public class QundisFileHandler
             return;
         }
 
-        ArrayList<Messgeraet> messgeraete = pLiegenschaft.getNewQundisMessgeraets();
         String data = null;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -71,12 +70,26 @@ public class QundisFileHandler
         data = "[PLANT]" + System.getProperty("line.separator");
         data += "Nummer	Hersteller	Geräte ID	Fabrikations-Nr.	Version	Gerätetyp " + System.getProperty("line.separator");
 
+        ArrayList<Messgeraet> messgeraete = pLiegenschaft.getNewQundisMessgeraets();
         for (int i = 0; i < messgeraete.size(); i++)
         {
             ZaehlerModel zm = Dict.getInstance().getZaehlerModel(messgeraete.get(i).getZielmodel());
             String nummer = messgeraete.get(i).getNeueFunkNummer().equals("") ? messgeraete.get(i).getNeueNummer(): messgeraete.get(i).getNeueFunkNummer();
             data += (i+1) + "\t"
                     + "QDS" + "\t"
+                    + nummer + "\t"
+                    + nummer + "\t"
+                    + "*" + "\t"
+                    + "*" + System.getProperty("line.separator");
+        }
+
+        ArrayList<Messgeraet> son_messgeraete = pLiegenschaft.getSontexOMSMessgeraets();
+        for (int i = 0; i < son_messgeraete.size(); i++)
+        {
+            ZaehlerModel zm = Dict.getInstance().getZaehlerModel(son_messgeraete.get(i).getZielmodel());
+            String nummer = son_messgeraete.get(i).getNeueFunkNummer().equals("") ? son_messgeraete.get(i).getNeueNummer(): son_messgeraete.get(i).getNeueFunkNummer();
+            data += (i+1 + messgeraete.stream().count()) + "\t"
+                    + "SON" + "\t"
                     + nummer + "\t"
                     + nummer + "\t"
                     + "*" + "\t"

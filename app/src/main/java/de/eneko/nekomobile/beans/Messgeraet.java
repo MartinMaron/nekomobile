@@ -433,6 +433,14 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
         }
         return ret_val;
     }
+    public Boolean isZielmodelSontexOMS(){
+        Boolean ret_val = false;
+        if (getZielmodel() != null){
+            ZaehlerModel zm = Dict.getInstance().getZaehlerModel(getZielmodel());
+            ret_val = zm.getSontexCaption().toString().contains("WirelessMBus");
+        }
+        return ret_val;
+    }
 
 
     public Boolean isWithError(){

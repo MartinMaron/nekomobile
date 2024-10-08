@@ -124,6 +124,7 @@ public class FTPManager {
         }
         public void run(){
             try {
+                setFtpHost("neko.dyndns-remote.com");
                 boolean status = false;
                 for(int j = 0; j < downloadPaths.size(); j++){
                     if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
@@ -237,7 +238,7 @@ public class FTPManager {
         }
         public void run(){
             try {
-                ftpHost = "neko.dyndns-remote.com";
+                setFtpHost("neko.dyndns-remote.com");
                 boolean status = false;
 //              alle verzeichnispaare werden durchlaufen
                 for(int j = 0; j < downloadPaths.size(); j++){
