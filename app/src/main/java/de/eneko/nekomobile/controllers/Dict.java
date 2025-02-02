@@ -100,6 +100,11 @@ public class Dict {
 
     private ArrayList<FunkModel> mFunkModels = new ArrayList<>();
     public ArrayList<FunkModel> getFunkModels() {
+        List<ZaehlerModel> q = Dict.getInstance().getZaehlerModels().stream()
+                .collect(Collectors.toList());
+
+
+
         return mFunkModels;
     }
     public FunkModel getFunkModel(String funkModelId) {

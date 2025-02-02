@@ -3,6 +3,7 @@ package de.eneko.nekomobile.activities.viewHolder.Messgearete;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -105,7 +106,7 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                     R.layout.spinner_textview,
                     Dict.getInstance().getZaehlerModels().stream()
                             .filter( r -> r.getAustauschmodel() && (r.getArt().equals(getBasemodel().getBean().getArt()) || r.getArt().equals("ALL") ) )
-                            .sorted(Comparator.comparing(ZaehlerModel::getBezeichnung))
+                            .sorted(Comparator.comparing(ZaehlerModel::getSortfield))
                             .collect(Collectors.toList())
 
                     ) {
@@ -118,7 +119,21 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                     TextView item = (TextView) convertView;
                     item.setTextSize(18);
                     item.setBackgroundResource(R.drawable.textview_border);
-                    item.setText(obj.getBezeichnung());
+                    item.setPadding(10,5,10,5);
+                    if(obj.isUse() > 0 && !obj.getBezeichnung().equals("empty")){
+                        item.setText(obj.getBezeichnung() + " (" + obj.isUse() + ")");
+                        int text_color = mActivity.getResources().getColor(R.color.blue,getActivity().getTheme());
+                        item.setTextColor(text_color);
+                        item.setTextSize(24);
+                        item.setTypeface(null, Typeface.BOLD);
+                    }else{
+                        item.setText(obj.getBezeichnung());
+                        int text_color = mActivity.getResources().getColor(R.color.black,getActivity().getTheme());
+                        item.setTextSize(18);
+                        item.setTextColor(text_color);
+                        item.setTypeface(null, Typeface.NORMAL);
+                    }
+
                     final TextView finalItem = item;
                     item.post(new Runnable() {
                         @Override
@@ -141,6 +156,11 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         convertView = inflater.inflate(R.layout.spinner_textview, parent, false);
                         TextView tv = convertView.findViewById(R.id.multulineSpinnerTextview);
+
+                        if(obj.getBezeichnung().startsWith("Super")){
+                            tv.setTextColor(158);
+                        }
+
                         tv.setText(obj.getBezeichnung());
                     }
                     convertView.setTag(obj);

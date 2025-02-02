@@ -1,5 +1,12 @@
 package de.eneko.nekomobile.beans.hlpta;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import de.eneko.nekomobile.beans.Messgeraet;
+import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
+import de.eneko.nekomobile.controllers.Dict;
+
 public class ZaehlerModel {
     private final Integer mId;
     private String mBezeichnung;
@@ -95,5 +102,17 @@ public class ZaehlerModel {
 
     public String getmQundisGeraeteArt() {
         return mQundisGeraeteArt;
+    }
+
+    public String getSortfield(){
+        int m = isUse();
+            return String.format("%03d", 999-m) + getBezeichnung().toString();
+    }
+
+    public int isUse() {
+        List<Messgeraet> q = CurrentObjectNavigation.getInstance().getLiegenschaft().getMessgeraets().stream()
+                .filter(item -> item.getZielmodel().equals(this.mId))
+                .collect(Collectors.toList());
+        return q.size() ;
     }
 }
