@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.BewertungRowViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.BewertungRowViewHolder;
 import de.eneko.nekomobile.beans.Ibewertung;
 
 

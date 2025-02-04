@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Rauchmelder;
+package de.eneko.nekomobile.activities.models.viewHolder.Rauchmelder;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -152,14 +152,14 @@ public class DetailViewHolder extends RwmBaseViewHolder {
             return;
         }
 
-        if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_1 && data != null ) {
+        if (requestCode == DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_1 && data != null ) {
             //Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             getEtNummer().setText(returnCode.getGeraetenummer());
         }
 
-        if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_2 && data != null ) {
+        if (requestCode == DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_2 && data != null ) {
 //            Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
 //            Toast.makeText(mActivity, barcode.rawValue, Toast.LENGTH_SHORT).show();
 //            getEtNeueNummer().setText(barcode.rawValue);
@@ -168,7 +168,7 @@ public class DetailViewHolder extends RwmBaseViewHolder {
             getEtNeueNummer().setText(returnCode.getGeraetenummer());
         }
 
-        if (requestCode == de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_3 && data != null ) {
+        if (requestCode == DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_3 && data != null ) {
             ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             getEtBemerkungen().setText(! getEtBemerkungen().getText().equals("") ? getEtBemerkungen().getText() + "\n" + result.get(0): result.get(0));
         }

@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Nutzer;
+package de.eneko.nekomobile.activities.models.viewHolder.Nutzer;
 
 
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
-import de.eneko.nekomobile.framework.KeyedValue;
 
 public class NutzerDetailViewHolder extends NutzerBaseViewHolder {
 

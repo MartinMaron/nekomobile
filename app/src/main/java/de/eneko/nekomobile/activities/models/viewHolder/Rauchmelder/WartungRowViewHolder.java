@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Rauchmelder;
+package de.eneko.nekomobile.activities.models.viewHolder.Rauchmelder;
 
 import android.app.Activity;
 import android.content.Intent;

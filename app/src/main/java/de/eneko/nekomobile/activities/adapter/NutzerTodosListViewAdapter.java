@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.NutzerTodoModel;
-import de.eneko.nekomobile.activities.viewHolder.NutzerToDoRowViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.NutzerToDoRowViewHolder;
 import de.eneko.nekomobile.beans.Route;
 import de.eneko.nekomobile.beans.ToDo;
 

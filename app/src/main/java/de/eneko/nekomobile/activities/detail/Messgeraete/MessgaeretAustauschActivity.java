@@ -1,6 +1,5 @@
 package de.eneko.nekomobile.activities.detail.Messgeraete;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +8,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import de.eneko.nekomobile.InputDialogClass;
-import de.eneko.nekomobile.activities.list.MessgeraetMontageListActivity;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.FunkCheck_Austauschgrund;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;

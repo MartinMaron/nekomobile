@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Liegenschaft;
+package de.eneko.nekomobile.activities.models.viewHolder.Liegenschaft;
 
 
 import android.app.Activity;

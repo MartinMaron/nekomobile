@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Nutzer;
+package de.eneko.nekomobile.activities.models.viewHolder.Nutzer;
 
 
 import android.app.Activity;
@@ -10,7 +10,7 @@ import de.eneko.nekomobile.Misc;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.NutzerModel;
-import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Nutzer;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 

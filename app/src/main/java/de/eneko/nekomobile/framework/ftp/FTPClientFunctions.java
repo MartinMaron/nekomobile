@@ -60,10 +60,25 @@ public class FTPClientFunctions {
 
     public String Ip(String hostname) {
         try {
+
+            try {
+                InetAddress SW[] = InetAddress.getAllByName("eneko-rdp.dynv6.net");
+                for (int i=0; i<SW.length; i++) {
+                    String myIp;
+                    myIp = String.valueOf(SW[i]).replace("eneko-rdp.dynv6.net/","");
+                    if (! myIp.contains(":")){
+                        return myIp;
+                    }
+                }
+            }
+            catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
             InetAddress ipaddress = InetAddress.getByName(hostname);
-            return ipaddress.getHostAddress().toString();
+
+            return "79.227.233.93";
         } catch ( UnknownHostException e ) {
-           return "0.0.0.0";
+           return "79.227.233.93";
         }
     }
 
@@ -72,7 +87,7 @@ public class FTPClientFunctions {
             BufferedReader in = null;
             int i = 0;
             try {
-                URL getyouripurl = new URL( "ftp://nekoadmin@neko.dyndns-remote.com/" );
+                URL getyouripurl = new URL( "ftp://nekoadmin@eneko-rdp.dynv6.net" );
                 in = new BufferedReader( new InputStreamReader( getyouripurl
                         .openStream() ) );
             } catch( MalformedURLException e ) {
@@ -126,6 +141,10 @@ public class FTPClientFunctions {
 
     public boolean ftpChangeDirectory(String directory_path) {
         try {
+            mFTPClient.changeWorkingDirectory(directory_path);
+            if (mFTPClient.getReplyCode() == 550){
+                mFTPClient.makeDirectory(directory_path);
+            }
             return mFTPClient.changeWorkingDirectory(directory_path);
        } catch (Exception e) {
             try {
@@ -139,6 +158,8 @@ public class FTPClientFunctions {
 
         return false;
     }
+
+
 
 
 

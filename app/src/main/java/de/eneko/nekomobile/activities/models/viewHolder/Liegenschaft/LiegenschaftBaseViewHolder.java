@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Liegenschaft;
+package de.eneko.nekomobile.activities.models.viewHolder.Liegenschaft;
 
 
 import android.app.Activity;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
-import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
-import de.eneko.nekomobile.activities.viewHolder.TodoRowItemViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.BaseViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.TodoRowItemViewHolder;
 
 public class LiegenschaftBaseViewHolder extends BaseViewHolder {
     /*

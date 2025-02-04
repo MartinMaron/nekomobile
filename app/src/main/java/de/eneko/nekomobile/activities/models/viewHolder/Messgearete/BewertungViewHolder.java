@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Messgearete;
+package de.eneko.nekomobile.activities.models.viewHolder.Messgearete;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +24,7 @@ import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.adapter.BewertungListViewAdapter;
 import de.eneko.nekomobile.activities.detail.Messgeraete.MessgaeretBewertungActivity;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
-import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Ibewertung;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.PictureViewActivity;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.BewertungViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.BewertungViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 import de.eneko.nekomobile.controllers.Dict;

@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Messgearete;
+package de.eneko.nekomobile.activities.models.viewHolder.Messgearete;
 
 
 import android.app.Activity;
@@ -18,7 +18,7 @@ import de.eneko.nekomobile.GlobalConst;
 import de.eneko.nekomobile.InputDialogClass;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.MessgeraetModel;
-import de.eneko.nekomobile.activities.viewHolder.BaseViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.Webes_Grundparameter;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;

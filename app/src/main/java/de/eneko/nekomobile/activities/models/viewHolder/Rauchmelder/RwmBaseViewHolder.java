@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Rauchmelder;
+package de.eneko.nekomobile.activities.models.viewHolder.Rauchmelder;
 
 import android.app.Activity;
 import android.view.View;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.RauchmelderModel;
-import de.eneko.nekomobile.beans.Rauchmelder;
+import de.eneko.nekomobile.activities.models.viewHolder.BaseViewHolder;
 import de.eneko.nekomobile.framework.KeyedValue;
 
-public class RwmBaseViewHolder extends de.eneko.nekomobile.activities.viewHolder.BaseViewHolder {
+public class RwmBaseViewHolder extends BaseViewHolder {
 
     protected Spinner spModele = null;
     protected TextView lbModel = null;

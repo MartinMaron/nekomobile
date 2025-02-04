@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Messgearete;
+package de.eneko.nekomobile.activities.models.viewHolder.Messgearete;
 
 
 import android.app.Activity;

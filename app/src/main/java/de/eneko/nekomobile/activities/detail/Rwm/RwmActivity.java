@@ -9,11 +9,9 @@ import android.view.MenuItem;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.models.RauchmelderModel;
-import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.DetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Rauchmelder.DetailViewHolder;
 import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
-import de.eneko.nekomobile.controllers.FileHandler;
 
 public class RwmActivity extends AppCompatActivity{
 

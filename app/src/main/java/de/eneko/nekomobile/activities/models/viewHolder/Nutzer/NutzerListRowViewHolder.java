@@ -1,11 +1,11 @@
-package de.eneko.nekomobile.activities.viewHolder.Nutzer;
+package de.eneko.nekomobile.activities.models.viewHolder.Nutzer;
 
 
 import android.view.View;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
-import de.eneko.nekomobile.activities.viewHolder.TodoRowItemViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.TodoRowItemViewHolder;
 import de.eneko.nekomobile.controllers.Dict;
 
 public class NutzerListRowViewHolder extends NutzerBaseViewHolder {

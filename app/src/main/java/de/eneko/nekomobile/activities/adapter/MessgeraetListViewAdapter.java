@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.MessgeraetListActivity;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetBaseViewHolder;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.MessgeraetRowViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.MessgeraetBaseViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.MessgeraetRowViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 

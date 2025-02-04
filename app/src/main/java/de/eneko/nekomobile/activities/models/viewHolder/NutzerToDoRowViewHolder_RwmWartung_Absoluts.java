@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder;
+package de.eneko.nekomobile.activities.models.viewHolder;
 
 
 import android.widget.TextView;

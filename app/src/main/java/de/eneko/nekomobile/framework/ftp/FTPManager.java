@@ -124,7 +124,7 @@ public class FTPManager {
         }
         public void run(){
             try {
-                setFtpHost("neko.dyndns-remote.com");
+                setFtpHost("eneko-rdp.dynv6.net");
                 boolean status = false;
                 for(int j = 0; j < downloadPaths.size(); j++){
                     if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
@@ -238,7 +238,7 @@ public class FTPManager {
         }
         public void run(){
             try {
-                setFtpHost("neko.dyndns-remote.com");
+                setFtpHost("eneko-rdp.dynv6.net");
                 boolean status = false;
 //              alle verzeichnispaare werden durchlaufen
                 for(int j = 0; j < downloadPaths.size(); j++){
@@ -278,11 +278,7 @@ public class FTPManager {
                             }
                         }
                     }
-
                 }
-
-
-
             } catch (Exception err) {
                 err.printStackTrace();
             }

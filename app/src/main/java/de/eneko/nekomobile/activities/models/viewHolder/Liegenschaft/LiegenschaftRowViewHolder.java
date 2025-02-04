@@ -1,4 +1,4 @@
-package de.eneko.nekomobile.activities.viewHolder.Liegenschaft;
+package de.eneko.nekomobile.activities.models.viewHolder.Liegenschaft;
 
 
 import android.content.Intent;
@@ -11,7 +11,7 @@ import java.util.Locale;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.models.Basemodel;
 import de.eneko.nekomobile.activities.models.LiegenschaftModel;
-import de.eneko.nekomobile.activities.viewHolder.TodoRowItemViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.TodoRowItemViewHolder;
 import de.eneko.nekomobile.beans.Liegenschaft;
 
 public class LiegenschaftRowViewHolder extends LiegenschaftBaseViewHolder {

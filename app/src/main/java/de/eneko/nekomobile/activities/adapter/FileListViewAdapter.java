@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.models.RouteModel;
-import de.eneko.nekomobile.activities.viewHolder.RouteViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.RouteViewHolder;
 import de.eneko.nekomobile.beans.Route;
 
 import android.view.LayoutInflater;

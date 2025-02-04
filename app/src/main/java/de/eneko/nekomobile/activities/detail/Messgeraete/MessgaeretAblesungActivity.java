@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import de.eneko.nekomobile.activities.list.MessgeraetAblesungListActivity;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;

@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.models.RauchmelderModel;
-import de.eneko.nekomobile.activities.viewHolder.Rauchmelder.WartungRowViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Rauchmelder.WartungRowViewHolder;
 import de.eneko.nekomobile.beans.Rauchmelder;
 
 public class RauchmelderWartungListViewAdapter extends ArrayAdapter<Rauchmelder>

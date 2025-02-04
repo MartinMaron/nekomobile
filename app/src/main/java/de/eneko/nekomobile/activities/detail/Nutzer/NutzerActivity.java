@@ -8,12 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.list.LiegenschaftListActivity;
 import de.eneko.nekomobile.activities.list.NutzerListActivity;
-import de.eneko.nekomobile.activities.list.RauchmelderWartungListActivity;
-import de.eneko.nekomobile.activities.viewHolder.Nutzer.NutzerDetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Nutzer.NutzerDetailViewHolder;
 import de.eneko.nekomobile.beans.Nutzer;
-import de.eneko.nekomobile.beans.Rauchmelder;
 import de.eneko.nekomobile.controllers.CurrentObjectNavigation;
 
 public class NutzerActivity extends AppCompatActivity{

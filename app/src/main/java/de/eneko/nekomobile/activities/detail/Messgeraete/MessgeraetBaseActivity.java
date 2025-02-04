@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 
 import de.eneko.nekomobile.R;
-import de.eneko.nekomobile.activities.viewHolder.Messgearete.DetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Messgearete.DetailViewHolder;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.controllers.PhotoHandler;
 import de.eneko.nekomobile.controllers.SontexFileHandler;

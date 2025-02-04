@@ -10,7 +10,6 @@ import android.view.MenuItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,11 +20,10 @@ import java.util.stream.Collectors;
 import org.json.*;
 
 import de.eneko.nekomobile.GlobalConst;
-import de.eneko.nekomobile.MainActivity;
 import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.activities.list.LiegenschaftListActivity;
 import de.eneko.nekomobile.activities.list.MessgeraetSonexaListActivity;
-import de.eneko.nekomobile.activities.viewHolder.Liegenschaft.LiegenschaftDetailViewHolder;
+import de.eneko.nekomobile.activities.models.viewHolder.Liegenschaft.LiegenschaftDetailViewHolder;
 import de.eneko.nekomobile.beans.Liegenschaft;
 import de.eneko.nekomobile.beans.Messgeraet;
 import de.eneko.nekomobile.beans.Rauchmelder;
@@ -83,7 +81,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 String myResponse = "";
                 OkHttpClient client = new OkHttpClient();
                 // Project Id
-                String url = "https://exchange-platform.app/api/measurements/v1.0//project/" + liegenschaft.getSonexaProjectHash() +".json";
+                String url = "https://sonexa.ch/api/measurements/v1.0/project/" + liegenschaft.getSonexaProjectHash() +".json";
                 Request request = new Request.Builder()
                         .url(url)
                         .header("Authorization", GlobalConst.SONTEX_TOKEN)
@@ -168,7 +166,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 RequestBody body = RequestBody.create(MediaType.parse("application/xml"),xmlContent);
 
                 // Project Id
-                url = "https://exchange-platform.app/api/project/v1.0/project/" + liegenschaft.getSonexaProjectId() + "/import";
+                url = "https://sonexa.ch/api/measurements/v1.0/project/" + liegenschaft.getSonexaProjectId() + "/import";
 
                 request = new Request.Builder()
                         .url(url)
