@@ -1,8 +1,10 @@
 package de.eneko.nekomobile.framework;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import de.eneko.nekomobile.R;
 import de.eneko.nekomobile.beans.hlpta.FunkModel;
 import de.eneko.nekomobile.beans.hlpta.ZaehlerModel;
 import de.eneko.nekomobile.controllers.Dict;
@@ -62,6 +64,12 @@ public class BarcodeHelper {
             ret_val.setGeraetenummer(retString[1]);
             ret_val.setArtikelnummer("1353");  //Ei6500 Typ C Ferninspektion nach DIN 14676
         }
+        if (mBarcode.trim().startsWith("EIE;")){
+            String[] retString = mBarcode.split(";");
+            ret_val.setGeraetenummer(retString[1]);
+            ret_val.setArtikelnummer("1530");  //Ei6500 Typ C Ferninspektion nach DIN 14676
+        }
+
         return  ret_val;
     }
 
@@ -105,6 +113,10 @@ public class BarcodeHelper {
                     .collect(Collectors.toList());
             return q.size() > 0 ? q.get(0): null ;
         }
+
+
+
+
     }
 
 

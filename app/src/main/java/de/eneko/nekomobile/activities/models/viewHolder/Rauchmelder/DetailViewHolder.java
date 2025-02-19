@@ -166,6 +166,16 @@ public class DetailViewHolder extends RwmBaseViewHolder {
             Barcode barcode = data.getParcelableExtra(BarcodeReaderActivity.KEY_CAPTURED_BARCODE);
             BarcodeHelper.ReturnCode returnCode = new BarcodeHelper(barcode.displayValue.toString()).getReturnCode();
             getEtNeueNummer().setText(returnCode.getGeraetenummer());
+
+            if(returnCode.getZaehlerModel() != null){
+                for(int i=0 ; i<spinnerAdapter.getCount() ; i++){
+                    KeyedValue obj = (KeyedValue) spinnerAdapter.getItem(i);
+                    if (obj.mKey.equals(returnCode.getZaehlerModel())) {
+                        spModele.setSelection(i);
+                    }
+                }
+            }
+
         }
 
         if (requestCode == DetailViewHolder.RWM_ACTIVITY_REQUEST_BT_3 && data != null ) {

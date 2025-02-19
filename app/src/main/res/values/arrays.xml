@@ -34,6 +34,7 @@
         <item>1278;Mertens Rauchmelder</item>
         <item>1337;GIRA Fremdgerät</item>
         <item>1349;ABUS - Rauchmelder</item>
+        <item>1530;QDS - RWM - OMS Ei6500 Typ C</item>
     </array>
     <array name="funk_austausch_grund">
         <item>X; ;</item>

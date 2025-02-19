@@ -76,9 +76,9 @@ public class FTPClientFunctions {
             }
             InetAddress ipaddress = InetAddress.getByName(hostname);
 
-            return "79.227.233.93";
+            return "217.251.125.90";
         } catch ( UnknownHostException e ) {
-           return "79.227.233.93";
+           return "217.251.125.90";
         }
     }
 
