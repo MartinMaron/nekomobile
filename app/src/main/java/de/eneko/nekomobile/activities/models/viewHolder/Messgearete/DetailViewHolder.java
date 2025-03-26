@@ -146,8 +146,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                     return item;
                 }
 
-
-
                 @NonNull
                 @Override
                 public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -158,11 +156,6 @@ public class DetailViewHolder extends MessgeraetBaseViewHolder {
                                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         convertView = inflater.inflate(R.layout.spinner_textview, parent, false);
                         TextView tv = convertView.findViewById(R.id.multulineSpinnerTextview);
-
-                        if(obj.getBezeichnung().startsWith("Super")){
-                            tv.setTextColor(158);
-                        }
-
                         tv.setText(obj.getBezeichnung());
                     }
                     convertView.setTag(obj);

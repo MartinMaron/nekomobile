@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         btCmdFtpDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 WriteFtpData();
                 FileHandler.getInstance().getFTPManager().download(requestHandler);
             }
@@ -215,6 +216,7 @@ public class MainActivity extends AppCompatActivity
                 // char to string conversion
                 String readstring=String.copyValueOf(inputBuffer,0,charRead);
                 etFtpip.setText(readstring);
+
            }
             InputRead.close();
 

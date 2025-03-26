@@ -124,10 +124,9 @@ public class FTPManager {
         }
         public void run(){
             try {
-                setFtpHost("eneko-rdp.dynv6.net");
                 boolean status = false;
                 for(int j = 0; j < downloadPaths.size(); j++){
-                    if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
+                    if (ftpHelper.ftpConnect("eneko-rdp.dynv6.net",uname,haslo,port)){
                         File dir = new File(downloadPaths.get(j).getAndroidTargetPath());
                         if (dir!=null && dir.listFiles() != null && dir.listFiles().length > 0){
                             String[] fileList = null;
@@ -238,12 +237,11 @@ public class FTPManager {
         }
         public void run(){
             try {
-                setFtpHost("eneko-rdp.dynv6.net");
                 boolean status = false;
 //              alle verzeichnispaare werden durchlaufen
                 for(int j = 0; j < downloadPaths.size(); j++){
 //                  verbinden mit FTP Laufwerk
-                    if (ftpHelper.ftpConnect(ftpHost,uname,haslo,port)){
+                    if (ftpHelper.ftpConnect("eneko-rdp.dynv6.net",uname,haslo,port)){
 //                      Pfad auf dem android-Gerät
                         File androidPath = new File(downloadPaths.get(j).getAndroidTargetPath());
 
@@ -395,6 +393,9 @@ public class FTPManager {
     // endregion
     public void setFtpHost(String ftpHost) {
         this.ftpHost = ftpHost;
+    }
+    public String getFtpHost() {
+        return this.ftpHost;
     }
 }
 

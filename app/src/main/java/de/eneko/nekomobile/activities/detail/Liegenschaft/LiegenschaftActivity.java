@@ -166,7 +166,7 @@ public class LiegenschaftActivity extends AppCompatActivity{
                 RequestBody body = RequestBody.create(MediaType.parse("application/xml"),xmlContent);
 
                 // Project Id
-                url = "https://sonexa.ch/api/measurements/v1.0/project/" + liegenschaft.getSonexaProjectId() + "/import";
+                url = "https://sonexa.ch/api/project/v1.0/project/" + liegenschaft.getSonexaProjectId() + "/import";
 
                 request = new Request.Builder()
                         .url(url)

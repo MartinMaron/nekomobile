@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import de.eneko.nekomobile.controllers.FileHandler;
+
 public class FTPClientFunctions {
 
     // Now, declare a public FTP client object.
@@ -76,9 +79,9 @@ public class FTPClientFunctions {
             }
             InetAddress ipaddress = InetAddress.getByName(hostname);
 
-            return "217.251.125.90";
+            return FileHandler.getInstance().getFTPManager().getFtpHost();
         } catch ( UnknownHostException e ) {
-           return "217.251.125.90";
+            return FileHandler.getInstance().getFTPManager().getFtpHost();
         }
     }
 
