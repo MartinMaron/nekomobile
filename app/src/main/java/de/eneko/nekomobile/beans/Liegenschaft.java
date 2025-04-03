@@ -292,7 +292,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         ArrayList<Messgeraet> ret_val = new ArrayList<Messgeraet>();
         ret_val.addAll(
                 getMessgeraets().stream()
-                        .filter(m -> m.isDone() && m.getZielmodel() != null && m.isZielmodelQundis())
+                        .filter(m -> m.isDone() && m.getNeueFunkNummer()!=null && m.getZielmodel() != null && m.isZielmodelQundis())
                         .collect(Collectors.toList())
         );
         return ret_val;
@@ -302,7 +302,7 @@ public class Liegenschaft extends BaseObject implements ItoXmlElement, InekoId {
         ArrayList<Messgeraet> ret_val = new ArrayList<Messgeraet>();
         ret_val.addAll(
                 getMessgeraets().stream()
-                        .filter(m -> m.isDone() && m.getZielmodel() != null && m.isZielmodelSontexOMS())
+                        .filter(m -> m.isDone() && m.getNeueFunkNummer()!=null && m.getZielmodel() != null && m.isZielmodelSontexOMS())
                         .collect(Collectors.toList())
         );
         return ret_val;

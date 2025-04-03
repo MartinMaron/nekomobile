@@ -75,6 +75,14 @@ public class QundisFileHandler
         {
             ZaehlerModel zm = Dict.getInstance().getZaehlerModel(messgeraete.get(i).getZielmodel());
             String nummer = messgeraete.get(i).getNeueFunkNummer().equals("") ? messgeraete.get(i).getNeueNummer(): messgeraete.get(i).getNeueFunkNummer();
+            if (nummer.length() != 8) {
+                if(messgeraete.get(i).getTodo().getNutzer() != null){
+                    nummer = padLeftZeros(messgeraete.get(i).getTodo().getNutzer().getNutzernummer().toString(),8);
+                }else{
+                    nummer = "00000000";
+                }
+            }
+
             data += (i+1) + "\t"
                     + "QDS" + "\t"
                     + nummer + "\t"
@@ -88,6 +96,14 @@ public class QundisFileHandler
         {
             ZaehlerModel zm = Dict.getInstance().getZaehlerModel(son_messgeraete.get(i).getZielmodel());
             String nummer = son_messgeraete.get(i).getNeueFunkNummer().equals("") ? son_messgeraete.get(i).getNeueNummer(): son_messgeraete.get(i).getNeueFunkNummer();
+            if (nummer.length() != 8) {
+                if(son_messgeraete.get(i).getTodo().getNutzer() != null){
+                    nummer = padLeftZeros(son_messgeraete.get(i).getTodo().getNutzer().getNutzernummer().toString(),8);
+                }else{
+                    nummer = "00000000";
+                }
+            }
+
             data += (i+1 + messgeraete.stream().count()) + "\t"
                     + "SON" + "\t"
                     + nummer + "\t"
@@ -118,6 +134,19 @@ public class QundisFileHandler
                 e.printStackTrace();
             }
         }
+    }
+
+    private String padLeftZeros(String inputString, int length) {
+        if (inputString.length() >= length) {
+            return inputString;
+        }
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < length - inputString.length()) {
+            sb.append('0');
+        }
+        sb.append(inputString);
+
+        return sb.toString();
     }
 
 }

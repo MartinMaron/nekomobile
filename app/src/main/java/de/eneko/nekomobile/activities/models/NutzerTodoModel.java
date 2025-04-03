@@ -47,6 +47,7 @@ public class NutzerTodoModel extends Basemodel{
     public Boolean isCompleted(String pArt){
         boolean ret_val = false;
         if(pArt.equals("RWM")){
+            ret_val = true;
             if (getBean().getArt().equals("WAR_RWM")){
                 ret_val = getToDoCount(pArt) == (getWithErrorCount(pArt)+ getDoneCount(pArt));
                 if (getNewCount("RWM") > 0) {ret_val = true;}

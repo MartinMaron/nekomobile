@@ -86,7 +86,7 @@
         <item>91;Fensterbankradiatoren aus Stahlrohren</item>
     </array>
     <array name="zaehler_modele">
-        <item>-1@empty@True@ALL@ @ @ @ @ @ false@false@ @ @</item>
+        <item>-1@empty@True@ALL@ @ @ @ @ @ false@false@false@ @</item>
         <item>54@APZ-We-ETW-2,5-130mm-3/4"-1 l/Imp@False@WWZ@ @106060@ @ @1@False@False@False@ @</item>
         <item>55@APZ-We-ETW-2,5-130mm-3/4"-10 l/Imp@False@WWZ@ @106070@ @ @1@False@False@False@ @</item>
         <item>57@APZ-A-ETW-1,5-110mm-1/2"-1 l/Imp@False@WWZ@ @106120@ @ @1@False@False@False@ @</item>
@@ -520,7 +520,7 @@
         <item>1255@Funk-Ventil-Kaltwasserzähler- e-wirelesse inkl.M.@False@KWZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1256@Funk-Ventil-Warmwasserzähler- e-wirelesse inkl. M.@False@WWZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1257@Wärmezähler ProSelect2 Qn 1,5@False@WMZ@ @ @ @ @1@False@False@False@ @</item>
-        <item>1258@Wärmezähler Delta Mess Qn 1,5 @False@WMZ@ @ @ @ @1@False@False@False@ @</item>
+        <item>1258@Qundis WMZ Delta Mess Qn 1,5@True@WMZ@ @ @ @ @1@False@False@True@4@</item>
         <item>1259@Funk Wärmemengenzähler 539 Qn 2,5 Baulänge 130mm @False@WMZ@ @RN141R11 @http://www.sontex.com/Son539-read@Auslesen 539@1@False@False@False@ @</item>
         <item>1260@Wärmezähler SC539 - Qn1.5 - Funk- EXIM@False@WMZ@ @ @ @ @1@False@False@False@ @</item>
         <item>1261@Sontex WMZ SC739 - Qn 1,5 - 110mm@True@WMZ@ @0739RL141R11E00@http://www.sontex.com/Son7x9-read@Auslesen 7x9@0@False@False@False@ @</item>
@@ -785,6 +785,18 @@
         <item>1527@Qundis WMZ - Qn 1.5 - Techem@True@WMZ@ @HMR5000GB120 00010@ @ @1@False@False@True@4@</item>
         <item>1528@Qundis WMZ - Qn 2.5 - Techem@True@WMZ@ @HMR5000GC120 00010@ @ @1@False@False@True@4@</item>
         <item>1529@Sontex 583 - AP 110mm WWZ@True@WWZ@583@ @http://www.sontex.com/Son583-read@Auslesen 583@1@False@False@False@ @</item>
+        <item>1530@QDS - RWM - OMS Ei6500 Typ C@True@RWM@ @ @ @ @1@False@False@True@26@</item>
+        <item>1531@OMS Warmwasserzähler@True@WWZ@ @ @ @ @1@False@False@True@6@</item>
+        <item>1532@OMS Kaltwasserzähler@True@KWZ@ @ @ @ @1@False@False@True@7@</item>
+        <item>1534@QDS - RWM - OMS Ei6500 Typ C ohne AES@True@RWM@ @ @ @ @1@False@False@True@26@</item>
+        <item>1535@Sontex 878 Lora@True@HKV@ @ @http://www.sontex.com/Son878-read@Auslesen 878@1@False@False@False@ @</item>
+        <item>1536@Superaqua OMS Up. Kaltwasserzähler Deltamess@True@KWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1537@Superaqua OMS Up. Kaltwasserzähler Metrona@True@KWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1538@Superaqua OMS Up. Warmwasserzähler Metrona@True@WWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1539@Superaqua OMS Ap.110 mm Kaltwasserzähler @True@KWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1540@Superaqua OMS Ap.110 mm Warmwasserzähler@True@WWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1542@Superaqua OMS Up. Warmwasserzähler Deltamess @True@WWZ@ @ @http://www.sontex.com/WirelessMBus-read@Auslesen WirelessMBus@1@False@False@False@ @</item>
+        <item>1543@Qundis WMZ - Qn 3,5 - Wärme u. Kälte BL. 260mm@True@WMZ@ @ @ @ @1@False@False@True@13@</item>
     </array>
 
     <array name="rwm_Austauschgrund">

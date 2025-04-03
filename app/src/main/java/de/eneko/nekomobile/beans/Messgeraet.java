@@ -420,7 +420,7 @@ public class Messgeraet extends BaseObject implements InekoId, ItoXmlElement, Ib
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WMZ) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_HKV) ||
                 getTodo().getArt().equals(Dict.TODO_MONTAGE_WWZ)){
-            if (getAustauschGrund().equals("X") && getNeueNummer().equals("") && getNeueFunkNummer().equals("") && getUndoneGrund().equals("")) {return true;}
+            if (getNeueNummer().equals("") && getNeueFunkNummer().equals("") && getUndoneGrund().equals("")) {return true;}
         }
         return false;
     };
