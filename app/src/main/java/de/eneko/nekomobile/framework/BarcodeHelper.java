@@ -39,11 +39,16 @@ public class BarcodeHelper {
                 _line = _line.trim().replace("?","");
                 _line = _line.trim().replace("http://qr.tefm.ch/","");
                 if (_line.startsWith("rub=")) ret_val.setArtikelnummer(_line.replace("rub=",""));
-                    if (_line.contains("NS=")){
-                        _line = _line.substring(_line.indexOf("NS="));
-                    }
+                if (_line.contains("NS=")){
+                    _line = _line.substring(_line.indexOf("NS="));
+                }
                 if (_line.startsWith("NS="))ret_val.setGeraetenummer(_line.replace("NS=",""));
             }
+        }
+
+        //3D Barcode vom Sontex
+        if (mBarcode.trim().startsWith("8SON22")){
+            ret_val.setGeraetenummer(mBarcode.trim().replace("8SON22",""));
         }
 
         //3D Barcode vom Qundis
