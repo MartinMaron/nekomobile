@@ -126,7 +126,7 @@ public class FTPManager {
             try {
                 boolean status = false;
                 for(int j = 0; j < downloadPaths.size(); j++){
-                    if (ftpHelper.ftpConnect("eneko-rdp.dynv6.net",uname,haslo,port)){
+                    if (ftpHelper.ftpConnect("eneko.zapto.org",uname,haslo,port)){
                         File dir = new File(downloadPaths.get(j).getAndroidTargetPath());
                         if (dir!=null && dir.listFiles() != null && dir.listFiles().length > 0){
                             String[] fileList = null;
@@ -241,7 +241,7 @@ public class FTPManager {
 //              alle verzeichnispaare werden durchlaufen
                 for(int j = 0; j < downloadPaths.size(); j++){
 //                  verbinden mit FTP Laufwerk
-                    if (ftpHelper.ftpConnect("eneko-rdp.dynv6.net",uname,haslo,port)){
+                    if (ftpHelper.ftpConnect("eneko.zapto.org",uname,haslo,port)){
 //                      Pfad auf dem android-Gerät
                         File androidPath = new File(downloadPaths.get(j).getAndroidTargetPath());
 

@@ -65,10 +65,10 @@ public class FTPClientFunctions {
         try {
 
             try {
-                InetAddress SW[] = InetAddress.getAllByName("eneko-rdp.dynv6.net");
+                InetAddress SW[] = InetAddress.getAllByName("eneko.zapto.org");
                 for (int i=0; i<SW.length; i++) {
                     String myIp;
-                    myIp = String.valueOf(SW[i]).replace("eneko-rdp.dynv6.net/","");
+                    myIp = String.valueOf(SW[i]).replace("eneko.zapto.org/","");
                     if (! myIp.contains(":")){
                         return myIp;
                     }
@@ -84,33 +84,33 @@ public class FTPClientFunctions {
             return FileHandler.getInstance().getFTPManager().getFtpHost();
         }
     }
-
-        public static String getIP() {
-            String line = "";
-            BufferedReader in = null;
-            int i = 0;
-            try {
-                URL getyouripurl = new URL( "ftp://nekoadmin@eneko-rdp.dynv6.net" );
-                in = new BufferedReader( new InputStreamReader( getyouripurl
-                        .openStream() ) );
-            } catch( MalformedURLException e ) {
-                System.err.println( e );
-            } catch( IOException e ) {
-                System.err.println( e );
-            }
-            try {
-                while( ( line = in.readLine() ) != null ) {
-                    if( line.startsWith( "<h1>Your IP is " ) ) {
-                        return line.substring( 15, ( line.length() - 10 ) );
-                    }
-                    i++ ;
-                }
-            } catch( IOException e ) {
-                System.err.println( e );
-            }
-            return "Fehler";
-        }
-
+//
+//        public static String getIP() {
+//            String line = "";
+//            BufferedReader in = null;
+//            int i = 0;
+//            try {
+//                URL getyouripurl = new URL( "ftp://nekoadmin@eneko-rdp.dynv6.net" );
+//                in = new BufferedReader( new InputStreamReader( getyouripurl
+//                        .openStream() ) );
+//            } catch( MalformedURLException e ) {
+//                System.err.println( e );
+//            } catch( IOException e ) {
+//                System.err.println( e );
+//            }
+//            try {
+//                while( ( line = in.readLine() ) != null ) {
+//                    if( line.startsWith( "<h1>Your IP is " ) ) {
+//                        return line.substring( 15, ( line.length() - 10 ) );
+//                    }
+//                    i++ ;
+//                }
+//            } catch( IOException e ) {
+//                System.err.println( e );
+//            }
+//            return "Fehler";
+//        }
+//
 
 
     // Method to disconnect from FTP server:
